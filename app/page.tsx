@@ -1,5 +1,5 @@
 "use client";
-import { CSSProperties, useState, useEffect } from "react";
+import { CSSProperties } from "react";
 
 const PALETTE = {
   red: "oklch(0.58 0.17 27)",
@@ -183,36 +183,13 @@ const styles: Record<string, CSSProperties> = {
 };
 
 export default function Page() {
-  const [activeSection, setActiveSection] = useState("work");
-
-  useEffect(() => {
-    const handleScroll = () => {
-      const sections = ["work", "about", "skills", "topfives", "contact"];
-      for (const sectionId of sections) {
-        const el = document.getElementById(sectionId);
-        if (el) {
-          const rect = el.getBoundingClientRect();
-          if (rect.top <= window.innerHeight / 2 && rect.bottom >= window.innerHeight / 2) {
-            setActiveSection(sectionId);
-            break;
-          }
-        }
-      }
-    };
-
-    window.addEventListener("scroll", handleScroll);
-    return () => window.removeEventListener("scroll", handleScroll);
-  }, []);
-
-  const sectionLabels = { work: "01", about: "02", skills: "03", topfives: "04", contact: "05" };
-
   return (
     <div style={styles.page}>
       <header style={styles.header}>
         <div style={styles.logoMark}>DW</div>
         <div style={styles.headerName}>Darrough West</div>
-        <a href="mailto:darrough@gmail.com" style={styles.headerCta}>Get in touch ↗</a>
-      
+      </header>
+
       <section style={styles.masthead}>
         <div style={styles.mastheadEyebrow}>◉ REC — SIDE A</div>
         <h1 style={styles.mastheadTitle}>
@@ -340,41 +317,11 @@ export default function Page() {
       </section>
 
       <nav style={styles.bottomNav}>
-        <a 
-          href="#work" 
-          onClick={(e) => { e.preventDefault(); document.getElementById("work")?.scrollIntoView({ behavior: "smooth" }); }}
-          style={activeSection === "work" ? { ...styles.pill, ...styles.pillActive } : styles.pill}
-        >
-          01 — Work
-        </a>
-        <a 
-          href="#about" 
-          onClick={(e) => { e.preventDefault(); document.getElementById("about")?.scrollIntoView({ behavior: "smooth" }); }}
-          style={activeSection === "about" ? { ...styles.pill, ...styles.pillActive } : styles.pill}
-        >
-          02 — About
-        </a>
-        <a 
-          href="#skills" 
-          onClick={(e) => { e.preventDefault(); document.getElementById("skills")?.scrollIntoView({ behavior: "smooth" }); }}
-          style={activeSection === "skills" ? { ...styles.pill, ...styles.pillActive } : styles.pill}
-        >
-          03 — Skills
-        </a>
-        <a 
-          href="#topfives" 
-          onClick={(e) => { e.preventDefault(); document.getElementById("topfives")?.scrollIntoView({ behavior: "smooth" }); }}
-          style={activeSection === "topfives" ? { ...styles.pill, ...styles.pillActive } : styles.pill}
-        >
-          04 — Off duty
-        </a>
-        <a 
-          href="#contact" 
-          onClick={(e) => { e.preventDefault(); document.getElementById("contact")?.scrollIntoView({ behavior: "smooth" }); }}
-          style={activeSection === "contact" ? { ...styles.pill, ...styles.pillActive } : styles.pill}
-        >
-          05 — Contact
-        </a>
+        <a href="#work" style={styles.pill}>01 — Work</a>
+        <a href="#about" style={styles.pill}>02 — About</a>
+        <a href="#skills" style={styles.pill}>03 — Skills</a>
+        <a href="#topfives" style={styles.pill}>04 — Off duty</a>
+        <a href="#contact" style={styles.pill}>05 — Contact</a>
       </nav>
     </div>
   );
