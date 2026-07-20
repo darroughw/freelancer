@@ -1,0 +1,11 @@
+@use "./theme" as *;
+
+.page {
+  background: $cream;
+  color: $ink;
+  font-family: $paper-font;
+  min-height: 100vh;
+  background-image: radial-gradient(oklch(0 0 0 / 0.02) 1px, transparent 1px);
+  background-size: 3px 3px;
+  padding-bottom: 76px;
+}

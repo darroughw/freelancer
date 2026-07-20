@@ -1,0 +1,42 @@
+@use "./theme" as *;
+
+.bottom-nav {
+  position: fixed;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  z-index: 10;
+  background: $ink;
+  border-top: 2px solid oklch(0.95 0.018 80 / 0.15);
+  display: flex;
+  gap: 8px;
+  overflow-x: auto;
+  padding: 12px clamp(16px, 4vw, 32px);
+  scroll-snap-type: x mandatory;
+}
+
+.pill {
+  flex-shrink: 0;
+  display: flex;
+  align-items: center;
+  min-height: 36px;
+  padding: 0 14px;
+  border-radius: 100px;
+  background: oklch(0.95 0.018 80 / 0.12);
+  color: $cream;
+  font: 700 12px $paper-font;
+  text-decoration: none;
+  cursor: pointer;
+  transition: all 0.3s ease;
+}
+
+@media (max-width: 640px) {
+  .bottom-nav {
+    flex-wrap: wrap;
+    overflow-x: visible;
+    scroll-snap-type: none;
+    justify-content: center;
+    gap: 8px 10px;
+    padding: 10px 16px;
+  }
+}

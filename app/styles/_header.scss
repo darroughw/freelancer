@@ -1,0 +1,44 @@
+@use "./theme" as *;
+
+.header {
+  position: sticky;
+  top: 0;
+  z-index: 10;
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  padding: 14px clamp(16px, 4vw, 32px);
+  background: $ink;
+  color: $cream;
+}
+
+.logo-mark {
+  width: 34px;
+  height: 34px;
+  border-radius: 50%;
+  background: $cream;
+  color: $ink;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font: 700 12px $mono-font;
+  flex-shrink: 0;
+}
+
+.header-name {
+  font: 900 16px/1.1 $head-font;
+}
+
+.header-cta {
+  margin-left: auto;
+  font: 700 13px $paper-font;
+  text-decoration: none;
+  color: $ink;
+  background: $mustard;
+  padding: 10px 16px;
+  border-radius: 100px;
+  min-height: 44px;
+  display: flex;
+  align-items: center;
+  white-space: nowrap;
+}

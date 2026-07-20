@@ -1,0 +1,62 @@
+@use "./theme" as *;
+
+.about-section {
+  padding: clamp(32px, 8vw, 56px) clamp(16px, 4vw, 32px) clamp(28px, 6vw, 48px);
+  max-width: 720px;
+}
+
+.about-lead {
+  font: 400 clamp(15px, 2.5vw, 17px)/1.65 $paper-font;
+  color: oklch(0.22 0.02 55 / 0.85);
+  margin: 24px 0 0;
+}
+
+.drop-cap {
+  font: 900 52px $head-font;
+  float: left;
+  line-height: 0.8;
+  margin: 6px 8px 0 0;
+  color: $red;
+}
+
+.pull-quote {
+  border-left: 3px solid $red;
+  padding-left: 18px;
+  margin-top: 24px;
+}
+
+.pull-quote-text {
+  font: 700 18px/1.4 $head-font;
+  margin: 0 0 10px;
+}
+
+.pull-quote-rule {
+  width: 32px;
+  height: 3px;
+  background: $mustard;
+}
+
+.spec-sheet {
+  display: flex;
+  flex-direction: column;
+  margin-top: 36px;
+  border-top: 1.5px solid $ink;
+}
+
+.spec-row {
+  display: flex;
+  justify-content: space-between;
+  padding: 14px 0;
+  border-bottom: 1.5px solid $ink;
+}
+
+.spec-key {
+  font: 600 12px $mono-font;
+  letter-spacing: 0.03em;
+  text-transform: uppercase;
+  opacity: 0.65;
+}
+
+.spec-val {
+  font: 800 15px $paper-font;
+}

@@ -1,0 +1,36 @@
+@use "./theme" as *;
+
+.section-label-row {
+  display: flex;
+  align-items: center;
+  gap: 14px;
+  padding: 0 clamp(16px, 4vw, 32px);
+}
+
+.section-tag {
+  font: 700 12px $mono-font;
+  letter-spacing: 0.1em;
+  color: $red;
+  white-space: nowrap;
+}
+
+.section-rule {
+  flex: 1;
+  height: 2px;
+  background: $ink;
+  opacity: 0.15;
+}
+
+.section-tag-light {
+  font: 700 12px $mono-font;
+  letter-spacing: 0.1em;
+  color: $cream;
+  white-space: nowrap;
+}
+
+.section-rule-light {
+  flex: 1;
+  height: 2px;
+  background: $cream;
+  opacity: 0.25;
+}

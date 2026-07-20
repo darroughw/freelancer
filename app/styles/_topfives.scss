@@ -1,0 +1,46 @@
+@use "./theme" as *;
+
+.top-fives-section {
+  padding: clamp(32px, 8vw, 56px) 0 clamp(40px, 8vw, 56px);
+}
+
+.top-fives-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+  gap: 16px;
+  padding: 0 clamp(16px, 4vw, 32px);
+  margin-top: 24px;
+}
+
+.top-five-card {
+  background: $cream-dark;
+  border-radius: 12px;
+  padding: 20px;
+}
+
+.top-five-card-title {
+  font: 800 14px $head-font;
+  margin-bottom: 14px;
+}
+
+.top-five-list {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 9px;
+}
+
+.top-five-item {
+  display: flex;
+  align-items: baseline;
+  gap: 10px;
+  font: 500 13.5px/1.4 $paper-font;
+}
+
+.top-five-num {
+  font: 700 11px $mono-font;
+  color: $red;
+  min-width: 14px;
+}

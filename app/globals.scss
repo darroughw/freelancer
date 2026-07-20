@@ -1,0 +1,28 @@
+@use "./styles/base";
+@use "./styles/header";
+@use "./styles/masthead";
+@use "./styles/section";
+@use "./styles/work";
+@use "./styles/about";
+@use "./styles/skills";
+@use "./styles/topfives";
+@use "./styles/contact";
+@use "./styles/nav";
+
+body {
+  margin: 0;
+}
+
+* {
+  box-sizing: border-box;
+}
+
+::selection {
+  background: #d1502e;
+  color: #f5ecdc;
+}
+
+a {
+  color: inherit;
+  -webkit-tap-highlight-color: transparent;
+}
