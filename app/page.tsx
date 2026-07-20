@@ -272,11 +272,11 @@ export default function Page() {
       </section>
 
       <nav className="bottom-nav" style={styles.bottomNav}>
-        <a href="#work" style={styles.pill}>01 — Work</a>
-        <a href="#about" style={styles.pill}>02 — About</a>
-        <a href="#skills" style={styles.pill}>03 — Skills</a>
-        <a href="#topfives" style={styles.pill}>04 — Off duty</a>
-        <a href="#contact" style={styles.pill}>05 — Contact</a>
+        <a href="#work" style={styles.pill}>Work</a>
+        <a href="#about" style={styles.pill}>About</a>
+        <a href="#skills" style={styles.pill}>Skills</a>
+        <a href="#topfives" style={styles.pill}>Off duty</a>
+        <a href="#contact" style={styles.pill}>Contact</a>
       </nav>
     </div>
   );
