@@ -1,5 +1,5 @@
 "use client";
-import { CSSProperties } from "react";
+import { CSSProperties, useState } from "react";
 
 const PALETTE = {
   red: "oklch(0.58 0.17 27)",
@@ -245,13 +245,57 @@ const styles: Record<string, CSSProperties> = {
     borderTop: "1.5px solid oklch(0.95 0.018 80 / 0.3)",
   },
   footerText: { font: `600 12px ${monoFont}`, opacity: 0.75 },
+  hamburger: {
+    display: "none",
+    background: "none",
+    border: "none",
+    color: cream,
+    font: `700 24px ${paperFont}`,
+    cursor: "pointer",
+    padding: "8px 12px",
+    minHeight: 44,
+    minWidth: 44,
+    alignItems: "center",
+    justifyContent: "center",
+  } as CSSProperties,
+  navOverlay: {
+    display: "none",
+    position: "fixed",
+    top: 0,
+    left: 0,
+    right: 0,
+    bottom: 0,
+    background: "rgba(0,0,0,0.5)",
+    zIndex: 998,
+  } as CSSProperties,
 };
 
 export default function Page() {
+  const [menuOpen, setMenuOpen] = useState(false);
+
+  const handleLinkClick = () => {
+    setMenuOpen(false);
+  };
+
   return (
     <div style={styles.page}>
+      {menuOpen && <div style={styles.navOverlay} onClick={() => setMenuOpen(false)} />}
       <div className="dw-shell" style={styles.shellRow}>
-        <aside className="dw-sidebar" style={styles.sidebar}>
+        <button
+          className="dw-hamburger"
+          style={styles.hamburger}
+          onClick={() => setMenuOpen(!menuOpen)}
+          aria-label="Toggle menu"
+        >
+          {menuOpen ? "✕" : "☰"}
+        </button>
+        <aside
+          className={`dw-sidebar ${menuOpen ? "dw-sidebar-open" : ""}`}
+          style={{
+            ...styles.sidebar,
+            zIndex: 999,
+          }}
+        >
           <div className="dw-sidebar-top" style={styles.sidebarTop}>
             <div style={styles.logoMark}>DW</div>
             <div style={styles.sidebarName}>
@@ -266,25 +310,25 @@ export default function Page() {
           </div>
 
           <nav className="dw-nav" style={styles.navCol}>
-            <a href="#work" className="dw-nav-item" style={styles.navItem}>
+            <a href="#work" className="dw-nav-item" style={styles.navItem} onClick={handleLinkClick}>
               <span style={styles.navItemNum}>01</span>Work
             </a>
-            <a href="#about" className="dw-nav-item" style={styles.navItem}>
+            <a href="#about" className="dw-nav-item" style={styles.navItem} onClick={handleLinkClick}>
               <span style={styles.navItemNum}>02</span>About
             </a>
-            <a href="#skills" className="dw-nav-item" style={styles.navItem}>
+            <a href="#skills" className="dw-nav-item" style={styles.navItem} onClick={handleLinkClick}>
               <span style={styles.navItemNum}>03</span>Skills
             </a>
-            <a href="#topfives" className="dw-nav-item" style={styles.navItem}>
+            <a href="#topfives" className="dw-nav-item" style={styles.navItem} onClick={handleLinkClick}>
               <span style={styles.navItemNum}>04</span>Off duty
             </a>
-            <a href="#contact" className="dw-nav-item" style={styles.navItem}>
+            <a href="#contact" className="dw-nav-item" style={styles.navItem} onClick={handleLinkClick}>
               <span style={styles.navItemNum}>05</span>Contact
             </a>
           </nav>
 
           <div className="dw-sidebar-bottom" style={styles.sidebarBottom}>
-            <a href="#contact" style={styles.sidebarCta}>
+            <a href="#contact" style={styles.sidebarCta} onClick={handleLinkClick}>
               Start a project ↗
             </a>
           </div>
