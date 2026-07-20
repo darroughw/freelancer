@@ -72,3 +72,13 @@
   font: 600 11px $mono-font;
   opacity: 0.75;
 }
+
+.footer-link {
+  text-decoration: none;
+  color: $cream;
+
+  &:hover {
+    opacity: 1;
+    text-decoration: underline;
+  }
+}

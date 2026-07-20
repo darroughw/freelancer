@@ -1,12 +1,16 @@
 "use client";
+import { useEffect, useState } from "react";
+import Link from "next/link";
 import { caseStudies } from "./data/case-studies";
 
 const stripeColors = ["red", "orange", "mustard", "teal", "plum", "ink"];
 
+const SECTIONS = ["work", "about", "skills", "topfives", "contact"];
+
 const skillGroups = [
   { title: "Design", tags: ["Figma", "Design systems", "Prototyping", "User research", "Wireframing"] },
   { title: "Engineering", tags: ["React", "TypeScript", "CSS/Motion", "Accessibility", "Design tokens"] },
-  { title: "Agency fit", tags: ["Client workshops", "Sprint embeds", "Handoff docs", "QA passes"] },
+  { title: "Agency fit", tags: ["Client workshops", "Sprint embeds", "Handoff docs", "QA passes", "Design Thinking"] },
 ];
 
 const topFives = [
@@ -16,6 +20,42 @@ const topFives = [
 ];
 
 export default function Page() {
+  const [activeSection, setActiveSection] = useState("work");
+
+  useEffect(() => {
+    const intersecting = new Map<string, boolean>();
+
+    const observer = new IntersectionObserver(
+      (entries) => {
+        entries.forEach((entry) => {
+          intersecting.set(entry.target.id, entry.isIntersecting);
+        });
+        const current = SECTIONS.find((id) => intersecting.get(id));
+        if (current) setActiveSection(current);
+      },
+      { rootMargin: "-10% 0px -80% 0px" }
+    );
+
+    SECTIONS.forEach((id) => {
+      const el = document.getElementById(id);
+      if (el) observer.observe(el);
+    });
+
+    const handleScrollEnd = () => {
+      const atBottom = window.innerHeight + window.scrollY >= document.documentElement.scrollHeight - 2;
+      if (atBottom) setActiveSection(SECTIONS[SECTIONS.length - 1]);
+    };
+    window.addEventListener("scroll", handleScrollEnd, { passive: true });
+    handleScrollEnd();
+
+    return () => {
+      observer.disconnect();
+      window.removeEventListener("scroll", handleScrollEnd);
+    };
+  }, []);
+
+  const pillClass = (id: string) => `pill${activeSection === id ? " is-active" : ""}`;
+
   return (
     <div className="page">
       <header className="header">
@@ -26,7 +66,11 @@ export default function Page() {
       <section className="masthead">
         <div className="masthead-eyebrow">◉ REC — SIDE A</div>
         <h1 className="masthead-title">
-          A freelance designer who <span className="masthead-accent">ships fast.</span>
+          Interfaces for
+          <br />
+          agencies who
+          <br />
+          <span className="masthead-accent">ship fast.</span>
         </h1>
         <p className="masthead-sub">
           I embed with your team on a project basis — no agency overhead, no bench — taking a concept from
@@ -47,7 +91,7 @@ export default function Page() {
         <p className="work-note">A few recent case studies — from behavioral UX research to enterprise design systems.</p>
         <div className="shelf">
           {caseStudies.map((proj) => (
-            <a key={proj.num} href={proj.href} className="shelf-card card">
+            <Link key={proj.num} href={`/work/${proj.slug}`} className="shelf-card card">
               <div className="card-img-wrap">
                 <img src={proj.imgSrc} alt={proj.title} className="card-img" />
                 <span className="card-num">{proj.num}</span>
@@ -57,13 +101,13 @@ export default function Page() {
                 <p className="card-desc">{proj.desc}</p>
                 <div className="card-meta">{proj.role} · {proj.year}</div>
                 <div className="card-tag-row">
-                  {proj.tags.map((t) => (
+                  {proj.tags.slice(0, 2).map((t) => (
                     <span key={t} className="card-tag">{t}</span>
                   ))}
                 </div>
                 <span className="card-arrow">View case study ↗</span>
               </div>
-            </a>
+            </Link>
           ))}
         </div>
       </section>
@@ -145,15 +189,16 @@ export default function Page() {
         </div>
         <div className="footer-row">
           <span className="footer-text">© 2026 Darrough West</span>
+          <a href="/resume.pdf" target="_blank" rel="noopener" className="footer-text footer-link">Resume ↗</a>
         </div>
       </section>
 
       <nav className="bottom-nav">
-        <a href="#work" className="pill">Work</a>
-        <a href="#about" className="pill">About</a>
-        <a href="#skills" className="pill">Skills</a>
-        <a href="#topfives" className="pill">Off duty</a>
-        <a href="#contact" className="pill">Contact</a>
+        <a href="#work" className={pillClass("work")}>Work</a>
+        <a href="#about" className={pillClass("about")}>About</a>
+        <a href="#skills" className={pillClass("skills")}>Skills</a>
+        <a href="#topfives" className={pillClass("topfives")}>Off duty</a>
+        <a href="#contact" className={pillClass("contact")}>Contact</a>
       </nav>
     </div>
   );

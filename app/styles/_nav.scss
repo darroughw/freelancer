@@ -28,6 +28,19 @@
   text-decoration: none;
   cursor: pointer;
   transition: all 0.3s ease;
+
+  &:hover {
+    background: oklch(0.95 0.018 80 / 0.22);
+  }
+
+  &.is-active {
+    background: $cream;
+    color: $ink;
+  }
+
+  &.is-active:hover {
+    background: $cream;
+  }
 }
 
 @media (max-width: 640px) {

@@ -1,0 +1,166 @@
+@use "./theme" as *;
+
+.case-hero {
+  position: relative;
+  min-height: 320px;
+  display: flex;
+  align-items: flex-end;
+  background: $ink;
+  overflow: hidden;
+}
+
+.case-hero-img {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  opacity: 0.55;
+}
+
+.case-hero-content {
+  position: relative;
+  z-index: 1;
+  padding: clamp(24px, 6vw, 48px) clamp(16px, 4vw, 32px) clamp(28px, 6vw, 40px);
+  color: $cream;
+  max-width: 760px;
+}
+
+.case-back {
+  display: inline-flex;
+  align-items: center;
+  font: 700 12px $mono-font;
+  letter-spacing: 0.05em;
+  text-decoration: none;
+  color: $cream;
+  opacity: 0.85;
+  margin-bottom: 20px;
+
+  &:hover {
+    opacity: 1;
+  }
+}
+
+.case-hero-eyebrow {
+  font: 700 12px $mono-font;
+  letter-spacing: 0.08em;
+  color: $mustard;
+  margin: 0 0 12px;
+}
+
+.case-hero-title {
+  font: 900 clamp(26px, 6vw, 44px)/1.1 $head-font;
+  margin: 0 0 18px;
+}
+
+.case-meta {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px 20px;
+  font: 600 12px $mono-font;
+  opacity: 0.8;
+}
+
+.case-body {
+  padding: clamp(32px, 8vw, 56px) clamp(16px, 4vw, 32px);
+  max-width: 760px;
+}
+
+.case-tags {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 6px;
+  margin-bottom: 40px;
+}
+
+.case-section {
+  margin-bottom: 44px;
+
+  &:last-child {
+    margin-bottom: 0;
+  }
+}
+
+.case-heading {
+  font: 800 22px $head-font;
+  margin: 0 0 18px;
+  color: $ink;
+}
+
+.case-subheading {
+  font: 700 15px $paper-font;
+  margin: 24px 0 8px;
+  color: $ink;
+}
+
+.case-paragraph {
+  font: 400 15px/1.7 $paper-font;
+  color: oklch(0.22 0.02 55 / 0.85);
+  margin: 0 0 16px;
+
+  a {
+    color: $red;
+    text-decoration: underline;
+  }
+}
+
+.case-bullets {
+  margin: 0 0 16px;
+  padding-left: 20px;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  font: 400 15px/1.6 $paper-font;
+  color: oklch(0.22 0.02 55 / 0.85);
+}
+
+.case-table-wrap {
+  overflow-x: auto;
+  margin: 0 0 20px;
+}
+
+.case-table {
+  width: 100%;
+  border-collapse: collapse;
+  font: 600 12.5px $mono-font;
+
+  th,
+  td {
+    text-align: left;
+    padding: 10px 14px;
+    border-bottom: 1px solid oklch(0.22 0.02 55 / 0.12);
+    white-space: nowrap;
+  }
+
+  th {
+    color: oklch(0.22 0.02 55 / 0.6);
+    text-transform: uppercase;
+    letter-spacing: 0.03em;
+    font-weight: 700;
+  }
+}
+
+.case-stat-row {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 16px;
+  margin: 0 0 20px;
+}
+
+.case-stat {
+  background: $cream-dark;
+  border-radius: 12px;
+  padding: 16px 20px;
+  min-width: 140px;
+}
+
+.case-stat-value {
+  font: 900 28px $head-font;
+  color: $red;
+}
+
+.case-stat-label {
+  font: 600 11px $mono-font;
+  color: oklch(0.22 0.02 55 / 0.6);
+  margin-top: 4px;
+}
