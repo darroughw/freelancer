@@ -176,9 +176,7 @@ const styles: Record<string, CSSProperties> = {
   footerRow: { display: "flex", justifyContent: "space-between", flexWrap: "wrap", gap: 8, paddingTop: 18, borderTop: "1.5px solid oklch(0.95 0.018 80 / 0.3)" },
   footerText: { font: `600 11px ${monoFont}`, opacity: 0.75 },
   bottomNav: { position: "fixed", left: 0, right: 0, bottom: 0, zIndex: 10, display: "flex", gap: 8, overflowX: "auto", padding: "12px clamp(16px,4vw,32px)", background: ink, borderTop: "2px solid oklch(0.95 0.018 80 / 0.15)", scrollSnapType: "x mandatory" },
-  pillActive: { flexShrink: 0, scrollSnapAlign: "start", display: "flex", alignItems: "center", minHeight: 36, padding: "0 14px", borderRadius: 100, background: PALETTE.red, color: ink, font: `700 12px ${paperFont}`, textDecoration: "none" },
   pill: { flexShrink: 0, display: "flex", alignItems: "center", minHeight: 36, padding: "0 14px", borderRadius: 100, background: "oklch(0.95 0.018 80 / 0.12)", color: cream, font: `700 12px ${paperFont}`, textDecoration: "none", cursor: "pointer", transition: "all 0.3s ease" },
-  pillActive: { background: cream, color: ink },
   navPills: { position: "fixed", bottom: 32, left: "50%", transform: "translateX(-50%)", display: "flex", gap: 8, zIndex: 100 },
 };
 
