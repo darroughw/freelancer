@@ -212,8 +212,7 @@ export default function Page() {
         <div style={styles.logoMark}>DW</div>
         <div style={styles.headerName}>Darrough West</div>
         <a href="mailto:darrough@gmail.com" style={styles.headerCta}>Get in touch ↗</a>
-      </header>
-
+      
       <section style={styles.masthead}>
         <div style={styles.mastheadEyebrow}>◉ REC — SIDE A</div>
         <h1 style={styles.mastheadTitle}>
