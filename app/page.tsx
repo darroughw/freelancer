@@ -1,5 +1,6 @@
 "use client";
 import { CSSProperties } from "react";
+import { caseStudies } from "./data/case-studies";
 
 const PALETTE = {
   red: "oklch(0.58 0.17 27)",
@@ -16,49 +17,6 @@ const headFont = "'Archivo Black', 'Archivo', sans-serif";
 const monoFont = "'Space Mono', monospace";
 
 const stripeColors = [PALETTE.red, PALETTE.orange, PALETTE.mustard, PALETTE.teal, PALETTE.plum, ink];
-
-const projects = [
-  {
-    num: "001",
-    title: "Delta Shower Doors — Search Behavior & UX Redesign",
-    desc: "Used behavioral analytics to identify critical UX failures on a high-traffic product site, then redesigned the core product finder to eliminate friction.",
-    role: "UX Researcher & Designer",
-    year: "2024–2025",
-    tags: ["UX Research", "Content Strategy"],
-    href: "#",
-    imgSrc: "/images/delta.jpg",
-  },
-  {
-    num: "002",
-    title: "Fidelity Design System — iOS Mobile Workstream",
-    desc: "Led the iOS mobile workstream for a company-wide design system unifying 150+ designers. Delivered the full Figma component library in 9 months.",
-    role: "Principal UX Designer",
-    year: "2022–23",
-    tags: ["Design Systems", "iOS"],
-    href: "#",
-    imgSrc: "/images/fidelity.jpg",
-  },
-  {
-    num: "003",
-    title: "Liberty Hardware Shopify Platform",
-    desc: "Complete redesign for a hardware manufacturer, modernizing their Shopify platform to improve product discovery and streamline the customer journey.",
-    role: "Lead Design / Development",
-    year: "2025",
-    tags: ["Web Design", "SEO"],
-    href: "#",
-    imgSrc: "/images/liberty.jpg",
-  },
-  {
-    num: "004",
-    title: "YouFit Livestream Virtual 5K",
-    desc: "Transformed a local Miami charity race into a nationwide live-streamed event with treadmill-synced live video.",
-    role: "Lead Design / Development",
-    year: "2016",
-    tags: ["Mobile", "Live Streaming"],
-    href: "#",
-    imgSrc: "/images/youfit.jpg",
-  },
-];
 
 const skillGroups = [
   { title: "Design", tags: ["Figma", "Design systems", "Prototyping", "User research", "Wireframing"] },
@@ -131,8 +89,7 @@ const styles: Record<string, CSSProperties> = {
   sectionRuleLight: { flex: 1, height: 2, background: cream, opacity: 0.25 },
   workSection: { padding: "24px 0 56px" },
   workNote: { font: `600 13px ${monoFont}`, color: "oklch(0.22 0.02 55 / 0.5)", margin: "16px 0 0", padding: "0 clamp(16px,4vw,32px)" },
-  shelf: { display: "flex", gap: 16, overflowX: "auto", padding: "24px clamp(16px,4vw,32px) 16px", scrollSnapType: "x mandatory", WebkitOverflowScrolling: "touch" },
-  card: { flexShrink: 0, scrollSnapAlign: "start", width: 220, display: "flex", flexDirection: "column", textDecoration: "none", color: ink, borderRadius: 10, overflow: "hidden", boxShadow: "0 12px 26px oklch(0.22 0.02 55 / 0.14)" },
+  card: { display: "flex", flexDirection: "column", textDecoration: "none", color: ink, borderRadius: 10, overflow: "hidden", boxShadow: "0 12px 26px oklch(0.22 0.02 55 / 0.14)" },
   cardImgWrap: { position: "relative", height: 130, background: creamDark },
   cardImg: { width: "100%", height: "100%", objectFit: "cover", display: "block" },
   cardNum: { position: "absolute", top: 8, left: 8, font: `700 11px ${monoFont}`, color: cream, background: "oklch(0.22 0.02 55 / 0.7)", padding: "3px 7px", borderRadius: 4 },
@@ -175,7 +132,7 @@ const styles: Record<string, CSSProperties> = {
   contactSocialLink: { font: `600 13px ${paperFont}`, textDecoration: "none", color: cream, opacity: 0.85, minHeight: 44, display: "flex", alignItems: "center", padding: "8px 10px" },
   footerRow: { display: "flex", justifyContent: "space-between", flexWrap: "wrap", gap: 8, paddingTop: 18, borderTop: "1.5px solid oklch(0.95 0.018 80 / 0.3)" },
   footerText: { font: `600 11px ${monoFont}`, opacity: 0.75 },
-  bottomNav: { position: "fixed", left: 0, right: 0, bottom: 0, zIndex: 10, display: "flex", gap: 8, overflowX: "auto", padding: "12px clamp(16px,4vw,32px)", background: ink, borderTop: "2px solid oklch(0.95 0.018 80 / 0.15)", scrollSnapType: "x mandatory" },
+  bottomNav: { position: "fixed", left: 0, right: 0, bottom: 0, zIndex: 10, background: ink, borderTop: "2px solid oklch(0.95 0.018 80 / 0.15)" },
   pill: { flexShrink: 0, display: "flex", alignItems: "center", minHeight: 36, padding: "0 14px", borderRadius: 100, background: "oklch(0.95 0.018 80 / 0.12)", color: cream, font: `700 12px ${paperFont}`, textDecoration: "none", cursor: "pointer", transition: "all 0.3s ease" },
   navPills: { position: "fixed", bottom: 32, left: "50%", transform: "translateX(-50%)", display: "flex", gap: 8, zIndex: 100 },
 };
@@ -210,9 +167,9 @@ export default function Page() {
           <span style={styles.sectionRule} />
         </div>
         <p style={styles.workNote}>A few recent case studies — from behavioral UX research to enterprise design systems.</p>
-        <div style={styles.shelf}>
-          {projects.map((proj) => (
-            <a key={proj.num} href={proj.href} style={styles.card}>
+        <div className="shelf">
+          {caseStudies.map((proj) => (
+            <a key={proj.num} href={proj.href} className="shelf-card" style={styles.card}>
               <div style={styles.cardImgWrap}>
                 <img src={proj.imgSrc} alt={proj.title} style={styles.cardImg} />
                 <span style={styles.cardNum}>{proj.num}</span>
@@ -314,7 +271,7 @@ export default function Page() {
         </div>
       </section>
 
-      <nav style={styles.bottomNav}>
+      <nav className="bottom-nav" style={styles.bottomNav}>
         <a href="#work" style={styles.pill}>01 — Work</a>
         <a href="#about" style={styles.pill}>02 — About</a>
         <a href="#skills" style={styles.pill}>03 — Skills</a>

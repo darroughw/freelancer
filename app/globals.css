@@ -2,3 +2,45 @@ body { margin: 0; }
 * { box-sizing: border-box; }
 ::selection { background: #d1502e; color: #f5ecdc; }
 a { color: inherit; -webkit-tap-highlight-color: transparent; }
+
+.shelf {
+  display: flex;
+  gap: 16px;
+  overflow-x: auto;
+  padding: 24px clamp(16px, 4vw, 32px) 16px;
+  scroll-snap-type: x mandatory;
+  -webkit-overflow-scrolling: touch;
+}
+.shelf-card {
+  flex-shrink: 0;
+  scroll-snap-align: start;
+  width: 220px;
+}
+.bottom-nav {
+  display: flex;
+  gap: 8px;
+  overflow-x: auto;
+  padding: 12px clamp(16px, 4vw, 32px);
+  scroll-snap-type: x mandatory;
+}
+
+@media (max-width: 640px) {
+  .shelf {
+    flex-direction: column;
+    overflow-x: visible;
+    scroll-snap-type: none;
+    padding: 20px clamp(16px, 4vw, 32px) 0;
+  }
+  .shelf-card {
+    width: 100%;
+    scroll-snap-align: none;
+  }
+  .bottom-nav {
+    flex-wrap: wrap;
+    overflow-x: visible;
+    scroll-snap-type: none;
+    justify-content: center;
+    gap: 8px 10px;
+    padding: 10px 16px;
+  }
+}
