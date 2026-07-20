@@ -1,5 +1,5 @@
 "use client";
-import { CSSProperties, useState } from "react";
+import { CSSProperties, useState, useEffect } from "react";
 
 const PALETTE = {
   red: "oklch(0.58 0.17 27)",
@@ -19,31 +19,44 @@ const stripeColors = [PALETTE.red, PALETTE.orange, PALETTE.mustard, PALETTE.teal
 
 const projects = [
   {
-    index: "01",
-    title: "Onboarding revamp",
-    desc: "Redesigned client intake for a 40-person agency, cutting kickoff time from two weeks to three days.",
-    tags: ["UX", "Onboarding"],
-    accent: PALETTE.red,
+    num: "001",
+    title: "Delta Shower Doors — Search Behavior & UX Redesign",
+    desc: "Used behavioral analytics to identify critical UX failures on a high-traffic product site, then redesigned the core product finder to eliminate friction.",
+    role: "UX Researcher & Designer",
+    year: "2024–2025",
+    tags: ["UX Research", "Content Strategy"],
     href: "#",
-    placeholderNote: "[ drop project screenshot here ]",
+    imgSrc: "/images/delta.jpg",
   },
   {
-    index: "02",
-    title: "Campaign builder",
-    desc: "Internal tool letting marketing teams assemble landing pages from a component library, no engineering needed.",
-    tags: ["Design system"],
-    accent: PALETTE.teal,
+    num: "002",
+    title: "Fidelity Design System — iOS Mobile Workstream",
+    desc: "Led the iOS mobile workstream for a company-wide design system unifying 150+ designers. Delivered the full Figma component library in 9 months.",
+    role: "Principal UX Designer",
+    year: "2022–23",
+    tags: ["Design Systems", "iOS"],
     href: "#",
-    placeholderNote: "[ drop project screenshot here ]",
+    imgSrc: "/images/fidelity.jpg",
   },
   {
-    index: "03",
-    title: "Dashboard motion refresh",
-    desc: "Purposeful motion and micro-interactions across a data-heavy analytics dashboard.",
-    tags: ["Motion", "UI"],
-    accent: PALETTE.orange,
+    num: "003",
+    title: "Liberty Hardware Shopify Platform",
+    desc: "Complete redesign for a hardware manufacturer, modernizing their Shopify platform to improve product discovery and streamline the customer journey.",
+    role: "Lead Design / Development",
+    year: "2025",
+    tags: ["Web Design", "SEO"],
     href: "#",
-    placeholderNote: "[ drop project screenshot here ]",
+    imgSrc: "/images/liberty.jpg",
+  },
+  {
+    num: "004",
+    title: "YouFit Livestream Virtual 5K",
+    desc: "Transformed a local Miami charity race into a nationwide live-streamed event with treadmill-synced live video.",
+    role: "Lead Design / Development",
+    year: "2016",
+    tags: ["Mobile", "Live Streaming"],
+    href: "#",
+    imgSrc: "/images/youfit.jpg",
   },
 ];
 
@@ -67,448 +80,303 @@ const styles: Record<string, CSSProperties> = {
     minHeight: "100vh",
     backgroundImage: "radial-gradient(oklch(0 0 0 / 0.02) 1px, transparent 1px)",
     backgroundSize: "3px 3px",
+    paddingBottom: 76,
   },
-  shellRow: { display: "flex", alignItems: "flex-start" },
-  sidebar: {
-    width: 280,
-    flexShrink: 0,
+  header: {
     position: "sticky",
     top: 0,
-    height: "100vh",
+    zIndex: 10,
+    display: "flex",
+    alignItems: "center",
+    gap: 12,
+    padding: "14px clamp(16px,4vw,32px)",
     background: ink,
     color: cream,
-    display: "flex",
-    flexDirection: "column",
-    justifyContent: "space-between",
-    padding: "20px 20px",
-    borderRight: `2px solid ${ink}`,
   },
-  sidebarTop: { display: "flex", flexDirection: "column", gap: 18 },
   logoMark: {
-    width: 40,
-    height: 40,
+    width: 34,
+    height: 34,
     borderRadius: "50%",
     background: cream,
     color: ink,
     display: "flex",
     alignItems: "center",
     justifyContent: "center",
-    font: `700 13px ${monoFont}`,
+    font: `700 12px ${monoFont}`,
+    flexShrink: 0,
   },
-  sidebarName: { font: `900 30px/1.05 ${headFont}` },
-  sidebarRole: { font: `600 13px/1.4 ${monoFont}`, letterSpacing: "0.03em", opacity: 0.7 },
-  navCol: { display: "flex", flexDirection: "column", gap: 4 },
-  navItem: {
-    display: "flex",
-    alignItems: "center",
-    gap: 10,
-    textDecoration: "none",
-    color: cream,
-    font: `700 17px ${paperFont}`,
-    padding: "10px 0",
-    minHeight: 44,
-  },
-  navItemNum: { font: `600 11px ${monoFont}`, opacity: 0.5 },
-  sidebarBottom: { display: "flex", flexDirection: "column", gap: 14 },
-  sidebarCta: {
-    textDecoration: "none",
-    textAlign: "center",
+  headerName: { font: `900 16px/1.1 ${headFont}` },
+  headerCta: {
+    marginLeft: "auto",
     font: `700 13px ${paperFont}`,
+    textDecoration: "none",
     color: ink,
     background: PALETTE.mustard,
-    padding: "13px 16px",
+    padding: "10px 16px",
     borderRadius: 100,
     minHeight: 44,
     display: "flex",
     alignItems: "center",
-    justifyContent: "center",
+    whiteSpace: "nowrap",
   },
-  main: { flex: 1, minWidth: 0 },
-  masthead: { padding: "clamp(40px,10vw,80px) clamp(20px,6vw,72px) clamp(32px,6vw,56px)", maxWidth: 980 },
-  mastheadEyebrow: { font: `700 13px ${monoFont}`, letterSpacing: "0.08em", color: PALETTE.red, marginBottom: 22 },
-  mastheadTitle: {
-    font: `900 clamp(36px,9vw,88px)/1.05 ${headFont}`,
-    margin: "0 0 24px",
-    letterSpacing: "-0.01em",
-  },
-  mastheadTitleAccent: { color: PALETTE.red },
-  mastheadSub: {
-    font: `500 clamp(16px,3vw,19px)/1.6 ${paperFont}`,
-    maxWidth: 520,
-    color: "oklch(0.22 0.02 55 / 0.78)",
-    margin: "0 0 32px",
-  },
-  mastheadStripeRow: { display: "flex", gap: 6, height: 14, maxWidth: 420 },
-  sectionLabelRow: { display: "flex", alignItems: "center", gap: 16, padding: "0 clamp(20px,6vw,72px)" },
-  sectionTag: { font: `700 13px ${monoFont}`, letterSpacing: "0.1em", color: PALETTE.red, whiteSpace: "nowrap" },
+  masthead: { padding: "clamp(32px,8vw,64px) clamp(16px,4vw,32px) clamp(28px,6vw,48px)", maxWidth: 720 },
+  mastheadEyebrow: { font: `700 12px ${monoFont}`, letterSpacing: "0.08em", color: PALETTE.red, marginBottom: 20 },
+  mastheadTitle: { font: `900 clamp(34px,9vw,64px)/1.06 ${headFont}`, margin: "0 0 20px", letterSpacing: "-0.01em" },
+  mastheadSub: { font: `500 clamp(15px,3vw,18px)/1.6 ${paperFont}`, maxWidth: 480, color: "oklch(0.22 0.02 55 / 0.78)", margin: "0 0 28px" },
+  stripeRow: { display: "flex", gap: 5, height: 12, maxWidth: 360 },
+  sectionLabelRow: { display: "flex", alignItems: "center", gap: 14, padding: "0 clamp(16px,4vw,32px)" },
+  sectionTag: { font: `700 12px ${monoFont}`, letterSpacing: "0.1em", color: PALETTE.red, whiteSpace: "nowrap" },
   sectionRule: { flex: 1, height: 2, background: ink, opacity: 0.15 },
-  sectionTagLight: { font: `700 13px ${monoFont}`, letterSpacing: "0.1em", color: cream, whiteSpace: "nowrap" },
+  sectionTagLight: { font: `700 12px ${monoFont}`, letterSpacing: "0.1em", color: cream, whiteSpace: "nowrap" },
   sectionRuleLight: { flex: 1, height: 2, background: cream, opacity: 0.25 },
-  workSection: { padding: "48px 0 72px" },
-  workNote: { font: `600 14px ${monoFont}`, color: "oklch(0.22 0.02 55 / 0.5)", margin: "18px 0 0", padding: "0 clamp(20px,6vw,72px)" },
-  shelf: { display: "flex", gap: 18, overflowX: "auto", padding: "28px clamp(20px,6vw,72px) 20px", scrollSnapType: "x mandatory", WebkitOverflowScrolling: "touch" },
-  spine: {
-    flexShrink: 0,
-    scrollSnapAlign: "start",
-    width: 210,
-    display: "flex",
-    flexDirection: "column",
-    textDecoration: "none",
-    color: ink,
-    borderRadius: 10,
-    overflow: "hidden",
-    boxShadow: "0 12px 28px oklch(0.22 0.02 55 / 0.14)",
-    minHeight: 280,
-  },
-  spineIndex: { font: `700 11px ${monoFont}`, letterSpacing: "0.05em", opacity: 0.85 },
-  spineVerticalTitle: {
-    writingMode: "vertical-rl",
-    transform: "rotate(180deg)",
-    font: `800 22px ${headFont}`,
-    letterSpacing: "0.01em",
-  },
-  spineFace: { background: cream, padding: "20px 16px", display: "flex", flexDirection: "column", gap: 12, flex: 1 },
-  spineFaceThumb: {
-    font: `600 11px ${monoFont}`,
-    letterSpacing: "0.04em",
-    textTransform: "uppercase",
-    color: "oklch(0.22 0.02 55 / 0.4)",
-    background: creamDark,
-    borderRadius: 6,
-    padding: "16px 10px",
-    textAlign: "center",
-  },
-  spineDesc: { font: `400 13px/1.55 ${paperFont}`, color: "oklch(0.22 0.02 55 / 0.72)", margin: 0 },
-  spineTagRow: { display: "flex", flexWrap: "wrap", gap: 6 },
-  spineTag: { font: `600 10.5px ${monoFont}`, padding: "4px 9px", borderRadius: 100, background: creamDark },
-  spineArrow: { font: `700 12px ${paperFont}`, color: PALETTE.red, marginTop: "auto" },
-  aboutSection: { padding: "clamp(48px,10vw,88px) clamp(20px,6vw,72px) clamp(40px,8vw,64px)", maxWidth: 1080 },
-  aboutGrid: { display: "grid", gap: 40, marginTop: 32, alignItems: "start" },
-  aboutLead: { font: `400 clamp(17px,2.5vw,20px)/1.65 ${paperFont}`, color: "oklch(0.22 0.02 55 / 0.85)", margin: 0 },
-  dropCap: { font: `900 64px ${headFont}`, float: "left", lineHeight: 0.8, margin: "6px 8px 0 0", color: PALETTE.red },
-  pullQuote: { borderLeft: `3px solid ${PALETTE.red}`, paddingLeft: 20 },
-  pullQuoteText: { font: `700 22px/1.4 ${headFont}`, margin: "0 0 12px" },
-  pullQuoteRule: { width: 36, height: 3, background: PALETTE.mustard },
-  specSheet: { display: "flex", flexDirection: "column", marginTop: 48, borderTop: `1.5px solid ${ink}`, maxWidth: 520 },
+  workSection: { padding: "24px 0 56px" },
+  workNote: { font: `600 13px ${monoFont}`, color: "oklch(0.22 0.02 55 / 0.5)", margin: "16px 0 0", padding: "0 clamp(16px,4vw,32px)" },
+  shelf: { display: "flex", gap: 16, overflowX: "auto", padding: "24px clamp(16px,4vw,32px) 16px", scrollSnapType: "x mandatory", WebkitOverflowScrolling: "touch" },
+  card: { flexShrink: 0, scrollSnapAlign: "start", width: 220, display: "flex", flexDirection: "column", textDecoration: "none", color: ink, borderRadius: 10, overflow: "hidden", boxShadow: "0 12px 26px oklch(0.22 0.02 55 / 0.14)" },
+  cardImgWrap: { position: "relative", height: 130, background: creamDark },
+  cardImg: { width: "100%", height: "100%", objectFit: "cover", display: "block" },
+  cardNum: { position: "absolute", top: 8, left: 8, font: `700 11px ${monoFont}`, color: cream, background: "oklch(0.22 0.02 55 / 0.7)", padding: "3px 7px", borderRadius: 4 },
+  cardFace: { background: cream, padding: 16, display: "flex", flexDirection: "column", gap: 10, flex: 1 },
+  cardTitle: { font: `800 14px/1.3 ${headFont}`, margin: 0 },
+  cardDesc: { font: `400 12.5px/1.5 ${paperFont}`, color: "oklch(0.22 0.02 55 / 0.72)", margin: 0 },
+  cardMeta: { font: `600 10.5px ${monoFont}`, color: "oklch(0.22 0.02 55 / 0.5)" },
+  cardTagRow: { display: "flex", flexWrap: "wrap", gap: 6 },
+  cardTag: { font: `600 10px ${monoFont}`, padding: "4px 8px", borderRadius: 100, background: creamDark },
+  cardArrow: { font: `700 11px ${paperFont}`, color: PALETTE.red, marginTop: "auto" },
+  aboutSection: { padding: "clamp(32px,8vw,56px) clamp(16px,4vw,32px) clamp(28px,6vw,48px)", maxWidth: 720 },
+  aboutLead: { font: `400 clamp(15px,2.5vw,17px)/1.65 ${paperFont}`, color: "oklch(0.22 0.02 55 / 0.85)", margin: 0 },
+  dropCap: { font: `900 52px ${headFont}`, float: "left", lineHeight: 0.8, margin: "6px 8px 0 0", color: PALETTE.red },
+  pullQuote: { borderLeft: `3px solid ${PALETTE.red}`, paddingLeft: 18, marginTop: 24 },
+  pullQuoteText: { font: `700 18px/1.4 ${headFont}`, margin: "0 0 10px" },
+  pullQuoteRule: { width: 32, height: 3, background: PALETTE.mustard },
+  specSheet: { display: "flex", flexDirection: "column", marginTop: 36, borderTop: `1.5px solid ${ink}` },
   specRow: { display: "flex", justifyContent: "space-between", padding: "14px 0", borderBottom: `1.5px solid ${ink}` },
-  specKey: { font: `600 13px ${monoFont}`, letterSpacing: "0.03em", textTransform: "uppercase", opacity: 0.65 },
-  specVal: { font: `800 16px ${paperFont}` },
-  skillsSection: { background: ink, color: cream, padding: "clamp(48px,10vw,88px) clamp(20px,6vw,72px) clamp(56px,10vw,96px)" },
-  skillTable: { display: "flex", flexDirection: "column", marginTop: 36, maxWidth: 820 },
-  skillTableRow: {
-    display: "grid",
-    gap: 10,
-    padding: "20px 0",
-    borderBottom: "1px solid oklch(0.95 0.018 80 / 0.14)",
-    alignItems: "start",
-  },
-  skillTableLabel: { font: `700 14px ${paperFont}` },
-  skillTagRow: { display: "flex", flexWrap: "wrap", gap: 8 },
-  skillTag: { font: `600 12px ${monoFont}`, padding: "7px 12px", borderRadius: 100, background: cream, color: ink },
-  topFivesSection: { padding: "clamp(48px,10vw,88px) 0 clamp(56px,10vw,88px)" },
-  topFivesGrid: {
-    display: "grid",
-    gridTemplateColumns: "repeat(auto-fit,minmax(220px,1fr))",
-    gap: 20,
-    padding: "0 clamp(20px,6vw,72px)",
-    marginTop: 32,
-  },
-  topFiveCard: { background: creamDark, borderRadius: 12, padding: 24 },
-  topFiveCardTitle: { font: `800 15px ${headFont}`, letterSpacing: "0.01em", marginBottom: 16 },
-  topFiveList: { listStyle: "none", margin: 0, padding: 0, display: "flex", flexDirection: "column", gap: 10 },
-  topFiveItem: { display: "flex", alignItems: "baseline", gap: 12, font: `500 14px/1.4 ${paperFont}` },
-  topFiveNum: { font: `700 12px ${monoFont}`, color: PALETTE.red, minWidth: 16 },
-  contactSection: { background: PALETTE.red, color: cream, padding: "clamp(48px,10vw,88px) clamp(20px,6vw,72px) 40px" },
-  contactLabel: { font: `700 13px ${monoFont}`, letterSpacing: "0.08em", opacity: 0.85, marginBottom: 20 },
-  contactTitle: { font: `900 clamp(36px,8vw,80px)/1.0 ${headFont}`, margin: "0 0 22px" },
-  contactSub: { font: `500 clamp(16px,3vw,18px)/1.5 ${paperFont}`, maxWidth: 460, opacity: 0.9, margin: "0 0 32px" },
-  contactRow: { marginBottom: 36 },
-  contactEmailBtn: {
-    display: "inline-flex",
-    font: `700 16px ${paperFont}`,
-    textDecoration: "none",
-    color: ink,
-    background: cream,
-    padding: "16px 26px",
-    borderRadius: 100,
-    minHeight: 44,
-    alignItems: "center",
-  },
-  contactSocialRow: { display: "flex", gap: 26, marginBottom: 48, flexWrap: "wrap" },
-  contactSocialLink: { font: `600 14px ${paperFont}`, textDecoration: "none", color: cream, opacity: 0.85, display: "inline-flex", alignItems: "center", minHeight: 44, minWidth: 44, padding: "8px 12px" },
-  footerRow: {
-    display: "flex",
-    justifyContent: "space-between",
-    flexWrap: "wrap",
-    gap: 8,
-    paddingTop: 22,
-    borderTop: "1.5px solid oklch(0.95 0.018 80 / 0.3)",
-  },
-  footerText: { font: `600 12px ${monoFont}`, opacity: 0.75 },
-  hamburger: {
-    display: "none",
-    background: "none",
-    border: "none",
-    color: cream,
-    font: `700 24px ${paperFont}`,
-    cursor: "pointer",
-    padding: "8px 12px",
-    minHeight: 44,
-    minWidth: 44,
-    alignItems: "center",
-    justifyContent: "center",
-  } as CSSProperties,
-  navOverlay: {
-    display: "none",
-    position: "fixed",
-    top: 0,
-    left: 0,
-    right: 0,
-    bottom: 0,
-    background: "rgba(0,0,0,0.5)",
-    zIndex: 998,
-  } as CSSProperties,
+  specKey: { font: `600 12px ${monoFont}`, letterSpacing: "0.03em", textTransform: "uppercase", opacity: 0.65 },
+  specVal: { font: `800 15px ${paperFont}` },
+  skillsSection: { background: ink, color: cream, padding: "clamp(32px,8vw,56px) clamp(16px,4vw,32px) clamp(40px,8vw,64px)" },
+  skillTable: { display: "flex", flexDirection: "column", maxWidth: 600 },
+  skillRow: { display: "flex", flexDirection: "column", gap: 10, padding: "16px 0", borderBottom: "1px solid oklch(0.95 0.018 80 / 0.14)" },
+  skillLabel: { font: `700 13px ${paperFont}` },
+  skillTagRow: { display: "flex", flexWrap: "wrap", gap: 7 },
+  skillTag: { font: `600 11px ${monoFont}`, padding: "6px 11px", borderRadius: 100, background: cream, color: ink },
+  topFivesSection: { padding: "clamp(32px,8vw,56px) 0 clamp(40px,8vw,56px)" },
+  topFivesGrid: { display: "grid", gridTemplateColumns: "repeat(auto-fit,minmax(220px,1fr))", gap: 16, padding: "0 clamp(16px,4vw,32px)", marginTop: 24 },
+  topFiveCard: { background: creamDark, borderRadius: 12, padding: 20 },
+  topFiveCardTitle: { font: `800 14px ${headFont}`, marginBottom: 14 },
+  topFiveList: { listStyle: "none", margin: 0, padding: 0, display: "flex", flexDirection: "column", gap: 9 },
+  topFiveItem: { display: "flex", alignItems: "baseline", gap: 10, font: `500 13.5px/1.4 ${paperFont}` },
+  topFiveNum: { font: `700 11px ${monoFont}`, color: PALETTE.red, minWidth: 14 },
+  contactSection: { background: PALETTE.red, color: cream, padding: "clamp(32px,8vw,56px) clamp(16px,4vw,32px) 32px" },
+  contactLabel: { font: `700 12px ${monoFont}`, letterSpacing: "0.08em", opacity: 0.85, marginBottom: 18 },
+  contactTitle: { font: `900 clamp(32px,8vw,56px)/1.0 ${headFont}`, margin: "0 0 18px" },
+  contactSub: { font: `500 clamp(15px,3vw,17px)/1.5 ${paperFont}`, maxWidth: 420, opacity: 0.9, margin: "0 0 28px" },
+  contactEmailBtn: { display: "inline-flex", font: `700 15px ${paperFont}`, textDecoration: "none", color: ink, background: cream, padding: "15px 24px", borderRadius: 100, minHeight: 44, alignItems: "center" },
+  contactSocialRow: { display: "flex", gap: 8, flexWrap: "wrap", marginBottom: 32 },
+  contactSocialLink: { font: `600 13px ${paperFont}`, textDecoration: "none", color: cream, opacity: 0.85, minHeight: 44, display: "flex", alignItems: "center", padding: "8px 10px" },
+  footerRow: { display: "flex", justifyContent: "space-between", flexWrap: "wrap", gap: 8, paddingTop: 18, borderTop: "1.5px solid oklch(0.95 0.018 80 / 0.3)" },
+  footerText: { font: `600 11px ${monoFont}`, opacity: 0.75 },
+  bottomNav: { position: "fixed", left: 0, right: 0, bottom: 0, zIndex: 10, display: "flex", gap: 8, overflowX: "auto", padding: "12px clamp(16px,4vw,32px)", background: ink, borderTop: "2px solid oklch(0.95 0.018 80 / 0.15)", scrollSnapType: "x mandatory" },
+  pillActive: { flexShrink: 0, scrollSnapAlign: "start", display: "flex", alignItems: "center", minHeight: 36, padding: "0 14px", borderRadius: 100, background: PALETTE.red, color: ink, font: `700 12px ${paperFont}`, textDecoration: "none" },
+  pill: { flexShrink: 0, display: "flex", alignItems: "center", minHeight: 36, padding: "0 14px", borderRadius: 100, background: "oklch(0.95 0.018 80 / 0.12)", color: cream, font: `700 12px ${paperFont}`, textDecoration: "none", cursor: "pointer", transition: "all 0.3s ease" },
+  pillActive: { background: cream, color: ink },
+  navPills: { position: "fixed", bottom: 32, left: "50%", transform: "translateX(-50%)", display: "flex", gap: 8, zIndex: 100 },
 };
 
 export default function Page() {
-  const [menuOpen, setMenuOpen] = useState(false);
+  const [activeSection, setActiveSection] = useState("work");
 
-  const handleLinkClick = () => {
-    setMenuOpen(false);
-  };
+  useEffect(() => {
+    const handleScroll = () => {
+      const sections = ["work", "about", "skills", "topfives", "contact"];
+      for (const sectionId of sections) {
+        const el = document.getElementById(sectionId);
+        if (el) {
+          const rect = el.getBoundingClientRect();
+          if (rect.top <= window.innerHeight / 2 && rect.bottom >= window.innerHeight / 2) {
+            setActiveSection(sectionId);
+            break;
+          }
+        }
+      }
+    };
+
+    window.addEventListener("scroll", handleScroll);
+    return () => window.removeEventListener("scroll", handleScroll);
+  }, []);
+
+  const sectionLabels = { work: "01", about: "02", skills: "03", topfives: "04", contact: "05" };
 
   return (
     <div style={styles.page}>
-      {menuOpen && <div style={styles.navOverlay} onClick={() => setMenuOpen(false)} />}
-      <div className="dw-shell" style={styles.shellRow}>
-        <button
-          className="dw-hamburger"
-          style={styles.hamburger}
-          onClick={() => setMenuOpen(!menuOpen)}
-          aria-label="Toggle menu"
-        >
-          {menuOpen ? "✕" : "☰"}
-        </button>
-        <aside
-          className={`dw-sidebar ${menuOpen ? "dw-sidebar-open" : ""}`}
-          style={{
-            ...styles.sidebar,
-            zIndex: 999,
-          }}
-        >
-          <div className="dw-sidebar-top" style={styles.sidebarTop}>
-            <div style={styles.logoMark}>DW</div>
-            <div style={styles.sidebarName}>
-              Darrough
-              <br />
-              West
-            </div>
-            <div className="dw-sidebar-role" style={styles.sidebarRole}>
-              UX Design
-              <br />+ Frontend Eng.
-            </div>
-          </div>
+      <header style={styles.header}>
+        <div style={styles.logoMark}>DW</div>
+        <div style={styles.headerName}>Darrough West</div>
+        <a href="mailto:darrough@gmail.com" style={styles.headerCta}>Get in touch ↗</a>
+      </header>
 
-          <nav className="dw-nav" style={styles.navCol}>
-            <a href="#work" className="dw-nav-item" style={styles.navItem} onClick={handleLinkClick}>
-              <span style={styles.navItemNum}>01</span>Work
-            </a>
-            <a href="#about" className="dw-nav-item" style={styles.navItem} onClick={handleLinkClick}>
-              <span style={styles.navItemNum}>02</span>About
-            </a>
-            <a href="#skills" className="dw-nav-item" style={styles.navItem} onClick={handleLinkClick}>
-              <span style={styles.navItemNum}>03</span>Skills
-            </a>
-            <a href="#topfives" className="dw-nav-item" style={styles.navItem} onClick={handleLinkClick}>
-              <span style={styles.navItemNum}>04</span>Off duty
-            </a>
-            <a href="#contact" className="dw-nav-item" style={styles.navItem} onClick={handleLinkClick}>
-              <span style={styles.navItemNum}>05</span>Contact
-            </a>
-          </nav>
+      <section style={styles.masthead}>
+        <div style={styles.mastheadEyebrow}>◉ REC — SIDE A</div>
+        <h1 style={styles.mastheadTitle}>
+          A freelance designer who <span style={{ color: PALETTE.red }}>ships fast.</span>
+        </h1>
+        <p style={styles.mastheadSub}>
+          I embed with your team on a project basis — no agency overhead, no bench — taking a concept from
+          whiteboard to working product. Wireframes Monday, React by Friday.
+        </p>
+        <div style={styles.stripeRow}>
+          {stripeColors.map((c, i) => (
+            <div key={i} style={{ flex: 1, background: c }} />
+          ))}
+        </div>
+      </section>
 
-          <div className="dw-sidebar-bottom" style={styles.sidebarBottom}>
-            <a href="#contact" style={styles.sidebarCta} onClick={handleLinkClick}>
-              Start a project ↗
+      <section id="work" style={styles.workSection}>
+        <div style={styles.sectionLabelRow}>
+          <span style={styles.sectionTag}>01 — SELECTED WORK</span>
+          <span style={styles.sectionRule} />
+        </div>
+        <p style={styles.workNote}>A few recent case studies — from behavioral UX research to enterprise design systems.</p>
+        <div style={styles.shelf}>
+          {projects.map((proj) => (
+            <a key={proj.num} href={proj.href} style={styles.card}>
+              <div style={styles.cardImgWrap}>
+                <img src={proj.imgSrc} alt={proj.title} style={styles.cardImg} />
+                <span style={styles.cardNum}>{proj.num}</span>
+              </div>
+              <div style={styles.cardFace}>
+                <h3 style={styles.cardTitle}>{proj.title}</h3>
+                <p style={styles.cardDesc}>{proj.desc}</p>
+                <div style={styles.cardMeta}>{proj.role} · {proj.year}</div>
+                <div style={styles.cardTagRow}>
+                  {proj.tags.map((t) => (
+                    <span key={t} style={styles.cardTag}>{t}</span>
+                  ))}
+                </div>
+                <span style={styles.cardArrow}>View case study ↗</span>
+              </div>
             </a>
-          </div>
+          ))}
+        </div>
+      </section>
+
+      <section id="about" style={styles.aboutSection}>
+        <div style={styles.sectionLabelRow}>
+          <span style={styles.sectionTag}>02 — ABOUT</span>
+          <span style={styles.sectionRule} />
+        </div>
+        <p style={{ ...styles.aboutLead, marginTop: 24 }}>
+          <span style={styles.dropCap}>T</span>
+          en-plus years bouncing between Figma and VS Code taught me that the best interfaces come from people
+          who can prototype the interaction, not just describe it. I've spent most of that time inside agencies —
+          pulled in mid-sprint to unstick a flow, or brought on from kickoff to own design and build end to end.
+        </p>
+        <aside style={styles.pullQuote}>
+          <p style={styles.pullQuoteText}>"Designers who ship code make better decisions in the room."</p>
+          <div style={styles.pullQuoteRule} />
         </aside>
+        <div style={styles.specSheet}>
+          <div style={styles.specRow}><span style={styles.specKey}>Projects shipped</span><span style={styles.specVal}>40+</span></div>
+          <div style={styles.specRow}><span style={styles.specKey}>Agency partners</span><span style={styles.specVal}>12</span></div>
+          <div style={styles.specRow}><span style={styles.specKey}>Team size</span><span style={styles.specVal}>1, full stack</span></div>
+        </div>
+      </section>
 
-        <main style={styles.main}>
-          <section style={styles.masthead}>
-            <div style={styles.mastheadEyebrow}>◉ REC — SIDE A</div>
-            <h1 style={styles.mastheadTitle}>
-              Interfaces for
-              <br />
-              agencies who
-              <br />
-              <span style={styles.mastheadTitleAccent}>ship fast.</span>
-            </h1>
-            <p style={styles.mastheadSub}>
-              I embed with marketing and digital teams to take a concept from whiteboard to working product —
-              wireframes Monday, React by Friday.
-            </p>
-            <div style={styles.mastheadStripeRow}>
-              {stripeColors.map((c, i) => (
-                <div key={i} style={{ flex: 1, background: c }} />
-              ))}
-            </div>
-          </section>
-
-          <section id="work" style={styles.workSection}>
-            <div style={styles.sectionLabelRow}>
-              <span style={styles.sectionTag}>01 — SELECTED WORK</span>
-              <span style={styles.sectionRule} />
-            </div>
-            <p style={styles.workNote}>
-              Placeholder reel — scroll the rack, swap in real case studies once client work is loaded in.
-            </p>
-            <div className="dw-shelf" style={styles.shelf}>
-              {projects.map((proj) => (
-                <a key={proj.index} href={proj.href} style={styles.spine}>
-                  <div
-                    style={{
-                      background: proj.accent,
-                      color: ink,
-                      display: "flex",
-                      flexDirection: "column",
-                      alignItems: "center",
-                      justifyContent: "space-between",
-                      padding: "14px 0",
-                      height: 150,
-                    }}
-                  >
-                    <span style={styles.spineIndex}>{proj.index}</span>
-                    <span style={styles.spineVerticalTitle}>{proj.title}</span>
-                  </div>
-                  <div style={styles.spineFace}>
-                    <div style={styles.spineFaceThumb}>{proj.placeholderNote}</div>
-                    <p style={styles.spineDesc}>{proj.desc}</p>
-                    <div style={styles.spineTagRow}>
-                      {proj.tags.map((t) => (
-                        <span key={t} style={styles.spineTag}>
-                          {t}
-                        </span>
-                      ))}
-                    </div>
-                    <span style={styles.spineArrow}>View case study ↗</span>
-                  </div>
-                </a>
-              ))}
-            </div>
-          </section>
-
-          <section id="about" style={styles.aboutSection}>
-            <div style={styles.sectionLabelRow}>
-              <span style={styles.sectionTag}>02 — ABOUT</span>
-              <span style={styles.sectionRule} />
-            </div>
-            <div className="dw-about-grid" style={styles.aboutGrid}>
-              <p style={styles.aboutLead}>
-                <span style={styles.dropCap}>T</span>en-plus years bouncing between Figma and VS Code taught me that
-                the best interfaces come from people who can prototype the interaction, not just describe it. I've
-                spent most of that time inside agencies — pulled in mid-sprint to unstick a flow, or brought on from
-                kickoff to own design and build end to end.
-              </p>
-              <aside style={styles.pullQuote}>
-                <p style={styles.pullQuoteText}>"Designers who ship code make better decisions in the room."</p>
-                <div style={styles.pullQuoteRule} />
-              </aside>
-            </div>
-            <div style={styles.specSheet}>
-              <div style={styles.specRow}>
-                <span style={styles.specKey}>Projects shipped</span>
-                <span style={styles.specVal}>40+</span>
-              </div>
-              <div style={styles.specRow}>
-                <span style={styles.specKey}>Agency partners</span>
-                <span style={styles.specVal}>12</span>
-              </div>
-              <div style={styles.specRow}>
-                <span style={styles.specKey}>Team size</span>
-                <span style={styles.specVal}>1, full stack</span>
+      <section id="skills" style={styles.skillsSection}>
+        <div style={styles.sectionLabelRow}>
+          <span style={styles.sectionTagLight}>03 — SKILLS</span>
+          <span style={styles.sectionRuleLight} />
+        </div>
+        <div style={{ ...styles.skillTable, marginTop: 24 }}>
+          {skillGroups.map((group) => (
+            <div key={group.title} style={styles.skillRow}>
+              <span style={styles.skillLabel}>{group.title}</span>
+              <div style={styles.skillTagRow}>
+                {group.tags.map((tag) => (
+                  <span key={tag} style={styles.skillTag}>{tag}</span>
+                ))}
               </div>
             </div>
-          </section>
+          ))}
+        </div>
+      </section>
 
-          <section id="skills" style={styles.skillsSection}>
-            <div style={styles.sectionLabelRow}>
-              <span style={styles.sectionTagLight}>03 — SKILLS</span>
-              <span style={styles.sectionRuleLight} />
+      <section id="topfives" style={styles.topFivesSection}>
+        <div style={styles.sectionLabelRow}>
+          <span style={styles.sectionTag}>04 — OFF DUTY</span>
+          <span style={styles.sectionRule} />
+        </div>
+        <p style={styles.workNote}>A few top 5s, because a well-rounded life makes for better design instincts.</p>
+        <div style={styles.topFivesGrid}>
+          {topFives.map((cat) => (
+            <div key={cat.title} style={styles.topFiveCard}>
+              <div style={styles.topFiveCardTitle}>{cat.title}</div>
+              <ol style={styles.topFiveList}>
+                {cat.items.map((label, i) => (
+                  <li key={label} style={styles.topFiveItem}>
+                    <span style={styles.topFiveNum}>{i + 1}</span>{label}
+                  </li>
+                ))}
+              </ol>
             </div>
-            <div style={styles.skillTable}>
-              {skillGroups.map((group) => (
-                <div key={group.title} className="dw-skill-row" style={styles.skillTableRow}>
-                  <span style={styles.skillTableLabel}>{group.title}</span>
-                  <div style={styles.skillTagRow}>
-                    {group.tags.map((tag) => (
-                      <span key={tag} style={styles.skillTag}>
-                        {tag}
-                      </span>
-                    ))}
-                  </div>
-                </div>
-              ))}
-            </div>
-          </section>
+          ))}
+        </div>
+      </section>
 
-          <section id="topfives" style={styles.topFivesSection}>
-            <div style={styles.sectionLabelRow}>
-              <span style={styles.sectionTag}>04 — OFF DUTY</span>
-              <span style={styles.sectionRule} />
-            </div>
-            <p style={styles.workNote}>A few top 5s, because a well-rounded life makes for better design instincts.</p>
-            <div style={styles.topFivesGrid}>
-              {topFives.map((cat) => (
-                <div key={cat.title} style={styles.topFiveCard}>
-                  <div style={styles.topFiveCardTitle}>{cat.title}</div>
-                  <ol style={styles.topFiveList}>
-                    {cat.items.map((label, i) => (
-                      <li key={label} style={styles.topFiveItem}>
-                        <span style={styles.topFiveNum}>{i + 1}</span>
-                        {label}
-                      </li>
-                    ))}
-                  </ol>
-                </div>
-              ))}
-            </div>
-          </section>
+      <section id="contact" style={styles.contactSection}>
+        <div style={styles.contactLabel}>◉ REC — SIDE B</div>
+        <h2 style={styles.contactTitle}>Let's press record.</h2>
+        <p style={styles.contactSub}>Tell me about the brief — I reply within a day, usually with questions.</p>
+        <div style={{ marginBottom: 28 }}>
+          <a href="mailto:darrough@gmail.com" style={styles.contactEmailBtn}>darrough@gmail.com ↗</a>
+        </div>
+        <div style={styles.contactSocialRow}>
+          <a href="https://linkedin.com/in/darroughw" target="_blank" rel="noopener" style={styles.contactSocialLink}>LinkedIn</a>
+          <a href="https://github.com/darroughw" target="_blank" rel="noopener" style={styles.contactSocialLink}>GitHub</a>
+          <a href="https://open.spotify.com/user/darrough?si=0c7cd65c69b347c2" style={styles.contactSocialLink}>Spotify</a>
+        </div>
+        <div style={styles.footerRow}>
+          <span style={styles.footerText}>© 2026 Darrough West</span>
+          <span style={styles.footerText}>Recorded on planet Earth</span>
+        </div>
+      </section>
 
-          <section id="contact" style={styles.contactSection}>
-            <div style={styles.contactLabel}>◉ REC — SIDE B</div>
-            <h2 style={styles.contactTitle}>
-              Let's press
-              <br />
-              record.
-            </h2>
-            <p style={styles.contactSub}>Tell me about the brief — I reply within a day, usually with questions.</p>
-            <div style={styles.contactRow}>
-              <a href="mailto:darrough@gmail.com" style={styles.contactEmailBtn}>
-                darrough@gmail.com ↗
-              </a>
-            </div>
-            <div style={styles.contactSocialRow}>
-              <a href="#" style={styles.contactSocialLink}>
-                Dribbble
-              </a>
-              <a href="#" style={styles.contactSocialLink}>
-                LinkedIn
-              </a>
-              <a href="#" style={styles.contactSocialLink}>
-                GitHub
-              </a>
-              <a href="https://open.spotify.com/user/darrough?si=0c7cd65c69b347c2" style={styles.contactSocialLink}>
-                Spotify
-              </a>
-            </div>
-            <div style={styles.footerRow}>
-              <span style={styles.footerText}>© 2026 Darrough West</span>
-              <span style={styles.footerText}>Recorded on planet Earth</span>
-            </div>
-          </section>
-        </main>
-      </div>
+      <nav style={styles.bottomNav}>
+        <a 
+          href="#work" 
+          onClick={(e) => { e.preventDefault(); document.getElementById("work")?.scrollIntoView({ behavior: "smooth" }); }}
+          style={activeSection === "work" ? { ...styles.pill, ...styles.pillActive } : styles.pill}
+        >
+          01 — Work
+        </a>
+        <a 
+          href="#about" 
+          onClick={(e) => { e.preventDefault(); document.getElementById("about")?.scrollIntoView({ behavior: "smooth" }); }}
+          style={activeSection === "about" ? { ...styles.pill, ...styles.pillActive } : styles.pill}
+        >
+          02 — About
+        </a>
+        <a 
+          href="#skills" 
+          onClick={(e) => { e.preventDefault(); document.getElementById("skills")?.scrollIntoView({ behavior: "smooth" }); }}
+          style={activeSection === "skills" ? { ...styles.pill, ...styles.pillActive } : styles.pill}
+        >
+          03 — Skills
+        </a>
+        <a 
+          href="#topfives" 
+          onClick={(e) => { e.preventDefault(); document.getElementById("topfives")?.scrollIntoView({ behavior: "smooth" }); }}
+          style={activeSection === "topfives" ? { ...styles.pill, ...styles.pillActive } : styles.pill}
+        >
+          04 — Off duty
+        </a>
+        <a 
+          href="#contact" 
+          onClick={(e) => { e.preventDefault(); document.getElementById("contact")?.scrollIntoView({ behavior: "smooth" }); }}
+          style={activeSection === "contact" ? { ...styles.pill, ...styles.pillActive } : styles.pill}
+        >
+          05 — Contact
+        </a>
+      </nav>
     </div>
   );
 }
