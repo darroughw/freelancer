@@ -62,6 +62,7 @@ export default function Page() {
       <header className="header">
         <div className="logo-mark">DW</div>
         <div className="header-name">Darrough West</div>
+        <a href="mailto:darrough@gmail.com" className="header-cta">Open to work ↗</a>
       </header>
 
       <section className="masthead">
@@ -108,7 +109,7 @@ export default function Page() {
                 <p className="card-desc">{proj.desc}</p>
                 <div className="card-meta">{proj.role} · {proj.year}</div>
                 <div className="card-tag-row">
-                  {proj.tags.slice(0, 2).map((t) => (
+                  {proj.tags.map((t) => (
                     <span key={t} className="card-tag">{t}</span>
                   ))}
                 </div>

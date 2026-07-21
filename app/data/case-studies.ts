@@ -333,7 +333,7 @@ export const caseStudies: CaseStudy[] = [
     desc: "Transformed a local Miami charity race into a nationwide live-streamed event with treadmill-synced live video.",
     role: "Lead Design / Development",
     year: "2016",
-    tags: ["Mobile Design", "UX Research", "Prototyping", "iOS", "Live Streaming"],
+    tags: ["IoT", "iOS", "Mobile Design", "UX Research", "Prototyping", "Live Streaming"],
     imgSrc: "/images/youfit.jpg",
     sections: [
       {
