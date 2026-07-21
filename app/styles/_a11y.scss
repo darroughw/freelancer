@@ -1,0 +1,40 @@
+@use "./theme" as *;
+
+// Visually hides content while keeping it available to screen readers.
+.visually-hidden {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  padding: 0;
+  margin: -1px;
+  overflow: hidden;
+  clip: rect(0, 0, 0, 0);
+  white-space: nowrap;
+  border: 0;
+}
+
+.skip-link {
+  position: absolute;
+  top: -100px;
+  left: 16px;
+  z-index: 100;
+  background: $cream;
+  color: $ink;
+  font: 700 13px $paper-font;
+  padding: 12px 20px;
+  border-radius: 8px;
+  text-decoration: none;
+  transition: top 0.2s ease;
+
+  &:focus {
+    top: 16px;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  * {
+    transition-duration: 0.01ms !important;
+    animation-duration: 0.01ms !important;
+    scroll-behavior: auto !important;
+  }
+}

@@ -82,7 +82,7 @@
 
 .card-meta {
   font: 600 10.5px $mono-font;
-  color: oklch(0.22 0.02 55 / 0.5);
+  color: oklch(0.22 0.02 55 / 0.68);
 }
 
 .card-tag-row {
@@ -100,7 +100,7 @@
 
 .card-arrow {
   font: 700 11px $paper-font;
-  color: $red;
+  color: $red-text;
   margin-top: auto;
 }
 

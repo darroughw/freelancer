@@ -1,7 +1,7 @@
 @use "./theme" as *;
 
 .contact-section {
-  background: $red;
+  background: $red-deep;
   color: $cream;
   padding: clamp(32px, 8vw, 56px) clamp(16px, 4vw, 32px) 32px;
 }
@@ -9,7 +9,6 @@
 .contact-label {
   font: 700 12px $mono-font;
   letter-spacing: 0.08em;
-  opacity: 0.85;
   margin-bottom: 18px;
 }
 
@@ -21,7 +20,6 @@
 .contact-sub {
   font: 500 clamp(15px, 3vw, 17px)/1.5 $paper-font;
   max-width: 420px;
-  opacity: 0.9;
   margin: 0 0 28px;
 }
 
@@ -52,7 +50,6 @@
   font: 600 13px $paper-font;
   text-decoration: none;
   color: $cream;
-  opacity: 0.85;
   min-height: 44px;
   display: flex;
   align-items: center;
@@ -70,7 +67,7 @@
 
 .footer-text {
   font: 600 11px $mono-font;
-  opacity: 0.75;
+  color: $cream;
 }
 
 .footer-link {
