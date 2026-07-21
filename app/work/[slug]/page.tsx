@@ -1,4 +1,5 @@
 import Link from "next/link";
+import Image from "next/image";
 import { notFound } from "next/navigation";
 import { caseStudies, CaseStudyBlock } from "../../data/case-studies";
 
@@ -78,7 +79,14 @@ export default function CaseStudyPage({ params }: { params: { slug: string } }) 
       </header>
 
       <div className="case-hero">
-        <img src={study.imgSrc} alt={study.title} className="case-hero-img" />
+        <Image
+          src={study.imgSrc}
+          alt={study.title}
+          fill
+          priority
+          sizes="100vw"
+          className="case-hero-img"
+        />
         <div className="case-hero-content">
           <Link href="/#work" className="case-back">← Back to work</Link>
           <p className="case-hero-eyebrow">Case Study · {study.year}</p>

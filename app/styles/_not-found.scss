@@ -1,0 +1,13 @@
+@use "./theme" as *;
+
+.not-found-cta {
+  display: inline-flex;
+  align-items: center;
+  font: 700 15px $paper-font;
+  text-decoration: none;
+  color: $cream;
+  background: $ink;
+  padding: 15px 24px;
+  border-radius: 100px;
+  min-height: 44px;
+}

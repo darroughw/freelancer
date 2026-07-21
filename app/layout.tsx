@@ -1,7 +1,9 @@
 import type { Metadata } from "next";
+import { Analytics } from "@vercel/analytics/next";
 import "./globals.scss";
 
 export const metadata: Metadata = {
+  metadataBase: new URL("https://freelancer-bay.vercel.app"),
   title: "Darrough West — UX Designer & Frontend Engineer",
   description: "UX design and frontend engineering for marketing and digital agencies.",
 };
@@ -17,7 +19,10 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
           rel="stylesheet"
         />
       </head>
-      <body>{children}</body>
+      <body>
+        {children}
+        <Analytics />
+      </body>
     </html>
   );
 }

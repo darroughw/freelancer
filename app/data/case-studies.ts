@@ -355,11 +355,49 @@ export const caseStudies: CaseStudy[] = [
         ],
       },
       {
+        heading: "Goals",
+        body: [
+          {
+            type: "bullets",
+            items: [
+              "Double race participation — bring in 4,000 additional runners nationwide.",
+              "Double fundraising for the Miami Children's Health Foundation, to $100,000.",
+              "Generate real buzz — enough press coverage to make the campaign newsworthy on its own.",
+            ],
+          },
+        ],
+      },
+      {
         heading: "The Solution",
         body: [
           {
             type: "paragraph",
             html: `On race day, YouFit converted all of its gyms across the country into official starting lines. Official pace runners in Miami wore GoPro cameras and streamed first-person live video of the race course. Each treadmill was equipped with a pace tracker that collected real-time running data and a tablet that displayed the live stream — dynamically synced to match the runner's treadmill speed. Run faster, the video sped up. Slow down, it slowed with you. The same virtual connection technology that lets the Miami Children's Health Foundation reach sick children worldwide was now making a gym treadmill feel like a Miami street.`,
+          },
+        ],
+      },
+      {
+        heading: "Building the Experience",
+        body: [
+          { type: "subheading", text: "Promotion" },
+          {
+            type: "paragraph",
+            html: `We announced the first YouFit Virtual 5K with a press release and pushed it through social media, in-gym marketing, email, and direct mail to build awareness well ahead of race day.`,
+          },
+          { type: "subheading", text: "Registration & Packet Pickup" },
+          {
+            type: "paragraph",
+            html: `Runners registered ahead of time on a dedicated microsite with their email, YouFit member ID, home gym, and shirt size — every entry fee went directly to the Miami Children's Health Foundation. Beyond registration, the site doubled as a promotional hub and a home base for the race's social content. In the days before the race, participants picked up a packet at their local gym: a shirt and a running bib. Each bib carried the name of a real child from the foundation's program, distributed evenly across runners so no child was left out — a small detail that turned an abstract donation into something runners were literally wearing.`,
+          },
+          { type: "subheading", text: "Race Day: The Treadmill Experience" },
+          {
+            type: "paragraph",
+            html: `On race morning, treadmill runners joined a live-streamed stretch session led from Miami, broadcast across every TV in the club with the event's ambient sound piped through the speakers. Each treadmill paired a tread tracker with a tablet running the Virtual 5K app — the tracker fed pace and distance into a first-person livestream shot by four pace runners in Miami, each running the course at a different speed, so a runner's own pace determined which video they were synced to. Club TVs and tablets displayed a live map of colored dots tracking every runner at that location, plus a national leaderboard of the ten fastest treadmill runners in the country, while trainers handed out water throughout the race to keep the experience feeling like a real one. Finishers got a completion medal, the option to share their result on social media straight from the tablet, and a table of orange slices and other post-race snacks waiting for them off the treadmill.`,
+          },
+          { type: "subheading", text: "Premium vs. General Locations" },
+          {
+            type: "paragraph",
+            html: `To make the budget work, we concentrated the full premium experience — live map, national leaderboard, synced first-person video — at up to five flagship YouFit locations with the strongest technology and most active members, so every detail of the event could be controlled end to end. Every other location ran a general experience: the same registration and race packet, but on their own treadmills without the live-video dependency. That trade-off had a real upside — without needing to sync to a single live feed, general locations could run additional heats of the race so more members could take part at a time that worked for them, sharing their treadmill finishing time on social media under #YoufitVirtual5K.`,
           },
         ],
       },

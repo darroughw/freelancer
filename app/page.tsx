@@ -1,6 +1,7 @@
 "use client";
 import { useEffect, useState } from "react";
 import Link from "next/link";
+import Image from "next/image";
 import { caseStudies } from "./data/case-studies";
 
 const stripeColors = ["red", "orange", "mustard", "teal", "plum", "ink"];
@@ -93,7 +94,13 @@ export default function Page() {
           {caseStudies.map((proj) => (
             <Link key={proj.num} href={`/work/${proj.slug}`} className="shelf-card card">
               <div className="card-img-wrap">
-                <img src={proj.imgSrc} alt={proj.title} className="card-img" />
+                <Image
+                  src={proj.imgSrc}
+                  alt={proj.title}
+                  fill
+                  sizes="(max-width: 640px) 100vw, 220px"
+                  className="card-img"
+                />
                 <span className="card-num">{proj.num}</span>
               </div>
               <div className="card-face">
