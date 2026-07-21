@@ -8,6 +8,25 @@ const stripeColors = ["red", "orange", "mustard", "teal", "plum", "ink"];
 
 const SECTIONS = ["work", "about", "skills", "topfives", "contact"];
 
+// The "How I Work" section is temporarily hidden pending a design pass —
+// see howSteps below and the "how" section/pill/SCSS still in place to
+// make it easy to bring back.
+
+const howSteps = [
+  {
+    title: "Discovery call",
+    desc: "A short call to talk through the brief, constraints, and timeline — no proposal decks, just a conversation about what you actually need.",
+  },
+  {
+    title: "Scoped sprint",
+    desc: "That turns into a tight scope with a clear timeline. I move fast from there — wireframes and prototypes early, tight feedback loops throughout.",
+  },
+  {
+    title: "Build & handoff",
+    desc: "Depending on the engagement, I ship production-ready code myself or hand off clean, documented designs your team can build from.",
+  },
+];
+
 const skillGroups = [
   { title: "Design", tags: ["Figma", "Design systems", "Prototyping", "User research", "Wireframing"] },
   { title: "Engineering", tags: ["React", "TypeScript", "CSS/Motion", "Accessibility", "Design tokens"] },
@@ -145,6 +164,8 @@ export default function Page() {
           </div>
         </section>
 
+        {/* "How I Work" section hidden pending a design pass — see TODO.md */}
+
         <section id="skills" className="skills-section">
           <div className="section-label-row">
             <h2 className="section-tag-light">03 — SKILLS</h2>
@@ -204,9 +225,15 @@ export default function Page() {
           </div>
           <div className="footer-row">
             <span className="footer-text">© 2026 Darrough West</span>
-            <a href="/resume.pdf" target="_blank" rel="noopener" className="footer-text footer-link">
-              Resume ↗<span className="visually-hidden"> (opens in new tab)</span>
-            </a>
+            <div className="footer-links">
+              <a href="https://namedrop.io/darroughwest" target="_blank" rel="noopener" className="footer-text footer-link">
+                Pronounce my name ↗<span className="visually-hidden"> (opens in new tab)</span>
+              </a>
+              <a href="/resume.pdf" target="_blank" rel="noopener" className="footer-text footer-link">
+                Resume ↗<span className="visually-hidden"> (opens in new tab)</span>
+              </a>
+              <Link href="/feedback" className="footer-text footer-link">Feedback</Link>
+            </div>
           </div>
         </section>
       </main>

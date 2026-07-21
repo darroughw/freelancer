@@ -65,6 +65,12 @@
   border-top: 1.5px solid oklch(0.95 0.018 80 / 0.3);
 }
 
+.footer-links {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px 16px;
+}
+
 .footer-text {
   font: 600 11px $mono-font;
   color: $cream;

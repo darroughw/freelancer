@@ -1,0 +1,47 @@
+@use "./theme" as *;
+
+.how-section {
+  padding: clamp(32px, 8vw, 56px) clamp(16px, 4vw, 32px) clamp(28px, 6vw, 48px);
+  max-width: 720px;
+}
+
+.how-steps {
+  display: flex;
+  flex-direction: column;
+  margin-top: 28px;
+}
+
+.how-step {
+  display: flex;
+  gap: 20px;
+  padding: 20px 0;
+  border-bottom: 1.5px solid oklch(0.22 0.02 55 / 0.12);
+
+  &:last-child {
+    border-bottom: none;
+  }
+}
+
+.how-step-num {
+  font: 900 28px $head-font;
+  color: $red-text;
+  flex-shrink: 0;
+  min-width: 40px;
+}
+
+.how-step-body {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+}
+
+.how-step-title {
+  font: 800 16px $head-font;
+  margin: 0;
+}
+
+.how-step-desc {
+  font: 400 14px/1.6 $paper-font;
+  color: oklch(0.22 0.02 55 / 0.85);
+  margin: 0;
+}

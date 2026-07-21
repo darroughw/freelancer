@@ -164,3 +164,54 @@
   color: oklch(0.22 0.02 55 / 0.75);
   margin-top: 4px;
 }
+
+.case-pager {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 16px;
+  max-width: 760px;
+  padding: 0 clamp(16px, 4vw, 32px) clamp(32px, 6vw, 48px);
+}
+
+.case-pager-link {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+  padding: 20px;
+  border-radius: 12px;
+  background: $cream-dark;
+  text-decoration: none;
+  color: $ink;
+  transition: opacity 0.2s ease;
+
+  &:hover {
+    opacity: 0.8;
+  }
+}
+
+.case-pager-next {
+  text-align: right;
+  align-items: flex-end;
+}
+
+.case-pager-label {
+  font: 700 11px $mono-font;
+  letter-spacing: 0.05em;
+  text-transform: uppercase;
+  color: $red-text;
+}
+
+.case-pager-title {
+  font: 800 15px $head-font;
+}
+
+@media (max-width: 640px) {
+  .case-pager {
+    grid-template-columns: 1fr;
+  }
+
+  .case-pager-next {
+    text-align: left;
+    align-items: flex-start;
+  }
+}

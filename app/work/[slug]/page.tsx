@@ -80,8 +80,12 @@ function Block({ block }: { block: CaseStudyBlock }) {
 }
 
 export default function CaseStudyPage({ params }: { params: { slug: string } }) {
-  const study = caseStudies.find((s) => s.slug === params.slug);
+  const index = caseStudies.findIndex((s) => s.slug === params.slug);
+  const study = caseStudies[index];
   if (!study) notFound();
+
+  const prevStudy = caseStudies[(index - 1 + caseStudies.length) % caseStudies.length];
+  const nextStudy = caseStudies[(index + 1) % caseStudies.length];
 
   const url = `${SITE_URL}/work/${study.slug}`;
   const jsonLd = [
@@ -162,6 +166,17 @@ export default function CaseStudyPage({ params }: { params: { slug: string } }) 
             </section>
           ))}
         </div>
+
+        <nav className="case-pager" aria-label="More case studies">
+          <Link href={`/work/${prevStudy.slug}`} className="case-pager-link case-pager-prev">
+            <span className="case-pager-label">← Previous</span>
+            <span className="case-pager-title">{prevStudy.title}</span>
+          </Link>
+          <Link href={`/work/${nextStudy.slug}`} className="case-pager-link case-pager-next">
+            <span className="case-pager-label">Next →</span>
+            <span className="case-pager-title">{nextStudy.title}</span>
+          </Link>
+        </nav>
 
         <section className="contact-section">
           <h2 className="contact-title">Let's press record.</h2>

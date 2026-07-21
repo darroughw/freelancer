@@ -17,6 +17,9 @@
 .DS_Store
 *.pem
 
+# claude code project context (local only)
+CLAUDE.md
+
 # debug
 npm-debug.log*
 yarn-debug.log*

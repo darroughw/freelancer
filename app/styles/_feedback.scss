@@ -1,0 +1,83 @@
+@use "./theme" as *;
+
+.feedback-section {
+  padding: 0 clamp(16px, 4vw, 32px) clamp(48px, 8vw, 72px);
+  max-width: 560px;
+}
+
+.feedback-form {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+}
+
+.feedback-field {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+
+  label {
+    font: 700 12px $mono-font;
+    letter-spacing: 0.05em;
+    text-transform: uppercase;
+    color: $ink;
+  }
+
+  input,
+  textarea {
+    font: 400 15px $paper-font;
+    padding: 12px 14px;
+    border-radius: 8px;
+    border: 1.5px solid oklch(0.22 0.02 55 / 0.25);
+    background: $cream-dark;
+    color: $ink;
+    resize: vertical;
+
+    &:focus {
+      outline: 2px solid $red-text;
+      outline-offset: 1px;
+    }
+  }
+}
+
+.feedback-optional {
+  text-transform: none;
+  font-weight: 400;
+  letter-spacing: normal;
+  opacity: 0.7;
+}
+
+.feedback-submit {
+  align-self: flex-start;
+  display: inline-flex;
+  align-items: center;
+  font: 700 15px $paper-font;
+  color: $cream;
+  background: $ink;
+  padding: 14px 28px;
+  border-radius: 100px;
+  border: none;
+  min-height: 44px;
+  cursor: pointer;
+
+  &:hover {
+    opacity: 0.85;
+  }
+
+  &:disabled {
+    opacity: 0.6;
+    cursor: not-allowed;
+  }
+}
+
+.feedback-error {
+  font: 600 13px $paper-font;
+  color: $red-text;
+  margin: 0;
+}
+
+.feedback-success {
+  font: 500 16px/1.6 $paper-font;
+  padding: 0 clamp(16px, 4vw, 32px) clamp(48px, 8vw, 72px);
+  max-width: 560px;
+}
