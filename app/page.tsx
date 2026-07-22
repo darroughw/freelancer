@@ -15,11 +15,11 @@ const SECTIONS = ["work", "about", "skills", "topfives", "contact"];
 const howSteps = [
   {
     title: "Discovery call",
-    desc: "A short call to talk through the brief, constraints, and timeline — no proposal decks, just a conversation about what you actually need.",
+    desc: "A short call to talk through the brief, constraints, and timeline. No proposal decks, just a conversation about what you actually need.",
   },
   {
     title: "Scoped sprint",
-    desc: "That turns into a tight scope with a clear timeline. I move fast from there — wireframes and prototypes early, tight feedback loops throughout.",
+    desc: "That turns into a tight scope with a clear timeline. I move fast from there: wireframes and prototypes early, tight feedback loops throughout.",
   },
   {
     title: "Build & handoff",
@@ -88,7 +88,7 @@ export default function Page() {
 
       <main id="main-content">
         <section className="masthead">
-          <div className="masthead-eyebrow">◉ REC — SIDE A</div>
+          <div className="masthead-eyebrow">◉ REC · SIDE A</div>
           <h1 className="masthead-title">
             Interfaces for
             <br />
@@ -97,7 +97,7 @@ export default function Page() {
             <span className="masthead-accent">ship fast.</span>
           </h1>
           <p className="masthead-sub">
-            I embed with your team on a project basis — no agency overhead, no bench — taking a concept from
+            I embed with your team on a project basis (no agency overhead, no bench), taking a concept from
             whiteboard to working product. Wireframes Monday, React by Friday.
           </p>
           <div className="stripe-row">
@@ -109,10 +109,10 @@ export default function Page() {
 
         <section id="work" className="work-section">
           <div className="section-label-row">
-            <h2 className="section-tag">01 — SELECTED WORK</h2>
+            <h2 className="section-tag">01 · SELECTED WORK</h2>
             <span className="section-rule" />
           </div>
-          <p className="work-note">A few recent case studies — from behavioral UX research to enterprise design systems.</p>
+          <p className="work-note">A few recent case studies, from behavioral UX research to enterprise design systems.</p>
           <div className="shelf">
             {caseStudies.map((proj) => (
               <Link key={proj.num} href={`/work/${proj.slug}`} className="shelf-card card">
@@ -144,13 +144,13 @@ export default function Page() {
 
         <section id="about" className="about-section">
           <div className="section-label-row">
-            <h2 className="section-tag">02 — ABOUT</h2>
+            <h2 className="section-tag">02 · ABOUT</h2>
             <span className="section-rule" />
           </div>
           <p className="about-lead">
             <span className="drop-cap">T</span>
             en-plus years bouncing between Figma and VS Code taught me that the best interfaces come from people
-            who can prototype the interaction, not just describe it. I've spent most of that time inside agencies —
+            who can prototype the interaction, not just describe it. I've spent most of that time inside agencies:
             pulled in mid-sprint to unstick a flow, or brought on from kickoff to own design and build end to end.
           </p>
           <blockquote className="pull-quote">
@@ -168,7 +168,7 @@ export default function Page() {
 
         <section id="skills" className="skills-section">
           <div className="section-label-row">
-            <h2 className="section-tag-light">03 — SKILLS</h2>
+            <h2 className="section-tag-light">03 · SKILLS</h2>
             <span className="section-rule-light" />
           </div>
           <div className="skill-table">
@@ -187,7 +187,7 @@ export default function Page() {
 
         <section id="topfives" className="top-fives-section">
           <div className="section-label-row">
-            <h2 className="section-tag">04 — OFF DUTY</h2>
+            <h2 className="section-tag">04 · OFF DUTY</h2>
             <span className="section-rule" />
           </div>
           <p className="work-note">A few top 5s, because a well-rounded life makes for better design instincts.</p>
@@ -208,9 +208,9 @@ export default function Page() {
         </section>
 
         <section id="contact" className="contact-section">
-          <div className="contact-label">◉ REC — SIDE B</div>
+          <div className="contact-label">◉ REC · SIDE B</div>
           <h2 className="contact-title">Let's press record.</h2>
-          <p className="contact-sub">Tell me about the brief — I reply within a day, usually with questions.</p>
+          <p className="contact-sub">Tell me about the brief. I reply within a day, usually with questions.</p>
           <div className="contact-email-wrap">
             <a href="mailto:darrough@gmail.com" className="contact-email-btn">darrough@gmail.com ↗</a>
           </div>

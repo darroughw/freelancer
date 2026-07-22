@@ -19,7 +19,7 @@ describe("FeedbackForm", () => {
     await user.click(screen.getByRole("button", { name: /send feedback/i }));
 
     await waitFor(() => {
-      expect(screen.getByText(/thanks — got it/i)).toBeInTheDocument();
+      expect(screen.getByText(/thanks, got it/i)).toBeInTheDocument();
     });
 
     expect(global.fetch).toHaveBeenCalledWith(

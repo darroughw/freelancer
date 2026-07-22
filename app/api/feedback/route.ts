@@ -39,7 +39,7 @@ export async function POST(request: Request) {
   if (!process.env.RESEND_API_KEY) {
     console.error("RESEND_API_KEY is not set");
     return NextResponse.json(
-      { ok: false, error: "Feedback isn't wired up yet — try emailing directly instead." },
+      { ok: false, error: "Feedback isn't wired up yet. Try emailing directly instead." },
       { status: 500 }
     );
   }

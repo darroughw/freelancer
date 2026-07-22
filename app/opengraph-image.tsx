@@ -1,7 +1,7 @@
 import { ImageResponse } from "next/og";
 import { ogColors } from "./og-theme";
 
-export const alt = "Darrough West — Freelance Designer";
+export const alt = "Darrough West · Freelance Designer";
 export const size = { width: 1200, height: 630 };
 export const contentType = "image/png";
 
@@ -54,7 +54,7 @@ export default function Image() {
               fontFamily: "monospace",
             }}
           >
-            REC — SIDE A
+            REC · SIDE A
           </div>
           <div
             style={{

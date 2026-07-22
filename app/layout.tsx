@@ -5,7 +5,7 @@ import "./globals.scss";
 
 export const metadata: Metadata = {
   metadataBase: new URL(SITE_URL),
-  title: "Darrough West — UX Designer & Frontend Engineer",
+  title: "Darrough West · UX Designer & Frontend Engineer",
   description: "UX design and frontend engineering for marketing and digital agencies.",
   alternates: {
     canonical: "/",

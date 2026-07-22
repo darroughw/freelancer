@@ -42,7 +42,7 @@ export default function FeedbackForm() {
   }
 
   if (status === "success") {
-    return <p className="feedback-success">Thanks — got it. Appreciate you taking the time.</p>;
+    return <p className="feedback-success">Thanks, got it. Appreciate you taking the time.</p>;
   }
 
   return (

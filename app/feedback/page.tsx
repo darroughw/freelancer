@@ -3,7 +3,7 @@ import Link from "next/link";
 import FeedbackForm from "./FeedbackForm";
 
 export const metadata: Metadata = {
-  title: "Feedback — Darrough West",
+  title: "Feedback · Darrough West",
   description: "Share feedback or critique on this site.",
   robots: { index: false, follow: false },
 };
@@ -20,14 +20,14 @@ export default function FeedbackPage() {
 
       <main id="main-content">
         <section className="masthead">
-          <div className="masthead-eyebrow">◉ REC — SIDE D</div>
+          <div className="masthead-eyebrow">◉ REC · SIDE D</div>
           <h1 className="masthead-title">
             Tell me it&apos;s
             <br />
             <span className="masthead-accent">rough.</span>
           </h1>
           <p className="masthead-sub">
-            You know me — be honest. Broken layout, confusing copy, an ugly color, whatever.
+            You know me: be honest. Broken layout, confusing copy, an ugly color, whatever.
             I&apos;d rather hear it from you than a recruiter.
           </p>
         </section>
