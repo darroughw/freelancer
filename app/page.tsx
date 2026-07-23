@@ -92,7 +92,7 @@ export default function Page() {
           <h1 className="masthead-title">
             Interfaces for
             <br />
-            agencies who ship fast.
+            agencies who
             <br />
             <span className="masthead-accent">ship fast.</span>
           </h1>
@@ -164,7 +164,7 @@ export default function Page() {
           </div>
         </section>
 
-        {/* "How I Work" section hidden pending a design pass — see TODO.md */}
+        {/* "How I Work" section hidden pending a design pass — see "Freelancer Site TODO.md" in the Obsidian vault */}
 
         <section id="skills" className="skills-section">
           <div className="section-label-row">
