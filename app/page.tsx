@@ -92,13 +92,12 @@ export default function Page() {
           <h1 className="masthead-title">
             Interfaces for
             <br />
-            agencies who
+            agencies who ship fast.
             <br />
             <span className="masthead-accent">ship fast.</span>
           </h1>
           <p className="masthead-sub">
-            I embed with your team on a project basis (no agency overhead, no bench), taking a concept from
-            whiteboard to working product. Wireframes Monday, React by Friday.
+            I work with teams full-time or on a project basis, taking a concept from whiteboard to working product. No agency overhead, no bench. Wireframes Monday, React by Friday.
           </p>
           <div className="stripe-row">
             {stripeColors.map((c, i) => (
@@ -149,9 +148,10 @@ export default function Page() {
           </div>
           <p className="about-lead">
             <span className="drop-cap">T</span>
-            en-plus years bouncing between Figma and VS Code taught me that the best interfaces come from people
-            who can prototype the interaction, not just describe it. I've spent most of that time inside agencies:
-            pulled in mid-sprint to unstick a flow, or brought on from kickoff to own design and build end to end.
+            en-plus years bouncing between Figma and VS Code taught me that the best interfaces come from people who can prototype the interaction, 
+            not just describe it. I've spent most of that time inside agencies and enterprise teams: pulled in mid-sprint to unstick a flow, 
+            brought on from kickoff to own design and build end to end, or embedded full-time on a product that needed someone who could do both. 
+            Currently open to full-time roles and select project work.
           </p>
           <blockquote className="pull-quote">
             <p className="pull-quote-text">"Designers who ship code make better decisions in the room."</p>
