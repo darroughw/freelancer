@@ -35,7 +35,7 @@ const skillGroups = [
 
 const topFives = [
   { title: "Food", items: ["Birria Tacos", "Sushi", "Curry", "Rare Burgers", "Neapolitan Pizza"] },
-  { title: "Video games", items: ["Assasins Creed", "Sneaky Sasquatch", "Farcry", "Crimson Desert", "Fallout"] },
+  { title: "Video games", items: ["Assassin's Creed", "Sneaky Sasquatch", "Far Cry", "Crimson Desert", "Fallout"] },
   { title: "Activities", items: ["Kayaking", "Travel", "Live Music", "Photography", "Birding"] },
 ];
 

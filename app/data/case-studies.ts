@@ -100,7 +100,7 @@ export const caseStudies: CaseStudy[] = [
         body: [
           {
             type: "paragraph",
-            html: `The results were measurable and significant across both initiatives. Traffic more than quintupled over the period. Installation-related searches dropped by 92%.`,
+            html: `The results were measurable across both initiatives. Traffic grew 6x over the period. Installation-related searches dropped by 92%.`,
           },
           {
             type: "table",
@@ -130,11 +130,11 @@ export const caseStudies: CaseStudy[] = [
         body: [
           {
             type: "paragraph",
-            html: `This project is a good example of what continuous UX research actually looks like in practice. The insights didn't come from a single research sprint. They emerged from sustained attention to behavioral signals over time. The Algolia data told me what users needed. The Hotjar heatmaps told me where the interface was letting them down. The redesign addressed both.`,
+            html: `The insights here didn't come from a single research sprint. They came from sustained attention to behavioral signals over time: the Algolia data told me what users were searching for, and the Hotjar heatmaps told me where the interface was letting them down. The redesign addressed both.`,
           },
           {
             type: "paragraph",
-            html: `Reduced search dependency is a positive signal of improved user experience and findability. When users stop asking a question, it usually means the interface finally answered it.`,
+            html: `Fewer installation searches doesn't mean users needed less help. It means the interface answered the question before they had to search for it.`,
           },
         ],
       },
@@ -217,7 +217,7 @@ export const caseStudies: CaseStudy[] = [
           { type: "subheading", text: "Tokens first, components second" },
           {
             type: "paragraph",
-            html: `In close coordination with the tokens workstream, I ensured every iOS component was built on the FDS token system: color, typography, spacing, and elevation values that could be updated globally rather than component by component. This was a deliberate investment in the long-term maintainability of the library and a decision that would pay dividends as FDS evolved past v1.0.`,
+            html: `In close coordination with the tokens workstream, I ensured every iOS component was built on the FDS token system: color, typography, spacing, and elevation values that could be updated globally rather than component by component. This was a deliberate investment in the library's long-term maintainability, and it paid off as FDS evolved past v1.0: updates rolled out globally instead of component by component.`,
           },
           { type: "subheading", text: "Designing for designers" },
           {
@@ -251,7 +251,7 @@ export const caseStudies: CaseStudy[] = [
           },
           {
             type: "paragraph",
-            html: `Perhaps most importantly, the system earned trust. Trust that it would be maintained. Trust that questions would be answered. Trust that when a designer built on FDS, they were building on something stable.`,
+            html: `Most importantly, the system earned trust. Trust that it would be maintained. Trust that questions would be answered. Trust that when a designer built on FDS, they were building on something stable.`,
           },
         ],
       },
@@ -260,7 +260,7 @@ export const caseStudies: CaseStudy[] = [
         body: [
           {
             type: "paragraph",
-            html: `Design systems are infrastructure. They're unglamorous, they're complex, and their value is most visible in the work they make possible rather than the work themselves. Leading the iOS workstream on FDS required technical depth in Figma and iOS patterns, strategic judgment about scope and prioritization, cross-functional collaboration across a large organization, and a genuine conviction that the designers using the system deserved something that worked as well as the products they were building.`,
+            html: `Design systems are infrastructure. They're unglamorous, they're complex, and their value is most visible in the work they make possible rather than the work itself. Leading the iOS workstream on FDS required technical depth in Figma and iOS patterns, strategic judgment about scope and prioritization, cross-functional collaboration across a large organization, and a genuine conviction that the designers using the system deserved something that worked as well as the products they were building.`,
           },
           {
             type: "paragraph",
@@ -392,7 +392,7 @@ export const caseStudies: CaseStudy[] = [
           { type: "subheading", text: "Race Day: The Treadmill Experience" },
           {
             type: "paragraph",
-            html: `On race morning, treadmill runners joined a live-streamed stretch session led from Miami, broadcast across every TV in the club with the event's ambient sound piped through the speakers. Each treadmill paired a tread tracker with a tablet running the Virtual 5K app — the tracker fed pace and distance into a first-person livestream shot by four pace runners in Miami, each running the course at a different speed, so a runner's own pace determined which video they were synced to. Club TVs and tablets displayed a live map of colored dots tracking every runner at that location, plus a national leaderboard of the ten fastest treadmill runners in the country, while trainers handed out water throughout the race to keep the experience feeling like a real one. Finishers got a completion medal, the option to share their result on social media straight from the tablet, and a table of orange slices and other post-race snacks waiting for them off the treadmill.`,
+            html: `On race morning, treadmill runners joined a live-streamed stretch session led from Miami, broadcast across every TV in the club with the event's ambient sound piped through the speakers. Each treadmill paired a tread tracker with a tablet running the Virtual 5K app: the tracker fed pace and distance into a first-person livestream shot by four pace runners in Miami, each running the course at a different speed, so a runner's own pace determined which video they were synced to. Club TVs and tablets displayed a live map of colored dots tracking every runner at that location, plus a national leaderboard of the ten fastest treadmill runners in the country, while trainers handed out water throughout the race to keep the experience feeling like a real one. Finishers got a completion medal, the option to share their result on social media straight from the tablet, and a table of orange slices and other post-race snacks waiting for them off the treadmill.`,
           },
           { type: "subheading", text: "Premium vs. General Locations" },
           {
