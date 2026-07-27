@@ -3,7 +3,12 @@ export type CaseStudyBlock =
   | { type: "subheading"; text: string }
   | { type: "bullets"; items: string[] }
   | { type: "table"; headers: string[]; rows: string[][] }
-  | { type: "stat"; items: { value: string; label: string }[] };
+  | { type: "stat"; items: { value: string; label: string }[] }
+  | {
+      type: "images";
+      items: { src: string; alt: string; width: number; height: number }[];
+      caption?: string;
+    };
 
 export type CaseStudySection = {
   heading: string;
@@ -92,6 +97,24 @@ export const caseStudies: CaseStudy[] = [
               `Explicit, labeled Select buttons. The image-only clickable areas were replaced with clear "⊕ Select" buttons beneath each option: unambiguous interactive affordances.`,
               "Progress bar. A step indicator (Type of door → Style → Track Style → Glass Thickness → Collection) was added to orient users and reduce cognitive load.",
             ],
+          },
+          {
+            type: "images",
+            items: [
+              {
+                src: "/images/delta-finder-desktop.png",
+                alt: "Redesigned Shower Door Finder Tool on desktop, showing the step indicator and explicit \"Select\" buttons beneath each door style",
+                width: 2556,
+                height: 2000,
+              },
+              {
+                src: "/images/delta-finder-mobile.png",
+                alt: "Redesigned Shower Door Finder Tool on mobile, showing the condensed progress bar and \"Select\" buttons beneath each track style",
+                width: 844,
+                height: 1854,
+              },
+            ],
+            caption: "The redesigned Finder Tool on desktop and mobile: a step indicator, one question at a time, and explicit Select buttons in place of the old image-only click targets.",
           },
         ],
       },
@@ -305,6 +328,30 @@ export const caseStudies: CaseStudy[] = [
             type: "paragraph",
             html: `Built a comprehensive Shopify Liquid design system with a faceted search architecture, smart product photography guidelines, and an AIO-optimized content structure. Collaborated directly with engineering and marketing teams throughout.`,
           },
+          {
+            type: "images",
+            items: [
+              {
+                src: "/images/liberty-products-filters.jpg",
+                alt: "Liberty Hardware product listing page with faceted color and category filters in the sidebar",
+                width: 1600,
+                height: 960,
+              },
+              {
+                src: "/images/liberty-diy-content-hub.jpg",
+                alt: "Liberty Hardware DIY & Design content hub, featuring a Simple Snap installation article alongside related how-to guides",
+                width: 1600,
+                height: 967,
+              },
+              {
+                src: "/images/liberty-help-center-mobile.jpg",
+                alt: "Liberty Hardware Help Center on mobile, showing Care & Cleaning, Warranty, and FAQ sections",
+                width: 846,
+                height: 1850,
+              },
+            ],
+            caption: "The rebuilt platform in production: faceted product filtering, an AIO-optimized DIY & Design content hub, and the responsive mobile Help Center.",
+          },
         ],
       },
       {
@@ -394,6 +441,24 @@ export const caseStudies: CaseStudy[] = [
             type: "paragraph",
             html: `On race morning, treadmill runners joined a live-streamed stretch session led from Miami, broadcast across every TV in the club with the event's ambient sound piped through the speakers. Each treadmill paired a tread tracker with a tablet running the Virtual 5K app: the tracker fed pace and distance into a first-person livestream shot by four pace runners in Miami, each running the course at a different speed, so a runner's own pace determined which video they were synced to. Club TVs and tablets displayed a live map of colored dots tracking every runner at that location, plus a national leaderboard of the ten fastest treadmill runners in the country, while trainers handed out water throughout the race to keep the experience feeling like a real one. Finishers got a completion medal, the option to share their result on social media straight from the tablet, and a table of orange slices and other post-race snacks waiting for them off the treadmill.`,
           },
+          {
+            type: "images",
+            items: [
+              {
+                src: "/images/youfit-tablet-standby.jpg",
+                alt: "Tablet mounted on a YouFit treadmill displaying the Virtual 5K app's standby screen before the race",
+                width: 1070,
+                height: 700,
+              },
+              {
+                src: "/images/youfit-tablet-livestream.jpg",
+                alt: "Close-up of the Virtual 5K tablet mid-race, showing the pace-synced livestream and an instruction to set treadmill speed to 6.5+ mph",
+                width: 1070,
+                height: 803,
+              },
+            ],
+            caption: "The Virtual 5K tablet on a YouFit treadmill: standby before the race, then pace-synced livestream once it began.",
+          },
           { type: "subheading", text: "Premium vs. General Locations" },
           {
             type: "paragraph",
@@ -407,6 +472,242 @@ export const caseStudies: CaseStudy[] = [
           {
             type: "paragraph",
             html: `YouFit spiked participation well beyond what a local race could achieve, bringing in record-breaking donations for the Miami Children's Health Foundation. The first-ever livestream virtual 5K proved that the right UX doesn't just improve an experience. It can fundamentally expand who gets to have it.`,
+          },
+        ],
+      },
+    ],
+  },
+  {
+    slug: "nc-lottery",
+    num: "005",
+    title: "NC Education Lottery: Proud Moments 10th Anniversary Campaign",
+    desc: "Designed a $20,000 sweepstakes microsite for the NC Education Lottery's 10th anniversary, turning a decade of lottery-funded education spending into personal stories people could submit, vote on, and explore county by county.",
+    role: "Lead Designer",
+    year: "2017",
+    tags: ["Campaign Microsite", "Web Design", "Data Visualization", "Contest & Sweepstakes", "Responsive"],
+    imgSrc: "/images/nc-lottery.jpg",
+    sections: [
+      {
+        heading: "Overview",
+        body: [
+          {
+            type: "paragraph",
+            html: `2017 marked ten years since North Carolina created its Education Lottery, and by then it had raised billions of dollars for schools statewide. To mark the anniversary, I designed "Proud Moments": a microsite built around a $20,000 sweepstakes that asked North Carolinians to share a personal moment involving education, no matter how big or small, for a chance to win.`,
+          },
+        ],
+      },
+      {
+        heading: "The Problem",
+        body: [
+          {
+            type: "paragraph",
+            html: `A decade of lottery funding for education is, on paper, a budget line: a total raised, a list of programs funded. That framing doesn't make anyone feel anything. The campaign needed to turn an abstract statewide total into something personal enough that people would actually stop, share their own story, and vote on someone else's, while still making the real scale of the funding (down to the county level) easy to find for anyone who wanted it.`,
+          },
+        ],
+      },
+      {
+        heading: "The Solution",
+        body: [
+          {
+            type: "paragraph",
+            html: `The site centered on a simple loop: submit your own proud moment, then browse and vote for favorites, with a $20,000 prize as the incentive to participate. A short explainer video ("Watch & Learn What a Proud Moment Is") set expectations up front for what counted as a submission, since "share a proud moment" is vague enough to need an example.`,
+          },
+          {
+            type: "paragraph",
+            html: `Submissions populated a mosaic-style wall mixing user photos, quote cards, and prompts ("What would you do with $20,000?") so the grid stayed visually varied rather than reading as a repetitive list of entries.`,
+          },
+          {
+            type: "images",
+            items: [
+              {
+                src: "/images/nc-lottery-wall.jpg",
+                alt: "The Proud Moments wall, a mosaic grid mixing user-submitted photos, quote cards, and prompt cards",
+                width: 664,
+                height: 401,
+              },
+              {
+                src: "/images/nc-lottery-map.jpg",
+                alt: "The Across the State page, showing an interactive North Carolina county map with category and county filters alongside statewide lottery funding totals since 2006",
+                width: 664,
+                height: 401,
+              },
+            ],
+            caption: `The Proud Moments wall of submissions, and the "Across the State" page pairing a county-by-county map with the real statewide funding totals behind the anniversary.`,
+          },
+          {
+            type: "paragraph",
+            html: `For anyone who wanted the numbers behind the anniversary, an "Across the State" page paired an interactive North Carolina county map with filters by category (Academics, Athletics, Clubs, Music, Arts) and county, surfacing the lottery's actual cumulative funding since its 2006 launch: over $70 million for teachers' salaries, nearly $59 million for school construction projects, and over $45 million for prekindergarten programs. The homepage carried its own version of that specificity in miniature, a live per-county ticker (Forsyth County: $350,027 raised for education since 2006) that made the statewide total feel local no matter where a visitor was from.`,
+          },
+        ],
+      },
+      {
+        heading: "The Outcome",
+        body: [
+          {
+            type: "paragraph",
+            html: `The site launched as part of the NC Education Lottery's 10th-anniversary campaign in 2017, giving a decade of lottery-funded education spending a front door built around real stories and real county-level numbers instead of a single statewide total.`,
+          },
+        ],
+      },
+    ],
+  },
+  {
+    slug: "can-your-lions",
+    num: "006",
+    title: "Can Your Lions: MullenLowe × World Food Program",
+    desc: "Built the interactive experience for MullenLowe's Cannes Lions pledge campaign, turning advertising awards into meals for families affected by the 2015 Nepal earthquake.",
+    role: "Lead Creative Technologist / UX Designer",
+    year: "2015–2016",
+    tags: ["Cause Marketing", "Interactive Campaign", "Data Visualization", "Advertising", "Nonprofit Partnership"],
+    imgSrc: "/images/can-your-lions.jpg",
+    sections: [
+      {
+        heading: "Overview",
+        body: [
+          {
+            type: "paragraph",
+            html: `Cannes Lions is the advertising industry's biggest stage, and every June, agencies fly home with a trophy count. In June 2015, at the Cannes Lions International Festival of Creativity, MullenLowe Group launched "Can Your Lions": a pledge to donate the value of every Lion the agency won to the World Food Program (WFP), to help feed people in earthquake-ravaged Nepal, and a challenge to the rest of the industry to make the same pledge. I designed and built the interactive web experience that carried that pledge beyond the festival grounds.`,
+          },
+        ],
+      },
+      {
+        heading: "The Problem",
+        body: [
+          {
+            type: "paragraph",
+            html: `Cannes is unforgiving toward anything that reads as performative, and the creative industry has high standards for craft and low tolerance for self-congratulation. An awards-show cause campaign that centers the agency's own trophy case is worse than no campaign at all. The experience had to keep the focus on the WFP's mission and the families it served, not on MullenLowe's Lions count, while still making the industry's competitive instincts feel like they were pointed at something worth competing for.`,
+          },
+        ],
+      },
+      {
+        heading: "The Solution",
+        body: [
+          {
+            type: "paragraph",
+            html: `The site reframed an abstract donation into something concrete: a Grand Prix Lion ($2,906) converted to 5,812 days of food; a Gold, Silver, or Bronze Lion ($1,280) converted to 2,560 days, at the WFP's rate of roughly 50 cents to feed a person for a day in a country in need of humanitarian aid. A "Facts" page laid out that math, a "Goal" page carried the mission and an explainer video, and a "Pledge" page tracked the running total as Lions were won and converted, extending the campaign beyond the festival grounds so the broader creative community could follow along and add their own pledges.`,
+          },
+          {
+            type: "images",
+            items: [
+              {
+                src: "/images/can-your-lions-facts.jpg",
+                alt: "The Facts page, showing the conversion of Grand Prix and Gold/Silver/Bronze Lion values into days of food provided",
+                width: 1070,
+                height: 543,
+              },
+              {
+                src: "/images/can-your-lions-pledge.jpg",
+                alt: "The Pledge page, showing 2015 results and the 2016 goal to exceed 1 million days of food",
+                width: 1070,
+                height: 543,
+              },
+            ],
+            caption: "The Facts page's Lion-to-meals conversion, and the Pledge page tracking 2015 results against the 2016 goal.",
+          },
+        ],
+      },
+      {
+        heading: "The Outcome",
+        body: [
+          {
+            type: "paragraph",
+            html: `In 2015, the industry pledged 81 Lions, providing 210,612 days of food through the WFP. For 2016, MullenLowe and the WFP set a bigger target: pledge 400 more Lions and exceed 1 million days of food, continuing the partnership into a second year.`,
+          },
+          {
+            type: "stat",
+            items: [
+              { value: "81", label: "Lions pledged in 2015" },
+              { value: "210,612", label: "Days of food provided in 2015" },
+              { value: "1M+", label: "Days of food targeted for 2016" },
+            ],
+          },
+        ],
+      },
+    ],
+  },
+  {
+    slug: "joy-to-the-girl",
+    num: "007",
+    title: "Joy to the Girl: ULTA Beauty Holiday Pay-It-Forward Campaign",
+    desc: "Built the experience behind ULTA Beauty's 2016 holiday campaign, where 40 seeded gift boxes grew into a nationwide chain of women surprising two more women each, tracked live on an interactive map.",
+    role: "Lead Creative Technologist / UX Designer",
+    year: "2016",
+    tags: ["Cause Marketing", "Campaign Microsite", "UX Design", "Content Strategy", "Advertising"],
+    imgSrc: "/images/joy-to-the-girl.jpg",
+    sections: [
+      {
+        heading: "Overview",
+        body: [
+          {
+            type: "paragraph",
+            html: `ULTA Beauty wanted to do something real with the holiday season. The idea was a pay-it-forward chain built around beauty and generosity: forty women across the country each surprised two people with a curated beauty box. Each of those recipients got to surprise two more. And so on, with the whole chain visualized live on an interactive map.`,
+          },
+        ],
+      },
+      {
+        heading: "The Problem",
+        body: [
+          {
+            type: "paragraph",
+            html: `The mechanic is simple on paper. Building the experience that powers it is not. Every person in the chain needed to understand what they received, feel the weight of passing it on, and have a clear, easy way to choose their two. The design had to hold across every link: seed gifter to recipient, recipient to her two, and so on as the chain grew.`,
+          },
+        ],
+      },
+      {
+        heading: "The Solution",
+        body: [
+          {
+            type: "paragraph",
+            html: `The flow ran in three steps: verify a gift code, enter each recipient's shipping details and a personalized message (which would print inside her actual box and could surface on the public map), then swipe through a gift carousel to choose what to send. A companion campaign site visualized the chain forming in real time on a map of the country, connecting every link with an animated trail, backed by a live counter of miles traveled and women reached, alongside a real social feed of unboxing videos and reactions from participants.`,
+          },
+          {
+            type: "images",
+            items: [
+              {
+                src: "/images/joy-to-the-girl-flow-desktop.jpg",
+                alt: "Step 1 of the gifting flow on desktop, verifying a gift code and entering account information",
+                width: 637,
+                height: 394,
+              },
+              {
+                src: "/images/joy-to-the-girl-flow-mobile.jpg",
+                alt: "Step 2 of the gifting flow on mobile, entering a recipient's shipping details and a personalized message, then swiping to select a gift",
+                width: 255,
+                height: 595,
+              },
+            ],
+            caption: "The gifting flow across desktop and mobile: verify a code, then address and personalize the next gift.",
+          },
+          {
+            type: "paragraph",
+            html: `The video captured what happened when someone was chosen: the box arriving, the reaction, the moment of deciding who gets it next. That content was the campaign. The experience I built existed to make those moments possible and to keep the chain moving.`,
+          },
+          {
+            type: "images",
+            items: [
+              {
+                src: "/images/joy-to-the-girl-map.jpg",
+                alt: "The campaign site's interactive US map, tracking the chain's spread with connected trails and embedded video at each link",
+                width: 750,
+                height: 790,
+              },
+              {
+                src: "/images/joy-to-the-girl-social.jpg",
+                alt: "A social proof grid of real photos and videos from participants unboxing and reacting to their gifts",
+                width: 750,
+                height: 790,
+              },
+            ],
+            caption: "The interactive map tracking the chain's spread, alongside real unboxing photos and videos from participants.",
+          },
+        ],
+      },
+      {
+        heading: "The Outcome",
+        body: [
+          {
+            type: "paragraph",
+            html: `Over 600 women were surprised across hundreds of miles. The chain worked because the mechanic was honest: real people, real choices, real reactions.`,
           },
         ],
       },

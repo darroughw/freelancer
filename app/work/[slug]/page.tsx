@@ -76,6 +76,23 @@ function Block({ block }: { block: CaseStudyBlock }) {
           ))}
         </div>
       );
+    case "images":
+      return (
+        <figure className="case-images">
+          <div className="case-images-grid">
+            {block.items.map((img) => (
+              <div
+                key={img.src}
+                className="case-images-item"
+                style={{ aspectRatio: `${img.width} / ${img.height}` }}
+              >
+                <Image src={img.src} alt={img.alt} width={img.width} height={img.height} sizes="(max-width: 640px) 90vw, 45vw" />
+              </div>
+            ))}
+          </div>
+          {block.caption && <figcaption className="case-images-caption">{block.caption}</figcaption>}
+        </figure>
+      );
   }
 }
 

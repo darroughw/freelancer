@@ -12,18 +12,14 @@
 }
 
 .shelf {
-  display: flex;
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(220px, 1fr));
   gap: 16px;
-  overflow-x: auto;
   padding: 24px clamp(16px, 4vw, 32px) 16px;
-  scroll-snap-type: x mandatory;
-  -webkit-overflow-scrolling: touch;
 }
 
 .shelf-card {
-  flex-shrink: 0;
-  scroll-snap-align: start;
-  width: 220px;
+  width: 100%;
 }
 
 .card {
@@ -106,14 +102,6 @@
 
 @media (max-width: 640px) {
   .shelf {
-    flex-direction: column;
-    overflow-x: visible;
-    scroll-snap-type: none;
     padding: 20px clamp(16px, 4vw, 32px) 0;
-  }
-
-  .shelf-card {
-    width: 100%;
-    scroll-snap-align: none;
   }
 }

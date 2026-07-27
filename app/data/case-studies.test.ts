@@ -1,9 +1,17 @@
 import { caseStudies } from "./case-studies";
 
 describe("caseStudies data", () => {
-  it("contains exactly the four known case studies", () => {
+  it("contains exactly the seven known case studies", () => {
     const slugs = caseStudies.map((s) => s.slug).sort();
-    expect(slugs).toEqual(["delta", "fidelity-fds", "liberty", "youfit"]);
+    expect(slugs).toEqual([
+      "can-your-lions",
+      "delta",
+      "fidelity-fds",
+      "joy-to-the-girl",
+      "liberty",
+      "nc-lottery",
+      "youfit",
+    ]);
   });
 
   it("has unique slugs", () => {
@@ -59,6 +67,15 @@ describe("caseStudies data", () => {
             for (const item of block.items) {
               expect(item.value.length).toBeGreaterThan(0);
               expect(item.label.length).toBeGreaterThan(0);
+            }
+            break;
+          case "images":
+            expect(block.items.length).toBeGreaterThan(0);
+            for (const item of block.items) {
+              expect(item.src).toMatch(/^\/images\/.+\.(jpg|png|webp)$/);
+              expect(item.alt.length).toBeGreaterThan(0);
+              expect(item.width).toBeGreaterThan(0);
+              expect(item.height).toBeGreaterThan(0);
             }
             break;
           default:
