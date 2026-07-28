@@ -1,12 +1,15 @@
 "use client";
 import { useEffect, useState } from "react";
 import Link from "next/link";
-import Image from "next/image";
 import { caseStudies } from "./data/case-studies";
+import SiteHeader from "./components/SiteHeader";
+import NavPills, { NAV_ITEMS } from "./components/NavPills";
+import WorkCard from "./components/WorkCard";
+import ContactCTA from "./components/ContactCTA";
 
 const stripeColors = ["red", "orange", "mustard", "teal", "plum", "ink"];
 
-const SECTIONS = ["work", "about", "skills", "topfives", "contact"];
+const SECTIONS = NAV_ITEMS.map((item) => item.id);
 
 // The "How I Work" section is temporarily hidden pending a design pass —
 // see howSteps below and the "how" section/pill/SCSS still in place to
@@ -74,17 +77,11 @@ export default function Page() {
     };
   }, []);
 
-  const pillClass = (id: string) => `pill${activeSection === id ? " is-active" : ""}`;
-
   return (
     <div className="page">
       <a href="#main-content" className="skip-link">Skip to main content</a>
 
-      <header className="header">
-        <div className="logo-mark">DW</div>
-        <div className="header-name">Darrough West</div>
-        <a href="mailto:darrough@gmail.com" className="header-cta">Open to work ↗</a>
-      </header>
+      <SiteHeader />
 
       <main id="main-content">
         <section className="masthead">
@@ -114,29 +111,7 @@ export default function Page() {
           <p className="work-note">A few recent case studies, from behavioral UX research to enterprise design systems.</p>
           <div className="shelf">
             {caseStudies.map((proj) => (
-              <Link key={proj.num} href={`/work/${proj.slug}`} className="shelf-card card">
-                <div className="card-img-wrap">
-                  <Image
-                    src={proj.imgSrc}
-                    alt={proj.title}
-                    fill
-                    sizes="(max-width: 640px) 100vw, 220px"
-                    className="card-img"
-                  />
-                  <span className="card-num">{proj.num}</span>
-                </div>
-                <div className="card-face">
-                  <h3 className="card-title">{proj.title}</h3>
-                  <p className="card-desc">{proj.desc}</p>
-                  <div className="card-meta">{proj.role} · {proj.year}</div>
-                  <div className="card-tag-row">
-                    {proj.tags.map((t) => (
-                      <span key={t} className="card-tag">{t}</span>
-                    ))}
-                  </div>
-                  <span className="card-arrow">View case study ↗</span>
-                </div>
-              </Link>
+              <WorkCard key={proj.num} study={proj} />
             ))}
           </div>
         </section>
@@ -209,11 +184,7 @@ export default function Page() {
 
         <section id="contact" className="contact-section">
           <div className="contact-label">◉ REC · SIDE B</div>
-          <h2 className="contact-title">Let's press record.</h2>
-          <p className="contact-sub">Tell me about the brief. I reply within a day, usually with questions.</p>
-          <div className="contact-email-wrap">
-            <a href="mailto:darrough@gmail.com" className="contact-email-btn">darrough@gmail.com ↗</a>
-          </div>
+          <ContactCTA />
           <div className="contact-social-row">
             <a href="https://linkedin.com/in/darroughw" target="_blank" rel="noopener" className="contact-social-link">
               LinkedIn<span className="visually-hidden"> (opens in new tab)</span>
@@ -238,13 +209,7 @@ export default function Page() {
         </section>
       </main>
 
-      <nav className="bottom-nav" aria-label="Section navigation">
-        <a href="#work" className={pillClass("work")} aria-current={activeSection === "work" ? "true" : undefined}>Work</a>
-        <a href="#about" className={pillClass("about")} aria-current={activeSection === "about" ? "true" : undefined}>About</a>
-        <a href="#skills" className={pillClass("skills")} aria-current={activeSection === "skills" ? "true" : undefined}>Skills</a>
-        <a href="#topfives" className={pillClass("topfives")} aria-current={activeSection === "topfives" ? "true" : undefined}>Off duty</a>
-        <a href="#contact" className={pillClass("contact")} aria-current={activeSection === "contact" ? "true" : undefined}>Contact</a>
-      </nav>
+      <NavPills activeSection={activeSection} />
     </div>
   );
 }

@@ -1,8 +1,12 @@
 import Link from "next/link";
 import Image from "next/image";
 import { notFound } from "next/navigation";
-import { caseStudies, CaseStudyBlock } from "../../data/case-studies";
+import { caseStudies } from "../../data/case-studies";
 import { SITE_URL, SITE_NAME } from "../../site-config";
+import SiteHeader from "../../components/SiteHeader";
+import CaseStudyBlock from "../../components/CaseStudyBlock";
+import CasePager from "../../components/CasePager";
+import ContactCTA from "../../components/ContactCTA";
 
 export function generateStaticParams() {
   return caseStudies.map((study) => ({ slug: study.slug }));
@@ -26,74 +30,6 @@ export function generateMetadata({ params }: { params: { slug: string } }) {
       card: "summary_large_image",
     },
   };
-}
-
-function Block({ block }: { block: CaseStudyBlock }) {
-  switch (block.type) {
-    case "paragraph":
-      return <p className="case-paragraph" dangerouslySetInnerHTML={{ __html: block.html }} />;
-    case "subheading":
-      return <h3 className="case-subheading">{block.text}</h3>;
-    case "bullets":
-      return (
-        <ul className="case-bullets">
-          {block.items.map((item, i) => (
-            <li key={i}>{item}</li>
-          ))}
-        </ul>
-      );
-    case "table":
-      return (
-        <div className="case-table-wrap">
-          <table className="case-table">
-            <thead>
-              <tr>
-                {block.headers.map((h) => (
-                  <th key={h}>{h}</th>
-                ))}
-              </tr>
-            </thead>
-            <tbody>
-              {block.rows.map((row, i) => (
-                <tr key={i}>
-                  {row.map((cell, j) => (
-                    <td key={j}>{cell}</td>
-                  ))}
-                </tr>
-              ))}
-            </tbody>
-          </table>
-        </div>
-      );
-    case "stat":
-      return (
-        <div className="case-stat-row">
-          {block.items.map((s) => (
-            <div key={s.label} className="case-stat">
-              <div className="case-stat-value">{s.value}</div>
-              <div className="case-stat-label">{s.label}</div>
-            </div>
-          ))}
-        </div>
-      );
-    case "images":
-      return (
-        <figure className="case-images">
-          <div className="case-images-grid">
-            {block.items.map((img) => (
-              <div
-                key={img.src}
-                className="case-images-item"
-                style={{ aspectRatio: `${img.width} / ${img.height}` }}
-              >
-                <Image src={img.src} alt={img.alt} width={img.width} height={img.height} sizes="(max-width: 640px) 90vw, 45vw" />
-              </div>
-            ))}
-          </div>
-          {block.caption && <figcaption className="case-images-caption">{block.caption}</figcaption>}
-        </figure>
-      );
-  }
 }
 
 export default function CaseStudyPage({ params }: { params: { slug: string } }) {
@@ -139,11 +75,7 @@ export default function CaseStudyPage({ params }: { params: { slug: string } }) 
       />
       <a href="#main-content" className="skip-link">Skip to main content</a>
 
-      <header className="header">
-        <Link href="/" className="logo-mark">DW</Link>
-        <div className="header-name">Darrough West</div>
-        <a href="mailto:darrough@gmail.com" className="header-cta">Open to work ↗</a>
-      </header>
+      <SiteHeader />
 
       <main id="main-content">
         <div className="case-hero">
@@ -178,29 +110,16 @@ export default function CaseStudyPage({ params }: { params: { slug: string } }) 
             <section key={section.heading} className="case-section">
               <h2 className="case-heading">{section.heading}</h2>
               {section.body.map((block, i) => (
-                <Block key={i} block={block} />
+                <CaseStudyBlock key={i} block={block} />
               ))}
             </section>
           ))}
         </div>
 
-        <nav className="case-pager" aria-label="More case studies">
-          <Link href={`/work/${prevStudy.slug}`} className="case-pager-link case-pager-prev">
-            <span className="case-pager-label">← Previous</span>
-            <span className="case-pager-title">{prevStudy.title}</span>
-          </Link>
-          <Link href={`/work/${nextStudy.slug}`} className="case-pager-link case-pager-next">
-            <span className="case-pager-label">Next →</span>
-            <span className="case-pager-title">{nextStudy.title}</span>
-          </Link>
-        </nav>
+        <CasePager prev={prevStudy} next={nextStudy} />
 
         <section className="contact-section">
-          <h2 className="contact-title">Let's press record.</h2>
-          <p className="contact-sub">Tell me about the brief. I reply within a day, usually with questions.</p>
-          <div className="contact-email-wrap">
-            <a href="mailto:darrough@gmail.com" className="contact-email-btn">darrough@gmail.com ↗</a>
-          </div>
+          <ContactCTA />
         </section>
       </main>
     </div>
