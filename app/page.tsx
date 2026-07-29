@@ -93,6 +93,7 @@ export default function Page() {
 
   return (
     <div className="page">
+      {/* Jakob's Law: users expect this to work like every other site. It does. That's the joke. */}
       <a href="#main-content" className="skip-link">Skip to main content</a>
 
       <SiteHeader />
@@ -154,6 +155,7 @@ export default function Page() {
         </section>
 
         {/* "How I Work" section hidden pending a design pass — see "Freelancer Site TODO.md" in the Obsidian vault */}
+        {/* Removed the feature 0.3% of users loved. Per analytics, they never existed. */}
 
         <section id="skills" className="skills-section">
           <div className="section-label-row">
@@ -222,7 +224,7 @@ export default function Page() {
           </div>
         </section>
 
-        <section id="contact" className="contact-section">
+        <section id="contact" className="contact-section contact-section--with-nav">
           <div className="contact-label">◉ REC · SIDE B</div>
           <ContactCTA />
           <div className="contact-social-row">

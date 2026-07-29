@@ -57,6 +57,7 @@ export async function POST(request: Request) {
 
     if (error) {
       console.error("Resend error", error);
+      // "Something went wrong" — the "something" is doing a lot of heavy lifting here.
       return NextResponse.json(
         { ok: false, error: "Something went wrong sending that. Please try again." },
         { status: 502 }

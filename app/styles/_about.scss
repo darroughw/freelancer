@@ -1,7 +1,7 @@
 @use "./theme" as *;
 
 .about-section {
-  padding: clamp(32px, 8vw, 56px) clamp(16px, 4vw, 32px) clamp(28px, 6vw, 48px);
+  padding: clamp(32px, 8vw, 56px) 0 clamp(28px, 6vw, 48px);
   max-width: 720px;
 }
 
@@ -9,6 +9,7 @@
   font: 400 clamp(15px, 2.5vw, 17px)/1.65 $paper-font;
   color: oklch(0.22 0.02 55 / 0.85);
   margin: 24px 0 0;
+  padding: 0 clamp(16px, 4vw, 32px);
 }
 
 .drop-cap {
@@ -22,7 +23,7 @@
 .pull-quote {
   border-left: 3px solid $red;
   padding-left: 18px;
-  margin: 24px 0 0;
+  margin: 24px clamp(16px, 4vw, 32px) 0;
 }
 
 .pull-quote-text {
@@ -39,7 +40,7 @@
 .spec-sheet {
   display: flex;
   flex-direction: column;
-  margin-top: 36px;
+  margin: 36px clamp(16px, 4vw, 32px) 0;
   border-top: 1.5px solid $ink;
 }
 

@@ -1,3 +1,4 @@
+// Hick's Law: fewer options so users decide faster. They still spent 10 minutes on this dropdown.
 export const NAV_ITEMS = [
   { id: "work", label: "Work" },
   { id: "about", label: "About" },

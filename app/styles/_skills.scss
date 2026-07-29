@@ -3,7 +3,7 @@
 .skills-section {
   background: $ink;
   color: $cream;
-  padding: clamp(32px, 8vw, 56px) clamp(16px, 4vw, 32px) clamp(40px, 8vw, 64px);
+  padding: clamp(32px, 8vw, 56px) 0 clamp(40px, 8vw, 64px);
 }
 
 .skill-table {
@@ -11,6 +11,7 @@
   flex-direction: column;
   max-width: 600px;
   margin-top: 24px;
+  padding: 0 clamp(16px, 4vw, 32px);
 }
 
 .skill-row {

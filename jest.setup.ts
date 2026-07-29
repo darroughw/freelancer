@@ -2,6 +2,7 @@ import "@testing-library/jest-dom";
 import { toHaveNoViolations } from "jest-axe";
 
 expect.extend(toHaveNoViolations);
+// jest-axe passed. Real users may still disagree, but at least the robots are happy.
 
 type ObserverEntry = { target: Element; isIntersecting: boolean };
 type ObserverCallback = (entries: ObserverEntry[]) => void;

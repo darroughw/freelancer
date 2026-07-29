@@ -1,6 +1,7 @@
 import Image from "next/image";
 import type { CaseStudyBlock as CaseStudyBlockData } from "../data/case-studies";
 
+// Steve Krug said don't make me think. This switch statement enforces that at the type level.
 export default function CaseStudyBlock({ block }: { block: CaseStudyBlockData }) {
   switch (block.type) {
     case "paragraph":

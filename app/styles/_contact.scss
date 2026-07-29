@@ -6,6 +6,13 @@
   padding: clamp(32px, 8vw, 56px) clamp(16px, 4vw, 32px) 32px;
 }
 
+// Only the home page's contact section sits above the fixed bottom-nav —
+// extend its own background through the nav's clearance space instead of
+// reserving that space on .page, which would show cream behind the nav.
+.contact-section--with-nav {
+  padding-bottom: 108px;
+}
+
 .contact-label {
   font: 700 12px $mono-font;
   letter-spacing: 0.08em;

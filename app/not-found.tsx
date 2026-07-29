@@ -1,5 +1,6 @@
 import Link from "next/link";
 
+// The one page every user visits and nobody bookmarks.
 export default function NotFound() {
   return (
     <div className="page">

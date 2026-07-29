@@ -24,6 +24,7 @@ export default function WorkCard({ study }: { study: CaseStudy }) {
             <span key={t} className="card-tag">{t}</span>
           ))}
         </div>
+        {/* Fitts's Law: made this whole card the click target so users can't miss it. They still missed it. */}
         <span className="card-arrow">View case study ↗</span>
       </div>
     </Link>

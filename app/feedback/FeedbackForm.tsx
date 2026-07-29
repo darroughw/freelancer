@@ -42,6 +42,7 @@ export default function FeedbackForm() {
   }
 
   if (status === "success") {
+    // This state's copy took longer to write than the feature it's covering for.
     return <p className="feedback-success">Thanks, got it. Appreciate you taking the time.</p>;
   }
 
@@ -65,6 +66,7 @@ export default function FeedbackForm() {
       </div>
 
       {/* Honeypot — hidden from real users; bots that fill every field trip it. */}
+      {/* The bot has more patience for this form than most humans do. */}
       <div className="visually-hidden" aria-hidden="true">
         <label htmlFor="company">Company</label>
         <input id="company" name="company" type="text" tabIndex={-1} autoComplete="off" />
@@ -74,6 +76,7 @@ export default function FeedbackForm() {
         <p className="feedback-error" role="alert">{errorMsg}</p>
       )}
 
+      {/* This spinner-adjacent label exists so the user has something to stare at while wondering if they broke something. */}
       <button type="submit" className="feedback-submit" disabled={status === "submitting"}>
         {status === "submitting" ? "Sending…" : "Send feedback"}
       </button>
