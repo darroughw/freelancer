@@ -1,6 +1,7 @@
 "use client";
 import { useEffect, useState } from "react";
 import Link from "next/link";
+import Image from "next/image";
 import { caseStudies } from "./data/case-studies";
 import SiteHeader from "./components/SiteHeader";
 import NavPills, { NAV_ITEMS } from "./components/NavPills";
@@ -102,11 +103,13 @@ export default function Page() {
         <section className="masthead">
           <div className="masthead-eyebrow">◉ REC · SIDE A</div>
           <h1 className="masthead-title">
-            Interfaces for
+            Where we're going,
             <br />
-            agencies who
-            <br />
-            <span className="masthead-accent">ship fast.</span>
+            <span className="masthead-accent">
+              we don't need
+              <br />
+              roads.
+            </span>
           </h1>
           <p className="masthead-sub">
             I work with teams full-time or on a project basis, taking a concept from whiteboard to working product. No agency overhead, no bench. Wireframes Monday, React by Friday.
@@ -225,16 +228,27 @@ export default function Page() {
         </section>
 
         <section id="contact" className="contact-section contact-section--with-nav">
-          <div className="contact-label">◉ REC · SIDE B</div>
-          <ContactCTA />
-          <div className="contact-social-row">
-            <a href="https://linkedin.com/in/darroughw" target="_blank" rel="noopener" className="contact-social-link">
-              LinkedIn<span className="visually-hidden"> (opens in new tab)</span>
-            </a>
-            <a href="https://github.com/darroughw" target="_blank" rel="noopener" className="contact-social-link">
-              GitHub<span className="visually-hidden"> (opens in new tab)</span>
-            </a>
-            <a href="https://open.spotify.com/user/darrough?si=0c7cd65c69b347c2" className="contact-social-link">Spotify</a>
+          <div className="contact-grid">
+            <div className="contact-main">
+              <div className="contact-label">◉ REC · SIDE B</div>
+              <ContactCTA />
+              <div className="contact-social-row">
+                <a href="https://linkedin.com/in/darroughw" target="_blank" rel="noopener" className="contact-social-link">
+                  LinkedIn<span className="visually-hidden"> (opens in new tab)</span>
+                </a>
+                <a href="https://github.com/darroughw" target="_blank" rel="noopener" className="contact-social-link">
+                  GitHub<span className="visually-hidden"> (opens in new tab)</span>
+                </a>
+                <a href="https://open.spotify.com/user/darrough?si=0c7cd65c69b347c2" className="contact-social-link">Spotify</a>
+              </div>
+            </div>
+            <div className="crt-photo" aria-hidden="true">
+              <Image src="/images/darrough-portrait.jpg" alt="" fill sizes="(max-width: 640px) 220px, 280px" className="crt-photo-img" />
+              <div className="crt-photo-fringe crt-photo-fringe--red" />
+              <div className="crt-photo-fringe crt-photo-fringe--cyan" />
+              <div className="crt-scanlines" />
+              <div className="crt-vignette" />
+            </div>
           </div>
           <div className="footer-row">
             <span className="footer-text">© 2026 Darrough West</span>

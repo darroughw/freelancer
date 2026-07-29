@@ -66,7 +66,7 @@ export default function Image() {
               maxWidth: 980,
             }}
           >
-            Interfaces for agencies who ship fast.
+            Where we're going, we don't need roads.
           </div>
         </div>
 
