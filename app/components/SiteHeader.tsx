@@ -1,11 +1,23 @@
 import Link from "next/link";
 
-export default function SiteHeader() {
+type SiteHeaderProps = {
+  initials?: string;
+  name?: string;
+  email?: string;
+  ctaLabel?: string;
+};
+
+export default function SiteHeader({
+  initials = "DW",
+  name = "Darrough West",
+  email = "darrough@gmail.com",
+  ctaLabel = "Open to work",
+}: SiteHeaderProps) {
   return (
     <header className="header">
-      <Link href="/" className="logo-mark">DW</Link>
-      <div className="header-name">Darrough West</div>
-      <a href="mailto:darrough@gmail.com" className="header-cta">Open to work ↗</a>
+      <Link href="/" className="logo-mark">{initials}</Link>
+      <div className="header-name">{name}</div>
+      <a href={`mailto:${email}`} className="header-cta">{ctaLabel} ↗</a>
     </header>
   );
 }

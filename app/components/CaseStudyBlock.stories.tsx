@@ -13,14 +13,14 @@ export const Paragraph: Story = {
   args: {
     block: {
       type: "paragraph",
-      html: `Used behavioral analytics to identify critical UX failures on a high-traffic product site, then redesigned the core product finder to eliminate friction. Read more on <a href="#">the methodology</a>.`,
+      html: `A paragraph block renders arbitrary HTML, including inline links like <a href="#">this one</a>, so case-study copy can reference external sources.`,
     },
   },
 };
 
 export const Subheading: Story = {
   args: {
-    block: { type: "subheading", text: "Finder Tool Redesign: Progressive Disclosure" },
+    block: { type: "subheading", text: "A Subheading Within a Section" },
   },
 };
 
@@ -29,9 +29,9 @@ export const Bullets: Story = {
     block: {
       type: "bullets",
       items: [
-        "One question at a time, so users can't attempt step two before finishing step one.",
-        `Explicit, labeled Select buttons in place of image-only click targets.`,
-        "A progress bar to orient users and reduce cognitive load.",
+        "A first supporting point, kept to a sentence or two.",
+        "A second point, sometimes a bit longer to show how wrapping looks.",
+        "A third and final point for good measure.",
       ],
     },
   },
@@ -41,11 +41,11 @@ export const Table: Story = {
   args: {
     block: {
       type: "table",
-      headers: ["Date", "Installation-Related Searches", "Site Traffic"],
+      headers: ["Milestone", "Metric A", "Metric B"],
       rows: [
-        ["April 2024", "83", "3,238"],
-        ["May 2024", "99", "4,427"],
-        ["April 2025", "7", "21,072"],
+        ["Month 1", "12", "1,200"],
+        ["Month 2", "34", "3,400"],
+        ["Month 3", "56", "5,600"],
       ],
     },
   },
@@ -56,8 +56,8 @@ export const Stat: Story = {
     block: {
       type: "stat",
       items: [
-        { value: "92%", label: "Drop in installation searches" },
-        { value: "6×", label: "Traffic growth over period" },
+        { value: "42%", label: "Sample improvement metric" },
+        { value: "3×", label: "Sample growth metric" },
       ],
     },
   },
@@ -68,10 +68,10 @@ export const Images: Story = {
     block: {
       type: "images",
       items: [
-        { src: "/images/delta.jpg", alt: "Delta shower door product finder", width: 1200, height: 1200 },
-        { src: "/images/liberty.jpg", alt: "Liberty Hardware cabinet pull detail", width: 1200, height: 800 },
+        { src: "/images/sample-placeholder.svg", alt: "First placeholder screenshot", width: 1200, height: 900 },
+        { src: "/images/sample-placeholder.svg", alt: "Second placeholder screenshot", width: 1200, height: 900 },
       ],
-      caption: "Two images laid out side by side, each sized from its own aspect ratio.",
+      caption: "Two placeholder images laid out side by side, each sized from its own aspect ratio.",
     },
   },
 };

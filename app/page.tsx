@@ -204,6 +204,9 @@ export default function Page() {
                 Resume ↗<span className="visually-hidden"> (opens in new tab)</span>
               </a>
               <Link href="/feedback" className="footer-text footer-link">Feedback</Link>
+              <a href="/storybook" target="_blank" rel="noopener" className="footer-text footer-link">
+                Design System ↗<span className="visually-hidden"> (opens in new tab)</span>
+              </a>
             </div>
           </div>
         </section>

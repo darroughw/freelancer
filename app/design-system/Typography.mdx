@@ -1,0 +1,51 @@
+import { Meta, Typeset } from "@storybook/addon-docs/blocks";
+
+<Meta title="Foundations/Typography" />
+
+# Typography
+
+Three font families, loaded via Google Fonts in `app/layout.tsx` and defined
+as SCSS variables in `app/styles/_theme.scss`.
+
+## Paper — `$paper-font`
+
+`'Archivo', -apple-system, sans-serif` — body copy, form fields, and most UI
+text. Used at weights 400–800 depending on emphasis.
+
+<Typeset
+  fontFamily="'Archivo', -apple-system, sans-serif"
+  fontWeight={400}
+  fontSizes={[13, 15, 16]}
+  sampleText="The quick brown fox jumps over the lazy dog."
+/>
+
+<Typeset
+  fontFamily="'Archivo', -apple-system, sans-serif"
+  fontWeight={700}
+  fontSizes={[13, 15]}
+  sampleText="The quick brown fox jumps over the lazy dog."
+/>
+
+## Head — `$head-font`
+
+`'Archivo Black', 'Archivo', sans-serif` — display headings, always set at
+weight 900. Sized fluidly with `clamp()` for large hero/section titles.
+
+<Typeset
+  fontFamily="'Archivo Black', 'Archivo', sans-serif"
+  fontWeight={900}
+  fontSizes={[16, 22, 28, 44, 64]}
+  sampleText="Sample heading"
+/>
+
+## Mono — `$mono-font`
+
+`'Space Mono', monospace` — section labels, meta text, tags, and tabular
+data. Almost always uppercase and letter-spaced in context.
+
+<Typeset
+  fontFamily="'Space Mono', monospace"
+  fontWeight={600}
+  fontSizes={[10, 11, 12, 13]}
+  sampleText="SECTION LABEL · META INFO"
+/>

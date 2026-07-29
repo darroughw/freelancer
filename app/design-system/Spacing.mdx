@@ -1,0 +1,73 @@
+import { Meta } from "@storybook/addon-docs/blocks";
+
+<Meta title="Foundations/Spacing & Layout" />
+
+# Spacing & Layout
+
+There's no formal spacing scale in this codebase — values below are what's
+actually used across `app/styles/*.scss`, surveyed directly rather than
+invented after the fact.
+
+## Breakpoint
+
+There is exactly **one** responsive breakpoint in the whole site:
+
+<div style={{ fontFamily: "'Space Mono', monospace", fontSize: 14, background: "#00000010", padding: "12px 16px", borderRadius: 8, display: "inline-block" }}>
+  @media (max-width: 640px)
+</div>
+
+Below 640px, multi-column layouts (the work-card grid, the case-study image
+gallery, the pager) collapse to a single column.
+
+## Spacing scale in use
+
+Discrete `px` values found in `gap` / `margin` / `padding` declarations,
+smallest to largest:
+
+<div style={{ display: "flex", flexDirection: "column", gap: 6, fontFamily: "'Space Mono', monospace", fontSize: 12 }}>
+  {[3, 4, 5, 6, 7, 8, 9, 10, 12, 14, 15, 16, 20, 24].map((px) => (
+    <div key={px} style={{ display: "flex", alignItems: "center", gap: 10 }}>
+      <span style={{ width: 32, textAlign: "right" }}>{px}px</span>
+      <div style={{ width: px * 4, height: 14, background: "#d1502e", borderRadius: 2 }} />
+    </div>
+  ))}
+</div>
+
+## Fluid section padding
+
+Larger, section-level padding is set with `clamp(min, preferred, max)` so it
+scales smoothly between mobile and desktop rather than jumping at the
+breakpoint. A representative sample of the patterns in use:
+
+<table>
+  <thead>
+    <tr><th>Declaration</th><th>Min</th><th>Scales with</th><th>Max</th></tr>
+  </thead>
+  <tbody>
+    <tr><td><code>clamp(16px, 4vw, 32px)</code></td><td>16px</td><td>4vw</td><td>32px</td></tr>
+    <tr><td><code>clamp(24px, 6vw, 48px)</code></td><td>24px</td><td>6vw</td><td>48px</td></tr>
+    <tr><td><code>clamp(32px, 8vw, 56px)</code></td><td>32px</td><td>8vw</td><td>56px</td></tr>
+    <tr><td><code>clamp(40px, 8vw, 64px)</code></td><td>40px</td><td>8vw</td><td>64px</td></tr>
+    <tr><td><code>clamp(48px, 8vw, 72px)</code></td><td>48px</td><td>8vw</td><td>72px</td></tr>
+  </tbody>
+</table>
+
+## Content widths
+
+Most sections cap their content width rather than letting text stretch full
+bleed on large screens:
+
+<table>
+  <thead>
+    <tr><th>Max width</th><th>Selector</th><th>Used by</th></tr>
+  </thead>
+  <tbody>
+    <tr><td>360px</td><td><code>.stripe-row</code></td><td>The masthead's color-stripe row</td></tr>
+    <tr><td>420px</td><td><code>.contact-sub</code></td><td>Contact section's supporting line</td></tr>
+    <tr><td>480px</td><td><code>.masthead-sub</code></td><td>Masthead's intro paragraph</td></tr>
+    <tr><td>560px</td><td><code>.feedback-section</code></td><td>The feedback form column</td></tr>
+    <tr><td>600px</td><td><code>.skill-table</code></td><td>The skills section's rows</td></tr>
+    <tr><td>720px</td><td><code>.masthead</code>, <code>.about-section</code>, <code>.how-section</code></td><td>Main content sections on the home page</td></tr>
+    <tr><td>760px</td><td><code>.case-body</code></td><td>Case-study detail page body copy</td></tr>
+  </tbody>
+</table>

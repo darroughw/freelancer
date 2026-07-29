@@ -1,0 +1,45 @@
+import { Meta, ColorPalette, ColorItem } from "@storybook/addon-docs/blocks";
+
+<Meta title="Foundations/Colors" />
+
+# Colors
+
+The palette defined in `app/styles/_theme.scss`, rendered here with the same
+`oklch()` values used in the stylesheet.
+
+<ColorPalette>
+  <ColorItem
+    title="Ink"
+    subtitle="Primary text color"
+    colors={{ ink: "oklch(0.22 0.02 55)" }}
+  />
+  <ColorItem
+    title="Cream"
+    subtitle="Primary background, and a slightly darker variant for subtle fills"
+    colors={{ cream: "oklch(0.95 0.018 80)", "cream-dark": "oklch(0.90 0.02 75)" }}
+  />
+  <ColorItem
+    title="Red"
+    subtitle="Primary accent, with two contrast-adjusted variants"
+    colors={{
+      red: "oklch(0.58 0.17 27)",
+      "red-text": "oklch(0.46 0.17 27)",
+      "red-deep": "oklch(0.50 0.17 27)",
+    }}
+  />
+  <ColorItem title="Orange" subtitle="Palette accent" colors={{ orange: "oklch(0.73 0.15 55)" }} />
+  <ColorItem title="Mustard" subtitle="Palette accent" colors={{ mustard: "oklch(0.79 0.13 90)" }} />
+  <ColorItem title="Teal" subtitle="Palette accent" colors={{ teal: "oklch(0.56 0.09 195)" }} />
+  <ColorItem title="Plum" subtitle="Palette accent" colors={{ plum: "oklch(0.42 0.10 325)" }} />
+</ColorPalette>
+
+## Notes
+
+- **`red-text`** is a darker variant of `red` for small/normal-weight text on
+  light backgrounds — `red` itself only clears WCAG AA contrast at large text
+  sizes.
+- **`red-deep`** is a darker variant of `red` for use as a background behind
+  cream text — `red` itself only gives cream text ~4.0:1 contrast, below the
+  4.5:1 AA threshold.
+- The palette is defined in `oklch()` rather than hex so lightness and chroma
+  stay perceptually consistent across hues.

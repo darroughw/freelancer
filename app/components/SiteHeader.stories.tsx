@@ -9,4 +9,11 @@ const meta: Meta<typeof SiteHeader> = {
 export default meta;
 type Story = StoryObj<typeof SiteHeader>;
 
-export const Default: Story = {};
+export const Default: Story = {
+  args: {
+    initials: "JD",
+    name: "Jordan Doe",
+    email: "hello@example.com",
+    ctaLabel: "Open to work",
+  },
+};

@@ -9,4 +9,10 @@ const meta: Meta<typeof ContactCTA> = {
 export default meta;
 type Story = StoryObj<typeof ContactCTA>;
 
-export const Default: Story = {};
+export const Default: Story = {
+  args: {
+    title: "Let's talk.",
+    sub: "Tell me about the project. I usually reply within a day.",
+    email: "hello@example.com",
+  },
+};
