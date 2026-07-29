@@ -42,6 +42,20 @@ const topFives = [
   { title: "Activities", items: ["Kayaking", "Travel", "Live Music", "Photography", "Birding"] },
 ];
 
+// Sourced from a Chrome bookmarks folder I add to as I come across things
+// worth reading — not wired into the nav/scroll-spy on purpose.
+const readingLinks = [
+  { title: "UX Planet", domain: "uxplanet.org", url: "https://uxplanet.org/", desc: "Curated UX articles and case studies" },
+  { title: "Nielsen Norman Group", domain: "nngroup.com", url: "https://www.nngroup.com/", desc: "UX research, training, and consulting" },
+  { title: "Designlab", domain: "designlab.com", url: "https://designlab.com/", desc: "Online UI/UX and product design courses" },
+  { title: "Marvel Blog", domain: "marvelapp.com", url: "https://marvelapp.com/blog/", desc: "Ideas on UX, design, and collaboration" },
+  { title: "TOOOLS.design", domain: "toools.design", url: "https://www.toools.design/", desc: "Design resources and tools" },
+  { title: "Academy UX", domain: "blog.academyux.com", url: "https://blog.academyux.com/", desc: "UX learning resources" },
+  { title: "UX Collective", domain: "uxdesign.cc", url: "https://uxdesign.cc/", desc: "Widely-read UX publication" },
+  { title: "Nicely Done", domain: "nicelydone.club", url: "https://nicelydone.club/apps", desc: "SaaS UX design inspiration library" },
+  { title: "Mobbin", domain: "mobbin.com", url: "https://mobbin.com/", desc: "UI/UX design inspiration for mobile and web apps" },
+];
+
 export default function Page() {
   const [activeSection, setActiveSection] = useState("work");
 
@@ -178,6 +192,32 @@ export default function Page() {
                   ))}
                 </ol>
               </div>
+            ))}
+          </div>
+        </section>
+
+        <section id="reading" className="reading-section">
+          <div className="section-label-row">
+            <h2 className="section-tag">05 · READING</h2>
+            <span className="section-rule" />
+          </div>
+          <p className="work-note">Links I've bookmarked along the way, added to as I come across things worth reading.</p>
+          <div className="reading-list">
+            {readingLinks.map((link) => (
+              <a
+                key={link.url}
+                href={link.url}
+                target="_blank"
+                rel="noopener"
+                className="reading-item"
+              >
+                <span className="reading-item-title">
+                  {link.title}
+                  <span className="visually-hidden"> (opens in new tab)</span>
+                </span>
+                <span className="reading-item-desc">{link.desc}</span>
+                <span className="reading-item-domain">{link.domain}</span>
+              </a>
             ))}
           </div>
         </section>
