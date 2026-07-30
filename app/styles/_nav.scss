@@ -7,7 +7,7 @@
   bottom: 0;
   z-index: 10;
   background: $ink;
-  border-top: 2px solid oklch(0.95 0.018 80 / 0.15);
+  border-top: 2px solid color-mix(in oklch, $cream 15%, transparent);
   display: flex;
   gap: 8px;
   overflow-x: auto;
@@ -22,7 +22,7 @@
   min-height: 36px;
   padding: 0 14px;
   border-radius: 100px;
-  background: oklch(0.95 0.018 80 / 0.12);
+  background: color-mix(in oklch, $cream 12%, transparent);
   color: $cream;
   font: 700 12px $paper-font;
   text-decoration: none;
@@ -30,7 +30,7 @@
   transition: all 0.3s ease;
 
   &:hover {
-    background: oklch(0.95 0.018 80 / 0.22);
+    background: color-mix(in oklch, $cream 22%, transparent);
   }
 
   &.is-active {

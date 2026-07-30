@@ -1,18 +1,61 @@
-$red: oklch(0.58 0.17 27);
-// Darker variant of $red for small/normal-weight text on light backgrounds —
-// $red itself only clears WCAG AA contrast at large text sizes.
-$red-text: oklch(0.46 0.17 27);
-// Darker variant of $red for use as a background behind cream text — $red
-// itself only gives cream ~4.0:1 contrast, below the 4.5:1 AA threshold.
-$red-deep: oklch(0.50 0.17 27);
-$orange: oklch(0.73 0.15 55);
-$mustard: oklch(0.79 0.13 90);
-$teal: oklch(0.56 0.09 195);
-$plum: oklch(0.42 0.10 325);
+// Colors are CSS custom properties (not plain Sass values) so the palette can
+// swap at runtime via [data-theme], not just at build time. Each Sass variable
+// below is just an alias to its custom property, so every partial that does
+// `@use "./theme" as *` and writes `background: $red` keeps working unchanged
+// — the indirection is invisible to them.
+//
+// The VHS override keeps the exact same lightness (L) per token as the default
+// theme, only shifting chroma/hue for a punchier look — that preserves the
+// contrast ratios the a11y audit already verified (see $red-text/$red-deep).
+:root {
+  --color-red: oklch(0.58 0.17 27);
+  --color-red-text: oklch(0.46 0.17 27);
+  --color-red-deep: oklch(0.50 0.17 27);
+  --color-orange: oklch(0.73 0.15 55);
+  --color-mustard: oklch(0.79 0.13 90);
+  --color-teal: oklch(0.56 0.09 195);
+  --color-plum: oklch(0.42 0.10 325);
+  --color-ink: oklch(0.22 0.02 55);
+  --color-cream: oklch(0.95 0.018 80);
+  --color-cream-dark: oklch(0.90 0.02 75);
+  --tape-gradient: linear-gradient(
+    90deg,
+    var(--color-mustard) 0%,
+    var(--color-orange) 25%,
+    var(--color-red) 50%,
+    var(--color-red-deep) 75%,
+    var(--color-plum) 100%
+  );
+}
 
-$ink: oklch(0.22 0.02 55);
-$cream: oklch(0.95 0.018 80);
-$cream-dark: oklch(0.90 0.02 75);
+// "Dynamicron T-120" — colors sampled directly off the Sony tape box art
+// (converted from the box's hex to oklch), not a palette merely inspired by
+// it. Box has no teal, so that token is aliased to the maroon band and its
+// stripe-row swatch is hidden below rather than showing an off-box hue.
+:root[data-theme="vhs"] {
+  --color-red: oklch(0.58 0.20 29); // #D6342A, gradient stripe band 3
+  --color-red-text: oklch(0.42 0.14 21); // #8C1F2A, gradient stripe band 4 (maroon)
+  --color-red-deep: oklch(0.42 0.14 21); // same maroon band, reused as bg
+  --color-orange: oklch(0.66 0.17 47); // #E36A1E, gradient stripe band 2
+  --color-mustard: oklch(0.78 0.16 78); // #F2A900, gradient stripe band 1 (gold)
+  --color-teal: oklch(0.42 0.14 21); // no teal on the box; aliased to maroon, swatch hidden
+  --color-plum: oklch(0.31 0.09 340); // #4B1B3D, gradient stripe band 5
+  --color-ink: oklch(0.19 0 0); // #141414, the box's printed black
+  --color-cream: oklch(0.96 0.02 88); // #F5F0E4, the box's paper white
+  --color-cream-dark: oklch(0.92 0.03 89); // #EAE3D1
+}
+
+$red: var(--color-red);
+$red-text: var(--color-red-text);
+$red-deep: var(--color-red-deep);
+$orange: var(--color-orange);
+$mustard: var(--color-mustard);
+$teal: var(--color-teal);
+$plum: var(--color-plum);
+
+$ink: var(--color-ink);
+$cream: var(--color-cream);
+$cream-dark: var(--color-cream-dark);
 
 $paper-font: 'Archivo', -apple-system, sans-serif;
 $head-font: 'Archivo Black', 'Archivo', sans-serif;

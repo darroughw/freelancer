@@ -7,6 +7,7 @@ import SiteHeader from "./components/SiteHeader";
 import NavPills, { NAV_ITEMS } from "./components/NavPills";
 import WorkCard from "./components/WorkCard";
 import ContactCTA from "./components/ContactCTA";
+import ThemeToggle from "./components/ThemeToggle";
 
 const stripeColors = ["red", "orange", "mustard", "teal", "plum", "ink"];
 
@@ -263,6 +264,7 @@ export default function Page() {
               <a href="/storybook" target="_blank" rel="noopener" className="footer-text footer-link">
                 Design System ↗<span className="visually-hidden"> (opens in new tab)</span>
               </a>
+              <ThemeToggle />
             </div>
           </div>
         </section>

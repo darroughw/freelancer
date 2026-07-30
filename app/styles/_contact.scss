@@ -154,7 +154,7 @@
   flex-wrap: wrap;
   gap: 8px;
   padding-top: 18px;
-  border-top: 1.5px solid oklch(0.95 0.018 80 / 0.3);
+  border-top: 1.5px solid color-mix(in oklch, $cream 30%, transparent);
 }
 
 .footer-links {
@@ -175,6 +175,44 @@
   &:hover {
     opacity: 1;
     text-decoration: underline;
+  }
+}
+
+// Deliberately unlabeled — a small found-it-or-you-didn't toggle rather than
+// a call-out control. A generous tap target sits around a much smaller dot
+// so it's still comfortably clickable without looking like a button.
+.theme-toggle {
+  width: 20px;
+  height: 20px;
+  padding: 0;
+  border: none;
+  background: none;
+  cursor: pointer;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 50%;
+  align-self: center;
+
+  &::after {
+    content: "";
+    width: 7px;
+    height: 7px;
+    border-radius: 50%;
+    background: color-mix(in oklch, $cream 35%, transparent);
+  }
+
+  &:hover::after {
+    background: $cream;
+  }
+
+  &:focus-visible {
+    outline: 2px solid $cream;
+    outline-offset: 2px;
+  }
+
+  [data-theme="vhs"] &::after {
+    background: var(--tape-gradient);
   }
 }
 

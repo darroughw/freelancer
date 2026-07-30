@@ -10,6 +10,11 @@
   padding: 14px clamp(16px, 4vw, 32px);
   background: $ink;
   color: $cream;
+
+  [data-theme="vhs"] & {
+    border-bottom: 4px solid transparent;
+    border-image: var(--tape-gradient) 1;
+  }
 }
 
 .logo-mark {
@@ -41,4 +46,14 @@
   display: flex;
   align-items: center;
   white-space: nowrap;
+
+  [data-theme="vhs"] &:hover {
+    background-image: repeating-linear-gradient(
+      135deg,
+      color-mix(in oklch, $ink 25%, transparent) 0,
+      color-mix(in oklch, $ink 25%, transparent) 2px,
+      transparent 2px,
+      transparent 5px
+    );
+  }
 }

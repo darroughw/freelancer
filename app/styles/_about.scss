@@ -7,7 +7,7 @@
 
 .about-lead {
   font: 400 clamp(15px, 2.5vw, 17px)/1.65 $paper-font;
-  color: oklch(0.22 0.02 55 / 0.85);
+  color: color-mix(in oklch, $ink 85%, transparent);
   margin: 24px 0 0;
   padding: 0 clamp(16px, 4vw, 32px);
 }

@@ -24,11 +24,27 @@ body {
 }
 
 ::selection {
-  background: #d1502e;
-  color: #f5ecdc;
+  background: var(--color-red-deep);
+  color: var(--color-cream);
 }
 
 a {
   color: inherit;
   -webkit-tap-highlight-color: transparent;
+}
+
+// A soft edge vignette for the VHS theme, echoing the worn box-photo look.
+// Fixed to the viewport (not .page) so it reads as a constant frame while
+// scrolling, rather than stretching into invisibility over a tall page.
+:root[data-theme="vhs"]::after {
+  content: "";
+  position: fixed;
+  inset: 0;
+  z-index: 5;
+  pointer-events: none;
+  background: radial-gradient(
+    ellipse at center,
+    transparent 55%,
+    color-mix(in oklch, var(--color-ink) 20%, transparent) 100%
+  );
 }

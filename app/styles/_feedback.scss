@@ -28,7 +28,7 @@
     font: 400 15px $paper-font;
     padding: 12px 14px;
     border-radius: 8px;
-    border: 1.5px solid oklch(0.22 0.02 55 / 0.25);
+    border: 1.5px solid color-mix(in oklch, $ink 25%, transparent);
     background: $cream-dark;
     color: $ink;
     resize: vertical;

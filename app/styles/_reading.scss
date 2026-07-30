@@ -18,7 +18,7 @@
   align-items: baseline;
   gap: 4px 16px;
   padding: 14px 0;
-  border-bottom: 1px solid oklch(0.22 0.02 55 / 0.1);
+  border-bottom: 1px solid color-mix(in oklch, $ink 10%, transparent);
   text-decoration: none;
   color: $ink;
 
@@ -34,13 +34,13 @@
 
 .reading-item-desc {
   font: 400 13px/1.5 $paper-font;
-  color: oklch(0.22 0.02 55 / 0.65);
+  color: color-mix(in oklch, $ink 65%, transparent);
   grid-column: 1;
 }
 
 .reading-item-domain {
   font: 500 11px $mono-font;
-  color: oklch(0.22 0.02 55 / 0.5);
+  color: color-mix(in oklch, $ink 50%, transparent);
   grid-column: 2;
   grid-row: 1 / 3;
   align-self: center;

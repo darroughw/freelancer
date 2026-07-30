@@ -45,6 +45,13 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
           type="application/ld+json"
           dangerouslySetInnerHTML={{ __html: JSON.stringify(personJsonLd) }}
         />
+        {/* Runs before paint so a saved VHS theme doesn't flash the default one first. */}
+        <script
+          dangerouslySetInnerHTML={{
+            __html:
+              "try{if(localStorage.getItem('theme')==='vhs'){document.documentElement.dataset.theme='vhs';}}catch(e){}",
+          }}
+        />
       </head>
       <body>
         {children}

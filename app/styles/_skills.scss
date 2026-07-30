@@ -19,7 +19,7 @@
   flex-direction: column;
   gap: 10px;
   padding: 16px 0;
-  border-bottom: 1px solid oklch(0.95 0.018 80 / 0.14);
+  border-bottom: 1px solid color-mix(in oklch, $cream 14%, transparent);
 }
 
 .skill-label {

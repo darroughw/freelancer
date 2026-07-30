@@ -6,7 +6,7 @@
 
 .work-note {
   font: 600 13px $mono-font;
-  color: oklch(0.22 0.02 55 / 0.5);
+  color: color-mix(in oklch, $ink 50%, transparent);
   margin: 16px 0 0;
   padding: 0 clamp(16px, 4vw, 32px);
 }
@@ -29,7 +29,7 @@
   color: $ink;
   border-radius: 10px;
   overflow: hidden;
-  box-shadow: 0 12px 26px oklch(0.22 0.02 55 / 0.14);
+  box-shadow: 0 12px 26px color-mix(in oklch, $ink 14%, transparent);
 }
 
 .card-img-wrap {
@@ -51,7 +51,7 @@
   left: 8px;
   font: 700 11px $mono-font;
   color: $cream;
-  background: oklch(0.22 0.02 55 / 0.7);
+  background: color-mix(in oklch, $ink 70%, transparent);
   padding: 3px 7px;
   border-radius: 4px;
 }
@@ -72,13 +72,13 @@
 
 .card-desc {
   font: 400 12.5px/1.5 $paper-font;
-  color: oklch(0.22 0.02 55 / 0.72);
+  color: color-mix(in oklch, $ink 72%, transparent);
   margin: 0;
 }
 
 .card-meta {
   font: 600 10.5px $mono-font;
-  color: oklch(0.22 0.02 55 / 0.68);
+  color: color-mix(in oklch, $ink 68%, transparent);
 }
 
 .card-tag-row {

@@ -95,7 +95,7 @@
 
 .case-paragraph {
   font: 400 15px/1.7 $paper-font;
-  color: oklch(0.22 0.02 55 / 0.85);
+  color: color-mix(in oklch, $ink 85%, transparent);
   margin: 0 0 16px;
 
   a {
@@ -111,7 +111,7 @@
   flex-direction: column;
   gap: 10px;
   font: 400 15px/1.6 $paper-font;
-  color: oklch(0.22 0.02 55 / 0.85);
+  color: color-mix(in oklch, $ink 85%, transparent);
 }
 
 .case-table-wrap {
@@ -128,12 +128,12 @@
   td {
     text-align: left;
     padding: 10px 14px;
-    border-bottom: 1px solid oklch(0.22 0.02 55 / 0.12);
+    border-bottom: 1px solid color-mix(in oklch, $ink 12%, transparent);
     white-space: nowrap;
   }
 
   th {
-    color: oklch(0.22 0.02 55 / 0.6);
+    color: color-mix(in oklch, $ink 60%, transparent);
     text-transform: uppercase;
     letter-spacing: 0.03em;
     font-weight: 700;
@@ -161,7 +161,7 @@
 
 .case-stat-label {
   font: 600 11px $mono-font;
-  color: oklch(0.22 0.02 55 / 0.75);
+  color: color-mix(in oklch, $ink 75%, transparent);
   margin-top: 4px;
 }
 
@@ -197,7 +197,7 @@
 
 .case-images-caption {
   font: 600 11px $mono-font;
-  color: oklch(0.22 0.02 55 / 0.6);
+  color: color-mix(in oklch, $ink 60%, transparent);
   margin-top: 8px;
 }
 

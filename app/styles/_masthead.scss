@@ -25,7 +25,7 @@
 .masthead-sub {
   font: 500 clamp(15px, 3vw, 18px)/1.6 $paper-font;
   max-width: 480px;
-  color: oklch(0.22 0.02 55 / 0.78);
+  color: color-mix(in oklch, $ink 78%, transparent);
   margin: 0 0 28px;
 }
 
@@ -45,4 +45,16 @@
   &--teal { background: $teal; }
   &--plum { background: $plum; }
   &--ink { background: $ink; }
+
+  // Reorder into the tape box's actual gold-to-plum sunset sequence, purely
+  // via flex order (no DOM change). Teal has no counterpart on the box, so
+  // rather than show it recolored to an off-box hue, it's hidden outright.
+  [data-theme="vhs"] & {
+    &--mustard { order: 1; }
+    &--orange { order: 2; }
+    &--red { order: 3; }
+    &--plum { order: 4; }
+    &--ink { order: 5; }
+    &--teal { display: none; }
+  }
 }
