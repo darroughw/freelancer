@@ -102,7 +102,7 @@ export default function Page() {
 
       <main id="main-content">
         <section className="masthead">
-          <div className="masthead-eyebrow">◉ REC · SIDE A</div>
+          <div className="masthead-eyebrow">◉ SIDE A</div>
           <h1 className="masthead-title">
             Where we're going,
             <br />
@@ -231,7 +231,7 @@ export default function Page() {
         <section id="contact" className="contact-section contact-section--with-nav">
           <div className="contact-grid">
             <div className="contact-main">
-              <div className="contact-label">◉ REC · SIDE B</div>
+              <div className="contact-label">◉ SIDE B</div>
               <ContactCTA />
               <div className="contact-social-row">
                 <a href="https://linkedin.com/in/darroughw" target="_blank" rel="noopener" className="contact-social-link">
