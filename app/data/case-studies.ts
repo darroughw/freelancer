@@ -713,4 +713,96 @@ export const caseStudies: CaseStudy[] = [
       },
     ],
   },
+  {
+    slug: "agent-console",
+    num: "008",
+    title: "Agent Status Console: Designing Trust Into AI Output",
+    desc: "A self-directed exploration of what an interface owes a user when an AI agent is doing work they can't watch happen: legible confidence, honest failure states, and real control.",
+    role: "Design & Engineering (self-directed)",
+    year: "2026",
+    tools: "Next.js, TypeScript, Storybook",
+    tags: ["AI/Agent UX", "Design Systems", "Accessibility", "TypeScript", "Prototyping"],
+    imgSrc: "/images/agent-console.png",
+    sections: [
+      {
+        heading: "Overview",
+        body: [
+          {
+            type: "paragraph",
+            html: `Most AI-agent interfaces are designed for the happy path: a prompt goes in, a clean answer comes out. This project starts from a harder question: when an agent is doing work you can't watch happen minute by minute, what does the interface owe you so you still feel in control? I built a status console for a small fleet of background agents (health monitoring, warranty reconciliation, device provisioning, support triage) as a self-directed exploration of that question, in working code rather than a mockup.`,
+          },
+        ],
+      },
+      {
+        heading: "The Problem",
+        body: [
+          { type: "subheading", text: "One confidence score doesn't give you anything to reason with." },
+          {
+            type: "paragraph",
+            html: `Most AI tools that surface a confidence score show a single number: 72% confident. Confident about what, exactly? Whether the facts are right? Whether the answer is complete? Whether the source was any good? A single blended number asks you to trust the system's judgment about its own judgment, with no vocabulary for questioning it.`,
+          },
+          { type: "subheading", text: "Collapsing “uncertain” and “broken” into one error state teaches people to distrust the system." },
+          {
+            type: "paragraph",
+            html: `The easy engineering move is two states: it worked, or it didn't. But a result that's 58% confident and flagged for human review is a different situation than an upstream API timing out. Treating them the same trains users to distrust the agent even in the common case where it's still doing something useful, it just needs a second pair of eyes.`,
+          },
+        ],
+      },
+      {
+        heading: "What I Did",
+        body: [
+          { type: "subheading", text: "Confidence, broken into dimensions" },
+          {
+            type: "paragraph",
+            html: `The confidence indicator scores accuracy, completeness, and source quality separately instead of blending them into one number. That's a UX decision about what vocabulary you give someone to reason about AI output, not a progress-bar detail: "I'm not sure this is complete" and "I'm not sure this is accurate" call for different next actions.`,
+          },
+          { type: "subheading", text: "Five states, not two" },
+          {
+            type: "paragraph",
+            html: `Every agent renders as one of five distinct states: idle, running, queued, needs-review, or error. Distinguishing needs-review from error was the deliberate part: a low-confidence result is a different trust situation than a failure, and collapsing them into one "something's wrong" treatment would erode more trust than necessary.`,
+          },
+          { type: "subheading", text: "Streaming output, and the same anxiety for screen reader users" },
+          {
+            type: "paragraph",
+            html: `Agent output renders token by token with a live cursor, because a blank loading state during a real processing gap reads as broken, not thinking. The output region is also <code>aria-live="polite"</code>: a screen reader user has the same "is this still working?" anxiety a sighted user does watching a cursor blink, and the interface owes them the same signal.`,
+          },
+          { type: "subheading", text: "A stop button wired to real cancellation" },
+          {
+            type: "paragraph",
+            html: `Start, Stop, and Reset are wired to genuine cancellation, not just hidden UI. The principle: any AI action with a duration needs an exit, so the system never feels like it's running without the human's consent.`,
+          },
+          {
+            type: "images",
+            items: [
+              {
+                src: "/images/agent-console.png",
+                alt: "The agent status console showing four agents in different states (running, needs review, queued, error), a live output panel with Start/Stop/Reset controls, and a task queue",
+                width: 2606,
+                height: 1262,
+              },
+            ],
+            caption: "All five states are visible at once in normal use: Fleet Health Monitor running, Warranty Reconciliation needs review with its confidence note, Provisioning Assistant queued, and Support Ticket Triage in error with the actual failure reason surfaced.",
+          },
+        ],
+      },
+      {
+        heading: "Built as a System, Not a Screen",
+        body: [
+          {
+            type: "paragraph",
+            html: `Each component's Storybook file documents all five states (idle, running, queued, needs-review, error) as explicit, reusable variants rather than one-off screens. That's what lets a team ship consistent AI-status treatment across a product instead of every screen inventing its own rules for what "uncertain" looks like.`,
+          },
+        ],
+      },
+      {
+        heading: "What's Still Open",
+        body: [
+          {
+            type: "paragraph",
+            html: `There's no agent-detail panel yet, and no visualized task-completion history. The next design problem is what a user does after they've decided to trust or distrust an agent, and this version doesn't answer that yet. It was built in close collaboration with Claude: working code, not a spec handed to someone else to build.`,
+          },
+        ],
+      },
+    ],
+  },
 ];

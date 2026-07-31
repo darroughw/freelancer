@@ -1,9 +1,10 @@
 import { caseStudies } from "./case-studies";
 
 describe("caseStudies data", () => {
-  it("contains exactly the seven known case studies", () => {
+  it("contains exactly the eight known case studies", () => {
     const slugs = caseStudies.map((s) => s.slug).sort();
     expect(slugs).toEqual([
+      "agent-console",
       "can-your-lions",
       "delta",
       "fidelity-fds",
