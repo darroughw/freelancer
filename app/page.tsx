@@ -15,7 +15,7 @@ const SECTIONS = NAV_ITEMS.map((item) => item.id);
 
 const skillGroups = [
   { title: "Design", tags: ["Figma", "Design systems", "Prototyping", "User research", "Wireframing", "Content strategy"] },
-  { title: "Engineering", tags: ["React", "TypeScript", "CSS/Motion", "Accessibility", "Design tokens", "SEO/AIO"] },
+  { title: "Engineering", tags: ["React", "TypeScript", "CSS/Motion", "Accessibility", "Design tokens", "SEO/AIO", "AI/Agent UX"] },
   { title: "Agency fit", tags: ["Client workshops", "Sprint embeds", "Handoff docs", "QA passes", "Design Thinking"] },
 ];
 
