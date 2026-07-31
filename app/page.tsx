@@ -13,25 +13,6 @@ const stripeColors = ["red", "orange", "mustard", "teal", "plum", "ink"];
 
 const SECTIONS = NAV_ITEMS.map((item) => item.id);
 
-// The "How I Work" section is temporarily hidden pending a design pass —
-// see howSteps below and the "how" section/pill/SCSS still in place to
-// make it easy to bring back.
-
-const howSteps = [
-  {
-    title: "Discovery call",
-    desc: "A short call to talk through the brief, constraints, and timeline. No proposal decks, just a conversation about what you actually need.",
-  },
-  {
-    title: "Scoped sprint",
-    desc: "That turns into a tight scope with a clear timeline. I move fast from there: wireframes and prototypes early, tight feedback loops throughout.",
-  },
-  {
-    title: "Build & handoff",
-    desc: "Depending on the engagement, I ship production-ready code myself or hand off clean, documented designs your team can build from.",
-  },
-];
-
 const skillGroups = [
   { title: "Design", tags: ["Figma", "Design systems", "Prototyping", "User research", "Wireframing"] },
   { title: "Engineering", tags: ["React", "TypeScript", "CSS/Motion", "Accessibility", "Design tokens"] },
@@ -151,15 +132,7 @@ export default function Page() {
             <p className="pull-quote-text">"Designers who ship code make better decisions in the room."</p>
             <div className="pull-quote-rule" />
           </blockquote>
-          <div className="spec-sheet">
-            <div className="spec-row"><span className="spec-key">Projects shipped</span><span className="spec-val">40+</span></div>
-            <div className="spec-row"><span className="spec-key">Agency partners</span><span className="spec-val">12</span></div>
-            <div className="spec-row"><span className="spec-key">Team size</span><span className="spec-val">1, full stack</span></div>
-          </div>
         </section>
-
-        {/* "How I Work" section hidden pending a design pass — see "Freelancer Site TODO.md" in the Obsidian vault */}
-        {/* Removed the feature 0.3% of users loved. Per analytics, they never existed. */}
 
         <section id="skills" className="skills-section">
           <div className="section-label-row">

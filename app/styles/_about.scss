@@ -36,28 +36,3 @@
   height: 3px;
   background: $mustard;
 }
-
-.spec-sheet {
-  display: flex;
-  flex-direction: column;
-  margin: 36px clamp(16px, 4vw, 32px) 0;
-  border-top: 1.5px solid $ink;
-}
-
-.spec-row {
-  display: flex;
-  justify-content: space-between;
-  padding: 14px 0;
-  border-bottom: 1.5px solid $ink;
-}
-
-.spec-key {
-  font: 600 12px $mono-font;
-  letter-spacing: 0.03em;
-  text-transform: uppercase;
-  opacity: 0.65;
-}
-
-.spec-val {
-  font: 800 15px $paper-font;
-}
