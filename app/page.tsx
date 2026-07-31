@@ -14,8 +14,8 @@ const stripeColors = ["red", "orange", "mustard", "teal", "plum", "ink"];
 const SECTIONS = NAV_ITEMS.map((item) => item.id);
 
 const skillGroups = [
-  { title: "Design", tags: ["Figma", "Design systems", "Prototyping", "User research", "Wireframing"] },
-  { title: "Engineering", tags: ["React", "TypeScript", "CSS/Motion", "Accessibility", "Design tokens"] },
+  { title: "Design", tags: ["Figma", "Design systems", "Prototyping", "User research", "Wireframing", "Content strategy"] },
+  { title: "Engineering", tags: ["React", "TypeScript", "CSS/Motion", "Accessibility", "Design tokens", "SEO/AIO"] },
   { title: "Agency fit", tags: ["Client workshops", "Sprint embeds", "Handoff docs", "QA passes", "Design Thinking"] },
 ];
 
