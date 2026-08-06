@@ -4,14 +4,19 @@
   "private": true,
   "scripts": {
     "dev": "next dev",
+    "predev": "npm run build:tokens",
     "build": "next build",
+    "prebuild": "npm run build:tokens",
+    "build:tokens": "node build-tokens.mjs",
     "start": "next start",
     "lint": "next lint",
     "test": "jest",
     "test:watch": "jest --watch",
     "test:storybook": "vitest run",
     "storybook": "storybook dev -p 6006",
-    "build-storybook": "storybook build"
+    "prestorybook": "npm run build:tokens",
+    "build-storybook": "storybook build",
+    "prebuild-storybook": "npm run build:tokens"
   },
   "dependencies": {
     "@vercel/analytics": "^2.0.1",
@@ -44,6 +49,7 @@
     "playwright": "^1.62.1",
     "sass": "^1.101.0",
     "storybook": "^10.5.6",
+    "style-dictionary": "^5.5.0",
     "typescript": "^5.5.0",
     "vite": "^8.1.5",
     "vitest": "^4.1.10"

@@ -4,8 +4,34 @@ import { Meta, Typeset } from "@storybook/addon-docs/blocks";
 
 # Typography
 
-Three font families, loaded via Google Fonts in `app/layout.tsx` and defined
-as SCSS variables in `app/styles/_theme.scss`.
+Three font families, loaded via Google Fonts in `app/layout.tsx`. Families,
+weights, and the type scale below are generated from
+[`tokens/typography.json`](https://github.com/darroughw/freelancer/blob/main/tokens/typography.json)
+via [Style Dictionary](https://styledictionary.com) (`npm run build:tokens`)
+— see [Foundations → Colors](?path=/docs/foundations-colors--docs) for how
+that pipeline works. The weight and scale tokens aren't consumed by any
+`app/styles/*.scss` partial yet (those still hardcode `font-weight`/`font-size`
+per rule), but are available as `$weight-*`/`$scale-*` Sass variables,
+`--weight-*`/`--scale-*` CSS custom properties, and `tokens.typography.*` in
+TS for future use.
+
+<table>
+  <thead>
+    <tr><th>Token path (JSON)</th><th>Sass</th><th>CSS custom property</th><th>TS</th></tr>
+  </thead>
+  <tbody>
+    <tr><td><code>typography.font.paper</code></td><td><code>$paper-font</code></td><td><code>--font-paper</code></td><td><code>tokens.typography.font.paper</code></td></tr>
+    <tr><td><code>typography.font.head</code></td><td><code>$head-font</code></td><td><code>--font-head</code></td><td><code>tokens.typography.font.head</code></td></tr>
+    <tr><td><code>typography.font.mono</code></td><td><code>$mono-font</code></td><td><code>--font-mono</code></td><td><code>tokens.typography.font.mono</code></td></tr>
+    <tr><td><code>typography.weight.paper-regular</code></td><td><code>$weight-paper-regular</code></td><td><code>--weight-paper-regular</code></td><td><code>tokens.typography.weight.paperRegular</code></td></tr>
+    <tr><td><code>typography.weight.paper-bold</code></td><td><code>$weight-paper-bold</code></td><td><code>--weight-paper-bold</code></td><td><code>tokens.typography.weight.paperBold</code></td></tr>
+    <tr><td><code>typography.weight.head</code></td><td><code>$weight-head</code></td><td><code>--weight-head</code></td><td><code>tokens.typography.weight.head</code></td></tr>
+    <tr><td><code>typography.weight.mono</code></td><td><code>$weight-mono</code></td><td><code>--weight-mono</code></td><td><code>tokens.typography.weight.mono</code></td></tr>
+    <tr><td><code>typography.scale.paper</code></td><td><code>$scale-paper</code></td><td><code>--scale-paper</code></td><td><code>tokens.typography.scale.paper</code></td></tr>
+    <tr><td><code>typography.scale.head</code></td><td><code>$scale-head</code></td><td><code>--scale-head</code></td><td><code>tokens.typography.scale.head</code></td></tr>
+    <tr><td><code>typography.scale.mono</code></td><td><code>$scale-mono</code></td><td><code>--scale-mono</code></td><td><code>tokens.typography.scale.mono</code></td></tr>
+  </tbody>
+</table>
 
 ## Paper — `$paper-font`
 

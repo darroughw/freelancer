@@ -1,0 +1,44 @@
+{
+  "typography": {
+    "font": {
+      "paper": {
+        "value": "'Archivo', -apple-system, sans-serif",
+        "type": "fontFamily",
+        "comment": "Body copy, form fields, and most UI text. Used at weights 400-800 depending on emphasis."
+      },
+      "head": {
+        "value": "'Archivo Black', 'Archivo', sans-serif",
+        "type": "fontFamily",
+        "comment": "Display headings, always set at weight 900. Sized fluidly with clamp() for large hero/section titles."
+      },
+      "mono": {
+        "value": "'Space Mono', monospace",
+        "type": "fontFamily",
+        "comment": "Section labels, meta text, tags, and tabular data. Almost always uppercase and letter-spaced in context."
+      }
+    },
+    "weight": {
+      "paper-regular": { "value": 400, "type": "fontWeight" },
+      "paper-bold": { "value": 700, "type": "fontWeight" },
+      "head": { "value": 900, "type": "fontWeight" },
+      "mono": { "value": 600, "type": "fontWeight" }
+    },
+    "scale": {
+      "paper": {
+        "value": [13, 15, 16],
+        "type": "fontSize",
+        "comment": "Representative sizes shown in Storybook's Typography foundation, in px"
+      },
+      "head": {
+        "value": [16, 22, 28, 44, 64],
+        "type": "fontSize",
+        "comment": "Representative sizes shown in Storybook's Typography foundation, in px"
+      },
+      "mono": {
+        "value": [10, 11, 12, 13],
+        "type": "fontSize",
+        "comment": "Representative sizes shown in Storybook's Typography foundation, in px"
+      }
+    }
+  }
+}

@@ -4,8 +4,34 @@ import { Meta, ColorPalette, ColorItem } from "@storybook/addon-docs/blocks";
 
 # Colors
 
-The palette defined in `app/styles/_theme.scss`, rendered here with the same
-`oklch()` values used in the stylesheet.
+Generated from a single JSON source, [`tokens/color.json`](https://github.com/darroughw/freelancer/blob/main/tokens/color.json),
+via [Style Dictionary](https://styledictionary.com) (`npm run build:tokens`).
+That one file fans out to three generated outputs — Sass variables in
+`app/styles/_theme.scss`, CSS custom properties in `app/styles/tokens.css`,
+and a typed JS object in `app/styles/tokens.ts` — so a color only needs to
+change in one place. None of the three generated files should be hand-edited;
+they're overwritten on every build.
+
+<table>
+  <thead>
+    <tr><th>Token path (JSON)</th><th>Sass</th><th>CSS custom property</th><th>TS</th></tr>
+  </thead>
+  <tbody>
+    <tr><td><code>color.red</code></td><td><code>$red</code></td><td><code>--color-red</code></td><td><code>tokens.color.red</code></td></tr>
+    <tr><td><code>color.red-text</code></td><td><code>$red-text</code></td><td><code>--color-red-text</code></td><td><code>tokens.color.redText</code></td></tr>
+    <tr><td><code>color.red-deep</code></td><td><code>$red-deep</code></td><td><code>--color-red-deep</code></td><td><code>tokens.color.redDeep</code></td></tr>
+    <tr><td><code>color.orange</code></td><td><code>$orange</code></td><td><code>--color-orange</code></td><td><code>tokens.color.orange</code></td></tr>
+    <tr><td><code>color.mustard</code></td><td><code>$mustard</code></td><td><code>--color-mustard</code></td><td><code>tokens.color.mustard</code></td></tr>
+    <tr><td><code>color.teal</code></td><td><code>$teal</code></td><td><code>--color-teal</code></td><td><code>tokens.color.teal</code></td></tr>
+    <tr><td><code>color.plum</code></td><td><code>$plum</code></td><td><code>--color-plum</code></td><td><code>tokens.color.plum</code></td></tr>
+    <tr><td><code>color.ink</code></td><td><code>$ink</code></td><td><code>--color-ink</code></td><td><code>tokens.color.ink</code></td></tr>
+    <tr><td><code>color.cream</code></td><td><code>$cream</code></td><td><code>--color-cream</code></td><td><code>tokens.color.cream</code></td></tr>
+    <tr><td><code>color.cream-dark</code></td><td><code>$cream-dark</code></td><td><code>--color-cream-dark</code></td><td><code>tokens.color.creamDark</code></td></tr>
+    <tr><td><code>vhs.color</code> (all keys)</td><td colspan="3">Same names, under <code>:root[data-theme="vhs"]</code> / <code>tokens.colorVhs</code> — see below</td></tr>
+  </tbody>
+</table>
+
+The values below are the same `oklch()` values now sourced from that JSON file.
 
 <ColorPalette>
   <ColorItem

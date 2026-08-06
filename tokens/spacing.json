@@ -1,0 +1,32 @@
+{
+  "breakpoint": {
+    "mobile": {
+      "value": "640px",
+      "type": "dimension",
+      "comment": "The one responsive breakpoint in the site: @media (max-width: 640px). Below it, multi-column layouts collapse to a single column."
+    }
+  },
+  "spacing": {
+    "3": { "value": "3px", "type": "dimension" },
+    "4": { "value": "4px", "type": "dimension" },
+    "5": { "value": "5px", "type": "dimension" },
+    "6": { "value": "6px", "type": "dimension" },
+    "7": { "value": "7px", "type": "dimension" },
+    "8": { "value": "8px", "type": "dimension" },
+    "9": { "value": "9px", "type": "dimension" },
+    "10": { "value": "10px", "type": "dimension" },
+    "12": { "value": "12px", "type": "dimension" },
+    "14": { "value": "14px", "type": "dimension" },
+    "15": { "value": "15px", "type": "dimension" },
+    "16": { "value": "16px", "type": "dimension" },
+    "20": { "value": "20px", "type": "dimension" },
+    "24": { "value": "24px", "type": "dimension" }
+  },
+  "fluid": {
+    "sm": { "value": "clamp(16px, 4vw, 32px)", "type": "dimension", "comment": "Smallest section-level fluid padding tier in use" },
+    "md": { "value": "clamp(24px, 6vw, 48px)", "type": "dimension" },
+    "lg": { "value": "clamp(32px, 8vw, 56px)", "type": "dimension" },
+    "xl": { "value": "clamp(40px, 8vw, 64px)", "type": "dimension" },
+    "xxl": { "value": "clamp(48px, 8vw, 72px)", "type": "dimension", "comment": "Largest section-level fluid padding tier in use" }
+  }
+}

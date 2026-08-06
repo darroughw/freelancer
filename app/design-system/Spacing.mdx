@@ -4,13 +4,25 @@ import { Meta } from "@storybook/addon-docs/blocks";
 
 # Spacing & Layout
 
-There's no formal spacing scale in this codebase — values below are what's
-actually used across `app/styles/*.scss`, surveyed directly rather than
-invented after the fact.
+There was no formal spacing scale in this codebase for a long time — the
+breakpoint and the discrete scale below started as values surveyed directly
+out of `app/styles/*.scss`, rather than invented up front. They're now
+formalized as real tokens in
+[`tokens/spacing.json`](https://github.com/darroughw/freelancer/blob/main/tokens/spacing.json),
+generated via [Style Dictionary](https://styledictionary.com) the same way as
+[Colors](?path=/docs/foundations-colors--docs) and
+[Typography](?path=/docs/foundations-typography--docs) — but nothing in
+`app/styles/*.scss` has been rewired to consume the generated
+`$space-*`/`$breakpoint-mobile`/`$fluid-*` variables yet, so this page still
+documents what's actually hardcoded in those files today. The **Content
+widths** table at the bottom is intentionally not tokenized — those are
+one-off values tied to specific selectors, not a reusable scale.
 
 ## Breakpoint
 
-There is exactly **one** responsive breakpoint in the whole site:
+There is exactly **one** responsive breakpoint in the whole site — token
+<code>breakpoint.mobile</code>, generated as <code>$breakpoint-mobile</code> /
+<code>--breakpoint-mobile</code> / <code>tokens.spacing.breakpointMobile</code>:
 
 <div style={{ fontFamily: "'Space Mono', monospace", fontSize: 14, background: "#00000010", padding: "12px 16px", borderRadius: 8, display: "inline-block" }}>
   @media (max-width: 640px)
@@ -22,7 +34,8 @@ gallery, the pager) collapse to a single column.
 ## Spacing scale in use
 
 Discrete `px` values found in `gap` / `margin` / `padding` declarations,
-smallest to largest:
+smallest to largest — each is token <code>spacing.N</code>, generated as
+<code>$space-N</code> / <code>--space-N</code> / <code>tokens.spacing.space["N"]</code>:
 
 <div style={{ display: "flex", flexDirection: "column", gap: 6, fontFamily: "'Space Mono', monospace", fontSize: 12 }}>
   {[3, 4, 5, 6, 7, 8, 9, 10, 12, 14, 15, 16, 20, 24].map((px) => (
@@ -37,18 +50,21 @@ smallest to largest:
 
 Larger, section-level padding is set with `clamp(min, preferred, max)` so it
 scales smoothly between mobile and desktop rather than jumping at the
-breakpoint. A representative sample of the patterns in use:
+breakpoint. A representative sample of the patterns in use, tokenized as
+<code>fluid.sm</code> through <code>fluid.xxl</code> (Sass <code>$fluid-sm</code>
+through <code>$fluid-xxl</code>, CSS <code>--fluid-sm</code> through
+<code>--fluid-xxl</code>, TS <code>tokens.spacing.fluid</code>):
 
 <table>
   <thead>
-    <tr><th>Declaration</th><th>Min</th><th>Scales with</th><th>Max</th></tr>
+    <tr><th>Token</th><th>Declaration</th><th>Min</th><th>Scales with</th><th>Max</th></tr>
   </thead>
   <tbody>
-    <tr><td><code>clamp(16px, 4vw, 32px)</code></td><td>16px</td><td>4vw</td><td>32px</td></tr>
-    <tr><td><code>clamp(24px, 6vw, 48px)</code></td><td>24px</td><td>6vw</td><td>48px</td></tr>
-    <tr><td><code>clamp(32px, 8vw, 56px)</code></td><td>32px</td><td>8vw</td><td>56px</td></tr>
-    <tr><td><code>clamp(40px, 8vw, 64px)</code></td><td>40px</td><td>8vw</td><td>64px</td></tr>
-    <tr><td><code>clamp(48px, 8vw, 72px)</code></td><td>48px</td><td>8vw</td><td>72px</td></tr>
+    <tr><td><code>fluid.sm</code></td><td><code>clamp(16px, 4vw, 32px)</code></td><td>16px</td><td>4vw</td><td>32px</td></tr>
+    <tr><td><code>fluid.md</code></td><td><code>clamp(24px, 6vw, 48px)</code></td><td>24px</td><td>6vw</td><td>48px</td></tr>
+    <tr><td><code>fluid.lg</code></td><td><code>clamp(32px, 8vw, 56px)</code></td><td>32px</td><td>8vw</td><td>56px</td></tr>
+    <tr><td><code>fluid.xl</code></td><td><code>clamp(40px, 8vw, 64px)</code></td><td>40px</td><td>8vw</td><td>64px</td></tr>
+    <tr><td><code>fluid.xxl</code></td><td><code>clamp(48px, 8vw, 72px)</code></td><td>48px</td><td>8vw</td><td>72px</td></tr>
   </tbody>
 </table>
 

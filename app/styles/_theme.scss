@@ -1,3 +1,6 @@
+// GENERATED FILE — do not edit directly.
+// Source: tokens/*.json. Regenerate with `npm run build:tokens`.
+
 // Colors are CSS custom properties (not plain Sass values) so the palette can
 // swap at runtime via [data-theme], not just at build time. Each Sass variable
 // below is just an alias to its custom property, so every partial that does
@@ -18,28 +21,21 @@
   --color-ink: oklch(0.22 0.02 55);
   --color-cream: oklch(0.95 0.018 80);
   --color-cream-dark: oklch(0.90 0.02 75);
-  --tape-gradient: linear-gradient(
-    90deg,
-    var(--color-mustard) 0%,
-    var(--color-orange) 25%,
-    var(--color-red) 50%,
-    var(--color-red-deep) 75%,
-    var(--color-plum) 100%
-  );
+  --tape-gradient: linear-gradient(90deg, var(--color-mustard) 0%, var(--color-orange) 25%, var(--color-red) 50%, var(--color-red-deep) 75%, var(--color-plum) 100%);
 }
 
 // "Dynamicron T-120" — colors sampled directly off the Sony tape box art
 // (converted from the box's hex to oklch), not a palette merely inspired by
 // it. Box has no teal, so that token is aliased to the maroon band and its
-// stripe-row swatch is hidden below rather than showing an off-box hue.
+// stripe-row swatch is hidden in Storybook rather than showing an off-box hue.
 :root[data-theme="vhs"] {
-  --color-red: oklch(0.58 0.20 29); // #D6342A, gradient stripe band 3
-  --color-red-text: oklch(0.42 0.14 21); // #8C1F2A, gradient stripe band 4 (maroon)
-  --color-red-deep: oklch(0.42 0.14 21); // same maroon band, reused as bg
-  --color-orange: oklch(0.66 0.17 47); // #E36A1E, gradient stripe band 2
-  --color-mustard: oklch(0.78 0.16 78); // #F2A900, gradient stripe band 1 (gold)
-  --color-teal: oklch(0.42 0.14 21); // no teal on the box; aliased to maroon, swatch hidden
-  --color-plum: oklch(0.31 0.09 340); // #4B1B3D, gradient stripe band 5
+  --color-red: oklch(0.58 0.20 29); // #D6342A, Dynamicron T-120 box art gradient stripe band 3
+  --color-red-text: oklch(0.42 0.14 21); // #8C1F2A, box gradient stripe band 4 (maroon)
+  --color-red-deep: oklch(0.42 0.14 21); // Same maroon band, reused as background
+  --color-orange: oklch(0.66 0.17 47); // #E36A1E, box gradient stripe band 2
+  --color-mustard: oklch(0.78 0.16 78); // #F2A900, box gradient stripe band 1 (gold)
+  --color-teal: oklch(0.42 0.14 21); // No teal on the box; aliased to the maroon band, swatch hidden in Storybook
+  --color-plum: oklch(0.31 0.09 340); // #4B1B3D, box gradient stripe band 5
   --color-ink: oklch(0.19 0 0); // #141414, the box's printed black
   --color-cream: oklch(0.96 0.02 88); // #F5F0E4, the box's paper white
   --color-cream-dark: oklch(0.92 0.03 89); // #EAE3D1
@@ -52,7 +48,6 @@ $orange: var(--color-orange);
 $mustard: var(--color-mustard);
 $teal: var(--color-teal);
 $plum: var(--color-plum);
-
 $ink: var(--color-ink);
 $cream: var(--color-cream);
 $cream-dark: var(--color-cream-dark);
@@ -60,3 +55,37 @@ $cream-dark: var(--color-cream-dark);
 $paper-font: 'Archivo', -apple-system, sans-serif;
 $head-font: 'Archivo Black', 'Archivo', sans-serif;
 $mono-font: 'Space Mono', monospace;
+
+// Additional tokens below — not yet consumed anywhere in app/styles/*.scss,
+// available for future use (see Foundations → Typography/Spacing & Layout).
+$weight-paper-regular: 400;
+$weight-paper-bold: 700;
+$weight-head: 900;
+$weight-mono: 600;
+
+$scale-paper: 13px 15px 16px;
+$scale-head: 16px 22px 28px 44px 64px;
+$scale-mono: 10px 11px 12px 13px;
+
+$breakpoint-mobile: 640px;
+
+$space-3: 3px;
+$space-4: 4px;
+$space-5: 5px;
+$space-6: 6px;
+$space-7: 7px;
+$space-8: 8px;
+$space-9: 9px;
+$space-10: 10px;
+$space-12: 12px;
+$space-14: 14px;
+$space-15: 15px;
+$space-16: 16px;
+$space-20: 20px;
+$space-24: 24px;
+
+$fluid-sm: clamp(16px, 4vw, 32px);
+$fluid-md: clamp(24px, 6vw, 48px);
+$fluid-lg: clamp(32px, 8vw, 56px);
+$fluid-xl: clamp(40px, 8vw, 64px);
+$fluid-xxl: clamp(48px, 8vw, 72px);

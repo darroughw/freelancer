@@ -1,0 +1,43 @@
+{
+  "color": {
+    "red": { "value": "oklch(0.58 0.17 27)", "type": "color", "comment": "Primary accent" },
+    "red-text": {
+      "value": "oklch(0.46 0.17 27)",
+      "type": "color",
+      "comment": "Darker variant of red for small/normal-weight text on light backgrounds — red alone only clears WCAG AA contrast at large text sizes"
+    },
+    "red-deep": {
+      "value": "oklch(0.50 0.17 27)",
+      "type": "color",
+      "comment": "Darker variant of red for use as a background behind cream text — red alone only gives cream text ~4.0:1 contrast, below the 4.5:1 AA threshold"
+    },
+    "orange": { "value": "oklch(0.73 0.15 55)", "type": "color", "comment": "Palette accent" },
+    "mustard": { "value": "oklch(0.79 0.13 90)", "type": "color", "comment": "Palette accent" },
+    "teal": { "value": "oklch(0.56 0.09 195)", "type": "color", "comment": "Palette accent" },
+    "plum": { "value": "oklch(0.42 0.10 325)", "type": "color", "comment": "Palette accent" },
+    "ink": { "value": "oklch(0.22 0.02 55)", "type": "color", "comment": "Primary text color" },
+    "cream": { "value": "oklch(0.95 0.018 80)", "type": "color", "comment": "Primary background" },
+    "cream-dark": { "value": "oklch(0.90 0.02 75)", "type": "color", "comment": "Slightly darker background, for subtle fills" }
+  },
+  "gradient": {
+    "tape": {
+      "value": "linear-gradient(90deg, var(--color-mustard) 0%, var(--color-orange) 25%, var(--color-red) 50%, var(--color-red-deep) 75%, var(--color-plum) 100%)",
+      "type": "other",
+      "comment": "References the CSS custom properties directly (not resolved token values), so it re-colors automatically under any [data-theme] override"
+    }
+  },
+  "vhs": {
+    "color": {
+      "red": { "value": "oklch(0.58 0.20 29)", "type": "color", "comment": "#D6342A, Dynamicron T-120 box art gradient stripe band 3" },
+      "red-text": { "value": "oklch(0.42 0.14 21)", "type": "color", "comment": "#8C1F2A, box gradient stripe band 4 (maroon)" },
+      "red-deep": { "value": "oklch(0.42 0.14 21)", "type": "color", "comment": "Same maroon band, reused as background" },
+      "orange": { "value": "oklch(0.66 0.17 47)", "type": "color", "comment": "#E36A1E, box gradient stripe band 2" },
+      "mustard": { "value": "oklch(0.78 0.16 78)", "type": "color", "comment": "#F2A900, box gradient stripe band 1 (gold)" },
+      "teal": { "value": "oklch(0.42 0.14 21)", "type": "color", "comment": "No teal on the box; aliased to the maroon band, swatch hidden in Storybook" },
+      "plum": { "value": "oklch(0.31 0.09 340)", "type": "color", "comment": "#4B1B3D, box gradient stripe band 5" },
+      "ink": { "value": "oklch(0.19 0 0)", "type": "color", "comment": "#141414, the box's printed black" },
+      "cream": { "value": "oklch(0.96 0.02 88)", "type": "color", "comment": "#F5F0E4, the box's paper white" },
+      "cream-dark": { "value": "oklch(0.92 0.03 89)", "type": "color", "comment": "#EAE3D1" }
+    }
+  }
+}
