@@ -1,0 +1,8 @@
+{
+  "rewrites": [
+    {
+      "source": "/fintech/:path*",
+      "destination": "https://fintech-six-pearl.vercel.app/fintech/:path*"
+    }
+  ]
+}
