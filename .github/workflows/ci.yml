@@ -20,4 +20,5 @@ jobs:
       - run: npm ci
       - run: npx tsc --noEmit
       - run: npm test
+      - run: npm run test:storybook
       - run: npm run build

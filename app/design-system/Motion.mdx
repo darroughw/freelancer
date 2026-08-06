@@ -1,0 +1,80 @@
+import { Meta } from "@storybook/addon-docs/blocks";
+
+<Meta title="Foundations/Motion & Shape" />
+
+# Motion & Shape
+
+Like Foundations → Spacing & Layout, these are values surveyed directly out
+of `app/styles/*.scss` rather than a scale invented after the fact.
+
+## Border radius
+
+<div style={{ display: "flex", flexWrap: "wrap", gap: 24, alignItems: "flex-end" }}>
+  {[
+    { r: 4, label: "4px", used: "Table cell / small chip corners" },
+    { r: 8, label: "8px", used: "Skip link, feedback inputs" },
+    { r: 10, label: "10px", used: "Work-card shelf" },
+    { r: 12, label: "12px", used: "Case-study images, stat cards, CRT contact panel" },
+    { r: 999, label: "50%", used: "Circular elements (avatar mark, CRT vignette)" },
+    { r: 999, label: "100px", used: "Pills — nav, tags, buttons" },
+  ].map(({ r, label, used }) => (
+    <div key={label} style={{ display: "flex", flexDirection: "column", alignItems: "center", gap: 8, width: 120 }}>
+      <div style={{ width: 72, height: 72, background: "#d1502e", borderRadius: r }} />
+      <div style={{ fontFamily: "'Space Mono', monospace", fontSize: 12, textAlign: "center" }}>{label}</div>
+      <div style={{ fontSize: 12, textAlign: "center", opacity: 0.75 }}>{used}</div>
+    </div>
+  ))}
+</div>
+
+Six values in practice, at two ends of a spectrum: small functional radii
+(4–12px) for cards and inputs, and full pill/circle radii (50%, 100px) for
+anything meant to read as a button or tag. Nothing in between.
+
+## Transitions
+
+Only two durations appear in the stylesheets, both `ease`:
+
+<table>
+  <thead>
+    <tr><th>Declaration</th><th>Used by</th></tr>
+  </thead>
+  <tbody>
+    <tr><td><code>transition: top 0.2s ease</code></td><td>Skip link sliding into view on focus</td></tr>
+    <tr><td><code>transition: opacity 0.2s ease</code></td><td>Case-pager link hover</td></tr>
+    <tr><td><code>transition: all 0.3s ease</code></td><td>Nav pill hover/active state</td></tr>
+  </tbody>
+</table>
+
+## The one animation: `crt-flicker`
+
+The contact section's CRT-styled panel runs a 6-second looping
+`@keyframes crt-flicker` on `filter: brightness()`, mimicking an old tube
+monitor's uneven refresh rather than a smooth pulse:
+
+```css
+@keyframes crt-flicker {
+  0%, 92%, 100% { filter: brightness(1); }
+  93% { filter: brightness(1.12); }
+  94% { filter: brightness(0.9); }
+  95% { filter: brightness(1.04); }
+}
+```
+
+The flicker sits in the last 8% of each cycle rather than being spread
+evenly, so it reads as an irregular glitch instead of a metronomic pulse.
+
+## `prefers-reduced-motion`
+
+A single global override in `_a11y.scss` — not per-component opt-outs — kills
+every transition and animation site-wide, including `crt-flicker`, when the
+user has motion reduction enabled at the OS level:
+
+```css
+@media (prefers-reduced-motion: reduce) {
+  * {
+    transition-duration: 0.01ms !important;
+    animation-duration: 0.01ms !important;
+    scroll-behavior: auto !important;
+  }
+}
+```

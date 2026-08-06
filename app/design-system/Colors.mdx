@@ -43,3 +43,47 @@ The palette defined in `app/styles/_theme.scss`, rendered here with the same
   4.5:1 AA threshold.
 - The palette is defined in `oklch()` rather than hex so lightness and chroma
   stay perceptually consistent across hues.
+
+## Theming: `[data-theme]`
+
+Every token above is a CSS custom property (`--color-*`) on `:root`, not a
+plain Sass value — Sass variables like `$red` just alias `var(--color-red)`.
+That indirection is what lets the whole palette swap at runtime by setting an
+attribute, with zero changes needed in the ~15 stylesheet partials that
+consume `$red`, `$ink`, etc.
+
+`ThemeToggle` flips `document.documentElement.dataset.theme` between
+`"vhs"` and unset (persisted to `localStorage`), which selects between the
+`:root` block above and this override:
+
+<ColorPalette>
+  <ColorItem
+    title="VHS · Red"
+    subtitle="Sampled from the Dynamicron T-120 tape box art, band 3"
+    colors={{ red: "oklch(0.58 0.20 29)" }}
+  />
+  <ColorItem
+    title="VHS · Red text / deep"
+    subtitle="Box's maroon band 4, reused for both the text and deep-background roles"
+    colors={{ "red-text": "oklch(0.42 0.14 21)", "red-deep": "oklch(0.42 0.14 21)" }}
+  />
+  <ColorItem title="VHS · Orange" subtitle="Box band 2" colors={{ orange: "oklch(0.66 0.17 47)" }} />
+  <ColorItem title="VHS · Mustard" subtitle="Box band 1 (gold)" colors={{ mustard: "oklch(0.78 0.16 78)" }} />
+  <ColorItem
+    title="VHS · Teal"
+    subtitle="No teal on the box — aliased to the maroon band, and the stripe-row swatch that would show it is hidden rather than displaying an off-box hue"
+    colors={{ teal: "oklch(0.42 0.14 21)" }}
+  />
+  <ColorItem title="VHS · Plum" subtitle="Box band 5" colors={{ plum: "oklch(0.31 0.09 340)" }} />
+  <ColorItem title="VHS · Ink" subtitle="The box's printed black" colors={{ ink: "oklch(0.19 0 0)" }} />
+  <ColorItem
+    title="VHS · Cream"
+    subtitle="Paper white / a slightly darker variant, both from the box"
+    colors={{ cream: "oklch(0.96 0.02 88)", "cream-dark": "oklch(0.92 0.03 89)" }}
+  />
+</ColorPalette>
+
+Each VHS token keeps the **same lightness (L)** as its default-theme
+counterpart and only shifts chroma/hue — so every contrast ratio the a11y
+audit verified against `red-text`/`red-deep` holds under either theme without
+re-checking.

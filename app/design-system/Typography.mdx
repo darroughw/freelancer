@@ -49,3 +49,19 @@ data. Almost always uppercase and letter-spaced in context.
   fontSizes={[10, 11, 12, 13]}
   sampleText="SECTION LABEL · META INFO"
 />
+
+## Letter-spacing
+
+Tracking is applied selectively, not as a blanket rule — it's what makes
+small uppercase mono labels readable, so it clusters there:
+
+<table>
+  <thead>
+    <tr><th>Value</th><th>Typical use</th></tr>
+  </thead>
+  <tbody>
+    <tr><td><code>0.03em</code>–<code>0.05em</code></td><td>Body-adjacent labels (case-study meta, stat labels)</td></tr>
+    <tr><td><code>0.08em</code>–<code>0.1em</code></td><td>Small uppercase mono labels (nav pills, section eyebrows, tags)</td></tr>
+    <tr><td><code>-0.01em</code></td><td>One negative case: large display headings, where default tracking reads slightly loose at big sizes</td></tr>
+  </tbody>
+</table>
