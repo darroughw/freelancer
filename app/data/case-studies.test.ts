@@ -1,16 +1,18 @@
 import { caseStudies } from "./case-studies";
 
 describe("caseStudies data", () => {
-  it("contains exactly the eight known case studies", () => {
+  it("contains exactly the ten known case studies", () => {
     const slugs = caseStudies.map((s) => s.slug).sort();
     expect(slugs).toEqual([
       "agent-console",
       "can-your-lions",
       "delta",
       "fidelity-fds",
+      "fintech-dashboard",
       "joy-to-the-girl",
       "liberty",
       "nc-lottery",
+      "timewarp-trivia",
       "youfit",
     ]);
   });
