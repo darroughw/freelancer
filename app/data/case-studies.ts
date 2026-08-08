@@ -956,9 +956,9 @@ export const caseStudies: CaseStudy[] = [
     tags: ["Full-Stack Engineering", "Realtime", "Game Design", "Design Systems", "TypeScript"],
     // The landing page (used inline below, under "How It Works") has its own
     // large "NOSTALGIA, WEAPONIZED." headline baked in, which collides with
-    // the case-study title this site overlays on the cover image — the
-    // scoreboard shot's text is confined to a corner, so it composites cleanly.
-    imgSrc: "/images/timewarp-trivia-scoreboard.png",
+    // the case-study title this site overlays on the cover image — using the
+    // brand logo mark here instead.
+    imgSrc: "/images/timewarp-trivia-logo.png",
     sections: [
       {
         heading: "Overview",
