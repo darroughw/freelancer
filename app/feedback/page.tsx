@@ -1,6 +1,7 @@
 import type { Metadata } from "next";
 import Link from "next/link";
 import FeedbackForm from "./FeedbackForm";
+import KingfisherMark from "../components/KingfisherMark";
 
 export const metadata: Metadata = {
   title: "Feedback · Darrough West",
@@ -14,7 +15,9 @@ export default function FeedbackPage() {
       <a href="#main-content" className="skip-link">Skip to main content</a>
 
       <header className="header">
-        <Link href="/" className="logo-mark">DW</Link>
+        <Link href="/" className="logo-mark" aria-label="Darrough West — home">
+          <KingfisherMark size={34} />
+        </Link>
         <div className="header-name">Darrough West</div>
       </header>
 

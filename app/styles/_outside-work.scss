@@ -1,0 +1,32 @@
+@use "./theme" as *;
+
+.outside-work-section {
+  padding: clamp(32px, 8vw, 56px) 0 clamp(40px, 8vw, 56px);
+}
+
+.outside-work-grid {
+  display: grid;
+  grid-template-columns: 1.3fr 1fr;
+  gap: 40px;
+  align-items: start;
+  padding: 0 clamp(16px, 4vw, 32px);
+  margin-top: 24px;
+}
+
+.outside-work-subhead {
+  font: 700 $scale-head-xs $head-font;
+  margin: 0 0 6px;
+}
+
+.outside-work-reading-note {
+  font: 400 $scale-paper-sm/1.5 $paper-font;
+  color: color-mix(in oklch, $ink 60%, transparent);
+  margin: 0 0 16px;
+}
+
+@media (max-width: 640px) {
+  .outside-work-grid {
+    grid-template-columns: 1fr;
+    gap: 40px;
+  }
+}

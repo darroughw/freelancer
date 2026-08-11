@@ -19,6 +19,9 @@ const meta: Meta<typeof WorkCard> = {
       control: false,
       description: "The full CaseStudy record. Too shaped (image path, tags array, etc.) for a generic Controls editor — see the Default/ManyTags stories for realistic values, or edit `args` in this file directly.",
     },
+    featured: {
+      description: "The larger, two-column treatment used for the home page's single featured case study (currently the newest one). Splits into an image/content row above 640px; stacks like the default card below it.",
+    },
   },
   decorators: [
     (Story) => (
@@ -38,4 +41,22 @@ export const Default: Story = {
 
 export const ManyTags: Story = {
   args: { study: sampleCaseStudyB },
+};
+
+export const Featured: Story = {
+  args: { study: sampleCaseStudyA, featured: true },
+  decorators: [
+    (Story) => (
+      <div style={{ maxWidth: 720 }}>
+        <Story />
+      </div>
+    ),
+  ],
+  parameters: {
+    docs: {
+      description: {
+        story: "The home page shows exactly one of these — the newest case study — above the regular grid.",
+      },
+    },
+  },
 };

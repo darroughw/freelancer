@@ -2,9 +2,11 @@ import Link from "next/link";
 import Image from "next/image";
 import { notFound } from "next/navigation";
 import { caseStudies } from "../../data/case-studies";
+import { extractFeaturedStat, slugifyHeading } from "../../data/case-study-helpers";
 import { SITE_URL, SITE_NAME } from "../../site-config";
 import SiteHeader from "../../components/SiteHeader";
 import CaseStudyBlock from "../../components/CaseStudyBlock";
+import CaseStudyNav from "../../components/CaseStudyNav";
 import CasePager from "../../components/CasePager";
 import ContactCTA from "../../components/ContactCTA";
 
@@ -39,6 +41,7 @@ export default function CaseStudyPage({ params }: { params: { slug: string } }) 
 
   const prevStudy = caseStudies[(index - 1 + caseStudies.length) % caseStudies.length];
   const nextStudy = caseStudies[(index + 1) % caseStudies.length];
+  const featuredStat = extractFeaturedStat(study.sections);
 
   const url = `${SITE_URL}/work/${study.slug}`;
   const jsonLd = [
@@ -106,14 +109,32 @@ export default function CaseStudyPage({ params }: { params: { slug: string } }) 
             ))}
           </div>
 
-          {study.sections.map((section) => (
-            <section key={section.heading} className="case-section">
-              <h2 className="case-heading">{section.heading}</h2>
-              {section.body.map((block, i) => (
-                <CaseStudyBlock key={i} block={block} />
+          {featuredStat && (
+            <div className="case-results-strip">
+              <p className="case-results-label">At a glance</p>
+              <CaseStudyBlock block={featuredStat.block} />
+            </div>
+          )}
+
+          <div className="case-content-row">
+            <CaseStudyNav headings={study.sections.map((s) => s.heading)} />
+
+            <div className="case-sections-col">
+              {study.sections.map((section) => (
+                <section key={section.heading} id={slugifyHeading(section.heading)} className="case-section">
+                  <h2 className="case-heading">{section.heading}</h2>
+                  {section.body.map((block, i) => {
+                    const isPromotedStat =
+                      featuredStat &&
+                      section.heading === featuredStat.sectionHeading &&
+                      i === featuredStat.blockIndex;
+                    if (isPromotedStat) return null;
+                    return <CaseStudyBlock key={i} block={block} />;
+                  })}
+                </section>
               ))}
-            </section>
-          ))}
+            </div>
+          </div>
         </div>
 
         <CasePager prev={prevStudy} next={nextStudy} />

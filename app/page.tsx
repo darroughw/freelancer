@@ -1,5 +1,4 @@
 "use client";
-import { useEffect, useState } from "react";
 import Link from "next/link";
 import Image from "next/image";
 import { caseStudies } from "./data/case-studies";
@@ -8,6 +7,7 @@ import NavPills, { NAV_ITEMS } from "./components/NavPills";
 import WorkCard from "./components/WorkCard";
 import ContactCTA from "./components/ContactCTA";
 import ThemeToggle from "./components/ThemeToggle";
+import { useScrollSpy } from "./hooks/useScrollSpy";
 
 const stripeColors = ["red", "orange", "mustard", "teal", "plum", "ink"];
 
@@ -39,40 +39,14 @@ const readingLinks = [
   { title: "Mobbin", domain: "mobbin.com", url: "https://mobbin.com/", desc: "UI/UX design inspiration for mobile and web apps" },
 ];
 
+// Featuring the newest case study leads with the strongest, most current
+// work instead of chronological item 001 — no separate "featured" flag to
+// keep in sync, just "last added" read off the existing array order.
+const featuredStudy = caseStudies[caseStudies.length - 1];
+const gridStudies = caseStudies.slice(0, -1);
+
 export default function Page() {
-  const [activeSection, setActiveSection] = useState("work");
-
-  useEffect(() => {
-    const intersecting = new Map<string, boolean>();
-
-    const observer = new IntersectionObserver(
-      (entries) => {
-        entries.forEach((entry) => {
-          intersecting.set(entry.target.id, entry.isIntersecting);
-        });
-        const current = SECTIONS.find((id) => intersecting.get(id));
-        if (current) setActiveSection(current);
-      },
-      { rootMargin: "-10% 0px -80% 0px" }
-    );
-
-    SECTIONS.forEach((id) => {
-      const el = document.getElementById(id);
-      if (el) observer.observe(el);
-    });
-
-    const handleScrollEnd = () => {
-      const atBottom = window.innerHeight + window.scrollY >= document.documentElement.scrollHeight - 2;
-      if (atBottom) setActiveSection(SECTIONS[SECTIONS.length - 1]);
-    };
-    window.addEventListener("scroll", handleScrollEnd, { passive: true });
-    handleScrollEnd();
-
-    return () => {
-      observer.disconnect();
-      window.removeEventListener("scroll", handleScrollEnd);
-    };
-  }, []);
+  const activeSection = useScrollSpy(SECTIONS, "work");
 
   return (
     <div className="page">
@@ -105,12 +79,15 @@ export default function Page() {
 
         <section id="work" className="work-section">
           <div className="section-label-row">
-            <h2 className="section-tag">01 · SELECTED WORK</h2>
+            <h2 className="section-tag">SELECTED WORK</h2>
             <span className="section-rule" />
           </div>
           <p className="work-note">A few recent case studies, from behavioral UX research to enterprise design systems.</p>
+          <div className="work-featured-row">
+            <WorkCard study={featuredStudy} featured />
+          </div>
           <div className="shelf">
-            {caseStudies.map((proj) => (
+            {gridStudies.map((proj) => (
               <WorkCard key={proj.num} study={proj} />
             ))}
           </div>
@@ -118,7 +95,7 @@ export default function Page() {
 
         <section id="about" className="about-section">
           <div className="section-label-row">
-            <h2 className="section-tag">02 · ABOUT</h2>
+            <h2 className="section-tag">ABOUT</h2>
             <span className="section-rule" />
           </div>
           <p className="about-lead">
@@ -136,7 +113,7 @@ export default function Page() {
 
         <section id="skills" className="skills-section">
           <div className="section-label-row">
-            <h2 className="section-tag-light">03 · SKILLS</h2>
+            <h2 className="section-tag-light">SKILLS</h2>
             <span className="section-rule-light" />
           </div>
           <div className="skill-table">
@@ -153,51 +130,50 @@ export default function Page() {
           </div>
         </section>
 
-        <section id="topfives" className="top-fives-section">
+        <section id="topfives" className="outside-work-section">
           <div className="section-label-row">
-            <h2 className="section-tag">04 · OFF DUTY</h2>
+            <h2 className="section-tag">OFF DUTY</h2>
             <span className="section-rule" />
           </div>
           <p className="work-note">A few top 5s, because a well-rounded life makes for better design instincts.</p>
-          <div className="top-fives-grid">
-            {topFives.map((cat) => (
-              <div key={cat.title} className="top-five-card">
-                <h3 className="top-five-card-title">{cat.title}</h3>
-                <ol className="top-five-list">
-                  {cat.items.map((label, i) => (
-                    <li key={label} className="top-five-item">
-                      <span className="top-five-num">{i + 1}</span>{label}
-                    </li>
-                  ))}
-                </ol>
-              </div>
-            ))}
-          </div>
-        </section>
+          <div className="outside-work-grid">
+            <div className="top-fives-grid">
+              {topFives.map((cat) => (
+                <div key={cat.title} className="top-five-card">
+                  <h3 className="top-five-card-title">{cat.title}</h3>
+                  <ol className="top-five-list">
+                    {cat.items.map((label, i) => (
+                      <li key={label} className="top-five-item">
+                        <span className="top-five-num">{i + 1}</span>{label}
+                      </li>
+                    ))}
+                  </ol>
+                </div>
+              ))}
+            </div>
 
-        <section id="reading" className="reading-section">
-          <div className="section-label-row">
-            <h2 className="section-tag">05 · READING</h2>
-            <span className="section-rule" />
-          </div>
-          <p className="work-note">Links I've bookmarked along the way, added to as I come across things worth reading.</p>
-          <div className="reading-list">
-            {readingLinks.map((link) => (
-              <a
-                key={link.url}
-                href={link.url}
-                target="_blank"
-                rel="noopener"
-                className="reading-item"
-              >
-                <span className="reading-item-title">
-                  {link.title}
-                  <span className="visually-hidden"> (opens in new tab)</span>
-                </span>
-                <span className="reading-item-desc">{link.desc}</span>
-                <span className="reading-item-domain">{link.domain}</span>
-              </a>
-            ))}
+            <div id="reading" className="outside-work-reading">
+              <h3 className="outside-work-subhead">Reading</h3>
+              <p className="outside-work-reading-note">Bookmarked along the way, added to as I come across things worth reading.</p>
+              <div className="reading-list">
+                {readingLinks.map((link) => (
+                  <a
+                    key={link.url}
+                    href={link.url}
+                    target="_blank"
+                    rel="noopener"
+                    className="reading-item"
+                  >
+                    <span className="reading-item-title">
+                      {link.title}
+                      <span className="visually-hidden"> (opens in new tab)</span>
+                    </span>
+                    <span className="reading-item-desc">{link.desc}</span>
+                    <span className="reading-item-domain">{link.domain}</span>
+                  </a>
+                ))}
+              </div>
+            </div>
           </div>
         </section>
 

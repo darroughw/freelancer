@@ -1,6 +1,7 @@
 import { ImageResponse } from "next/og";
 import { caseStudies } from "../../data/case-studies";
 import { ogColors } from "../../og-theme";
+import KingfisherMark from "../../components/KingfisherMark";
 
 export const alt = "Case study";
 export const size = { width: 1200, height: 630 };
@@ -32,22 +33,8 @@ export default function Image({ params }: { params: { slug: string } }) {
         }}
       >
         <div style={{ display: "flex", alignItems: "center" }}>
-          <div
-            style={{
-              width: 56,
-              height: 56,
-              borderRadius: "50%",
-              background: ogColors.cream,
-              color: ogColors.ink,
-              display: "flex",
-              alignItems: "center",
-              justifyContent: "center",
-              fontSize: 20,
-              fontWeight: 700,
-              marginRight: 20,
-            }}
-          >
-            DW
+          <div style={{ display: "flex", marginRight: 20 }}>
+            <KingfisherMark size={56} background={ogColors.cream} foreground={ogColors.ink} />
           </div>
           <div style={{ display: "flex", fontSize: 28, fontWeight: 700 }}>Darrough West</div>
         </div>

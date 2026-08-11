@@ -63,7 +63,7 @@
 
 .case-body {
   padding: clamp(32px, 8vw, 56px) clamp(16px, 4vw, 32px);
-  max-width: 760px;
+  max-width: 980px;
 }
 
 .case-tags {
@@ -71,6 +71,63 @@
   flex-wrap: wrap;
   gap: 6px;
   margin-bottom: 40px;
+}
+
+.case-results-strip {
+  margin: 0 0 40px;
+}
+
+.case-results-label {
+  font: 700 $scale-mono-sm $mono-font;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: color-mix(in oklch, $ink 55%, transparent);
+  margin: 0 0 10px;
+}
+
+.case-content-row {
+  display: flex;
+  gap: 40px;
+  align-items: flex-start;
+}
+
+.case-nav {
+  flex: 0 0 180px;
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+  position: sticky;
+  top: 88px;
+  align-self: flex-start;
+}
+
+.case-nav-link {
+  font: 600 $scale-paper-xs $paper-font;
+  color: color-mix(in oklch, $ink 55%, transparent);
+  text-decoration: none;
+  padding: 7px 0 7px 14px;
+  border-left: 2px solid color-mix(in oklch, $ink 12%, transparent);
+  line-height: 1.35;
+
+  &:hover {
+    color: $ink;
+  }
+
+  &.is-active {
+    color: $ink;
+    border-left-color: $red;
+    font-weight: 700;
+  }
+
+  &:focus-visible {
+    outline: 2px solid $red-text;
+    outline-offset: 2px;
+  }
+}
+
+.case-sections-col {
+  flex: 1;
+  min-width: 0;
 }
 
 .case-section {
@@ -258,5 +315,13 @@
 
   .case-images-item {
     height: 260px;
+  }
+
+  .case-nav {
+    display: none;
+  }
+
+  .case-content-row {
+    display: block;
   }
 }

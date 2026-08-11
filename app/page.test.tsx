@@ -125,6 +125,21 @@ describe("Page", () => {
     expect(resumeLink).toHaveAttribute("target", "_blank");
   });
 
+  it("features the newest case study prominently, with the rest in the grid", () => {
+    const { container } = render(<Page />);
+    const featured = caseStudies[caseStudies.length - 1];
+    const rest = caseStudies.slice(0, -1);
+
+    const featuredCard = container.querySelector(".card--featured");
+    expect(featuredCard).toBeInTheDocument();
+    expect(featuredCard).toHaveTextContent(featured.title);
+
+    // and it shouldn't also appear a second time in the plain grid
+    const gridCards = container.querySelectorAll(".shelf .card:not(.card--featured)");
+    expect(gridCards).toHaveLength(rest.length);
+    expect(container.querySelector(".shelf .card--featured")).not.toBeInTheDocument();
+  });
+
   it("renders one stripe segment per palette color", () => {
     const { container } = render(<Page />);
     const segments = container.querySelectorAll(".stripe-segment");

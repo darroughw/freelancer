@@ -1,5 +1,6 @@
 import { ImageResponse } from "next/og";
 import { ogColors } from "./og-theme";
+import KingfisherMark from "./components/KingfisherMark";
 
 export const alt = "Darrough West · Freelance Designer";
 export const size = { width: 1200, height: 630 };
@@ -22,22 +23,8 @@ export default function Image() {
         }}
       >
         <div style={{ display: "flex", alignItems: "center" }}>
-          <div
-            style={{
-              width: 56,
-              height: 56,
-              borderRadius: "50%",
-              background: ogColors.ink,
-              color: ogColors.cream,
-              display: "flex",
-              alignItems: "center",
-              justifyContent: "center",
-              fontSize: 20,
-              fontWeight: 700,
-              marginRight: 20,
-            }}
-          >
-            DW
+          <div style={{ display: "flex", marginRight: 20 }}>
+            <KingfisherMark size={56} background={ogColors.ink} foreground={ogColors.cream} />
           </div>
           <div style={{ display: "flex", fontSize: 28, fontWeight: 700 }}>Darrough West</div>
         </div>
@@ -66,7 +53,7 @@ export default function Image() {
               maxWidth: 980,
             }}
           >
-            Where we're going, we don't need roads.
+            Design. Code. Ship.
           </div>
         </div>
 

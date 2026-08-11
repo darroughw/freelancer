@@ -21,13 +21,13 @@
   width: 34px;
   height: 34px;
   border-radius: 50%;
-  background: $cream;
-  color: $ink;
   display: flex;
-  align-items: center;
-  justify-content: center;
-  font: 700 $scale-mono-base $mono-font;
   flex-shrink: 0;
+
+  &:focus-visible {
+    outline: 2px solid $cream;
+    outline-offset: 2px;
+  }
 }
 
 .header-name {

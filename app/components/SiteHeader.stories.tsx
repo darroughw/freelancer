@@ -9,12 +9,11 @@ const meta: Meta<typeof SiteHeader> = {
     docs: {
       description: {
         component:
-          "Sticky page header: a circular logo mark linking home, the site owner's name, and a mailto CTA. All four props default to Darrough's real info in production — stories override them with placeholder values so this doc doesn't ship real contact info.",
+          "Sticky page header: the wren logo mark linking home, the site owner's name, and a mailto CTA. All three props default to Darrough's real info in production — stories override them with placeholder values so this doc doesn't ship real contact info.",
       },
     },
   },
   argTypes: {
-    initials: { description: "Shown inside the circular logo mark. Kept short — the mark is a fixed size and doesn't shrink text to fit." },
     ctaLabel: { description: 'Text on the mailto pill, before the trailing "↗". Wraps to a new line on narrow viewports rather than truncating.' },
   },
 };
@@ -24,7 +23,6 @@ type Story = StoryObj<typeof SiteHeader>;
 
 export const Default: Story = {
   args: {
-    initials: "JD",
     name: "Jordan Doe",
     email: "hello@example.com",
     ctaLabel: "Open to work",
@@ -40,7 +38,6 @@ export const LongContent: Story = {
     },
   },
   args: {
-    initials: "JD",
     name: "Jordan Alexander Doe-Whitmore",
     email: "hello@example.com",
     ctaLabel: "Open to full-time & project work",

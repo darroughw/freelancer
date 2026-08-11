@@ -11,6 +11,10 @@
   padding: 0 clamp(16px, 4vw, 32px);
 }
 
+.work-featured-row {
+  padding: 24px clamp(16px, 4vw, 32px) 0;
+}
+
 .shelf {
   display: grid;
   grid-template-columns: repeat(auto-fill, minmax(220px, 1fr));
@@ -30,6 +34,13 @@
   border-radius: 10px;
   overflow: hidden;
   box-shadow: 0 12px 26px color-mix(in oklch, $ink 14%, transparent);
+  transition: transform 0.2s ease-out, box-shadow 0.2s ease-out;
+
+  &:hover,
+  &:focus-visible {
+    transform: translateY(-4px);
+    box-shadow: 0 20px 40px color-mix(in oklch, $ink 20%, transparent);
+  }
 
   &:focus-visible {
     outline: 2px solid $red-text;
@@ -41,6 +52,7 @@
   position: relative;
   height: 130px;
   background: $cream-dark;
+  overflow: hidden;
 }
 
 .card-img {
@@ -48,6 +60,12 @@
   height: 100%;
   object-fit: cover;
   display: block;
+  transition: transform 0.3s ease-out;
+
+  .card:hover &,
+  .card:focus-visible & {
+    transform: scale(1.05);
+  }
 }
 
 .card-num {
@@ -103,6 +121,41 @@
   font: 700 $scale-paper-xs $paper-font;
   color: $red-text;
   margin-top: auto;
+}
+
+.card--featured {
+  .card-img-wrap {
+    height: 220px;
+  }
+
+  .card-num {
+    font: 700 $scale-mono-base $mono-font;
+  }
+
+  .card-title {
+    font: 800 $scale-head-base/1.2 $head-font;
+  }
+
+  .card-desc {
+    font: 400 $scale-paper-base/1.6 $paper-font;
+  }
+}
+
+@media (min-width: 641px) {
+  .card--featured {
+    display: grid;
+    grid-template-columns: 1.3fr 1fr;
+    box-shadow: 0 16px 34px color-mix(in oklch, $ink 16%, transparent);
+
+    .card-img-wrap {
+      height: 100%;
+    }
+
+    .card-face {
+      padding: 28px;
+      justify-content: center;
+    }
+  }
 }
 
 @media (max-width: 640px) {

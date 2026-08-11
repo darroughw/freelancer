@@ -1,6 +1,20 @@
-import { render, screen } from "@testing-library/react";
+import { act, render, screen } from "@testing-library/react";
+import { MockIntersectionObserver } from "../../../jest.setup";
 import { caseStudies } from "../../data/case-studies";
+import { extractFeaturedStat, slugifyHeading } from "../../data/case-study-helpers";
 import CaseStudyPage, { generateStaticParams, generateMetadata } from "./page";
+
+function fireIntersection(entries: { id: string; isIntersecting: boolean }[]) {
+  const observer = MockIntersectionObserver.instances[0];
+  act(() => {
+    observer.callback(
+      entries.map(({ id, isIntersecting }) => ({
+        target: document.getElementById(id)!,
+        isIntersecting,
+      }))
+    );
+  });
+}
 
 describe("generateStaticParams", () => {
   it("returns one param per case study slug", () => {
@@ -61,5 +75,50 @@ describe("CaseStudyPage", () => {
     render(<CaseStudyPage params={{ slug: "liberty" }} />);
     expect(screen.getByRole("heading", { level: 2, name: "The Outcome" })).toBeInTheDocument();
     expect(screen.getByText("28%")).toBeInTheDocument();
+  });
+
+  it("promotes the first stat block into an 'at a glance' strip near the top, not duplicated in the body", () => {
+    const study = caseStudies.find((s) => s.slug === "delta")!;
+    const featured = extractFeaturedStat(study.sections)!;
+    const { container } = render(<CaseStudyPage params={{ slug: "delta" }} />);
+
+    const strip = container.querySelector(".case-results-strip");
+    expect(strip).toBeInTheDocument();
+    expect(strip).toHaveTextContent(featured.block.items[0].value);
+
+    // getByText throws on multiple matches, so this also proves it's not
+    // still rendered a second time inside its original section.
+    expect(screen.getByText(featured.block.items[0].value)).toBeInTheDocument();
+  });
+
+  it("renders no results strip for a case study with no stat block", () => {
+    const study = caseStudies.find((s) => s.slug === "agent-console")!;
+    expect(extractFeaturedStat(study.sections)).toBeNull();
+
+    const { container } = render(<CaseStudyPage params={{ slug: "agent-console" }} />);
+    expect(container.querySelector(".case-results-strip")).not.toBeInTheDocument();
+  });
+
+  it("renders a section jump-nav link for every section heading", () => {
+    const study = caseStudies.find((s) => s.slug === "delta")!;
+    render(<CaseStudyPage params={{ slug: "delta" }} />);
+
+    const nav = screen.getByRole("navigation", { name: /case study sections/i });
+    for (const section of study.sections) {
+      const link = screen.getByRole("link", { name: section.heading });
+      expect(nav).toContainElement(link);
+      expect(link).toHaveAttribute("href", `#${slugifyHeading(section.heading)}`);
+    }
+  });
+
+  it("highlights the jump-nav link for the section currently in view", () => {
+    const study = caseStudies.find((s) => s.slug === "delta")!;
+    const secondHeading = study.sections[1].heading;
+    render(<CaseStudyPage params={{ slug: "delta" }} />);
+
+    fireIntersection([{ id: slugifyHeading(secondHeading), isIntersecting: true }]);
+
+    expect(screen.getByRole("link", { name: secondHeading })).toHaveClass("is-active");
+    expect(screen.getByRole("link", { name: study.sections[0].heading })).not.toHaveClass("is-active");
   });
 });

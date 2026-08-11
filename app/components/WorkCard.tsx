@@ -2,15 +2,15 @@ import Link from "next/link";
 import Image from "next/image";
 import type { CaseStudy } from "../data/case-studies";
 
-export default function WorkCard({ study }: { study: CaseStudy }) {
+export default function WorkCard({ study, featured = false }: { study: CaseStudy; featured?: boolean }) {
   return (
-    <Link href={`/work/${study.slug}`} className="shelf-card card">
+    <Link href={`/work/${study.slug}`} className={`shelf-card card${featured ? " card--featured" : ""}`}>
       <div className="card-img-wrap">
         <Image
           src={study.imgSrc}
           alt={study.title}
           fill
-          sizes="(max-width: 640px) 100vw, 220px"
+          sizes={featured ? "(max-width: 640px) 100vw, 640px" : "(max-width: 640px) 100vw, 220px"}
           className="card-img"
         />
         <span className="card-num">{study.num}</span>

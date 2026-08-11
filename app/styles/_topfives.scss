@@ -1,15 +1,12 @@
 @use "./theme" as *;
 
-.top-fives-section {
-  padding: clamp(32px, 8vw, 56px) 0 clamp(40px, 8vw, 56px);
-}
-
+// The outer section wrapper (padding, section-label-row) lives on
+// .outside-work-section in _outside-work.scss — this grid is now a column
+// nested inside .outside-work-grid, not a top-level section.
 .top-fives-grid {
   display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+  grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
   gap: 16px;
-  padding: 0 clamp(16px, 4vw, 32px);
-  margin-top: 24px;
 }
 
 .top-five-card {
