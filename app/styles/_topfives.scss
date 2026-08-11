@@ -19,7 +19,7 @@
 }
 
 .top-five-card-title {
-  font: 800 14px $head-font;
+  font: 800 $scale-head-xs $head-font;
   margin: 0 0 14px;
 }
 
@@ -36,11 +36,11 @@
   display: flex;
   align-items: baseline;
   gap: 10px;
-  font: 500 13.5px/1.4 $paper-font;
+  font: 500 $scale-paper-sm/1.4 $paper-font;
 }
 
 .top-five-num {
-  font: 700 11px $mono-font;
+  font: 700 $scale-mono-sm $mono-font;
   color: $red;
   min-width: 14px;
 }

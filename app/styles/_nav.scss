@@ -24,10 +24,10 @@
   border-radius: 100px;
   background: color-mix(in oklch, $cream 12%, transparent);
   color: $cream;
-  font: 700 12px $paper-font;
+  font: 700 $scale-paper-sm $paper-font;
   text-decoration: none;
   cursor: pointer;
-  transition: all 0.3s ease;
+  transition: background-color 0.2s ease, color 0.2s ease;
 
   &:hover {
     background: color-mix(in oklch, $cream 22%, transparent);
@@ -40,6 +40,11 @@
 
   &.is-active:hover {
     background: $cream;
+  }
+
+  &:focus-visible {
+    outline: 2px solid $cream;
+    outline-offset: 2px;
   }
 }
 

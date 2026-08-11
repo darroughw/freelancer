@@ -9,11 +9,13 @@ weights, and the type scale below are generated from
 [`tokens/typography.json`](https://github.com/darroughw/freelancer/blob/main/tokens/typography.json)
 via [Style Dictionary](https://styledictionary.com) (`npm run build:tokens`)
 — see [Foundations → Colors](?path=/docs/foundations-colors--docs) for how
-that pipeline works. The weight and scale tokens aren't consumed by any
-`app/styles/*.scss` partial yet (those still hardcode `font-weight`/`font-size`
-per rule), but are available as `$weight-*`/`$scale-*` Sass variables,
-`--weight-*`/`--scale-*` CSS custom properties, and `tokens.typography.*` in
-TS for future use.
+that pipeline works. The scale tokens are consumed directly by every
+`app/styles/*.scss` partial (`font: 700 $scale-paper-sm $paper-font`, etc.) —
+each step's `comment` in `tokens/typography.json` documents which components
+use it and why. The weight tokens aren't consumed yet (partials still
+hardcode `font-weight` per rule); they're available as `$weight-*` Sass
+variables, `--weight-*` CSS custom properties, and `tokens.typography.weight.*`
+in TS for future use.
 
 <table>
   <thead>
@@ -27,9 +29,9 @@ TS for future use.
     <tr><td><code>typography.weight.paper-bold</code></td><td><code>$weight-paper-bold</code></td><td><code>--weight-paper-bold</code></td><td><code>tokens.typography.weight.paperBold</code></td></tr>
     <tr><td><code>typography.weight.head</code></td><td><code>$weight-head</code></td><td><code>--weight-head</code></td><td><code>tokens.typography.weight.head</code></td></tr>
     <tr><td><code>typography.weight.mono</code></td><td><code>$weight-mono</code></td><td><code>--weight-mono</code></td><td><code>tokens.typography.weight.mono</code></td></tr>
-    <tr><td><code>typography.scale.paper</code></td><td><code>$scale-paper</code></td><td><code>--scale-paper</code></td><td><code>tokens.typography.scale.paper</code></td></tr>
-    <tr><td><code>typography.scale.head</code></td><td><code>$scale-head</code></td><td><code>--scale-head</code></td><td><code>tokens.typography.scale.head</code></td></tr>
-    <tr><td><code>typography.scale.mono</code></td><td><code>$scale-mono</code></td><td><code>--scale-mono</code></td><td><code>tokens.typography.scale.mono</code></td></tr>
+    <tr><td><code>typography.scale.paper.{'{'}xs,sm,base,lg{'}'}</code></td><td><code>$scale-paper-*</code></td><td><code>--scale-paper-*</code></td><td><code>tokens.typography.scale.paper</code></td></tr>
+    <tr><td><code>typography.scale.head.{'{'}xs,sm,base,lg,xl,2xl,3xl{'}'}</code></td><td><code>$scale-head-*</code></td><td><code>--scale-head-*</code></td><td><code>tokens.typography.scale.head</code></td></tr>
+    <tr><td><code>typography.scale.mono.{'{'}xs,sm,base,lg{'}'}</code></td><td><code>$scale-mono-*</code></td><td><code>--scale-mono-*</code></td><td><code>tokens.typography.scale.mono</code></td></tr>
   </tbody>
 </table>
 
@@ -41,7 +43,7 @@ text. Used at weights 400–800 depending on emphasis.
 <Typeset
   fontFamily="'Archivo', -apple-system, sans-serif"
   fontWeight={400}
-  fontSizes={[13, 15, 16]}
+  fontSizes={[11, 13, 15, 18]}
   sampleText="The quick brown fox jumps over the lazy dog."
 />
 
@@ -55,12 +57,15 @@ text. Used at weights 400–800 depending on emphasis.
 ## Head — `$head-font`
 
 `'Archivo Black', 'Archivo', sans-serif` — display headings, always set at
-weight 900. Sized fluidly with `clamp()` for large hero/section titles.
+weight 900. Sized fluidly with `clamp()` for large hero/section titles. The
+three largest steps (`xl`/`2xl`/`3xl`) stay distinct rather than collapsing
+into one — they carry real page-type hierarchy (masthead > contact >
+case study), not unmanaged sprawl.
 
 <Typeset
   fontFamily="'Archivo Black', 'Archivo', sans-serif"
   fontWeight={900}
-  fontSizes={[16, 22, 28, 44, 64]}
+  fontSizes={[16, 18, 22, 28, 44, 56, 64]}
   sampleText="Sample heading"
 />
 

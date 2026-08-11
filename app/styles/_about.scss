@@ -6,14 +6,14 @@
 }
 
 .about-lead {
-  font: 400 clamp(15px, 2.5vw, 17px)/1.65 $paper-font;
+  font: 400 clamp($scale-paper-base, 2.5vw, $scale-paper-lg)/1.65 $paper-font;
   color: color-mix(in oklch, $ink 85%, transparent);
   margin: 24px 0 0;
   padding: 0 clamp(16px, 4vw, 32px);
 }
 
 .drop-cap {
-  font: 900 52px $head-font;
+  font: 900 $scale-head-xl $head-font;
   float: left;
   line-height: 0.8;
   margin: 6px 8px 0 0;
@@ -27,7 +27,7 @@
 }
 
 .pull-quote-text {
-  font: 700 18px/1.4 $head-font;
+  font: 700 $scale-head-sm/1.4 $head-font;
   margin: 0 0 10px;
 }
 

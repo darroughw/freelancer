@@ -85,13 +85,13 @@ export default function Page() {
         <section className="masthead">
           <div className="masthead-eyebrow">◉ SIDE A</div>
           <h1 className="masthead-title">
-            Where we're going,
+            Design.
             <br />
             <span className="masthead-accent">
-              we don't need
+              Code.
               <br />
-              roads.
             </span>
+            Ship.
           </h1>
           <p className="masthead-sub">
             I work with teams full-time or on a project basis, taking a concept from whiteboard to working product. No agency overhead, no bench. Wireframes Monday, React by Friday.

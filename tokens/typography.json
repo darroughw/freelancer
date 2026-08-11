@@ -25,19 +25,25 @@
     },
     "scale": {
       "paper": {
-        "value": [13, 15, 16],
-        "type": "fontSize",
-        "comment": "Representative sizes shown in Storybook's Typography foundation, in px"
+        "xs": { "value": 11, "type": "fontSize", "comment": "Smallest UI text (card CTA links). Steps consumed directly as $scale-paper-xs etc. in app/styles/*.scss" },
+        "sm": { "value": 13, "type": "fontSize", "comment": "Small UI text (buttons, tags, secondary labels)" },
+        "base": { "value": 15, "type": "fontSize", "comment": "Body copy, the most common paper size" },
+        "lg": { "value": 18, "type": "fontSize", "comment": "Lede/intro paragraphs, fluid clamp() max" }
       },
       "head": {
-        "value": [16, 22, 28, 44, 64],
-        "type": "fontSize",
-        "comment": "Representative sizes shown in Storybook's Typography foundation, in px"
+        "xs": { "value": 16, "type": "fontSize", "comment": "Small bold labels (brand lockup, card titles)" },
+        "sm": { "value": 18, "type": "fontSize", "comment": "Emphasis (pull-quote)" },
+        "base": { "value": 22, "type": "fontSize", "comment": "Section subheadings" },
+        "lg": { "value": 28, "type": "fontSize", "comment": "Stat values, display accents" },
+        "xl": { "value": 44, "type": "fontSize", "comment": "Case-study hero title, fluid clamp() max" },
+        "2xl": { "value": 56, "type": "fontSize", "comment": "Contact hero title, fluid clamp() max" },
+        "3xl": { "value": 64, "type": "fontSize", "comment": "Masthead hero title, fluid clamp() max — the largest text on the site. xl/2xl/3xl stay distinct steps (not collapsed) because they carry real page-type hierarchy: home > contact > case study" }
       },
       "mono": {
-        "value": [10, 11, 12, 13],
-        "type": "fontSize",
-        "comment": "Representative sizes shown in Storybook's Typography foundation, in px"
+        "xs": { "value": 10, "type": "fontSize", "comment": "Smallest tags" },
+        "sm": { "value": 11, "type": "fontSize", "comment": "Meta text, labels" },
+        "base": { "value": 12, "type": "fontSize", "comment": "The most common mono size" },
+        "lg": { "value": 13, "type": "fontSize", "comment": "Slightly emphasized meta (work-note)" }
       }
     }
   }

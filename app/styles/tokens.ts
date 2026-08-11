@@ -49,9 +49,27 @@ export const tokens = {
       mono: 600,
     },
     scale: {
-      paper: [13,15,16],
-      head: [16,22,28,44,64],
-      mono: [10,11,12,13],
+      paper: {
+        "xs": 11,
+        "sm": 13,
+        "base": 15,
+        "lg": 18,
+      },
+      head: {
+        "xs": 16,
+        "sm": 18,
+        "base": 22,
+        "lg": 28,
+        "xl": 44,
+        "2xl": 56,
+        "3xl": 64,
+      },
+      mono: {
+        "xs": 10,
+        "sm": 11,
+        "base": 12,
+        "lg": 13,
+      },
     },
   },
   spacing: {

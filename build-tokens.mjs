@@ -33,6 +33,11 @@ const VHS_RATIONALE = `// "Dynamicron T-120" — colors sampled directly off the
 const COLOR_KEYS = ['red', 'red-text', 'red-deep', 'orange', 'mustard', 'teal', 'plum', 'ink', 'cream', 'cream-dark'];
 const SPACE_KEYS = ['3', '4', '5', '6', '7', '8', '9', '10', '12', '14', '15', '16', '20', '24'];
 const FLUID_KEYS = ['sm', 'md', 'lg', 'xl', 'xxl'];
+const SCALE_STEPS = {
+  paper: ['xs', 'sm', 'base', 'lg'],
+  head: ['xs', 'sm', 'base', 'lg', 'xl', '2xl', '3xl'],
+  mono: ['xs', 'sm', 'base', 'lg'],
+};
 
 function toCamel(str) {
   return str.replace(/-([a-z0-9])/g, (_, c) => c.toUpperCase());
@@ -54,7 +59,7 @@ StyleDictionary.registerFormat({
     const root = COLOR_KEYS.map((k) => `  --color-${k}: ${color[k].value};`).join('\n');
     const vhsRoot = COLOR_KEYS.map((k) => `  --color-${k}: ${vhsColor[k].value}; // ${vhsColor[k].comment}`).join('\n');
     const aliases = COLOR_KEYS.map((k) => `$${k}: var(--color-${k});`).join('\n');
-    const scaleLine = (name) => `$scale-${name}: ${scale[name].value.map((n) => `${n}px`).join(' ')};`;
+    const scaleLines = (name) => SCALE_STEPS[name].map((step) => `$scale-${name}-${step}: ${scale[name][step].value}px;`).join('\n');
     const spaceLines = SPACE_KEYS.map((k) => `$space-${k}: ${spacing[k].value};`).join('\n');
     const fluidLines = FLUID_KEYS.map((k) => `$fluid-${k}: ${fluid[k].value};`).join('\n');
 
@@ -66,13 +71,14 @@ StyleDictionary.registerFormat({
       `:root[data-theme="vhs"] {\n${vhsRoot}\n}\n\n` +
       `${aliases}\n\n` +
       `$paper-font: ${font.paper.value};\n$head-font: ${font.head.value};\n$mono-font: ${font.mono.value};\n\n` +
+      `// Type scale — consumed directly by app/styles/*.scss (font: weight $scale-family-step family).\n` +
+      `${scaleLines('paper')}\n${scaleLines('head')}\n${scaleLines('mono')}\n\n` +
       `// Additional tokens below — not yet consumed anywhere in app/styles/*.scss,\n` +
       `// available for future use (see Foundations → Typography/Spacing & Layout).\n` +
       `$weight-paper-regular: ${weight['paper-regular'].value};\n` +
       `$weight-paper-bold: ${weight['paper-bold'].value};\n` +
       `$weight-head: ${weight.head.value};\n` +
       `$weight-mono: ${weight.mono.value};\n\n` +
-      `${scaleLine('paper')}\n${scaleLine('head')}\n${scaleLine('mono')}\n\n` +
       `$breakpoint-mobile: ${breakpoint.mobile.value};\n\n` +
       `${spaceLines}\n\n` +
       `${fluidLines}\n`
@@ -95,7 +101,7 @@ StyleDictionary.registerFormat({
 
     const root = COLOR_KEYS.map((k) => `  --color-${k}: ${color[k].value};`).join('\n');
     const vhsRoot = COLOR_KEYS.map((k) => `  --color-${k}: ${vhsColor[k].value};`).join('\n');
-    const scaleLine = (name) => `  --scale-${name}: ${scale[name].value.map((n) => `${n}px`).join(', ')};`;
+    const scaleLines = (name) => SCALE_STEPS[name].map((step) => `  --scale-${name}-${step}: ${scale[name][step].value}px;`).join('\n');
     const spaceLines = SPACE_KEYS.map((k) => `  --space-${k}: ${spacing[k].value};`).join('\n');
     const fluidLines = FLUID_KEYS.map((k) => `  --fluid-${k}: ${fluid[k].value};`).join('\n');
 
@@ -107,7 +113,7 @@ StyleDictionary.registerFormat({
       `  --weight-paper-bold: ${weight['paper-bold'].value};\n` +
       `  --weight-head: ${weight.head.value};\n` +
       `  --weight-mono: ${weight.mono.value};\n\n` +
-      `${scaleLine('paper')}\n${scaleLine('head')}\n${scaleLine('mono')}\n\n` +
+      `${scaleLines('paper')}\n${scaleLines('head')}\n${scaleLines('mono')}\n\n` +
       `  --breakpoint-mobile: ${breakpoint.mobile.value};\n\n` +
       `${spaceLines}\n\n` +
       `${fluidLines}\n}\n\n` +
@@ -133,6 +139,8 @@ StyleDictionary.registerFormat({
       COLOR_KEYS.map((k) => `    ${toCamel(k)}: ${JSON.stringify(obj[k].value)},`).join('\n');
     const spaceEntries = SPACE_KEYS.map((k) => `      "${k}": ${JSON.stringify(spacing[k].value)},`).join('\n');
     const fluidEntries = FLUID_KEYS.map((k) => `      ${k}: ${JSON.stringify(fluid[k].value)},`).join('\n');
+    const scaleEntries = (name) =>
+      `      ${name}: {\n${SCALE_STEPS[name].map((step) => `        "${step}": ${scale[name][step].value},`).join('\n')}\n      },`;
 
     return (
       GENERATED_BANNER('ts') +
@@ -149,7 +157,7 @@ StyleDictionary.registerFormat({
       `  typography: {\n` +
       `    font: {\n      paper: ${JSON.stringify(font.paper.value)},\n      head: ${JSON.stringify(font.head.value)},\n      mono: ${JSON.stringify(font.mono.value)},\n    },\n` +
       `    weight: {\n      paperRegular: ${weight['paper-regular'].value},\n      paperBold: ${weight['paper-bold'].value},\n      head: ${weight.head.value},\n      mono: ${weight.mono.value},\n    },\n` +
-      `    scale: {\n      paper: ${JSON.stringify(scale.paper.value)},\n      head: ${JSON.stringify(scale.head.value)},\n      mono: ${JSON.stringify(scale.mono.value)},\n    },\n` +
+      `    scale: {\n${scaleEntries('paper')}\n${scaleEntries('head')}\n${scaleEntries('mono')}\n    },\n` +
       `  },\n` +
       `  spacing: {\n` +
       `    breakpointMobile: ${JSON.stringify(breakpoint.mobile.value)},\n` +

@@ -26,17 +26,17 @@
   display: flex;
   align-items: center;
   justify-content: center;
-  font: 700 12px $mono-font;
+  font: 700 $scale-mono-base $mono-font;
   flex-shrink: 0;
 }
 
 .header-name {
-  font: 900 16px/1.1 $head-font;
+  font: 900 $scale-head-xs/1.1 $head-font;
 }
 
 .header-cta {
   margin-left: auto;
-  font: 700 13px $paper-font;
+  font: 700 $scale-paper-sm $paper-font;
   text-decoration: none;
   color: $ink;
   background: $mustard;

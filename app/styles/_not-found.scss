@@ -3,7 +3,7 @@
 .not-found-cta {
   display: inline-flex;
   align-items: center;
-  font: 700 15px $paper-font;
+  font: 700 $scale-paper-base $paper-font;
   text-decoration: none;
   color: $cream;
   background: $ink;

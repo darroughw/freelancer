@@ -25,21 +25,26 @@
   &:hover .reading-item-title {
     color: $red-text;
   }
+
+  &:focus-visible {
+    outline: 2px solid $red-text;
+    outline-offset: 2px;
+  }
 }
 
 .reading-item-title {
-  font: 700 15px $paper-font;
+  font: 700 $scale-paper-base $paper-font;
   grid-column: 1;
 }
 
 .reading-item-desc {
-  font: 400 13px/1.5 $paper-font;
+  font: 400 $scale-paper-sm/1.5 $paper-font;
   color: color-mix(in oklch, $ink 65%, transparent);
   grid-column: 1;
 }
 
 .reading-item-domain {
-  font: 500 11px $mono-font;
+  font: 500 $scale-mono-sm $mono-font;
   color: color-mix(in oklch, $ink 50%, transparent);
   grid-column: 2;
   grid-row: 1 / 3;

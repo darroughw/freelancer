@@ -29,7 +29,7 @@
 .case-back {
   display: inline-flex;
   align-items: center;
-  font: 700 12px $mono-font;
+  font: 700 $scale-mono-base $mono-font;
   letter-spacing: 0.05em;
   text-decoration: none;
   color: $cream;
@@ -42,14 +42,14 @@
 }
 
 .case-hero-eyebrow {
-  font: 700 12px $mono-font;
+  font: 700 $scale-mono-base $mono-font;
   letter-spacing: 0.08em;
   color: $mustard;
   margin: 0 0 12px;
 }
 
 .case-hero-title {
-  font: 900 clamp(26px, 6vw, 44px)/1.1 $head-font;
+  font: 900 clamp(26px, 6vw, $scale-head-xl)/1.1 $head-font;
   margin: 0 0 18px;
 }
 
@@ -57,7 +57,7 @@
   display: flex;
   flex-wrap: wrap;
   gap: 8px 20px;
-  font: 600 12px $mono-font;
+  font: 600 $scale-mono-base $mono-font;
   opacity: 0.8;
 }
 
@@ -82,19 +82,19 @@
 }
 
 .case-heading {
-  font: 800 22px $head-font;
+  font: 800 $scale-head-base $head-font;
   margin: 0 0 18px;
   color: $ink;
 }
 
 .case-subheading {
-  font: 700 15px $paper-font;
+  font: 700 $scale-paper-base $paper-font;
   margin: 24px 0 8px;
   color: $ink;
 }
 
 .case-paragraph {
-  font: 400 15px/1.7 $paper-font;
+  font: 400 $scale-paper-base/1.7 $paper-font;
   color: color-mix(in oklch, $ink 85%, transparent);
   margin: 0 0 16px;
 
@@ -110,7 +110,7 @@
   display: flex;
   flex-direction: column;
   gap: 10px;
-  font: 400 15px/1.6 $paper-font;
+  font: 400 $scale-paper-base/1.6 $paper-font;
   color: color-mix(in oklch, $ink 85%, transparent);
 }
 
@@ -122,7 +122,7 @@
 .case-table {
   width: 100%;
   border-collapse: collapse;
-  font: 600 12.5px $mono-font;
+  font: 600 $scale-mono-base $mono-font;
 
   th,
   td {
@@ -155,12 +155,12 @@
 }
 
 .case-stat-value {
-  font: 900 28px $head-font;
+  font: 900 $scale-head-lg $head-font;
   color: $red;
 }
 
 .case-stat-label {
-  font: 600 11px $mono-font;
+  font: 600 $scale-mono-sm $mono-font;
   color: color-mix(in oklch, $ink 75%, transparent);
   margin-top: 4px;
 }
@@ -196,7 +196,7 @@
 }
 
 .case-images-caption {
-  font: 600 11px $mono-font;
+  font: 600 $scale-mono-sm $mono-font;
   color: color-mix(in oklch, $ink 60%, transparent);
   margin-top: 8px;
 }
@@ -223,6 +223,11 @@
   &:hover {
     opacity: 0.8;
   }
+
+  &:focus-visible {
+    outline: 2px solid $red-text;
+    outline-offset: 2px;
+  }
 }
 
 .case-pager-next {
@@ -231,14 +236,14 @@
 }
 
 .case-pager-label {
-  font: 700 11px $mono-font;
+  font: 700 $scale-mono-sm $mono-font;
   letter-spacing: 0.05em;
   text-transform: uppercase;
   color: $red-text;
 }
 
 .case-pager-title {
-  font: 800 15px $head-font;
+  font: 800 $scale-head-xs $head-font;
 }
 
 @media (max-width: 640px) {

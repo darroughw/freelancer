@@ -8,7 +8,7 @@
 }
 
 .section-tag {
-  font: 700 12px $mono-font;
+  font: 700 $scale-mono-base $mono-font;
   letter-spacing: 0.1em;
   color: $red;
   white-space: nowrap;
@@ -23,7 +23,7 @@
 }
 
 .section-tag-light {
-  font: 700 12px $mono-font;
+  font: 700 $scale-mono-base $mono-font;
   letter-spacing: 0.1em;
   color: $cream;
   white-space: nowrap;

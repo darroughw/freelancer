@@ -23,9 +23,21 @@
   --weight-head: 900;
   --weight-mono: 600;
 
-  --scale-paper: 13px, 15px, 16px;
-  --scale-head: 16px, 22px, 28px, 44px, 64px;
-  --scale-mono: 10px, 11px, 12px, 13px;
+  --scale-paper-xs: 11px;
+  --scale-paper-sm: 13px;
+  --scale-paper-base: 15px;
+  --scale-paper-lg: 18px;
+  --scale-head-xs: 16px;
+  --scale-head-sm: 18px;
+  --scale-head-base: 22px;
+  --scale-head-lg: 28px;
+  --scale-head-xl: 44px;
+  --scale-head-2xl: 56px;
+  --scale-head-3xl: 64px;
+  --scale-mono-xs: 10px;
+  --scale-mono-sm: 11px;
+  --scale-mono-base: 12px;
+  --scale-mono-lg: 13px;
 
   --breakpoint-mobile: 640px;
 

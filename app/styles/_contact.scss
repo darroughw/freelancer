@@ -25,18 +25,18 @@
 }
 
 .contact-label {
-  font: 700 12px $mono-font;
+  font: 700 $scale-mono-base $mono-font;
   letter-spacing: 0.08em;
   margin-bottom: 18px;
 }
 
 .contact-title {
-  font: 900 clamp(32px, 8vw, 56px)/1.0 $head-font;
+  font: 900 clamp(32px, 8vw, $scale-head-2xl)/1.0 $head-font;
   margin: 0 0 18px;
 }
 
 .contact-sub {
-  font: 500 clamp(15px, 3vw, 17px)/1.5 $paper-font;
+  font: 500 clamp($scale-paper-base, 3vw, $scale-paper-lg)/1.5 $paper-font;
   max-width: 420px;
   margin: 0 0 28px;
 }
@@ -47,7 +47,7 @@
 
 .contact-email-btn {
   display: inline-flex;
-  font: 700 15px $paper-font;
+  font: 700 $scale-paper-base $paper-font;
   text-decoration: none;
   color: $ink;
   background: $cream;
@@ -65,7 +65,7 @@
 }
 
 .contact-social-link {
-  font: 600 13px $paper-font;
+  font: 600 $scale-paper-sm $paper-font;
   text-decoration: none;
   color: $cream;
   min-height: 44px;
@@ -164,7 +164,7 @@
 }
 
 .footer-text {
-  font: 600 11px $mono-font;
+  font: 600 $scale-mono-sm $mono-font;
   color: $cream;
 }
 

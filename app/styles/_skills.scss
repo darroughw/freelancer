@@ -23,7 +23,7 @@
 }
 
 .skill-label {
-  font: 700 13px $paper-font;
+  font: 700 $scale-paper-sm $paper-font;
   margin: 0;
 }
 
@@ -34,7 +34,7 @@
 }
 
 .skill-tag {
-  font: 600 11px $mono-font;
+  font: 600 $scale-mono-sm $mono-font;
   padding: 6px 11px;
   border-radius: 100px;
   background: $cream;
