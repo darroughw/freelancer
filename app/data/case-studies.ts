@@ -949,7 +949,7 @@ export const caseStudies: CaseStudy[] = [
     slug: "timewarp-trivia",
     num: "010",
     title: "TimeWarp Trivia: Realtime Party Trivia, Built Solo",
-    desc: "A four-decade, Jackbox-style trivia game built solo in about 27 hours: one shared TV screen, up to ten phones as buzzers, and a design-token system that reskins the whole app by decade without touching a single component.",
+    desc: "A Jackbox-style trivia game built solo in about 27 hours and still growing since: six decades plus two non-decade topic packs, one shared TV screen, up to ten phones as buzzers, and a design-token system that reskins the whole app by decade without touching a single component.",
     role: "Product, Design & Engineering (solo)",
     year: "2026",
     tools: "Next.js 14, TypeScript, Supabase (Postgres + Realtime), SCSS, Vercel",
@@ -965,7 +965,7 @@ export const caseStudies: CaseStudy[] = [
         body: [
           {
             type: "paragraph",
-            html: `TimeWarp Trivia is a Jackbox-style party trivia game: one shared screen for the room, everyone else's phone as the buzzer. Built solo, product through full-stack, in about 27 hours across two days. It's live and playable in-browser at <a href="https://www.timewarptrivia.com" target="_blank" rel="noopener">timewarptrivia.com</a>, with 728 questions across four decades and 18 shipped feature/fix issues tracked in Linear.`,
+            html: `TimeWarp Trivia is a Jackbox-style party trivia game: one shared screen for the room, everyone else's phone as the buzzer. Built solo, product through full-stack, in about 27 hours across two days, then kept growing well past that first sprint. It's live and playable in-browser at <a href="https://www.timewarptrivia.com" target="_blank" rel="noopener">timewarptrivia.com</a>, with 1,089 questions across six decades, two standalone non-decade topic packs adding 300 more, and 35 shipped issues tracked in Linear as of this writing.`,
           },
           {
             type: "paragraph",
@@ -979,7 +979,7 @@ export const caseStudies: CaseStudy[] = [
             type: "stat",
             items: [
               { value: "~27 hrs", label: "From first commit to live, solo" },
-              { value: "728", label: "Trivia questions across four decades" },
+              { value: "1,089", label: "Trivia questions across six decades" },
               { value: "10", label: "Max players per room, phone only, no app" },
             ],
           },
@@ -993,7 +993,7 @@ export const caseStudies: CaseStudy[] = [
             items: [
               "Host opens the shared screen and gets a 4-character room code.",
               "Up to 10 players join from their phones with the code and a name. No app, no download.",
-              "Host picks a decade filter (or all four) and starts the game.",
+              "Host picks a decade filter (or all six) or switches to Deep Cuts, a separate non-decade topic mode, and starts the game.",
               "3 rounds of 5 questions each, speed-based scoring (1000 points decaying to 500 over the time limit).",
               "Before the final round, whoever's in last place picks one question to answer alone. Everyone else just watches.",
               "Final round pays double points.",
@@ -1068,7 +1068,7 @@ export const caseStudies: CaseStudy[] = [
           { type: "subheading", text: "Decade-based visual theming, built to cascade without touching components" },
           {
             type: "paragraph",
-            html: `The spec called for the visual theme to shift once a decade's picked, without a rewrite of every screen. The trick: SCSS variables can hold a <code>var()</code> CSS function as their value. Changing <code>$marigold: #ffb238;</code> to <code>$marigold: var(--marigold, #ffb238);</code> means every existing component that already referenced <code>$marigold</code> compiles to <code>var(--marigold, #ffb238)</code> automatically. No component file touched. A single override block, <code>[data-decade-theme="80s"] { --marigold: #ff3fa4; ... }</code>, driven by a small hook then re-themes the entire app the moment a decade's selected, TV and phone both, session-wide.`,
+            html: `The spec called for the visual theme to shift once a decade's picked, without a rewrite of every screen. The trick: SCSS variables can hold a <code>var()</code> CSS function as their value. Changing <code>$marigold: #ffb238;</code> to <code>$marigold: var(--marigold, #ffb238);</code> means every existing component that already referenced <code>$marigold</code> compiles to <code>var(--marigold, #ffb238)</code> automatically. No component file touched. A single override block per decade, e.g. <code>[data-decade-theme="80s"] { --marigold: #ff3fa4; ... }</code>, driven by a small hook then re-themes the entire app the moment a decade's selected, TV and phone both, session-wide. The same override system now covers all six decades, not just the one it was proven on first.`,
           },
           {
             type: "images",
@@ -1098,6 +1098,16 @@ export const caseStudies: CaseStudy[] = [
             type: "paragraph",
             html: `The host screen is a 10-foot UI meant for a TV or laptop. Without a check, a phone visitor landing on <code>/host</code> would silently create a real, unusable game room. A <code>matchMedia</code>-based hook gates the real game behind a simple "use a bigger screen" screen below a 768px breakpoint, so a stray visit never spins up state nobody can use.`,
           },
+          { type: "subheading", text: "A second game mode reused the entire engine, zero new game-loop code" },
+          {
+            type: "paragraph",
+            html: `Adding Deep Cuts, a non-decade topic mode (West Wing, Fallout, more to come from player suggestions), could have meant forking the game loop. Reading the existing code first paid off: round-advancement, scoring, and the block mechanic were already keyed off generic state like <code>status</code> and <code>question_index</code>, never off <code>decade_filter</code>. Deep Cuts ships as its own route and lobby screen but runs through the exact same <code>LiveTvFlow</code>/<code>LivePlayFlow</code> engine as decade mode via a <code>mode</code> prop, and <code>/play</code> needed no changes at all since joining and rendering were already fully status-driven.`,
+          },
+          { type: "subheading", text: "Accessibility gaps that only showed up after real people played" },
+          {
+            type: "paragraph",
+            html: `Two post-launch fixes came from actual play sessions rather than an audit: the decade filter's focus ring and its selected state used the same visual treatment, making keyboard navigation ambiguous about what was actually chosen; and the question countdown's speed-decay scoring had no non-visual signal, so a screen-reader user had no way to know time was running out. Both are the kind of gap that a solo build, moving fast, tends to miss on the first pass and that only surfaces once someone who isn't the builder tries to use it.`,
+          },
         ],
       },
       {
@@ -1107,10 +1117,12 @@ export const caseStudies: CaseStudy[] = [
             type: "bullets",
             items: [
               "Full realtime multiplayer game: lobby, 3-round structure, speed scoring, the block mechanic, podium.",
-              "728 original trivia questions across four decades, sourced and fact-checked, written in a consistent dry/deadpan voice.",
-              "A browser-playable web version (no app install required), the primary way to play today. A packaged Android TV app is a planned next step, not yet built.",
+              "1,089 original trivia questions across six decades (60s through 2010s), plus two standalone 300-question Deep Cuts topic packs (West Wing, Fallout), all sourced and fact-checked, written in a consistent dry/deadpan voice.",
+              "Deep Cuts: a second, non-decade game mode reusing the entire realtime engine with zero new game-loop code.",
+              "Same-room Play Again rematch flow with question-repeat avoidance across games, plus a host Cancel Game escape hatch.",
+              "A browser-playable web version (no app install required), the primary way to play today. Android TV and Fire TV wrapper apps are both built and working; Android TV is just waiting on Google Play Console's TV app testing before public listing.",
               "Full observability stack: Vercel Analytics + PostHog for product analytics, Sentry for error/performance tracking, Vercel Speed Insights for Core Web Vitals.",
-              "One working decade theme (80s) proving out the theming architecture end to end.",
+              "All six decade visual themes (60s through 2010s), each a single override block on the same token-override system, proved out first on 80s.",
             ],
           },
         ],
@@ -1121,10 +1133,10 @@ export const caseStudies: CaseStudy[] = [
           {
             type: "bullets",
             items: [
-              "90s, 2000s, and 2010s visual themes, using the same token-override system.",
-              "Packaged Android TV app (WebView or React Native for TV).",
+              "Clear Google Play Console's TV app testing to publicly list Android TV (Fire TV, built on the same wrapper, is already shipped).",
               "Server-side answer validation.",
               "Roku and Apple TV ports (stretch goals, after Android TV).",
+              "Grow the Deep Cuts topic library from player-suggested categories submitted through the feedback form.",
             ],
           },
         ],

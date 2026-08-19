@@ -145,6 +145,7 @@
   .card--featured {
     display: grid;
     grid-template-columns: 1.3fr 1fr;
+    min-height: 340px;
     box-shadow: 0 16px 34px color-mix(in oklch, $ink 16%, transparent);
 
     .card-img-wrap {
