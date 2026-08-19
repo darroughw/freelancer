@@ -19,6 +19,20 @@ body {
   margin: 0;
 }
 
+// Reserve room for the sticky header and (on the home page) the fixed
+// bottom nav so keyboard focus scrolled to by Tab or an in-page anchor
+// never lands fully hidden underneath either — WCAG 2.2 SC 2.4.11.
+html {
+  scroll-padding-top: 88px;
+  scroll-padding-bottom: 78px;
+}
+
+@media (max-width: 640px) {
+  html {
+    scroll-padding-bottom: 118px;
+  }
+}
+
 * {
   box-sizing: border-box;
 }

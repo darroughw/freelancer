@@ -145,13 +145,13 @@
 }
 
 .case-subheading {
-  font: 700 $scale-paper-base $paper-font;
+  font: 700 $scale-paper-lg $paper-font;
   margin: 24px 0 8px;
   color: $ink;
 }
 
 .case-paragraph {
-  font: 400 $scale-paper-base/1.7 $paper-font;
+  font: 400 $scale-paper-lg/1.7 $paper-font;
   color: color-mix(in oklch, $ink 85%, transparent);
   margin: 0 0 16px;
 
@@ -167,7 +167,7 @@
   display: flex;
   flex-direction: column;
   gap: 10px;
-  font: 400 $scale-paper-base/1.6 $paper-font;
+  font: 400 $scale-paper-lg/1.6 $paper-font;
   color: color-mix(in oklch, $ink 85%, transparent);
 }
 
