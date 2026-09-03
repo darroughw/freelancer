@@ -949,7 +949,7 @@ export const caseStudies: CaseStudy[] = [
     slug: "timewarp-trivia",
     num: "010",
     title: "TimeWarp Trivia: Realtime Party Trivia, Built Solo",
-    desc: "A Jackbox-style trivia game built solo in about 27 hours and still growing since: six decades plus two non-decade topic packs, one shared TV screen, up to ten phones as buzzers, and a design-token system that reskins the whole app by decade without touching a single component.",
+    desc: "A Jackbox-style trivia game built solo in about 27 hours and still growing since: six decades plus three non-decade topic packs, one shared TV screen, up to ten phones as buzzers, and a design-token system that reskins the whole app by decade without touching a single component.",
     role: "Product, Design & Engineering (solo)",
     year: "2026",
     tools: "Next.js 14, TypeScript, Supabase (Postgres + Realtime), SCSS, Vercel",
@@ -965,7 +965,7 @@ export const caseStudies: CaseStudy[] = [
         body: [
           {
             type: "paragraph",
-            html: `TimeWarp Trivia is a Jackbox-style party trivia game: one shared screen for the room, everyone else's phone as the buzzer. Built solo, product through full-stack, in about 27 hours across two days, then kept growing well past that first sprint. It's live and playable in-browser at <a href="https://www.timewarptrivia.com" target="_blank" rel="noopener">timewarptrivia.com</a>, with 1,089 questions across six decades, two standalone non-decade topic packs adding 300 more, and 35 shipped issues tracked in Linear as of this writing.`,
+            html: `TimeWarp Trivia is a Jackbox-style party trivia game: one shared screen for the room, everyone else's phone as the buzzer. Built solo, product through full-stack, in about 27 hours across two days, then kept growing well past that first sprint. It's live and playable in-browser at <a href="https://www.timewarptrivia.com" target="_blank" rel="noopener">timewarptrivia.com</a>, with 1,106 questions across six decades, three standalone non-decade topic packs (West Wing, Fallout, The Simpsons) adding 434 more, and 36 shipped issues tracked in Linear as of this writing.`,
           },
           {
             type: "paragraph",
@@ -979,7 +979,7 @@ export const caseStudies: CaseStudy[] = [
             type: "stat",
             items: [
               { value: "~27 hrs", label: "From first commit to live, solo" },
-              { value: "1,089", label: "Trivia questions across six decades" },
+              { value: "1,106", label: "Trivia questions across six decades" },
               { value: "10", label: "Max players per room, phone only, no app" },
             ],
           },
@@ -1042,7 +1042,7 @@ export const caseStudies: CaseStudy[] = [
           { type: "subheading", text: "Design system reuse" },
           {
             type: "paragraph",
-            html: `Every color, type scale, and spacing value is mirrored from an existing personal design system rather than invented fresh for this project, to prove the same token system holds up across a third, very different surface: a 10-foot TV UI and a touch-first phone UI, instead of a typical web app.`,
+            html: `Every color, type scale, and spacing value is mirrored from an existing personal design system rather than invented fresh for this project, to prove the same token system holds up across a third, very different surface: a 10-foot TV UI and a touch-first phone UI, instead of a typical web app. An internal <code>/designsystem</code> reference page later made that claim checkable rather than asserted: it renders the real theme and mixin values plus several actual shipped components (avatar, countdown ring, decade filter, help/feedback/share) pulled straight from the live code, not recreations, so the docs can't visually drift from the app. A clearly separated section below it sketches grounded-but-speculative components not yet built, each tied to a documented gap.`,
           },
         ],
       },
@@ -1117,12 +1117,13 @@ export const caseStudies: CaseStudy[] = [
             type: "bullets",
             items: [
               "Full realtime multiplayer game: lobby, 3-round structure, speed scoring, the block mechanic, podium.",
-              "1,089 original trivia questions across six decades (60s through 2010s), plus two standalone 300-question Deep Cuts topic packs (West Wing, Fallout), all sourced and fact-checked, written in a consistent dry/deadpan voice.",
+              "1,106 original trivia questions across six decades (60s through 2010s), plus three standalone Deep Cuts topic packs (West Wing, Fallout, The Simpsons) adding 434 more, all sourced and fact-checked, written in a consistent dry/deadpan voice.",
               "Deep Cuts: a second, non-decade game mode reusing the entire realtime engine with zero new game-loop code.",
               "Same-room Play Again rematch flow with question-repeat avoidance across games, plus a host Cancel Game escape hatch.",
-              "A browser-playable web version (no app install required), the primary way to play today. Android TV and Fire TV wrapper apps are both built and working; Android TV is just waiting on Google Play Console's TV app testing before public listing.",
+              "A browser-playable web version (no app install required), the primary way to play today. The Fire TV app is live on the Amazon Appstore; the same Android TV wrapper is built and working, waiting on Google Play Console's TV app testing before public listing.",
               "Full observability stack: Vercel Analytics + PostHog for product analytics, Sentry for error/performance tracking, Vercel Speed Insights for Core Web Vitals.",
               "All six decade visual themes (60s through 2010s), each a single override block on the same token-override system, proved out first on 80s.",
+              "An internal /designsystem reference page rendering real tokens and shipped components live from the app's own code, alongside a documented backlog of grounded-but-speculative components.",
             ],
           },
         ],
@@ -1133,7 +1134,7 @@ export const caseStudies: CaseStudy[] = [
           {
             type: "bullets",
             items: [
-              "Clear Google Play Console's TV app testing to publicly list Android TV (Fire TV, built on the same wrapper, is already shipped).",
+              "Clear Google Play Console's TV app testing to publicly list Android TV (Fire TV, built on the same wrapper, is already live on the Amazon Appstore).",
               "Server-side answer validation.",
               "Roku and Apple TV ports (stretch goals, after Android TV).",
               "Grow the Deep Cuts topic library from player-suggested categories submitted through the feedback form.",
