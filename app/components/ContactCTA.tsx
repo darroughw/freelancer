@@ -5,7 +5,7 @@ type ContactCTAProps = {
 };
 
 export default function ContactCTA({
-  title = "Phone home.",
+  title = "Cue it up.",
   sub = "Tell me about the gig. I reply within a day, usually with questions.",
   email = "darrough@gmail.com",
 }: ContactCTAProps) {
