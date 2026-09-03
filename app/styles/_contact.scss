@@ -74,78 +74,43 @@
   padding: 8px 10px;
 }
 
-// An "old TV / VHS" treatment on the contact photo: scanlines, a vignette,
-// and a cheap chromatic-aberration illusion made by blending two tinted,
-// offset copies of the same image over the base photo. Loosely inspired by
-// https://codepen.io/Mobius1/pen/ZNgwbr ("Old TV and VCR Effects in JS and
-// CSS"), reimplemented here in plain CSS to fit the site's REC/tape motif.
-.crt-photo {
+// A pure-CSS halftone/duotone print treatment on the contact photo, evoking
+// a screen-printed cassette J-card photo. Ported from a CodePen ("Pure CSS
+// halftone patterns: dots, lines, circles" by MackFitz): a tiled
+// radial-gradient dot overlay gets pushed from a soft gradient into crisp
+// black/white circles by a heavy `contrast()` filter on the composited
+// layer (image + overlay), then the whole thing is tinted red via
+// sepia/hue-rotate for the duotone (same tinting trick the site's old CRT
+// fringe effect used).
+.halftone-photo {
   position: relative;
   width: 220px;
   height: 220px;
   flex-shrink: 0;
   border-radius: 12px;
   overflow: hidden;
-  background: $ink;
-  animation: crt-flicker 6s infinite;
+  background: $cream;
+  filter: contrast(4.5) brightness(1.25) sepia(1) saturate(4) hue-rotate(-58deg);
 }
 
 @media (min-width: 641px) {
-  .crt-photo {
+  .halftone-photo {
     width: 280px;
     height: 280px;
   }
 }
 
-.crt-photo-img {
+.halftone-photo-img {
   object-fit: cover;
-  filter: grayscale(15%) contrast(1.1) brightness(0.95) saturate(0.9);
+  filter: grayscale(1) contrast(1.05);
 }
 
-.crt-photo-fringe {
+.halftone-dots {
   position: absolute;
   inset: 0;
-  background-image: url("/images/darrough-portrait.jpg");
-  background-size: cover;
-  background-position: center;
-  mix-blend-mode: screen;
-}
-
-.crt-photo-fringe--red {
-  filter: sepia(1) saturate(8) hue-rotate(-50deg) brightness(0.9);
-  transform: translateX(-2px);
-  opacity: 0.5;
-}
-
-.crt-photo-fringe--cyan {
-  filter: sepia(1) saturate(8) hue-rotate(150deg) brightness(0.9);
-  transform: translateX(2px);
-  opacity: 0.4;
-}
-
-.crt-scanlines {
-  position: absolute;
-  inset: 0;
-  background: repeating-linear-gradient(
-    to bottom,
-    oklch(0 0 0 / 0.2) 0,
-    oklch(0 0 0 / 0.2) 1px,
-    transparent 1px,
-    transparent 3px
-  );
-}
-
-.crt-vignette {
-  position: absolute;
-  inset: 0;
-  background: radial-gradient(ellipse at center, transparent 55%, oklch(0 0 0 / 0.55) 100%);
-}
-
-@keyframes crt-flicker {
-  0%, 92%, 100% { filter: brightness(1); }
-  93% { filter: brightness(1.12); }
-  94% { filter: brightness(0.9); }
-  95% { filter: brightness(1.04); }
+  background-image: radial-gradient(circle, oklch(0 0 0 / 0.55) 0%, transparent 70%);
+  background-size: 6px 6px;
+  background-repeat: repeat;
 }
 
 .footer-row {

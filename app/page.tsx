@@ -192,12 +192,9 @@ export default function Page() {
                 <a href="https://open.spotify.com/user/darrough?si=0c7cd65c69b347c2" className="contact-social-link">Spotify</a>
               </div>
             </div>
-            <div className="crt-photo" aria-hidden="true">
-              <Image src="/images/darrough-portrait.jpg" alt="" fill sizes="(max-width: 640px) 220px, 280px" className="crt-photo-img" />
-              <div className="crt-photo-fringe crt-photo-fringe--red" />
-              <div className="crt-photo-fringe crt-photo-fringe--cyan" />
-              <div className="crt-scanlines" />
-              <div className="crt-vignette" />
+            <div className="halftone-photo" aria-hidden="true">
+              <Image src="/images/darrough-portrait.jpg" alt="" fill sizes="(max-width: 640px) 220px, 280px" className="halftone-photo-img" />
+              <div className="halftone-dots" />
             </div>
           </div>
           <div className="footer-row">
