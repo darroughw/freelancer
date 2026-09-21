@@ -722,14 +722,14 @@ export const caseStudies: CaseStudy[] = [
     year: "2026",
     tools: "Next.js, TypeScript, Storybook",
     tags: ["AI/Agent UX", "Design Systems", "Accessibility", "TypeScript", "Prototyping"],
-    imgSrc: "/images/agent-console.png",
+    imgSrc: "/images/agent-console-dashboard.png",
     sections: [
       {
         heading: "Overview",
         body: [
           {
             type: "paragraph",
-            html: `Most AI-agent interfaces are designed for the happy path: a prompt goes in, a clean answer comes out. This project starts from a harder question: when an agent is doing work you can't watch happen minute by minute, what does the interface owe you so you still feel in control? I built a status console for a small fleet of background agents (health monitoring, warranty reconciliation, device provisioning, support triage) as a self-directed exploration of that question, in working code rather than a mockup.`,
+            html: `Most AI-agent interfaces are designed for the happy path: a prompt goes in, a clean answer comes out. This project starts from a harder question: when an agent is doing work you can't watch happen minute by minute, what does the interface owe you so you still feel in control? I built a status console for a small fleet of background agents monitoring a property portfolio (climate risk, automated valuation, title verification, underwriting exceptions) as a self-directed exploration of that question, in working code rather than a mockup.`,
           },
         ],
       },
@@ -746,6 +746,11 @@ export const caseStudies: CaseStudy[] = [
             type: "paragraph",
             html: `The easy engineering move is two states: it worked, or it didn't. But a result that's 58% confident and flagged for human review is a different situation than an upstream API timing out. Treating them the same trains users to distrust the agent even in the common case where it's still doing something useful, it just needs a second pair of eyes.`,
           },
+          { type: "subheading", text: "A read-only trust signal isn't a complete answer either." },
+          {
+            type: "paragraph",
+            html: `Confidence scores and task history tell a user what to think about an agent. They don't tell the user what to do about it. A pattern of low-confidence results is a judgment: this agent needs a human checking its work for a while. Without an action attached to that judgment, the interface has surfaced a problem and handed the user nothing to solve it with.`,
+          },
         ],
       },
       {
@@ -756,10 +761,10 @@ export const caseStudies: CaseStudy[] = [
             type: "paragraph",
             html: `The confidence indicator scores accuracy, completeness, and source quality separately instead of blending them into one number. That's a UX decision about what vocabulary you give someone to reason about AI output, not a progress-bar detail: "I'm not sure this is complete" and "I'm not sure this is accurate" call for different next actions.`,
           },
-          { type: "subheading", text: "Five states, not two" },
+          { type: "subheading", text: "Six states, not two" },
           {
             type: "paragraph",
-            html: `Every agent renders as one of five distinct states: idle, running, queued, needs-review, or error. Distinguishing needs-review from error was the deliberate part: a low-confidence result is a different trust situation than a failure, and collapsing them into one "something's wrong" treatment would erode more trust than necessary.`,
+            html: `Every agent renders as one of six distinct states: idle, running, queued, needs-review, error, or paused. Distinguishing needs-review from error was the deliberate part early on: a low-confidence result is a different trust situation than a failure, and collapsing them into one "something's wrong" treatment would erode more trust than necessary. Paused is the newer state, and it points the opposite direction: it's what the interface looks like after a human has already acted on distrust, not what it looks like while the system waits to be judged.`,
           },
           { type: "subheading", text: "Streaming output, and the same anxiety for screen reader users" },
           {
@@ -775,13 +780,35 @@ export const caseStudies: CaseStudy[] = [
             type: "images",
             items: [
               {
-                src: "/images/agent-console.png",
-                alt: "The agent status console showing four agents in different states (running, needs review, queued, error), a live output panel with Start/Stop/Reset controls, and a task queue",
-                width: 2606,
-                height: 1262,
+                src: "/images/agent-console-dashboard.png",
+                alt: "The Parcel Intelligence Console dashboard showing four agents in different states: AVM Valuation Agent running, Climate Risk Assessor paused with its confidence note, Title Verification Agent queued, and Underwriting Exception Triage in error with the actual failure reason surfaced",
+                width: 1280,
+                height: 1036,
               },
             ],
-            caption: "All five states are visible at once in normal use: Fleet Health Monitor running, Warranty Reconciliation needs review with its confidence note, Provisioning Assistant queued, and Support Ticket Triage in error with the actual failure reason surfaced.",
+            caption: "All six states are visible at once in normal use: AVM Valuation Agent running, Climate Risk Assessor paused and dimmed with its last confidence reading still visible, Title Verification Agent queued, and Underwriting Exception Triage in error with the actual failure reason surfaced.",
+          },
+          { type: "subheading", text: "Pause, without losing the agent's place" },
+          {
+            type: "paragraph",
+            html: `A confidence trend and a task history answer whether to trust an agent. They don't answer what to do next, so pausing lives right inside the same panel as the evidence that justifies it, not three clicks away in a settings screen. Pausing doesn't reset the agent to idle. It wraps whatever the agent was doing when the human intervened, so an agent paused mid-task resumes at its actual last-known progress, and one paused mid-queue resumes at its queue position. Pause means hold, not forget.`,
+          },
+          { type: "subheading", text: "Feedback at the size a judgment actually comes in" },
+          {
+            type: "paragraph",
+            html: `Pausing an agent is a coarse decision: stop the whole thing. Most trust judgments are smaller than that. Every entry in an agent's task history got its own thumbs-up and thumbs-down, independent of whether the agent gets paused, so a user can flag one bad result without indicting everything the agent has ever done.`,
+          },
+          {
+            type: "images",
+            items: [
+              {
+                src: "/images/agent-console-detail-panel.png",
+                alt: "The Climate Risk Assessor detail panel showing a confidence trend line, a 'Pause this agent' action beneath it, and a task history list with thumbs-up and thumbs-down controls on each entry",
+                width: 1280,
+                height: 900,
+              },
+            ],
+            caption: "The detail panel: the confidence trend, the \"Pause this agent\" action sitting directly beneath it, and task history with a thumbs-up already recorded on one entry.",
           },
         ],
       },
@@ -790,16 +817,7 @@ export const caseStudies: CaseStudy[] = [
         body: [
           {
             type: "paragraph",
-            html: `Each component's Storybook file documents all five states (idle, running, queued, needs-review, error) as explicit, reusable variants rather than one-off screens. That's what lets a team ship consistent AI-status treatment across a product instead of every screen inventing its own rules for what "uncertain" looks like.`,
-          },
-        ],
-      },
-      {
-        heading: "What's Still Open",
-        body: [
-          {
-            type: "paragraph",
-            html: `There's no agent-detail panel yet, and no visualized task-completion history. The next design problem is what a user does after they've decided to trust or distrust an agent, and this version doesn't answer that yet. It was built in close collaboration with Claude: working code, not a spec handed to someone else to build.`,
+            html: `Each component's Storybook file documents every state (idle, running, queued, needs-review, error, paused) as an explicit, reusable variant rather than a one-off screen. That's what lets a team ship consistent AI-status treatment across a product instead of every screen inventing its own rules for what "uncertain" looks like, or what happens after someone decides it's untrustworthy.`,
           },
         ],
       },
