@@ -13,10 +13,11 @@
   --color-cream: oklch(0.95 0.018 80);
   --color-cream-dark: oklch(0.90 0.02 75);
   --tape-gradient: linear-gradient(90deg, var(--color-mustard) 0%, var(--color-orange) 25%, var(--color-red) 50%, var(--color-red-deep) 75%, var(--color-plum) 100%);
+  --hero-gradient: linear-gradient(160deg, var(--color-mustard) 0%, var(--color-orange) 55%, var(--color-red) 100%);
 
   --font-paper: 'Archivo', -apple-system, sans-serif;
   --font-head: 'Archivo Black', 'Archivo', sans-serif;
-  --font-mono: 'Space Mono', monospace;
+  --font-mono: 'JetBrains Mono', monospace;
 
   --weight-paper-regular: 400;
   --weight-paper-bold: 700;
@@ -34,12 +35,25 @@
   --scale-head-xl: 44px;
   --scale-head-2xl: 56px;
   --scale-head-3xl: 64px;
+  --scale-head-4xl: 120px;
   --scale-mono-xs: 10px;
   --scale-mono-sm: 11px;
   --scale-mono-base: 12px;
   --scale-mono-lg: 13px;
 
   --breakpoint-mobile: 640px;
+  --container-width: 1240px;
+
+  --radius-sm: 4px;
+  --radius-pill: 100px;
+  --border-hairline: 1px;
+  --border-heavy: 2px;
+  --shadow-sticker: 3px 3px 0 var(--color-ink);
+
+  --motion-fast: 0.2s;
+  --motion-base: 0.3s;
+  --motion-slow: 0.5s;
+  --motion-ease: cubic-bezier(0.12, 0.23, 0.5, 1);
 
   --space-3: 3px;
   --space-4: 4px;
@@ -61,17 +75,4 @@
   --fluid-lg: clamp(32px, 8vw, 56px);
   --fluid-xl: clamp(40px, 8vw, 64px);
   --fluid-xxl: clamp(48px, 8vw, 72px);
-}
-
-:root[data-theme="vhs"] {
-  --color-red: oklch(0.58 0.20 29);
-  --color-red-text: oklch(0.42 0.14 21);
-  --color-red-deep: oklch(0.42 0.14 21);
-  --color-orange: oklch(0.66 0.17 47);
-  --color-mustard: oklch(0.78 0.16 78);
-  --color-teal: oklch(0.42 0.14 21);
-  --color-plum: oklch(0.31 0.09 340);
-  --color-ink: oklch(0.19 0 0);
-  --color-cream: oklch(0.96 0.02 88);
-  --color-cream-dark: oklch(0.92 0.03 89);
 }

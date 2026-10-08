@@ -12,9 +12,9 @@
         "comment": "Display headings, always set at weight 900. Sized fluidly with clamp() for large hero/section titles."
       },
       "mono": {
-        "value": "'Space Mono', monospace",
+        "value": "'JetBrains Mono', monospace",
         "type": "fontFamily",
-        "comment": "Section labels, meta text, tags, and tabular data. Almost always uppercase and letter-spaced in context."
+        "comment": "Section labels, meta text, tags, tabular data, and window-chrome title bars. Almost always uppercase and letter-spaced in context."
       }
     },
     "weight": {
@@ -37,7 +37,8 @@
         "lg": { "value": 28, "type": "fontSize", "comment": "Stat values, display accents" },
         "xl": { "value": 44, "type": "fontSize", "comment": "Case-study hero title, fluid clamp() max" },
         "2xl": { "value": 56, "type": "fontSize", "comment": "Contact hero title, fluid clamp() max" },
-        "3xl": { "value": 64, "type": "fontSize", "comment": "Masthead hero title, fluid clamp() max — the largest text on the site. xl/2xl/3xl stay distinct steps (not collapsed) because they carry real page-type hierarchy: home > contact > case study" }
+        "3xl": { "value": 64, "type": "fontSize", "comment": "Large display tier (big stat/number emphasis) — formerly the masthead size before 4xl was added" },
+        "4xl": { "value": 120, "type": "fontSize", "comment": "Masthead hero title, fluid clamp() max — the largest text on the site. Scaled down from the 150px typesafe.ai reference to fit the masthead column without forcing a container-width change. xl/2xl/3xl/4xl stay distinct steps (not collapsed) because they carry real page-type hierarchy: home masthead > contact > case study" }
       },
       "mono": {
         "xs": { "value": 10, "type": "fontSize", "comment": "Smallest tags" },

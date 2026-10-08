@@ -5,6 +5,7 @@ import { caseStudies } from "../../data/case-studies";
 import { extractFeaturedStat, slugifyHeading } from "../../data/case-study-helpers";
 import { SITE_URL, SITE_NAME } from "../../site-config";
 import SiteHeader from "../../components/SiteHeader";
+import ScrollReveal from "../../components/ScrollReveal";
 import CaseStudyBlock from "../../components/CaseStudyBlock";
 import CaseStudyNav from "../../components/CaseStudyNav";
 import CasePager from "../../components/CasePager";
@@ -121,7 +122,7 @@ export default function CaseStudyPage({ params }: { params: { slug: string } }) 
 
             <div className="case-sections-col">
               {study.sections.map((section) => (
-                <section key={section.heading} id={slugifyHeading(section.heading)} className="case-section">
+                <section key={section.heading} id={slugifyHeading(section.heading)} className="case-section" data-reveal>
                   <h2 className="case-heading">{section.heading}</h2>
                   {section.body.map((block, i) => {
                     const isPromotedStat =
@@ -139,9 +140,11 @@ export default function CaseStudyPage({ params }: { params: { slug: string } }) 
 
         <CasePager prev={prevStudy} next={nextStudy} />
 
-        <section className="contact-section">
+        <section className="contact-section" data-reveal>
           <ContactCTA />
         </section>
+
+        <ScrollReveal />
       </main>
     </div>
   );

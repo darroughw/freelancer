@@ -13,6 +13,10 @@
   color: $red;
   white-space: nowrap;
   margin: 0;
+
+  &::before {
+    content: "✣ ";
+  }
 }
 
 .section-rule {
@@ -28,6 +32,10 @@
   color: $cream;
   white-space: nowrap;
   margin: 0;
+
+  &::before {
+    content: "✣ ";
+  }
 }
 
 .section-rule-light {

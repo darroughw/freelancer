@@ -23,16 +23,18 @@ export default function FeedbackPage() {
 
       <main id="main-content">
         <section className="masthead">
-          <div className="masthead-eyebrow">◉ REC · SIDE D</div>
-          <h1 className="masthead-title">
-            Tell me it&apos;s
-            <br />
-            <span className="masthead-accent">rough.</span>
-          </h1>
-          <p className="masthead-sub">
-            You know me: be honest. Broken layout, confusing copy, an ugly color, whatever.
-            I&apos;d rather hear it from you than a recruiter.
-          </p>
+          <div className="masthead-inner">
+            <div className="eyebrow">$ cd /feedback</div>
+            <h1 className="masthead-title">
+              Tell me it&apos;s
+              <br />
+              <span className="masthead-accent">rough.</span>
+            </h1>
+            <p className="masthead-sub">
+              You know me: be honest. Broken layout, confusing copy, an ugly color, whatever.
+              I&apos;d rather hear it from you than a recruiter.
+            </p>
+          </div>
         </section>
 
         <section className="feedback-section">

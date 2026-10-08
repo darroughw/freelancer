@@ -1,60 +1,106 @@
+@use "sass:list";
 @use "./theme" as *;
 
+// Full-bleed hero: the background spans the entire viewport width, while
+// .masthead-inner caps the actual content to the site's wide container and
+// centers it — splitting these two concerns is what makes the hero reach
+// 100% of the viewport on wide desktop screens instead of stopping at the
+// content column's own max-width.
 .masthead {
-  padding: clamp(32px, 8vw, 64px) clamp(16px, 4vw, 32px) clamp(28px, 6vw, 48px);
-  max-width: 720px;
+  position: relative;
+  background:
+    url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='8' height='8'%3E%3Ccircle cx='4' cy='4' r='1.4' fill='black' fill-opacity='0.12'/%3E%3C/svg%3E"),
+    var(--hero-gradient);
+  background-size: 8px 8px, 100% 100%;
+  border-bottom: $border-heavy solid $ink;
 }
 
-.masthead-eyebrow {
-  font: 700 $scale-mono-base $mono-font;
-  letter-spacing: 0.08em;
-  color: $red;
-  margin-bottom: 20px;
+// Cursor-following spotlight on the dot texture — see DotSpotlight.tsx. A
+// second, bolder copy of the same dot pattern sits on top of the base one,
+// revealed through a *chain* of soft circles (head + 5 trailing links) that
+// follow the mouse, not just one — each link eases toward the link ahead of
+// it rather than straight at the cursor, which is what gives it a tapering
+// comet-tail shape instead of a single dot chasing the pointer. Circles
+// shrink and fade (via the mask stop's alpha, not just opacity) from head to
+// tail. Positions are eased in JS (a requestAnimationFrame chain, see the
+// component) and written as plain --mxN/--myN — animating these via a CSS
+// transition instead wasn't rendering reliably through `mask-image`, so the
+// component owns the smoothing and this just reads already-eased values.
+// Hidden until hovered, and the component skips attaching anything at all
+// under prefers-reduced-motion.
+.masthead-dot-spotlight {
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+  opacity: 0;
+  background: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='8' height='8'%3E%3Ccircle cx='4' cy='4' r='2.2' fill='black' fill-opacity='0.5'/%3E%3C/svg%3E");
+  background-size: 8px 8px;
+  $trail-stops:
+    140px 1,
+    115px 0.85,
+    95px 0.7,
+    78px 0.55,
+    62px 0.4,
+    48px 0.28;
+
+  $mask-layers: ();
+  @for $i from 1 through list.length($trail-stops) {
+    $stop: list.nth($trail-stops, $i);
+    $size: list.nth($stop, 1);
+    $alpha: list.nth($stop, 2);
+    $n: $i - 1;
+    $mask-layers: list.append(
+      $mask-layers,
+      radial-gradient(circle #{$size} at var(--mx#{$n}, 50%) var(--my#{$n}, 50%), rgba(0, 0, 0, $alpha) 0%, transparent 100%),
+      comma
+    );
+  }
+  -webkit-mask-image: $mask-layers;
+  mask-image: $mask-layers;
+  transition: opacity $motion-fast $motion-ease;
+
+  .masthead:hover & {
+    opacity: 1;
+  }
+}
+
+.masthead-inner {
+  position: relative;
+  padding: clamp(32px, 8vw, 64px) clamp(16px, 4vw, 32px) clamp(28px, 6vw, 48px);
+  max-width: $container-width;
+  margin: 0 auto;
 }
 
 .masthead-title {
-  font: 900 clamp(34px, 9vw, $scale-head-3xl)/1.06 $head-font;
+  font: 900 clamp(40px, 11vw, $scale-head-4xl)/0.95 $head-font;
+  color: $ink;
+  text-transform: uppercase;
+  letter-spacing: -0.02em;
   margin: 0 0 20px;
-  letter-spacing: -0.01em;
+  max-width: 14ch;
 }
 
+// Deliberately the same ink as the rest of the headline, not a separate
+// accent hue: the word sits at different points along the hero gradient
+// depending on viewport width and text wrap, and ink is the one color
+// that stays safely readable across the whole mustard→orange→red span
+// (verified 3.74:1–8.95:1) — a second text color would only be safe over
+// part of that range.
 .masthead-accent {
-  color: $red;
+  color: $ink;
 }
 
 .masthead-sub {
   font: 500 clamp($scale-paper-base, 3vw, $scale-paper-lg)/1.6 $paper-font;
   max-width: 480px;
-  color: color-mix(in oklch, $ink 78%, transparent);
-  margin: 0 0 28px;
+  color: color-mix(in oklch, $ink 82%, transparent);
+  margin: 0;
 }
 
-.stripe-row {
-  display: flex;
-  gap: 5px;
-  height: 12px;
-  max-width: 360px;
+.eyebrow {
+  font: 700 $scale-mono-base $mono-font;
+  letter-spacing: 0.04em;
+  color: $ink;
+  margin: 0 0 20px;
 }
 
-.stripe-segment {
-  flex: 1;
-
-  &--red { background: $red; }
-  &--orange { background: $orange; }
-  &--mustard { background: $mustard; }
-  &--teal { background: $teal; }
-  &--plum { background: $plum; }
-  &--ink { background: $ink; }
-
-  // Reorder into the tape box's actual gold-to-plum sunset sequence, purely
-  // via flex order (no DOM change). Teal has no counterpart on the box, so
-  // rather than show it recolored to an off-box hue, it's hidden outright.
-  [data-theme="vhs"] & {
-    &--mustard { order: 1; }
-    &--orange { order: 2; }
-    &--red { order: 3; }
-    &--plum { order: 4; }
-    &--ink { order: 5; }
-    &--teal { display: none; }
-  }
-}

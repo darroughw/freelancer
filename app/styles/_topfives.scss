@@ -10,14 +10,9 @@
 }
 
 .top-five-card {
-  background: $cream-dark;
-  border-radius: 12px;
-  padding: 20px;
-}
-
-.top-five-card-title {
-  font: 800 $scale-head-xs $head-font;
-  margin: 0 0 14px;
+  .window-body {
+    padding: 20px;
+  }
 }
 
 .top-five-list {

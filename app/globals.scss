@@ -1,4 +1,6 @@
+@use "./styles/theme" as *;
 @use "./styles/base";
+@use "./styles/window";
 @use "./styles/header";
 @use "./styles/masthead";
 @use "./styles/section";
@@ -47,18 +49,18 @@ a {
   -webkit-tap-highlight-color: transparent;
 }
 
-// A soft edge vignette for the VHS theme, echoing the worn box-photo look.
-// Fixed to the viewport (not .page) so it reads as a constant frame while
-// scrolling, rather than stretching into invisibility over a tall page.
-:root[data-theme="vhs"]::after {
-  content: "";
-  position: fixed;
-  inset: 0;
-  z-index: 5;
-  pointer-events: none;
-  background: radial-gradient(
-    ellipse at center,
-    transparent 55%,
-    color-mix(in oklch, var(--color-ink) 20%, transparent) 100%
-  );
+// Subtle fade/rise as each section scrolls into view — see useScrollReveal.
+// Gated behind body.reveal-ready (added by that hook, client-only) so
+// content never depends on JS running to become visible: without the
+// "reveal-ready" class, [data-reveal] elements are just normal, always-on
+// content.
+body.reveal-ready [data-reveal] {
+  opacity: 0;
+  transform: translateY(20px);
+  transition: opacity $motion-base $motion-ease, transform $motion-base $motion-ease;
+
+  &.is-visible {
+    opacity: 1;
+    transform: none;
+  }
 }

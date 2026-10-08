@@ -2,7 +2,7 @@
   "source": ["tokens/**/*.json"],
   "log": {
     "warnings": "disabled",
-    "_comment": "Style Dictionary's built-in name-collision check is a false positive here: color.red/vhs.color.red (and similarly typography.font.head/weight.head/scale.head) intentionally share a terse leaf name across separate branches of the tree. The custom formats in build-tokens.mjs read each branch by its full path (dictionary.tokens.vhs.color.red, etc.), not by this auto-generated name, so there's no actual collision in the output."
+    "_comment": "Style Dictionary's built-in name-collision check is a false positive here: typography.font.head/weight.head/scale.head intentionally share a terse leaf name across separate branches of the tree. The custom formats in build-tokens.mjs read each branch by its full path (dictionary.tokens.typography.weight.head, etc.), not by this auto-generated name, so there's no actual collision in the output."
   },
   "platforms": {
     "scss": {

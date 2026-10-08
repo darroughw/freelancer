@@ -30,7 +30,7 @@ in TS for future use.
     <tr><td><code>typography.weight.head</code></td><td><code>$weight-head</code></td><td><code>--weight-head</code></td><td><code>tokens.typography.weight.head</code></td></tr>
     <tr><td><code>typography.weight.mono</code></td><td><code>$weight-mono</code></td><td><code>--weight-mono</code></td><td><code>tokens.typography.weight.mono</code></td></tr>
     <tr><td><code>typography.scale.paper.{'{'}xs,sm,base,lg{'}'}</code></td><td><code>$scale-paper-{'*'}</code></td><td><code>--scale-paper-{'*'}</code></td><td><code>tokens.typography.scale.paper</code></td></tr>
-    <tr><td><code>typography.scale.head.{'{'}xs,sm,base,lg,xl,2xl,3xl{'}'}</code></td><td><code>$scale-head-{'*'}</code></td><td><code>--scale-head-{'*'}</code></td><td><code>tokens.typography.scale.head</code></td></tr>
+    <tr><td><code>typography.scale.head.{'{'}xs,sm,base,lg,xl,2xl,3xl,4xl{'}'}</code></td><td><code>$scale-head-{'*'}</code></td><td><code>--scale-head-{'*'}</code></td><td><code>tokens.typography.scale.head</code></td></tr>
     <tr><td><code>typography.scale.mono.{'{'}xs,sm,base,lg{'}'}</code></td><td><code>$scale-mono-{'*'}</code></td><td><code>--scale-mono-{'*'}</code></td><td><code>tokens.typography.scale.mono</code></td></tr>
   </tbody>
 </table>
@@ -58,24 +58,29 @@ text. Used at weights 400–800 depending on emphasis.
 
 `'Archivo Black', 'Archivo', sans-serif` — display headings, always set at
 weight 900. Sized fluidly with `clamp()` for large hero/section titles. The
-three largest steps (`xl`/`2xl`/`3xl`) stay distinct rather than collapsing
-into one — they carry real page-type hierarchy (masthead > contact >
-case study), not unmanaged sprawl.
+four largest steps (`xl`/`2xl`/`3xl`/`4xl`) stay distinct rather than
+collapsing into one — they carry real page-type hierarchy (masthead >
+contact > case study), not unmanaged sprawl. `4xl` (120px) is the masthead
+headline size added for the typesafe.ai-inspired redesign, uppercase and
+tight-tracked — see Letter-spacing below.
 
 <Typeset
   fontFamily="'Archivo Black', 'Archivo', sans-serif"
   fontWeight={900}
-  fontSizes={[16, 18, 22, 28, 44, 56, 64]}
+  fontSizes={[16, 18, 22, 28, 44, 56, 64, 120]}
   sampleText="Sample heading"
 />
 
 ## Mono — `$mono-font`
 
-`'Space Mono', monospace` — section labels, meta text, tags, and tabular
-data. Almost always uppercase and letter-spaced in context.
+`'JetBrains Mono', monospace` — section labels, meta text, tags, tabular
+data, and window-chrome title bars. Almost always uppercase and
+letter-spaced in context. Swapped from Space Mono in the redesign — same
+loading mechanism (a plain `<link>` tag in `app/layout.tsx`, not `next/font`),
+chosen to read closer to a real terminal face.
 
 <Typeset
-  fontFamily="'Space Mono', monospace"
+  fontFamily="'JetBrains Mono', monospace"
   fontWeight={600}
   fontSizes={[10, 11, 12, 13]}
   sampleText="SECTION LABEL · META INFO"
@@ -93,6 +98,6 @@ small uppercase mono labels readable, so it clusters there:
   <tbody>
     <tr><td><code>0.03em</code>–<code>0.05em</code></td><td>Body-adjacent labels (case-study meta, stat labels)</td></tr>
     <tr><td><code>0.08em</code>–<code>0.1em</code></td><td>Small uppercase mono labels (nav pills, section eyebrows, tags)</td></tr>
-    <tr><td><code>-0.01em</code></td><td>One negative case: large display headings, where default tracking reads slightly loose at big sizes</td></tr>
+    <tr><td><code>-0.02em</code></td><td>Negative tracking: large uppercase display headings (the masthead title), where default tracking reads slightly loose at big sizes</td></tr>
   </tbody>
 </table>

@@ -35,4 +35,18 @@ beforeEach(() => {
   MockIntersectionObserver.instances = [];
   // @ts-expect-error - test double, not a full IntersectionObserver implementation
   global.IntersectionObserver = MockIntersectionObserver;
+
+  // jsdom doesn't implement matchMedia at all. Default to "no preference"
+  // (matches: false) so components that branch on prefers-reduced-motion
+  // exercise their normal-motion path by default in tests.
+  global.matchMedia = (query: string) => ({
+    matches: false,
+    media: query,
+    onchange: null,
+    addListener: () => {},
+    removeListener: () => {},
+    addEventListener: () => {},
+    removeEventListener: () => {},
+    dispatchEvent: () => false,
+  });
 });

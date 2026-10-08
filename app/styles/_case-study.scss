@@ -205,21 +205,16 @@
 }
 
 .case-stat {
-  background: $cream-dark;
-  border-radius: 12px;
-  padding: 16px 20px;
   min-width: 140px;
+
+  .window-body {
+    padding: 16px 20px;
+  }
 }
 
 .case-stat-value {
   font: 900 $scale-head-lg $head-font;
   color: $red;
-}
-
-.case-stat-label {
-  font: 600 $scale-mono-sm $mono-font;
-  color: color-mix(in oklch, $ink 75%, transparent);
-  margin-top: 4px;
 }
 
 .case-images {
@@ -236,7 +231,8 @@
 .case-images-item {
   height: 360px;
   max-width: 100%;
-  border-radius: 12px;
+  border-radius: $radius-sm;
+  border: $border-hairline solid $ink;
   overflow: hidden;
   background: $cream-dark;
 
@@ -271,14 +267,16 @@
   flex-direction: column;
   gap: 6px;
   padding: 20px;
-  border-radius: 12px;
-  background: $cream-dark;
+  border-radius: $radius-sm;
+  border: $border-hairline solid $ink;
+  background: $cream;
   text-decoration: none;
   color: $ink;
-  transition: opacity 0.2s ease;
+  transition: transform $motion-fast $motion-ease, box-shadow $motion-fast $motion-ease;
 
   &:hover {
-    opacity: 0.8;
+    transform: translate(-3px, -3px);
+    box-shadow: $shadow-sticker;
   }
 
   &:focus-visible {

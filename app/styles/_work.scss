@@ -31,15 +31,12 @@
   flex-direction: column;
   text-decoration: none;
   color: $ink;
-  border-radius: 10px;
-  overflow: hidden;
-  box-shadow: 0 12px 26px color-mix(in oklch, $ink 14%, transparent);
-  transition: transform 0.2s ease-out, box-shadow 0.2s ease-out;
+  transition: transform $motion-fast $motion-ease, box-shadow $motion-fast $motion-ease;
 
   &:hover,
   &:focus-visible {
-    transform: translateY(-4px);
-    box-shadow: 0 20px 40px color-mix(in oklch, $ink 20%, transparent);
+    transform: translate(-3px, -3px);
+    box-shadow: $shadow-sticker;
   }
 
   &:focus-visible {
@@ -52,6 +49,7 @@
   position: relative;
   height: 130px;
   background: $cream-dark;
+  border-bottom: $border-hairline solid $ink;
   overflow: hidden;
 }
 
@@ -68,20 +66,7 @@
   }
 }
 
-.card-num {
-  position: absolute;
-  top: 8px;
-  left: 8px;
-  font: 700 $scale-mono-sm $mono-font;
-  color: $cream;
-  background: color-mix(in oklch, $ink 70%, transparent);
-  padding: 3px 7px;
-  border-radius: 4px;
-}
-
 .card-face {
-  background: $cream;
-  padding: 16px;
   display: flex;
   flex-direction: column;
   gap: 10px;
@@ -113,8 +98,13 @@
 .card-tag {
   font: 600 $scale-mono-xs $mono-font;
   padding: 4px 8px;
-  border-radius: 100px;
-  background: $cream-dark;
+  border-radius: $radius-pill;
+  border: $border-hairline solid $ink;
+  background: transparent;
+
+  &::before {
+    content: "+ ";
+  }
 }
 
 .card-arrow {
@@ -126,10 +116,6 @@
 .card--featured {
   .card-img-wrap {
     height: 220px;
-  }
-
-  .card-num {
-    font: 700 $scale-mono-base $mono-font;
   }
 
   .card-title {
@@ -146,10 +132,15 @@
     display: grid;
     grid-template-columns: 1.3fr 1fr;
     min-height: 340px;
-    box-shadow: 0 16px 34px color-mix(in oklch, $ink 16%, transparent);
+
+    .window-titlebar {
+      grid-column: 1 / -1;
+    }
 
     .card-img-wrap {
       height: 100%;
+      border-bottom: none;
+      border-right: $border-hairline solid $ink;
     }
 
     .card-face {

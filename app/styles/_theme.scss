@@ -2,14 +2,10 @@
 // Source: tokens/*.json. Regenerate with `npm run build:tokens`.
 
 // Colors are CSS custom properties (not plain Sass values) so the palette can
-// swap at runtime via [data-theme], not just at build time. Each Sass variable
-// below is just an alias to its custom property, so every partial that does
-// `@use "./theme" as *` and writes `background: $red` keeps working unchanged
-// — the indirection is invisible to them.
-//
-// The VHS override keeps the exact same lightness (L) per token as the default
-// theme, only shifting chroma/hue for a punchier look — that preserves the
-// contrast ratios the a11y audit already verified (see $red-text/$red-deep).
+// still swap at runtime if a future theme is added, not just at build time.
+// Each Sass variable below is just an alias to its custom property, so every
+// partial that does `@use "./theme" as *` and writes `background: $ink`
+// keeps working unchanged — the indirection is invisible to them.
 :root {
   --color-red: oklch(0.58 0.17 27);
   --color-red-text: oklch(0.46 0.17 27);
@@ -22,23 +18,7 @@
   --color-cream: oklch(0.95 0.018 80);
   --color-cream-dark: oklch(0.90 0.02 75);
   --tape-gradient: linear-gradient(90deg, var(--color-mustard) 0%, var(--color-orange) 25%, var(--color-red) 50%, var(--color-red-deep) 75%, var(--color-plum) 100%);
-}
-
-// "Dynamicron T-120" — colors sampled directly off the Sony tape box art
-// (converted from the box's hex to oklch), not a palette merely inspired by
-// it. Box has no teal, so that token is aliased to the maroon band and its
-// stripe-row swatch is hidden in Storybook rather than showing an off-box hue.
-:root[data-theme="vhs"] {
-  --color-red: oklch(0.58 0.20 29); // #D6342A, Dynamicron T-120 box art gradient stripe band 3
-  --color-red-text: oklch(0.42 0.14 21); // #8C1F2A, box gradient stripe band 4 (maroon)
-  --color-red-deep: oklch(0.42 0.14 21); // Same maroon band, reused as background
-  --color-orange: oklch(0.66 0.17 47); // #E36A1E, box gradient stripe band 2
-  --color-mustard: oklch(0.78 0.16 78); // #F2A900, box gradient stripe band 1 (gold)
-  --color-teal: oklch(0.42 0.14 21); // No teal on the box; aliased to the maroon band, swatch hidden in Storybook
-  --color-plum: oklch(0.31 0.09 340); // #4B1B3D, box gradient stripe band 5
-  --color-ink: oklch(0.19 0 0); // #141414, the box's printed black
-  --color-cream: oklch(0.96 0.02 88); // #F5F0E4, the box's paper white
-  --color-cream-dark: oklch(0.92 0.03 89); // #EAE3D1
+  --hero-gradient: linear-gradient(160deg, var(--color-mustard) 0%, var(--color-orange) 55%, var(--color-red) 100%);
 }
 
 $red: var(--color-red);
@@ -54,7 +34,7 @@ $cream-dark: var(--color-cream-dark);
 
 $paper-font: 'Archivo', -apple-system, sans-serif;
 $head-font: 'Archivo Black', 'Archivo', sans-serif;
-$mono-font: 'Space Mono', monospace;
+$mono-font: 'JetBrains Mono', monospace;
 
 // Type scale — consumed directly by app/styles/*.scss (font: weight $scale-family-step family).
 $scale-paper-xs: 11px;
@@ -68,10 +48,26 @@ $scale-head-lg: 28px;
 $scale-head-xl: 44px;
 $scale-head-2xl: 56px;
 $scale-head-3xl: 64px;
+$scale-head-4xl: 120px;
 $scale-mono-xs: 10px;
 $scale-mono-sm: 11px;
 $scale-mono-base: 12px;
 $scale-mono-lg: 13px;
+
+// Shape — radius/border/shadow for the flat, hard-bordered window-chrome language.
+$radius-sm: 4px;
+$radius-pill: 100px;
+$border-hairline: 1px;
+$border-heavy: 2px;
+$shadow-sticker: 3px 3px 0 var(--color-ink);
+
+// Motion durations/easing.
+$motion-fast: 0.2s;
+$motion-base: 0.3s;
+$motion-slow: 0.5s;
+$motion-ease: cubic-bezier(0.12, 0.23, 0.5, 1);
+
+$container-width: 1240px;
 
 // Additional tokens below — not yet consumed anywhere in app/styles/*.scss,
 // available for future use (see Foundations → Typography/Spacing & Layout).

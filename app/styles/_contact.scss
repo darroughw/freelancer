@@ -13,54 +13,53 @@
   padding-bottom: 108px;
 }
 
-.contact-grid {
-  display: grid;
-  grid-template-columns: 1fr auto;
-  align-items: start;
-  gap: 40px;
-}
-
 .contact-main {
-  min-width: 0;
+  max-width: 640px;
 }
 
-.contact-label {
-  font: 700 $scale-mono-base $mono-font;
-  letter-spacing: 0.08em;
-  margin-bottom: 18px;
+.contact-window .window-body {
+  padding: clamp(20px, 5vw, 32px);
 }
 
 .contact-title {
-  font: 900 clamp(32px, 8vw, $scale-head-2xl)/1.0 $head-font;
+  font: 900 clamp(28px, 7vw, $scale-head-2xl)/1.0 $head-font;
+  color: $ink;
   margin: 0 0 18px;
 }
 
 .contact-sub {
   font: 500 clamp($scale-paper-base, 3vw, $scale-paper-lg)/1.5 $paper-font;
+  color: color-mix(in oklch, $ink 78%, transparent);
   max-width: 420px;
   margin: 0 0 28px;
 }
 
 .contact-email-wrap {
-  margin-bottom: 28px;
+  margin-bottom: 0;
 }
 
 .contact-email-btn {
   display: inline-flex;
   font: 700 $scale-paper-base $paper-font;
   text-decoration: none;
-  color: $ink;
-  background: $cream;
+  color: $cream;
+  background: $red-deep;
   padding: 15px 24px;
-  border-radius: 100px;
+  border-radius: $radius-pill;
   min-height: 44px;
   align-items: center;
+  transition: background-color $motion-fast $motion-ease;
+
+  &:hover {
+    background: $red-text;
+  }
 }
 
 .contact-social-row {
   display: flex;
   gap: 8px;
   flex-wrap: wrap;
+  margin-top: 24px;
   margin-bottom: 32px;
 }
 
@@ -72,45 +71,6 @@
   display: flex;
   align-items: center;
   padding: 8px 10px;
-}
-
-// A pure-CSS halftone/duotone print treatment on the contact photo, evoking
-// a screen-printed cassette J-card photo. Ported from a CodePen ("Pure CSS
-// halftone patterns: dots, lines, circles" by MackFitz): a tiled
-// radial-gradient dot overlay gets pushed from a soft gradient into crisp
-// black/white circles by a heavy `contrast()` filter on the composited
-// layer (image + overlay), then the whole thing is tinted red via
-// sepia/hue-rotate for the duotone (same tinting trick the site's old CRT
-// fringe effect used).
-.halftone-photo {
-  position: relative;
-  width: 220px;
-  height: 220px;
-  flex-shrink: 0;
-  border-radius: 12px;
-  overflow: hidden;
-  background: $cream;
-  filter: contrast(4.5) brightness(1.25) sepia(1) saturate(4) hue-rotate(-58deg);
-}
-
-@media (min-width: 641px) {
-  .halftone-photo {
-    width: 280px;
-    height: 280px;
-  }
-}
-
-.halftone-photo-img {
-  object-fit: cover;
-  filter: grayscale(1) contrast(1.05);
-}
-
-.halftone-dots {
-  position: absolute;
-  inset: 0;
-  background-image: radial-gradient(circle, oklch(0 0 0 / 0.55) 0%, transparent 70%);
-  background-size: 6px 6px;
-  background-repeat: repeat;
 }
 
 .footer-row {
@@ -140,50 +100,5 @@
   &:hover {
     opacity: 1;
     text-decoration: underline;
-  }
-}
-
-// Deliberately unlabeled — a small found-it-or-you-didn't toggle rather than
-// a call-out control. A generous tap target sits around a much smaller dot
-// so it's still comfortably clickable without looking like a button.
-.theme-toggle {
-  width: 20px;
-  height: 20px;
-  padding: 0;
-  border: none;
-  background: none;
-  cursor: pointer;
-  display: inline-flex;
-  align-items: center;
-  justify-content: center;
-  border-radius: 50%;
-  align-self: center;
-
-  &::after {
-    content: "";
-    width: 7px;
-    height: 7px;
-    border-radius: 50%;
-    background: color-mix(in oklch, $cream 35%, transparent);
-  }
-
-  &:hover::after {
-    background: $cream;
-  }
-
-  &:focus-visible {
-    outline: 2px solid $cream;
-    outline-offset: 2px;
-  }
-
-  [data-theme="vhs"] &::after {
-    background: var(--tape-gradient);
-  }
-}
-
-@media (max-width: 640px) {
-  .contact-grid {
-    grid-template-columns: 1fr;
-    gap: 28px;
   }
 }

@@ -4,7 +4,10 @@ import type { CaseStudy } from "../data/case-studies";
 
 export default function WorkCard({ study, featured = false }: { study: CaseStudy; featured?: boolean }) {
   return (
-    <Link href={`/work/${study.slug}`} className={`shelf-card card${featured ? " card--featured" : ""}`}>
+    <Link href={`/work/${study.slug}`} className={`shelf-card card window${featured ? " card--featured" : ""}`}>
+      <div className="window-titlebar">
+        <span className="window-titlebar-label">{study.num}.case</span>
+      </div>
       <div className="card-img-wrap">
         <Image
           src={study.imgSrc}
@@ -13,9 +16,8 @@ export default function WorkCard({ study, featured = false }: { study: CaseStudy
           sizes={featured ? "(max-width: 640px) 100vw, 640px" : "(max-width: 640px) 100vw, 220px"}
           className="card-img"
         />
-        <span className="card-num">{study.num}</span>
       </div>
-      <div className="card-face">
+      <div className="card-face window-body">
         <h3 className="card-title">{study.title}</h3>
         <p className="card-desc">{study.desc}</p>
         <div className="card-meta">{study.role} · {study.year}</div>

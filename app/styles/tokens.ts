@@ -1,11 +1,10 @@
 // GENERATED FILE — do not edit directly.
 // Source: tokens/*.json. Regenerate with `npm run build:tokens`.
 
-// Static default-theme values for runtime consumers (e.g. Recharts colors)
-// that can't use CSS custom properties directly. These do NOT react to the
-// [data-theme="vhs"] toggle — for theme-reactive styling, use the CSS custom
-// properties (var(--color-red)) via SCSS/CSS instead, either from this file's
-// generated siblings (_theme.scss, tokens.css) or by reading
+// Static values for runtime consumers (e.g. Recharts colors) that can't
+// use CSS custom properties directly. For theme-reactive styling, use the
+// CSS custom properties (var(--color-ink)) via SCSS/CSS instead, either from
+// this file's generated siblings (_theme.scss, tokens.css) or by reading
 // getComputedStyle(document.documentElement) at runtime.
 
 export const tokens = {
@@ -21,26 +20,15 @@ export const tokens = {
     cream: "oklch(0.95 0.018 80)",
     creamDark: "oklch(0.90 0.02 75)",
   },
-  colorVhs: {
-    red: "oklch(0.58 0.20 29)",
-    redText: "oklch(0.42 0.14 21)",
-    redDeep: "oklch(0.42 0.14 21)",
-    orange: "oklch(0.66 0.17 47)",
-    mustard: "oklch(0.78 0.16 78)",
-    teal: "oklch(0.42 0.14 21)",
-    plum: "oklch(0.31 0.09 340)",
-    ink: "oklch(0.19 0 0)",
-    cream: "oklch(0.96 0.02 88)",
-    creamDark: "oklch(0.92 0.03 89)",
-  },
   gradient: {
     tape: "linear-gradient(90deg, var(--color-mustard) 0%, var(--color-orange) 25%, var(--color-red) 50%, var(--color-red-deep) 75%, var(--color-plum) 100%)",
+    hero: "linear-gradient(160deg, var(--color-mustard) 0%, var(--color-orange) 55%, var(--color-red) 100%)",
   },
   typography: {
     font: {
       paper: "'Archivo', -apple-system, sans-serif",
       head: "'Archivo Black', 'Archivo', sans-serif",
-      mono: "'Space Mono', monospace",
+      mono: "'JetBrains Mono', monospace",
     },
     weight: {
       paperRegular: 400,
@@ -63,6 +51,7 @@ export const tokens = {
         "xl": 44,
         "2xl": 56,
         "3xl": 64,
+        "4xl": 120,
       },
       mono: {
         "xs": 10,
@@ -72,8 +61,24 @@ export const tokens = {
       },
     },
   },
+  shape: {
+    radius: {
+      sm: "4px",
+      pill: "100px",
+    },
+    border: {
+      hairline: "1px",
+      heavy: "2px",
+    },
+    motion: {
+      fast: "0.2s",
+      base: "0.3s",
+      slow: "0.5s",
+    },
+  },
   spacing: {
     breakpointMobile: "640px",
+    container: "1240px",
     space: {
       "3": "3px",
       "4": "4px",

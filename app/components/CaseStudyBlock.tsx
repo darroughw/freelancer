@@ -43,9 +43,13 @@ export default function CaseStudyBlock({ block }: { block: CaseStudyBlockData })
       return (
         <div className="case-stat-row">
           {block.items.map((s) => (
-            <div key={s.label} className="case-stat">
-              <div className="case-stat-value">{s.value}</div>
-              <div className="case-stat-label">{s.label}</div>
+            <div key={s.label} className="window case-stat">
+              <div className="window-titlebar">
+                <span className="window-titlebar-label">{s.label}</span>
+              </div>
+              <div className="window-body">
+                <div className="case-stat-value">{s.value}</div>
+              </div>
             </div>
           ))}
         </div>
