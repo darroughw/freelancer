@@ -10,11 +10,8 @@
   padding: 14px clamp(16px, 4vw, 32px);
   background: $ink;
   color: $cream;
-
-  [data-theme="vhs"] & {
-    border-bottom: 4px solid transparent;
-    border-image: var(--tape-gradient) 1;
-  }
+  border-bottom: $border-heavy solid transparent;
+  border-image: var(--tape-gradient) 1;
 }
 
 .logo-mark {
@@ -41,19 +38,14 @@
   color: $ink;
   background: $mustard;
   padding: 10px 16px;
-  border-radius: 100px;
+  border-radius: $radius-pill;
   min-height: 44px;
   display: flex;
   align-items: center;
   white-space: nowrap;
+  transition: background-color $motion-fast $motion-ease;
 
-  [data-theme="vhs"] &:hover {
-    background-image: repeating-linear-gradient(
-      135deg,
-      color-mix(in oklch, $ink 25%, transparent) 0,
-      color-mix(in oklch, $ink 25%, transparent) 2px,
-      transparent 2px,
-      transparent 5px
-    );
+  &:hover {
+    background: color-mix(in oklch, $mustard 80%, $cream);
   }
 }

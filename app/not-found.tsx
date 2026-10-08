@@ -14,12 +14,14 @@ export default function NotFound() {
 
       <main>
         <section className="masthead">
-          <div className="masthead-eyebrow">◉ REC · SIDE C</div>
-          <h1 className="masthead-title">Tape&apos;s run out.</h1>
-          <p className="masthead-sub">
-            This page doesn&apos;t exist, but the rest of the site does. Let&apos;s get you back.
-          </p>
-          <Link href="/" className="not-found-cta">Back to home ↗</Link>
+          <div className="masthead-inner">
+            <div className="eyebrow">$ cd /404</div>
+            <h1 className="masthead-title">Window not found.</h1>
+            <p className="masthead-sub">
+              This page doesn&apos;t exist, but the rest of the site does. Let&apos;s get you back.
+            </p>
+            <Link href="/" className="not-found-cta">Back to home ↗</Link>
+          </div>
         </section>
       </main>
     </div>

@@ -4,8 +4,15 @@ import { caseStudies } from "../../data/case-studies";
 import { extractFeaturedStat, slugifyHeading } from "../../data/case-study-helpers";
 import CaseStudyPage, { generateStaticParams, generateMetadata } from "./page";
 
+// The page now has more than one IntersectionObserver in play (the case-nav
+// scroll-spy, plus the scroll-reveal effect), so find the one actually
+// observing these targets rather than assuming a fixed instance index.
 function fireIntersection(entries: { id: string; isIntersecting: boolean }[]) {
-  const observer = MockIntersectionObserver.instances[0];
+  const targets = entries.map(({ id }) => document.getElementById(id)!);
+  const observer = MockIntersectionObserver.instances.find((inst) =>
+    targets.every((target) => inst.observed.includes(target))
+  );
+  if (!observer) throw new Error("No observer found watching all of: " + entries.map((e) => e.id).join(", "));
   act(() => {
     observer.callback(
       entries.map(({ id, isIntersecting }) => ({

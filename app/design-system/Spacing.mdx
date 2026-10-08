@@ -11,12 +11,16 @@ formalized as real tokens in
 [`tokens/spacing.json`](https://github.com/darroughw/freelancer/blob/main/tokens/spacing.json),
 generated via [Style Dictionary](https://styledictionary.com) the same way as
 [Colors](?path=/docs/foundations-colors--docs) and
-[Typography](?path=/docs/foundations-typography--docs) — but nothing in
-`app/styles/*.scss` has been rewired to consume the generated
-`$space-*`/`$breakpoint-mobile`/`$fluid-*` variables yet, so this page still
-documents what's actually hardcoded in those files today. The **Content
-widths** table at the bottom is intentionally not tokenized — those are
-one-off values tied to specific selectors, not a reusable scale.
+[Typography](?path=/docs/foundations-typography--docs). A new
+<code>layout.container</code> token (<code>$container-width</code> /
+<code>--container-width</code> / <code>tokens.spacing.container</code>,
+<code>1240px</code>) is consumed by the masthead as of the typesafe.ai-inspired
+redesign, but the rest of `app/styles/*.scss` still hasn't been rewired to
+consume the generated `$space-*`/`$breakpoint-mobile`/`$fluid-*` variables, so
+this page documents what's actually hardcoded in those files today. The
+**Content widths** table at the bottom is intentionally not tokenized beyond
+that one exception — those are one-off values tied to specific selectors, not
+a reusable scale.
 
 ## Breakpoint
 
@@ -24,7 +28,7 @@ There is exactly **one** responsive breakpoint in the whole site — token
 <code>breakpoint.mobile</code>, generated as <code>$breakpoint-mobile</code> /
 <code>--breakpoint-mobile</code> / <code>tokens.spacing.breakpointMobile</code>:
 
-<div style={{ fontFamily: "'Space Mono', monospace", fontSize: 14, background: "#00000010", padding: "12px 16px", borderRadius: 8, display: "inline-block" }}>
+<div style={{ fontFamily: "'JetBrains Mono', monospace", fontSize: 14, background: "#00000010", padding: "12px 16px", borderRadius: 8, display: "inline-block" }}>
   @media (max-width: 640px)
 </div>
 
@@ -37,11 +41,11 @@ Discrete `px` values found in `gap` / `margin` / `padding` declarations,
 smallest to largest — each is token <code>spacing.N</code>, generated as
 <code>$space-N</code> / <code>--space-N</code> / <code>tokens.spacing.space["N"]</code>:
 
-<div style={{ display: "flex", flexDirection: "column", gap: 6, fontFamily: "'Space Mono', monospace", fontSize: 12 }}>
+<div style={{ display: "flex", flexDirection: "column", gap: 6, fontFamily: "'JetBrains Mono', monospace", fontSize: 12 }}>
   {[3, 4, 5, 6, 7, 8, 9, 10, 12, 14, 15, 16, 20, 24].map((px) => (
     <div key={px} style={{ display: "flex", alignItems: "center", gap: 10 }}>
       <span style={{ width: 32, textAlign: "right" }}>{px}px</span>
-      <div style={{ width: px * 4, height: 14, background: "#d1502e", borderRadius: 2 }} />
+      <div style={{ width: px * 4, height: 14, background: "#cb473f", borderRadius: 2 }} />
     </div>
   ))}
 </div>
@@ -78,12 +82,12 @@ bleed on large screens:
     <tr><th>Max width</th><th>Selector</th><th>Used by</th></tr>
   </thead>
   <tbody>
-    <tr><td>360px</td><td><code>.stripe-row</code></td><td>The masthead's color-stripe row</td></tr>
     <tr><td>420px</td><td><code>.contact-sub</code></td><td>Contact section's supporting line</td></tr>
     <tr><td>480px</td><td><code>.masthead-sub</code></td><td>Masthead's intro paragraph</td></tr>
     <tr><td>560px</td><td><code>.feedback-section</code></td><td>The feedback form column</td></tr>
     <tr><td>600px</td><td><code>.skill-table</code></td><td>The skills section's rows</td></tr>
-    <tr><td>720px</td><td><code>.masthead</code>, <code>.about-section</code>, <code>.how-section</code></td><td>Main content sections on the home page</td></tr>
+    <tr><td>720px</td><td><code>.about-section</code></td><td>Main content sections on the home page</td></tr>
     <tr><td>760px</td><td><code>.case-body</code></td><td>Case-study detail page body copy</td></tr>
+    <tr><td>1240px (<code>$container-width</code>)</td><td><code>.masthead</code></td><td>The redesigned masthead's wide single column</td></tr>
   </tbody>
 </table>

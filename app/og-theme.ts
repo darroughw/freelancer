@@ -2,10 +2,13 @@
 // satori (which renders next/og images) doesn't reliably support oklch().
 export const ogColors = {
   red: "#d1502e",
+  redText: "#a21a1b",
+  redDeep: "#b02b27",
   orange: "#d9a05f",
   mustard: "#d9c069",
   teal: "#5a9098",
   plum: "#6b3a5c",
   ink: "#241c18",
   cream: "#f5ecdc",
+  creamDark: "#e6dcd0",
 };

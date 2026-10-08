@@ -36,33 +36,32 @@ export default function Image() {
               fontSize: 26,
               fontWeight: 700,
               letterSpacing: 2,
-              color: ogColors.red,
+              color: ogColors.redDeep,
               marginBottom: 20,
               fontFamily: "monospace",
             }}
           >
-            REC · SIDE A
+            DWEST.FOO
           </div>
           <div
             style={{
               display: "flex",
-              fontSize: 68,
+              fontSize: 76,
               fontWeight: 900,
-              lineHeight: 1.1,
+              textTransform: "uppercase",
+              lineHeight: 1.0,
               marginBottom: 20,
               maxWidth: 980,
             }}
           >
-            Design. Code. Ship.
+            Interfaces that ship.
           </div>
         </div>
 
         <div style={{ display: "flex", height: 12, width: "100%" }}>
-          {[ogColors.red, ogColors.orange, ogColors.mustard, ogColors.teal, ogColors.plum, ogColors.ink].map(
-            (color) => (
-              <div key={color} style={{ display: "flex", flex: 1, background: color }} />
-            )
-          )}
+          {[ogColors.mustard, ogColors.orange, ogColors.red, ogColors.redDeep, ogColors.plum].map((color) => (
+            <div key={color} style={{ display: "flex", flex: 1, background: color }} />
+          ))}
         </div>
       </div>
     ),

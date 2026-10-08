@@ -4,46 +4,84 @@ import { Meta } from "@storybook/addon-docs/blocks";
 
 # Motion & Shape
 
-Like Foundations → Spacing & Layout, these are values surveyed directly out
-of `app/styles/*.scss` rather than a scale invented after the fact.
+Shape tokens (radius, border, shadow) and motion durations/easing are
+generated from
+[`tokens/shape.json`](https://github.com/darroughw/freelancer/blob/main/tokens/shape.json)
+via [Style Dictionary](https://styledictionary.com) the same way as
+[Colors](?path=/docs/foundations-colors--docs) — added for the
+typesafe.ai-inspired redesign's flat, hard-bordered "window-chrome" language,
+which replaced the previous soft-shadow/rounded-card look.
+
+<table>
+  <thead>
+    <tr><th>Token path (JSON)</th><th>Sass</th><th>CSS custom property</th></tr>
+  </thead>
+  <tbody>
+    <tr><td><code>radius.sm</code></td><td><code>$radius-sm</code></td><td><code>--radius-sm</code></td></tr>
+    <tr><td><code>radius.pill</code></td><td><code>$radius-pill</code></td><td><code>--radius-pill</code></td></tr>
+    <tr><td><code>border.hairline</code></td><td><code>$border-hairline</code></td><td><code>--border-hairline</code></td></tr>
+    <tr><td><code>border.heavy</code></td><td><code>$border-heavy</code></td><td><code>--border-heavy</code></td></tr>
+    <tr><td><code>shadow.sticker</code></td><td><code>$shadow-sticker</code></td><td><code>--shadow-sticker</code></td></tr>
+    <tr><td><code>motion.fast/base/slow</code></td><td><code>$motion-fast</code> etc.</td><td><code>--motion-fast</code> etc.</td></tr>
+    <tr><td><code>motion.ease</code></td><td><code>$motion-ease</code></td><td><code>--motion-ease</code></td></tr>
+  </tbody>
+</table>
 
 ## Border radius
 
 <div style={{ display: "flex", flexWrap: "wrap", gap: 24, alignItems: "flex-end" }}>
   {[
-    { r: 4, label: "4px", used: "Table cell / small chip corners" },
-    { r: 8, label: "8px", used: "Skip link, feedback inputs" },
-    { r: 10, label: "10px", used: "Work-card shelf" },
-    { r: 12, label: "12px", used: "Case-study images, stat cards, halftone contact photo" },
-    { r: 999, label: "50%", used: "Circular elements (avatar mark, theme toggle)" },
-    { r: 999, label: "100px", used: "Pills — nav, tags, buttons" },
+    { r: 4, label: "4px — $radius-sm", used: "Window-chrome corners, flat cards — barely-there, mostly square" },
+    { r: 999, label: "100px — $radius-pill", used: "Pills — nav, tags, buttons, the email CTA" },
   ].map(({ r, label, used }) => (
-    <div key={label} style={{ display: "flex", flexDirection: "column", alignItems: "center", gap: 8, width: 120 }}>
-      <div style={{ width: 72, height: 72, background: "#d1502e", borderRadius: r }} />
-      <div style={{ fontFamily: "'Space Mono', monospace", fontSize: 12, textAlign: "center" }}>{label}</div>
+    <div key={label} style={{ display: "flex", flexDirection: "column", alignItems: "center", gap: 8, width: 160 }}>
+      <div style={{ width: 72, height: 72, background: "#cb473f", border: "1px solid #221812", borderRadius: r }} />
+      <div style={{ fontFamily: "'JetBrains Mono', monospace", fontSize: 12, textAlign: "center" }}>{label}</div>
       <div style={{ fontSize: 12, textAlign: "center", opacity: 0.75 }}>{used}</div>
     </div>
   ))}
 </div>
 
-Six values in practice, at two ends of a spectrum: small functional radii
-(4–12px) for cards and inputs, and full pill/circle radii (50%, 100px) for
-anything meant to read as a button or tag. Nothing in between.
+Two values now, down from six — the redesign deliberately collapsed the
+previous 4–12px spread of "soft card" radii into one small, barely-rounded
+`$radius-sm`, leaving only the functional extremes: almost-square windows,
+and full pill/circle shapes for anything meant to read as a button or tag.
+
+## Elevation: hairline borders + one hard shadow
+
+No soft, blurred `box-shadow` appears anywhere in the stylesheets anymore.
+Depth comes from two things instead:
+
+- **`$border-hairline`** (1px solid `$ink`) on every window-chrome element
+  and flat card — the default resting state.
+- **`$shadow-sticker`** (`3px 3px 0 var(--color-ink)`, a hard, unblurred
+  offset shadow) on hover/focus for interactive cards — a deliberate,
+  original addition for this site, not a literal pattern lifted from the
+  typesafe.ai reference, whose own depth comes from z-stacking overlapping
+  windows rather than any shadow at all.
+
+<div style={{ display: "flex", gap: 32, alignItems: "flex-end" }}>
+  <div style={{ width: 120, height: 72, background: "#fefefe", border: "1px solid #1e1e1e", borderRadius: 4 }} />
+  <div style={{ width: 120, height: 72, background: "#fefefe", border: "1px solid #1e1e1e", borderRadius: 4, boxShadow: "3px 3px 0 #1e1e1e", transform: "translate(-3px, -3px)" }} />
+</div>
 
 ## Transitions
 
-Only two durations appear in the stylesheets, both `ease`:
-
 <table>
   <thead>
-    <tr><th>Declaration</th><th>Used by</th></tr>
+    <tr><th>Token</th><th>Declaration</th><th>Used by</th></tr>
   </thead>
   <tbody>
-    <tr><td><code>transition: top 0.2s ease</code></td><td>Skip link sliding into view on focus</td></tr>
-    <tr><td><code>transition: opacity 0.2s ease</code></td><td>Case-pager link hover</td></tr>
-    <tr><td><code>transition: all 0.3s ease</code></td><td>Nav pill hover/active state</td></tr>
+    <tr><td><code>$motion-fast</code></td><td><code>0.2s</code></td><td>Hover/focus color and transform changes — card lift, button tint, header-cta</td></tr>
+    <tr><td><code>$motion-base</code></td><td><code>0.3s</code></td><td>Available for future use — not yet consumed</td></tr>
+    <tr><td><code>$motion-slow</code></td><td><code>0.5s</code></td><td>Available for future use — not yet consumed</td></tr>
+    <tr><td><code>$motion-ease</code></td><td><code>cubic-bezier(0.12, 0.23, 0.5, 1)</code></td><td>Paired with `$motion-fast` wherever a card/button transitions — matches the easing measured off the typesafe.ai reference</td></tr>
   </tbody>
 </table>
+
+A couple of spots still use a plain `ease` directly rather than the token
+(the skip link's focus transition, the nav pill's background/color swap) —
+not yet migrated, not a redesign requirement.
 
 ## `prefers-reduced-motion`
 

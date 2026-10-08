@@ -16,8 +16,15 @@ function mockScrollMetrics({
   });
 }
 
+// The page now has more than one IntersectionObserver in play (the nav
+// scroll-spy, plus the scroll-reveal effect), so find the one actually
+// observing these targets rather than assuming a fixed instance index.
 function fireIntersection(entries: { id: string; isIntersecting: boolean }[]) {
-  const observer = MockIntersectionObserver.instances[0];
+  const targets = entries.map(({ id }) => document.getElementById(id)!);
+  const observer = MockIntersectionObserver.instances.find((inst) =>
+    targets.every((target) => inst.observed.includes(target))
+  );
+  if (!observer) throw new Error("No observer found watching all of: " + entries.map((e) => e.id).join(", "));
   act(() => {
     observer.callback(
       entries.map(({ id, isIntersecting }) => ({
@@ -138,14 +145,5 @@ describe("Page", () => {
     const gridCards = container.querySelectorAll(".shelf .card:not(.card--featured)");
     expect(gridCards).toHaveLength(rest.length);
     expect(container.querySelector(".shelf .card--featured")).not.toBeInTheDocument();
-  });
-
-  it("renders one stripe segment per palette color", () => {
-    const { container } = render(<Page />);
-    const segments = container.querySelectorAll(".stripe-segment");
-    expect(segments).toHaveLength(6);
-    for (const color of ["red", "orange", "mustard", "teal", "plum", "ink"]) {
-      expect(container.querySelector(`.stripe-segment--${color}`)).toBeInTheDocument();
-    }
   });
 });

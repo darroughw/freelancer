@@ -1,15 +1,13 @@
 "use client";
 import Link from "next/link";
-import Image from "next/image";
 import { caseStudies } from "./data/case-studies";
 import SiteHeader from "./components/SiteHeader";
 import NavPills, { NAV_ITEMS } from "./components/NavPills";
 import WorkCard from "./components/WorkCard";
 import ContactCTA from "./components/ContactCTA";
-import ThemeToggle from "./components/ThemeToggle";
+import DotSpotlight from "./components/DotSpotlight";
 import { useScrollSpy } from "./hooks/useScrollSpy";
-
-const stripeColors = ["red", "orange", "mustard", "teal", "plum", "ink"];
+import { useScrollReveal } from "./hooks/useScrollReveal";
 
 const SECTIONS = NAV_ITEMS.map((item) => item.id);
 
@@ -47,6 +45,7 @@ const gridStudies = caseStudies.slice(0, -1);
 
 export default function Page() {
   const activeSection = useScrollSpy(SECTIONS, "work");
+  useScrollReveal();
 
   return (
     <div className="page">
@@ -57,27 +56,18 @@ export default function Page() {
 
       <main id="main-content">
         <section className="masthead">
-          <div className="masthead-eyebrow">◉ SIDE A</div>
-          <h1 className="masthead-title">
-            Design.
-            <br />
-            <span className="masthead-accent">
-              Code.
-              <br />
-            </span>
-            Ship.
-          </h1>
-          <p className="masthead-sub">
-            I work with teams full-time or on a project basis, taking a concept from whiteboard to working product. No agency overhead, no bench. Wireframes Monday, React by Friday.
-          </p>
-          <div className="stripe-row">
-            {stripeColors.map((c, i) => (
-              <div key={i} className={`stripe-segment stripe-segment--${c}`} />
-            ))}
+          <DotSpotlight />
+          <div className="masthead-inner">
+            <h1 className="masthead-title">
+              Interfaces that <span className="masthead-accent">ship</span>.
+            </h1>
+            <p className="masthead-sub">
+              I work with teams full-time or on a project basis, taking a concept from whiteboard to working product. No agency overhead, no bench. Wireframes Monday, React by Friday.
+            </p>
           </div>
         </section>
 
-        <section id="work" className="work-section">
+        <section id="work" className="work-section" data-reveal>
           <div className="section-label-row">
             <h2 className="section-tag">SELECTED WORK</h2>
             <span className="section-rule" />
@@ -93,7 +83,7 @@ export default function Page() {
           </div>
         </section>
 
-        <section id="about" className="about-section">
+        <section id="about" className="about-section" data-reveal>
           <div className="section-label-row">
             <h2 className="section-tag">ABOUT</h2>
             <span className="section-rule" />
@@ -111,26 +101,30 @@ export default function Page() {
           </blockquote>
         </section>
 
-        <section id="skills" className="skills-section">
+        <section id="skills" className="skills-section" data-reveal>
           <div className="section-label-row">
             <h2 className="section-tag-light">SKILLS</h2>
             <span className="section-rule-light" />
           </div>
           <div className="skill-table">
             {skillGroups.map((group) => (
-              <div key={group.title} className="skill-row">
-                <h3 className="skill-label">{group.title}</h3>
-                <div className="skill-tag-row">
-                  {group.tags.map((tag) => (
-                    <span key={tag} className="skill-tag">{tag}</span>
-                  ))}
+              <div key={group.title} className="window skill-row">
+                <div className="window-titlebar">
+                  <span className="window-titlebar-label">{group.title}</span>
+                </div>
+                <div className="window-body">
+                  <div className="skill-tag-row">
+                    {group.tags.map((tag) => (
+                      <span key={tag} className="skill-tag">{tag}</span>
+                    ))}
+                  </div>
                 </div>
               </div>
             ))}
           </div>
         </section>
 
-        <section id="topfives" className="outside-work-section">
+        <section id="topfives" className="outside-work-section" data-reveal>
           <div className="section-label-row">
             <h2 className="section-tag">OFF DUTY</h2>
             <span className="section-rule" />
@@ -139,15 +133,19 @@ export default function Page() {
           <div className="outside-work-grid">
             <div className="top-fives-grid">
               {topFives.map((cat) => (
-                <div key={cat.title} className="top-five-card">
-                  <h3 className="top-five-card-title">{cat.title}</h3>
-                  <ol className="top-five-list">
-                    {cat.items.map((label, i) => (
-                      <li key={label} className="top-five-item">
-                        <span className="top-five-num">{i + 1}</span>{label}
-                      </li>
-                    ))}
-                  </ol>
+                <div key={cat.title} className="window top-five-card">
+                  <div className="window-titlebar">
+                    <span className="window-titlebar-label">{cat.title}</span>
+                  </div>
+                  <div className="window-body">
+                    <ol className="top-five-list">
+                      {cat.items.map((label, i) => (
+                        <li key={label} className="top-five-item">
+                          <span className="top-five-num">{i + 1}</span>{label}
+                        </li>
+                      ))}
+                    </ol>
+                  </div>
                 </div>
               ))}
             </div>
@@ -177,24 +175,17 @@ export default function Page() {
           </div>
         </section>
 
-        <section id="contact" className="contact-section contact-section--with-nav">
-          <div className="contact-grid">
-            <div className="contact-main">
-              <div className="contact-label">◉ SIDE B</div>
-              <ContactCTA />
-              <div className="contact-social-row">
-                <a href="https://linkedin.com/in/darroughw" target="_blank" rel="noopener" className="contact-social-link">
-                  LinkedIn<span className="visually-hidden"> (opens in new tab)</span>
-                </a>
-                <a href="https://github.com/darroughw" target="_blank" rel="noopener" className="contact-social-link">
-                  GitHub<span className="visually-hidden"> (opens in new tab)</span>
-                </a>
-                <a href="https://open.spotify.com/user/darrough?si=0c7cd65c69b347c2" className="contact-social-link">Spotify</a>
-              </div>
-            </div>
-            <div className="halftone-photo" aria-hidden="true">
-              <Image src="/images/darrough-portrait.jpg" alt="" fill sizes="(max-width: 640px) 220px, 280px" className="halftone-photo-img" />
-              <div className="halftone-dots" />
+        <section id="contact" className="contact-section contact-section--with-nav" data-reveal>
+          <div className="contact-main">
+            <ContactCTA />
+            <div className="contact-social-row">
+              <a href="https://linkedin.com/in/darroughw" target="_blank" rel="noopener" className="contact-social-link">
+                LinkedIn<span className="visually-hidden"> (opens in new tab)</span>
+              </a>
+              <a href="https://github.com/darroughw" target="_blank" rel="noopener" className="contact-social-link">
+                GitHub<span className="visually-hidden"> (opens in new tab)</span>
+              </a>
+              <a href="https://open.spotify.com/user/darrough?si=0c7cd65c69b347c2" className="contact-social-link">Spotify</a>
             </div>
           </div>
           <div className="footer-row">
@@ -210,7 +201,6 @@ export default function Page() {
               <a href="/storybook" target="_blank" rel="noopener" className="footer-text footer-link">
                 Design System ↗<span className="visually-hidden"> (opens in new tab)</span>
               </a>
-              <ThemeToggle />
             </div>
           </div>
         </section>

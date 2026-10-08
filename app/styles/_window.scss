@@ -1,0 +1,37 @@
+@use "./theme" as *;
+
+// The site's signature chrome: a hard-bordered, flat "retro OS window" —
+// black title bar with a monospace label, light body, no soft shadows.
+// Shared by WorkCard, case-study stat blocks, the contact CTA, the skills
+// table rows, and the off-duty cards. Consumers that need body padding of
+// their own nest a `.window-body` rule inside their own selector rather
+// than overriding this file's padding, since the right padding differs
+// per consumer (see _work.scss, _topfives.scss, _case-study.scss).
+.window {
+  border: $border-hairline solid $ink;
+  border-radius: $radius-sm;
+  background: $cream;
+  overflow: hidden;
+}
+
+.window-titlebar {
+  background: $ink;
+  color: $cream;
+  font: $weight-mono $scale-mono-sm $mono-font;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  padding: 7px 12px;
+  display: flex;
+  align-items: center;
+  gap: 6px;
+}
+
+.window-titlebar-label {
+  &::before {
+    content: "✣ ";
+  }
+}
+
+.window-body {
+  padding: 16px;
+}

@@ -6,6 +6,13 @@
       "comment": "The one responsive breakpoint in the site: @media (max-width: 640px). Below it, multi-column layouts collapse to a single column."
     }
   },
+  "layout": {
+    "container": {
+      "value": "1240px",
+      "type": "dimension",
+      "comment": "Wide single-column container width, matching the typesafe.ai reference. Applied to the masthead for the redesign; other sections keep their existing bespoke max-widths for now — widening them is a candidate follow-up, not required for V1."
+    }
+  },
   "spacing": {
     "3": { "value": "3px", "type": "dimension" },
     "4": { "value": "4px", "type": "dimension" },
