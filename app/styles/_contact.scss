@@ -1,7 +1,10 @@
 @use "./theme" as *;
+@use "./texture" as tex;
 
 .contact-section {
-  background: $red-deep;
+  background-color: $red-deep;
+  background-image: tex.$hatch-on-dark;
+  background-size: tex.$hatch-size;
   color: $cream;
   padding: clamp(32px, 8vw, 56px) clamp(16px, 4vw, 32px) 32px;
 }

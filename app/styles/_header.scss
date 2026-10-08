@@ -1,3 +1,4 @@
+@use "sass:list";
 @use "./theme" as *;
 
 .header {
@@ -27,25 +28,40 @@
   }
 }
 
-.header-name {
-  font: 900 $scale-head-xs/1.1 $head-font;
+// Layered text-shadow extrusion, like a stamped-block letterform — each
+// step offsets further along the same diagonal, building up a solid "side"
+// of the letters behind the face. Ink fill + a cream stroke around the
+// glyphs (-webkit-text-stroke, despite the prefix this is the one that
+// actually ships everywhere, Firefox included) keeps the face itself high-
+// contrast against the dark header regardless of what color the extrusion
+// is; an earlier cream-fill/mustard-extrusion version read as low-contrast
+// mush once both were added. The hover state swaps in a deeper stack rather
+// than driving the offsets from a custom property: transitioning two shadow
+// lists of equal length is a plain, reliably-animatable CSS behavior,
+// whereas custom properties fed into shadow/mask offsets didn't interpolate
+// reliably when tried elsewhere on this site (see DotSpotlight's trail,
+// which uses JS easing for exactly this reason) — same browser behavior,
+// so this sidesteps it instead of re-fighting it.
+@function extrude-shadow($color, $steps, $step-size) {
+  $shadow: ();
+  @for $i from 1 through $steps {
+    $offset: $i * $step-size;
+    $shadow: list.append($shadow, #{$offset} #{$offset} 0 $color, comma);
+  }
+  @return $shadow;
 }
 
-.header-cta {
-  margin-left: auto;
-  font: 700 $scale-paper-sm $paper-font;
-  text-decoration: none;
+.header-name {
+  font: 900 $scale-head-xs/1.1 $head-font;
+  text-transform: uppercase;
+  letter-spacing: 0.02em;
   color: $ink;
-  background: $mustard;
-  padding: 10px 16px;
-  border-radius: $radius-pill;
-  min-height: 44px;
-  display: flex;
-  align-items: center;
-  white-space: nowrap;
-  transition: background-color $motion-fast $motion-ease;
+  -webkit-text-stroke: 1px $cream;
+  text-shadow: extrude-shadow($cream, 3, 0.75px);
+  transition: text-shadow $motion-base $motion-ease, transform $motion-base $motion-ease;
 
   &:hover {
-    background: color-mix(in oklch, $mustard 80%, $cream);
+    text-shadow: extrude-shadow($cream, 3, 1.25px);
+    transform: translate(-2px, -2px);
   }
 }

@@ -1,7 +1,10 @@
 @use "./theme" as *;
+@use "./texture" as tex;
 
 .work-section {
   padding: 24px 0 56px;
+  background-image: tex.$cross-on-light;
+  background-size: tex.$cross-size;
 }
 
 .work-note {

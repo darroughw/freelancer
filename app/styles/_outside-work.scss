@@ -1,7 +1,10 @@
 @use "./theme" as *;
+@use "./texture" as tex;
 
 .outside-work-section {
   padding: clamp(32px, 8vw, 56px) 0 clamp(40px, 8vw, 56px);
+  background-image: tex.$rings-on-light;
+  background-size: tex.$rings-size;
 }
 
 .outside-work-grid {

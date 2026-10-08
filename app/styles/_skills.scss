@@ -1,7 +1,10 @@
 @use "./theme" as *;
+@use "./texture" as tex;
 
 .skills-section {
-  background: $ink;
+  background-color: $ink;
+  background-image: tex.$grid-on-dark;
+  background-size: tex.$grid-size;
   color: $cream;
   padding: clamp(32px, 8vw, 56px) 0 clamp(40px, 8vw, 64px);
 }
