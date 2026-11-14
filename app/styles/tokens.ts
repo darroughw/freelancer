@@ -63,10 +63,12 @@ export const tokens = {
     radius: {
       sm: "4px",
       pill: "100px",
+      tile: "20px",
     },
     border: {
       hairline: "1px",
       heavy: "2px",
+      tile: "3px",
     },
     motion: {
       fast: "0.2s",
@@ -76,6 +78,8 @@ export const tokens = {
   },
   spacing: {
     breakpointMobile: "640px",
+    breakpointNav: "899px",
+    breakpointTablet: "1023px",
     container: "1240px",
     space: {
       "3": "3px",

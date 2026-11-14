@@ -30,9 +30,10 @@ const SCALE_STEPS = {
   head: ['xs', 'sm', 'base', 'lg', 'xl', '2xl', '3xl', '4xl'],
   mono: ['xs', 'sm', 'base', 'lg'],
 };
-const RADIUS_KEYS = ['sm', 'pill'];
-const BORDER_KEYS = ['hairline', 'heavy'];
-const SHADOW_KEYS = ['sticker'];
+const RADIUS_KEYS = ['sm', 'pill', 'tile'];
+const BORDER_KEYS = ['hairline', 'heavy', 'tile'];
+const SHADOW_KEYS = ['sticker', 'lift'];
+const BREAKPOINT_KEYS = ['mobile', 'nav', 'tablet'];
 const MOTION_KEYS = ['fast', 'base', 'slow'];
 
 function toCamel(str) {
@@ -75,7 +76,7 @@ StyleDictionary.registerFormat({
       `$paper-font: ${font.paper.value};\n$head-font: ${font.head.value};\n$mono-font: ${font.mono.value};\n\n` +
       `// Type scale — consumed directly by app/styles/*.scss (font: weight $scale-family-step family).\n` +
       `${scaleLines('paper')}\n${scaleLines('head')}\n${scaleLines('mono')}\n\n` +
-      `// Shape — radius/border/shadow for the flat, hard-bordered window-chrome language.\n` +
+      `// Shape — radius/border/shadow for window chrome, pills and bento tiles.\n` +
       `${radiusLines}\n${borderLines}\n${shadowLines}\n\n` +
       `// Motion durations/easing.\n` +
       `${motionLines}\n` +
@@ -87,7 +88,7 @@ StyleDictionary.registerFormat({
       `$weight-paper-bold: ${weight['paper-bold'].value};\n` +
       `$weight-head: ${weight.head.value};\n` +
       `$weight-mono: ${weight.mono.value};\n\n` +
-      `$breakpoint-mobile: ${breakpoint.mobile.value};\n\n` +
+      `${BREAKPOINT_KEYS.map((k) => `$breakpoint-${k}: ${breakpoint[k].value};`).join('\n')}\n\n` +
       `${spaceLines}\n\n` +
       `${fluidLines}\n`
     );
@@ -129,8 +130,8 @@ StyleDictionary.registerFormat({
       `  --weight-head: ${weight.head.value};\n` +
       `  --weight-mono: ${weight.mono.value};\n\n` +
       `${scaleLines('paper')}\n${scaleLines('head')}\n${scaleLines('mono')}\n\n` +
-      `  --breakpoint-mobile: ${breakpoint.mobile.value};\n  --container-width: ${layout.container.value};\n\n` +
-      `${radiusLines}\n${borderLines}\n  --shadow-sticker: ${shadow.sticker.value};\n\n` +
+      `${BREAKPOINT_KEYS.map((k) => `  --breakpoint-${k}: ${breakpoint[k].value};`).join('\n')}\n  --container-width: ${layout.container.value};\n\n` +
+      `${radiusLines}\n${borderLines}\n${SHADOW_KEYS.map((k) => `  --shadow-${k}: ${shadow[k].value};`).join('\n')}\n\n` +
       `${motionLines}\n  --motion-ease: ${motion.ease.value};\n\n` +
       `${spaceLines}\n\n` +
       `${fluidLines}\n}\n`
@@ -186,7 +187,7 @@ StyleDictionary.registerFormat({
       `    motion: {\n${motionEntries}\n    },\n` +
       `  },\n` +
       `  spacing: {\n` +
-      `    breakpointMobile: ${JSON.stringify(breakpoint.mobile.value)},\n` +
+      `${BREAKPOINT_KEYS.map((k) => `    breakpoint${k[0].toUpperCase()}${k.slice(1)}: ${JSON.stringify(breakpoint[k].value)},`).join('\n')}\n` +
       `    container: ${JSON.stringify(layout.container.value)},\n` +
       `    space: {\n${spaceEntries}\n    },\n` +
       `    fluid: {\n${fluidEntries}\n    },\n` +

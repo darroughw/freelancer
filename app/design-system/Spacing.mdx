@@ -22,18 +22,27 @@ this page documents what's actually hardcoded in those files today. The
 that one exception — those are one-off values tied to specific selectors, not
 a reusable scale.
 
-## Breakpoint
+## Breakpoints
 
-There is exactly **one** responsive breakpoint in the whole site — token
-<code>breakpoint.mobile</code>, generated as <code>$breakpoint-mobile</code> /
-<code>--breakpoint-mobile</code> / <code>tokens.spacing.breakpointMobile</code>:
+Three breakpoints, all tokens in <code>tokens/spacing.json</code>
+(<code>$breakpoint-{'*'}</code> / <code>--breakpoint-{'*'}</code> /
+<code>tokens.spacing.breakpoint{'*'}</code>). Media queries in the partials still
+write the values out literally, since Sass variables are fine there but CSS
+custom properties can't be used inside `@media`.
 
-<div style={{ fontFamily: "'JetBrains Mono', monospace", fontSize: 14, background: "#00000010", padding: "12px 16px", borderRadius: 8, display: "inline-block" }}>
-  @media (max-width: 640px)
-</div>
+<table>
+  <thead>
+    <tr><th>Token</th><th>Query</th><th>What changes</th></tr>
+  </thead>
+  <tbody>
+    <tr><td><code>breakpoint.tablet</code></td><td><code>@media (max-width: 1023px)</code></td><td>Bento grids drop from 12 columns to 2 (see <a href="?path=/docs/patterns-bento-grid--docs">Patterns → Bento Grid</a>)</td></tr>
+    <tr><td><code>breakpoint.nav</code></td><td><code>@media (max-width: 899px)</code></td><td>The section nav leaves the sticky header strip and pins to a fixed bar at the bottom of the viewport</td></tr>
+    <tr><td><code>breakpoint.mobile</code></td><td><code>@media (max-width: 640px)</code></td><td>Bento grids collapse to one column, the bottom nav wraps and centers, the case-study gallery and pager stack</td></tr>
+  </tbody>
+</table>
 
-Below 640px, multi-column layouts (the work-card grid, the case-study image
-gallery, the pager) collapse to a single column.
+One more, untokenized: the header shrinks its name extrusion and hides the
+status badge at `760px`, the point where the badge starts crowding the name.
 
 ## Spacing scale in use
 
@@ -72,10 +81,17 @@ through <code>$fluid-xxl</code>, CSS <code>--fluid-sm</code> through
   </tbody>
 </table>
 
+## Bento grid spacing
+
+Home page sections are bento grids: a 14px gap between tiles, tiles padded
+`20px 24px` (story and contact tiles a little more), and the grid itself
+inset with `fluid.sm`. Full grid spec in
+[Patterns → Bento Grid](?path=/docs/patterns-bento-grid--docs).
+
 ## Content widths
 
-Most sections cap their content width rather than letting text stretch full
-bleed on large screens:
+The bento sections run the full container width. A few text blocks still cap
+their own width so lines don't get too long:
 
 <table>
   <thead>
@@ -85,8 +101,6 @@ bleed on large screens:
     <tr><td>420px</td><td><code>.contact-sub</code></td><td>Contact section's supporting line</td></tr>
     <tr><td>480px</td><td><code>.masthead-sub</code></td><td>Masthead's intro paragraph</td></tr>
     <tr><td>560px</td><td><code>.feedback-section</code></td><td>The feedback form column</td></tr>
-    
-    <tr><td>720px</td><td><code>.about-section</code></td><td>Main content sections on the home page</td></tr>
     <tr><td>760px</td><td><code>.case-body</code></td><td>Case-study detail page body copy</td></tr>
     <tr><td>1240px (<code>$container-width</code>)</td><td><code>.masthead</code></td><td>The redesigned masthead's wide single column</td></tr>
   </tbody>

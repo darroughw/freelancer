@@ -42,7 +42,7 @@
   &:hover,
   &:focus-visible {
     transform: translate(-3px, -3px);
-    box-shadow: 6px 6px 0 $ink;
+    box-shadow: $shadow-lift;
   }
 
   &:focus-visible {
@@ -55,8 +55,8 @@
   display: flex;
   min-width: 0;
   min-height: 0;
-  border: 3px solid $ink;
-  border-radius: 20px;
+  border: $border-tile solid $ink;
+  border-radius: $radius-tile;
   overflow: hidden;
 }
 

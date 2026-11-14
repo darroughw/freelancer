@@ -62,6 +62,9 @@ noted in `tokens/color.json` comments.
 - **`red-deep`** is a darker variant of `red` for use as a background behind
   cream text — `red` itself only gives cream text 4.20:1 contrast, below the
   4.5:1 AA threshold. It currently shares `red-text`'s value (5.72:1).
+- Bento tiles apply the palette through `tone-*` classes that pair each
+  background with a text color that clears AA; see
+  [Patterns → Bento Grid](?path=/docs/patterns-bento-grid--docs).
 - The palette is defined in `oklch()` rather than hex so lightness and chroma
   stay perceptually consistent across hues.
 

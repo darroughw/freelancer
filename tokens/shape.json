@@ -1,23 +1,66 @@
 {
   "radius": {
-    "sm": { "value": "4px", "type": "dimension", "comment": "Window-chrome corners — barely-there, mostly square" },
-    "pill": { "value": "100px", "type": "dimension", "comment": "Pill/badge radius, carried over unchanged from the previous chip treatment" }
+    "sm": {
+      "value": "4px",
+      "type": "dimension",
+      "comment": "Window-chrome corners — barely-there, mostly square"
+    },
+    "pill": {
+      "value": "100px",
+      "type": "dimension",
+      "comment": "Pill/badge radius, carried over unchanged from the previous chip treatment"
+    },
+    "tile": {
+      "value": "20px",
+      "type": "dimension",
+      "comment": "Bento tiles and work cards: rounded enough to read as chunky album-cover blocks against the square-ish window chrome"
+    }
   },
   "border": {
-    "hairline": { "value": "1px", "type": "dimension", "comment": "Default hard border width for window-chrome and flat cards" },
-    "heavy": { "value": "2px", "type": "dimension", "comment": "Title-bar divider / emphasis border" }
+    "hairline": {
+      "value": "1px",
+      "type": "dimension",
+      "comment": "Default hard border width for window-chrome and flat cards"
+    },
+    "heavy": {
+      "value": "2px",
+      "type": "dimension",
+      "comment": "Title-bar divider / emphasis border"
+    },
+    "tile": {
+      "value": "3px",
+      "type": "dimension",
+      "comment": "Ink outline on every bento tile and work card"
+    }
   },
   "shadow": {
     "sticker": {
       "value": "3px 3px 0 var(--color-ink)",
       "type": "other",
       "comment": "One hard offset shadow, used sparingly on interactive cards in place of soft elevation. References --color-ink directly (not a resolved value) so it stays correct if ink ever changes. This is an original addition, not a literal typesafe.ai pattern — their depth comes from window z-stacking, which doesn't translate directly to a card grid."
+    },
+    "lift": {
+      "value": "6px 6px 0 var(--color-ink)",
+      "type": "other",
+      "comment": "Hard offset shadow for hovered bento work cards, paired with a -3px translate. Twice the sticker's offset to match the heavier tile border."
     }
   },
   "motion": {
-    "fast": { "value": "0.2s", "type": "dimension" },
-    "base": { "value": "0.3s", "type": "dimension" },
-    "slow": { "value": "0.5s", "type": "dimension" },
-    "ease": { "value": "cubic-bezier(0.12, 0.23, 0.5, 1)", "type": "other" }
+    "fast": {
+      "value": "0.2s",
+      "type": "dimension"
+    },
+    "base": {
+      "value": "0.3s",
+      "type": "dimension"
+    },
+    "slow": {
+      "value": "0.5s",
+      "type": "dimension"
+    },
+    "ease": {
+      "value": "cubic-bezier(0.12, 0.23, 0.5, 1)",
+      "type": "other"
+    }
   }
 }

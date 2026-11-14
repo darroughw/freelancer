@@ -14,6 +14,12 @@ const meta: Meta<typeof ContactCTA> = {
     },
   },
   argTypes: {
+    variant: {
+      control: "inline-radio",
+      options: ["window", "tile"],
+      description: "`tile`: cream bento tile used in the home page footer. `window`: window chrome used on case study pages.",
+    },
+    className: { description: "Extra classes on the root, e.g. a bento span class like `span-7x2`." },
     email: { description: "Used both as the visible button label and the mailto: target — no separate display-text prop." },
   },
 };
@@ -42,4 +48,21 @@ export const LongCopy: Story = {
     sub: "Tell me about the project, the timeline, and what success looks like. I usually reply within a day, often with a few clarifying questions before we get into scope.",
     email: "hello.this.is.a.longer.example.address@example.com",
   },
+};
+
+export const Tile: Story = {
+  args: {
+    title: "Let's talk.",
+    sub: "Tell me about the project. I usually reply within a day.",
+    email: "hello@example.com",
+    variant: "tile",
+    className: "span-7x2",
+  },
+  decorators: [
+    (Story) => (
+      <div className="bento bento--contact" style={{ maxWidth: 1100 }}>
+        <Story />
+      </div>
+    ),
+  ],
 };
