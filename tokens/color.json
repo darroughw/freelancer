@@ -1,34 +1,28 @@
 {
   "color": {
-    "red": { "value": "oklch(0.58 0.17 27)", "type": "color", "comment": "Primary accent" },
+    "red": { "value": "oklch(0.57 0.213 29)", "type": "color", "comment": "Primary accent (#D9261C). Clears AA only at large text sizes on cream (4.20:1) — use red-text for small text" },
     "red-text": {
-      "value": "oklch(0.46 0.17 27)",
+      "value": "oklch(0.49 0.185 29)",
       "type": "color",
-      "comment": "Darker variant of red for small/normal-weight text on light backgrounds — red alone only clears WCAG AA contrast at large text sizes"
+      "comment": "Darker variant of red for small/normal-weight text on light backgrounds (#B31E15) — 5.72:1 on cream, 5.04:1 on cream-dark"
     },
     "red-deep": {
-      "value": "oklch(0.50 0.17 27)",
+      "value": "oklch(0.49 0.185 29)",
       "type": "color",
-      "comment": "Darker variant of red for use as a background behind cream text — red alone only gives cream text ~4.0:1 contrast, below the 4.5:1 AA threshold"
+      "comment": "Darker variant of red for use as a background behind cream text (#B31E15) — cream on it is 5.72:1, cream on plain red would be 4.20:1"
     },
-    "orange": { "value": "oklch(0.73 0.15 55)", "type": "color", "comment": "Palette accent" },
-    "mustard": { "value": "oklch(0.79 0.13 90)", "type": "color", "comment": "Palette accent" },
-    "teal": { "value": "oklch(0.56 0.09 195)", "type": "color", "comment": "Palette accent" },
-    "plum": { "value": "oklch(0.42 0.10 325)", "type": "color", "comment": "Palette accent" },
-    "ink": { "value": "oklch(0.22 0.02 55)", "type": "color", "comment": "Primary text color" },
-    "cream": { "value": "oklch(0.95 0.018 80)", "type": "color", "comment": "Primary background" },
-    "cream-dark": { "value": "oklch(0.90 0.02 75)", "type": "color", "comment": "Slightly darker background, for subtle fills" }
+    "orange": { "value": "oklch(0.76 0.156 66)", "type": "color", "comment": "Palette accent (#F39A2B). Ink on orange is 8.12:1" },
+    "periwinkle": { "value": "oklch(0.73 0.079 278)", "type": "color", "comment": "Palette accent and hero background (#9AA2D8). Ink on periwinkle is 7.32:1" },
+    "periwinkle-deep": { "value": "oklch(0.64 0.092 277)", "type": "color", "comment": "Deeper periwinkle (#7E87C4) for tiles and the hero gradient's far stop. Ink on it is 5.28:1" },
+    "ink": { "value": "oklch(0.20 0.012 285)", "type": "color", "comment": "Primary text color (#16161C)" },
+    "cream": { "value": "oklch(0.94 0.030 90)", "type": "color", "comment": "Primary background (#F4ECD6)" },
+    "cream-dark": { "value": "oklch(0.90 0.039 89)", "type": "color", "comment": "Slightly darker background, for subtle fills (#E9DEC2)" }
   },
   "gradient": {
-    "tape": {
-      "value": "linear-gradient(90deg, var(--color-mustard) 0%, var(--color-orange) 25%, var(--color-red) 50%, var(--color-red-deep) 75%, var(--color-plum) 100%)",
-      "type": "other",
-      "comment": "The full five-stop sunset gradient, references CSS custom properties directly. Kept for header/toggle-scale decorative use. For any use with ink text on top (e.g. the masthead hero), use the narrower mustard→orange→red hero-gradient instead — red-deep and plum both fail contrast under ink text, see tokens/color.json comment history and Foundations → Colors."
-    },
     "hero": {
-      "value": "linear-gradient(160deg, var(--color-mustard) 0%, var(--color-orange) 55%, var(--color-red) 100%)",
+      "value": "linear-gradient(160deg, var(--color-periwinkle) 0%, var(--color-periwinkle-deep) 100%)",
       "type": "other",
-      "comment": "Text-safe subset of the tape gradient (mustard→orange→red only) for use behind ink text — verified ink-on-red is 3.74:1, clearing the 3:1 large-text threshold; red-deep/plum are excluded because ink fails contrast against them (2.67:1 / 1.96:1)."
+      "comment": "Masthead background behind ink text. Ink clears AA at every stop: periwinkle 7.32:1, periwinkle-deep 5.28:1."
     }
   }
 }

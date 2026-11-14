@@ -9,7 +9,7 @@ const meta: Meta<typeof ContactCTA> = {
     docs: {
       description: {
         component:
-          "The contact section's title, supporting line, and mailto button. Rendered inside the CRT-styled contact panel in production (see the Contact section on the home page), not standalone as it is here.",
+          "The contact section's title, supporting line, and mailto button. `variant: tile` renders it as the cream bento tile in the home page footer; the default `window` keeps the window chrome used on case study pages.",
       },
     },
   },

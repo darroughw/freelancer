@@ -1,18 +1,10 @@
 @use "./theme" as *;
 
-// The outer section wrapper (padding, section-label-row) lives on
-// .outside-work-section in _outside-work.scss — this grid is now a column
-// nested inside .outside-work-grid, not a top-level section.
-.top-fives-grid {
-  display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
-  gap: 16px;
-}
-
-.top-five-card {
-  .window-body {
-    padding: 20px;
-  }
+// Top-5 tiles in the Off duty bento (layout in _outside-work.scss).
+.top-five-title {
+  margin: 0 0 4px;
+  font: 900 $scale-head-base/1.1 $head-font;
+  text-transform: uppercase;
 }
 
 .top-five-list {
@@ -28,11 +20,11 @@
   display: flex;
   align-items: baseline;
   gap: 10px;
-  font: 500 $scale-paper-sm/1.4 $paper-font;
+  font: 500 $scale-paper-base/1.4 $paper-font;
 }
 
+// Inherits the tile's text color so it reads on every tone.
 .top-five-num {
   font: 700 $scale-mono-sm $mono-font;
-  color: $red;
   min-width: 14px;
 }

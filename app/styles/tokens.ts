@@ -9,20 +9,18 @@
 
 export const tokens = {
   color: {
-    red: "oklch(0.58 0.17 27)",
-    redText: "oklch(0.46 0.17 27)",
-    redDeep: "oklch(0.50 0.17 27)",
-    orange: "oklch(0.73 0.15 55)",
-    mustard: "oklch(0.79 0.13 90)",
-    teal: "oklch(0.56 0.09 195)",
-    plum: "oklch(0.42 0.10 325)",
-    ink: "oklch(0.22 0.02 55)",
-    cream: "oklch(0.95 0.018 80)",
-    creamDark: "oklch(0.90 0.02 75)",
+    red: "oklch(0.57 0.213 29)",
+    redText: "oklch(0.49 0.185 29)",
+    redDeep: "oklch(0.49 0.185 29)",
+    orange: "oklch(0.76 0.156 66)",
+    periwinkle: "oklch(0.73 0.079 278)",
+    periwinkleDeep: "oklch(0.64 0.092 277)",
+    ink: "oklch(0.20 0.012 285)",
+    cream: "oklch(0.94 0.030 90)",
+    creamDark: "oklch(0.90 0.039 89)",
   },
   gradient: {
-    tape: "linear-gradient(90deg, var(--color-mustard) 0%, var(--color-orange) 25%, var(--color-red) 50%, var(--color-red-deep) 75%, var(--color-plum) 100%)",
-    hero: "linear-gradient(160deg, var(--color-mustard) 0%, var(--color-orange) 55%, var(--color-red) 100%)",
+    hero: "linear-gradient(160deg, var(--color-periwinkle) 0%, var(--color-periwinkle-deep) 100%)",
   },
   typography: {
     font: {

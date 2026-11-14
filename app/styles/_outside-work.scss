@@ -7,29 +7,34 @@
   background-size: tex.$rings-size;
 }
 
-.outside-work-grid {
-  display: grid;
-  grid-template-columns: 1.3fr 1fr;
-  gap: 40px;
-  align-items: start;
-  padding: 0 clamp(16px, 4vw, 32px);
-  margin-top: 24px;
+// Three top-5 tiles over one full-width reading tile, on the shared .bento
+// grid (span/tone classes in _work.scss). Rows size to their content.
+.bento--offduty {
+  grid-auto-rows: minmax(112px, auto);
 }
 
-.outside-work-subhead {
-  font: 700 $scale-head-xs $head-font;
-  margin: 0 0 6px;
+.reading-tile {
+  padding: 24px 28px;
 }
 
 .outside-work-reading-note {
   font: 400 $scale-paper-sm/1.5 $paper-font;
-  color: color-mix(in oklch, $ink 60%, transparent);
-  margin: 0 0 16px;
+  color: color-mix(in oklch, $ink 70%, transparent);
+  margin: -4px 0 4px;
 }
 
-@media (max-width: 640px) {
-  .outside-work-grid {
-    grid-template-columns: 1fr;
-    gap: 40px;
+// Tablet: keep the three top-5s on one row (the shared 2-column tablet grid
+// would strand the third one as a mostly empty full-width tile).
+@media (min-width: 641px) and (max-width: 1023px) {
+  .bento--offduty {
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+  }
+
+  .bento--offduty .top-five-card {
+    grid-column: span 1;
+  }
+
+  .bento--offduty .reading-tile {
+    grid-column: 1 / -1;
   }
 }

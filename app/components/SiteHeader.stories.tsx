@@ -9,7 +9,7 @@ const meta: Meta<typeof SiteHeader> = {
     docs: {
       description: {
         component:
-          "Sticky page header: the wren logo mark linking home, and the site owner's name. Defaults to Darrough's real name in production — stories override it with a placeholder so this doc doesn't ship real contact info.",
+          "Page header: a cream band with the square kingfisher mark linking home, the outlined italic name and an open-to-work badge, plus a sticky orange role strip. Defaults to Darrough's real name in production — stories override it with a placeholder so this doc doesn't ship real contact info.",
       },
     },
   },

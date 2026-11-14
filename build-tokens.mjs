@@ -21,8 +21,8 @@ const THEME_RATIONALE = `// Colors are CSS custom properties (not plain Sass val
 // Fixed iteration order for the color tokens, matching the original
 // hand-written file — object key order from tokens/color.json already
 // matches this, this just makes the dependency explicit.
-const COLOR_KEYS = ['red', 'red-text', 'red-deep', 'orange', 'mustard', 'teal', 'plum', 'ink', 'cream', 'cream-dark'];
-const GRADIENT_KEYS = ['tape', 'hero'];
+const COLOR_KEYS = ['red', 'red-text', 'red-deep', 'orange', 'periwinkle', 'periwinkle-deep', 'ink', 'cream', 'cream-dark'];
+const GRADIENT_KEYS = ['hero'];
 const SPACE_KEYS = ['3', '4', '5', '6', '7', '8', '9', '10', '12', '14', '15', '16', '20', '24'];
 const FLUID_KEYS = ['sm', 'md', 'lg', 'xl', 'xxl'];
 const SCALE_STEPS = {

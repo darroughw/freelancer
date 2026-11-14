@@ -9,26 +9,26 @@
   padding: clamp(32px, 8vw, 56px) 0 clamp(40px, 8vw, 64px);
 }
 
-.skill-table {
-  display: flex;
-  flex-direction: column;
-  gap: 16px;
-  max-width: 820px;
-  margin-top: 24px;
-  padding: 0 clamp(16px, 4vw, 32px);
+// Three tiles on the shared .bento grid (span/tone classes in _work.scss),
+// sized to their tags rather than the work grid's fixed image rows.
+.bento--skills {
+  grid-auto-rows: minmax(112px, auto);
 }
 
-.skill-row {
-  // On the skills section's dark ink background, an ink-colored window
-  // border is invisible — the fill alone reads as the boundary, but a
-  // visible hairline keeps the chrome consistent with every other window.
-  border-color: $cream;
+.skill-tile {
+  padding: 22px 24px 24px;
+}
 
-  .window-body {
-    display: flex;
-    flex-direction: column;
-    gap: 10px;
-    padding: 16px;
+.skill-tile-title {
+  margin: 0 0 6px;
+  font: 900 $scale-head-base/1.1 $head-font;
+  text-transform: uppercase;
+}
+
+// Tablet's 2-column grid would leave the third tile alone on its row.
+@media (min-width: 641px) and (max-width: 1023px) {
+  .bento--skills .skill-tile:last-child {
+    grid-column: span 2;
   }
 }
 
@@ -42,9 +42,9 @@
   font: 600 $scale-mono-sm $mono-font;
   padding: 6px 11px;
   border-radius: $radius-pill;
-  border: $border-hairline solid $ink;
+  border: 2px solid currentColor;
   background: transparent;
-  color: $ink;
+  color: inherit;
 
   &::before {
     content: "+ ";

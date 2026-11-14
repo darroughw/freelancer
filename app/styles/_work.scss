@@ -14,45 +14,63 @@
   padding: 0 clamp(16px, 4vw, 32px);
 }
 
-.work-featured-row {
-  padding: 24px clamp(16px, 4vw, 32px) 0;
-}
-
-.shelf {
+// Bento grid: one featured tile plus mixed-size tiles in palette colors.
+// Spans are assigned per tile from BENTO_LAYOUT in app/page.tsx as
+// span-{cols}x{rows} classes on a 12-column grid (desktop), collapse to a
+// 2-column grid on tablets and a single column on phones. grid-auto-flow:
+// dense backfills any hole if the tile count ever stops lining up.
+.bento {
   display: grid;
-  grid-template-columns: repeat(auto-fill, minmax(220px, 1fr));
-  gap: 16px;
+  grid-template-columns: repeat(12, minmax(0, 1fr));
+  grid-auto-rows: 136px;
+  grid-auto-flow: dense;
+  gap: 14px;
   padding: 24px clamp(16px, 4vw, 32px) 16px;
 }
 
-.shelf-card {
-  width: 100%;
+@each $cols, $rows in (7 3, 7 2, 5 2, 5 1, 4 2, 4 1, 3 2, 12 1) {
+  .span-#{$cols}x#{$rows} {
+    grid-column: span $cols;
+    grid-row: span $rows;
+  }
 }
 
 .card {
-  display: flex;
-  flex-direction: column;
   text-decoration: none;
-  color: $ink;
   transition: transform $motion-fast $motion-ease, box-shadow $motion-fast $motion-ease;
 
   &:hover,
   &:focus-visible {
     transform: translate(-3px, -3px);
-    box-shadow: $shadow-sticker;
+    box-shadow: 6px 6px 0 $ink;
   }
 
   &:focus-visible {
-    outline: 2px solid $red-text;
-    outline-offset: 2px;
+    outline: 3px solid $ink;
+    outline-offset: 3px;
   }
 }
 
+.bento-card {
+  display: flex;
+  min-width: 0;
+  min-height: 0;
+  border: 3px solid $ink;
+  border-radius: 20px;
+  overflow: hidden;
+}
+
+// Tones. Red tiles use red-deep: cream small text on plain red is only
+// 4.20:1, on red-deep it's 5.72:1. Ink on orange/periwinkle is 8.12/7.32:1.
+.tone-cream { background: $cream; color: $ink; }
+.tone-red { background: $red-deep; color: $cream; }
+.tone-orange { background: $orange; color: $ink; }
+.tone-periwinkle { background: $periwinkle; color: $ink; }
+.tone-ink { background: $ink; color: $cream; }
+
 .card-img-wrap {
   position: relative;
-  height: 130px;
   background: $cream-dark;
-  border-bottom: $border-hairline solid $ink;
   overflow: hidden;
 }
 
@@ -69,31 +87,61 @@
   }
 }
 
+// Case number as a sticker on the image corner.
+.card-num {
+  position: absolute;
+  top: 12px;
+  left: 12px;
+  padding: 4px 10px;
+  border: 2px solid $ink;
+  border-radius: $radius-pill;
+  background: $cream;
+  color: $ink;
+  font: 700 $scale-mono-xs $mono-font;
+  letter-spacing: 0.08em;
+}
+
 .card-face {
   display: flex;
   flex-direction: column;
-  gap: 10px;
-  flex: 1;
+  gap: 4px;
+  min-width: 0;
+  padding: 12px 16px 14px;
+}
+
+.card-eyebrow {
+  font: 700 $scale-mono-xs $mono-font;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
 }
 
 .card-title {
-  font: 800 $scale-head-xs/1.3 $head-font;
+  font: 800 $scale-head-xs/1.25 $head-font;
   margin: 0;
+  display: -webkit-box;
+  -webkit-line-clamp: 3;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
 }
 
+// Description and tags only show on tiles big enough to hold them
+// (featured, and the full-width banner) — on the rest they'd crowd out
+// the image.
 .card-desc {
+  display: none;
   font: 400 $scale-paper-sm/1.5 $paper-font;
-  color: color-mix(in oklch, $ink 72%, transparent);
   margin: 0;
+  -webkit-line-clamp: 3;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
 }
 
 .card-meta {
   font: 600 $scale-mono-sm $mono-font;
-  color: color-mix(in oklch, $ink 68%, transparent);
 }
 
 .card-tag-row {
-  display: flex;
+  display: none;
   flex-wrap: wrap;
   gap: 6px;
 }
@@ -102,7 +150,7 @@
   font: 600 $scale-mono-xs $mono-font;
   padding: 4px 8px;
   border-radius: $radius-pill;
-  border: $border-hairline solid $ink;
+  border: $border-hairline solid currentColor;
   background: transparent;
 
   &::before {
@@ -111,50 +159,138 @@
 }
 
 .card-arrow {
+  display: none;
   font: 700 $scale-paper-xs $paper-font;
-  color: $red-text;
   margin-top: auto;
 }
 
-.card--featured {
+// Tall: image fills whatever height the text doesn't need.
+.bento-card--tall {
+  flex-direction: column;
+
   .card-img-wrap {
-    height: 220px;
+    flex: 1 1 auto;
+    min-height: 80px;
+    border-bottom: 3px solid $ink;
   }
 
-  .card-title {
-    font: 800 $scale-head-base/1.2 $head-font;
+  .card-face {
+    flex: none;
+  }
+}
+
+// Row: short tile, thumbnail on the left.
+.bento-card--row {
+  flex-direction: row;
+
+  .card-img-wrap {
+    flex: none;
+    width: 34%;
+    border-right: 3px solid $ink;
+  }
+
+  .card-face {
+    flex: 1;
+    justify-content: center;
+  }
+}
+
+.span-12x1 {
+  .card-img-wrap {
+    width: 26%;
   }
 
   .card-desc {
-    font: 400 $scale-paper-base/1.6 $paper-font;
+    display: -webkit-box;
+    -webkit-line-clamp: 2;
+    max-width: 70ch;
   }
 }
 
-@media (min-width: 641px) {
-  .card--featured {
-    display: grid;
-    grid-template-columns: 1.3fr 1fr;
-    min-height: 340px;
+.card--featured {
+  .card-face {
+    padding: 16px 22px 18px;
+    gap: 8px;
+  }
 
-    .window-titlebar {
-      grid-column: 1 / -1;
-    }
+  .card-title {
+    font: 900 clamp($scale-head-xs, 1.8vw, $scale-head-base)/1.15 $head-font;
+  }
 
-    .card-img-wrap {
-      height: 100%;
-      border-bottom: none;
-      border-right: $border-hairline solid $ink;
-    }
+  .card-desc {
+    display: -webkit-box;
+    -webkit-line-clamp: 2;
+    font-size: $scale-paper-base;
+  }
 
-    .card-face {
-      padding: 28px;
-      justify-content: center;
-    }
+  .card-tag-row {
+    display: flex;
+  }
+
+  .card-arrow {
+    display: block;
+    color: $red-text;
   }
 }
 
+// Tablet: two columns. Wide tiles span both; everything else takes one.
+@media (max-width: 1023px) {
+  .bento {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+
+  .span-5x2,
+  .span-4x2,
+  .span-3x2 {
+    grid-column: span 1;
+    grid-row: span 2;
+  }
+
+  .span-5x1,
+  .span-4x1 {
+    grid-column: span 1;
+    grid-row: span 1;
+  }
+
+  .span-7x3 {
+    grid-column: span 2;
+    grid-row: span 3;
+  }
+
+  .span-12x1,
+  .span-7x2 {
+    grid-column: span 2;
+    grid-row: span 1;
+  }
+}
+
+// Phone: one column, tiles size to their content.
 @media (max-width: 640px) {
-  .shelf {
+  .bento {
+    grid-template-columns: minmax(0, 1fr);
+    grid-auto-rows: auto;
     padding: 20px clamp(16px, 4vw, 32px) 0;
+  }
+
+  .bento > [class*="span-"] {
+    grid-column: auto;
+    grid-row: auto;
+  }
+
+  .bento-card--tall .card-img-wrap {
+    flex: none;
+    height: 150px;
+  }
+
+  .bento-card--row {
+    min-height: 110px;
+  }
+
+  .card--featured .card-img-wrap {
+    height: 190px;
+  }
+
+  .span-12x1 .card-desc {
+    display: none;
   }
 }

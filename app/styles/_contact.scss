@@ -12,12 +12,10 @@
 // Only the home page's contact section sits above the fixed bottom-nav —
 // extend its own background through the nav's clearance space instead of
 // reserving that space on .page, which would show cream behind the nav.
-.contact-section--with-nav {
-  padding-bottom: 108px;
-}
-
-.contact-main {
-  max-width: 640px;
+@media (max-width: 899px) {
+  .contact-section--with-nav {
+    padding-bottom: 108px;
+  }
 }
 
 .contact-window .window-body {
@@ -58,22 +56,30 @@
   }
 }
 
-.contact-social-row {
-  display: flex;
-  gap: 8px;
-  flex-wrap: wrap;
-  margin-top: 24px;
-  margin-bottom: 32px;
+// Home page: CTA tile beside two link tiles, on the shared .bento grid
+// (span/tone classes in _work.scss). The section already has side padding.
+.bento--contact {
+  grid-auto-rows: minmax(112px, auto);
+  padding: 0;
 }
 
-.contact-social-link {
-  font: 600 $scale-paper-sm $paper-font;
-  text-decoration: none;
-  color: $cream;
-  min-height: 44px;
+.contact-tile {
+  padding: clamp(20px, 4vw, 32px);
+
+  .contact-title {
+    margin-top: 4px;
+  }
+}
+
+.contact-pill-row {
   display: flex;
-  align-items: center;
-  padding: 8px 10px;
+  margin-top: 6px;
+  flex-wrap: wrap;
+  gap: 8px;
+
+  .pill {
+    min-height: 40px;
+  }
 }
 
 .footer-row {
@@ -81,27 +87,12 @@
   justify-content: space-between;
   flex-wrap: wrap;
   gap: 8px;
+  margin-top: 28px;
   padding-top: 18px;
   border-top: 1.5px solid color-mix(in oklch, $cream 30%, transparent);
-}
-
-.footer-links {
-  display: flex;
-  flex-wrap: wrap;
-  gap: 8px 16px;
 }
 
 .footer-text {
   font: 600 $scale-mono-sm $mono-font;
   color: $cream;
-}
-
-.footer-link {
-  text-decoration: none;
-  color: $cream;
-
-  &:hover {
-    opacity: 1;
-    text-decoration: underline;
-  }
 }
