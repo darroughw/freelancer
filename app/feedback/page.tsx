@@ -1,7 +1,6 @@
 import type { Metadata } from "next";
-import Link from "next/link";
 import FeedbackForm from "./FeedbackForm";
-import KingfisherMark from "../components/KingfisherMark";
+import SiteHeader from "../components/SiteHeader";
 
 export const metadata: Metadata = {
   title: "Feedback · Darrough West",
@@ -14,12 +13,7 @@ export default function FeedbackPage() {
     <div className="page">
       <a href="#main-content" className="skip-link">Skip to main content</a>
 
-      <header className="header">
-        <Link href="/" className="logo-mark" aria-label="Darrough West — home">
-          <KingfisherMark size={34} />
-        </Link>
-        <div className="header-name">Darrough West</div>
-      </header>
+      <SiteHeader />
 
       <main id="main-content">
         <section className="masthead">
@@ -38,7 +32,12 @@ export default function FeedbackPage() {
         </section>
 
         <section className="feedback-section">
-          <FeedbackForm />
+          <div className="bento bento--feedback">
+            <div className="bento-tile tone-cream span-7x2 feedback-tile">
+              <span className="tile-label">Send a note</span>
+              <FeedbackForm />
+            </div>
+          </div>
         </section>
       </main>
     </div>

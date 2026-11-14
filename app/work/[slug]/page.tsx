@@ -9,7 +9,7 @@ import ScrollReveal from "../../components/ScrollReveal";
 import CaseStudyBlock from "../../components/CaseStudyBlock";
 import CaseStudyNav from "../../components/CaseStudyNav";
 import CasePager from "../../components/CasePager";
-import ContactCTA from "../../components/ContactCTA";
+import SiteFooter from "../../components/SiteFooter";
 
 export function generateStaticParams() {
   return caseStudies.map((study) => ({ slug: study.slug }));
@@ -80,70 +80,86 @@ export default function CaseStudyPage({ params }: { params: { slug: string } }) 
       />
       <a href="#main-content" className="skip-link">Skip to main content</a>
 
-      <SiteHeader />
+      <SiteHeader
+        nav={
+          <nav className="bottom-nav" aria-label="Site">
+            <Link href="/#work" className="pill">All work</Link>
+            <Link href="#contact" className="pill">Contact</Link>
+          </nav>
+        }
+      />
 
       <main id="main-content">
-        <div className="case-hero">
-          <Image
-            src={study.imgSrc}
-            alt={study.title}
-            fill
-            priority
-            sizes="100vw"
-            className="case-hero-img"
-          />
-          <div className="case-hero-content">
-            <Link href="/#work" className="case-back">← Back to work</Link>
-            <p className="case-hero-eyebrow">Case Study · {study.year}</p>
-            <h1 className="case-hero-title">{study.title}</h1>
-            <div className="case-meta">
-              <span>Role: {study.role}</span>
-              <span>Year: {study.year}</span>
-              {study.tools && <span>Tools: {study.tools}</span>}
+        <section className="case-hero">
+          <div className="bento bento--case-hero">
+            <div className="bento-tile tone-cream span-7x2 case-title-tile">
+              <Link href="/#work" className="case-back">← Back to work</Link>
+              <p className="tile-label case-hero-eyebrow">Case study · {study.year}</p>
+              <h1 className="case-hero-title">{study.title}</h1>
+              <p className="case-hero-desc">{study.desc}</p>
             </div>
+
+            <div className="bento-card span-5x2 case-cover">
+              <Image
+                src={study.imgSrc}
+                alt=""
+                fill
+                priority
+                sizes="(max-width: 640px) 100vw, 40vw"
+                className="case-cover-img"
+              />
+              <span className="card-num">{study.num}</span>
+            </div>
+
+            <div className="bento-tile tone-orange span-4x1">
+              <span className="tile-label">Role</span>
+              <p className="case-meta-value">{study.role}</p>
+            </div>
+            <div className="bento-tile tone-ink span-4x1">
+              <span className="tile-label">{study.tools ? "Tools" : "Year"}</span>
+              <p className="case-meta-value">{study.tools || study.year}</p>
+            </div>
+            <div className="bento-tile tone-cream span-4x1 case-focus">
+              <span className="tile-label">Focus</span>
+              <div className="case-tags">
+                {study.tags.map((t) => (
+                  <span key={t} className="card-tag">{t}</span>
+                ))}
+              </div>
+            </div>
+
+            {featuredStat && (
+              <div className="bento-tile tone-ink span-12x1 case-results-strip">
+                <span className="tile-label case-results-label">At a glance</span>
+                <CaseStudyBlock block={featuredStat.block} />
+              </div>
+            )}
           </div>
-        </div>
+        </section>
 
         <div className="case-body">
-          <div className="case-tags">
-            {study.tags.map((t) => (
-              <span key={t} className="card-tag">{t}</span>
+          <CaseStudyNav headings={study.sections.map((s) => s.heading)} />
+
+          <div className="case-sections-col">
+            {study.sections.map((section) => (
+              <section key={section.heading} id={slugifyHeading(section.heading)} className="case-section" data-reveal>
+                <h2 className="case-heading">{section.heading}</h2>
+                {section.body.map((block, i) => {
+                  const isPromotedStat =
+                    featuredStat &&
+                    section.heading === featuredStat.sectionHeading &&
+                    i === featuredStat.blockIndex;
+                  if (isPromotedStat) return null;
+                  return <CaseStudyBlock key={i} block={block} />;
+                })}
+              </section>
             ))}
-          </div>
-
-          {featuredStat && (
-            <div className="case-results-strip">
-              <p className="case-results-label">At a glance</p>
-              <CaseStudyBlock block={featuredStat.block} />
-            </div>
-          )}
-
-          <div className="case-content-row">
-            <CaseStudyNav headings={study.sections.map((s) => s.heading)} />
-
-            <div className="case-sections-col">
-              {study.sections.map((section) => (
-                <section key={section.heading} id={slugifyHeading(section.heading)} className="case-section" data-reveal>
-                  <h2 className="case-heading">{section.heading}</h2>
-                  {section.body.map((block, i) => {
-                    const isPromotedStat =
-                      featuredStat &&
-                      section.heading === featuredStat.sectionHeading &&
-                      i === featuredStat.blockIndex;
-                    if (isPromotedStat) return null;
-                    return <CaseStudyBlock key={i} block={block} />;
-                  })}
-                </section>
-              ))}
-            </div>
           </div>
         </div>
 
         <CasePager prev={prevStudy} next={nextStudy} />
 
-        <section className="contact-section" data-reveal>
-          <ContactCTA />
-        </section>
+        <SiteFooter withBottomNav />
 
         <ScrollReveal />
       </main>

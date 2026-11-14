@@ -40,7 +40,7 @@
 }
 
 .reading-item-desc {
-  font: 400 $scale-paper-sm/1.5 $paper-font;
+  font: 400 #{$scale-paper-sm}/1.5 $paper-font;
   color: color-mix(in oklch, $ink 65%, transparent);
   grid-column: 1;
 }

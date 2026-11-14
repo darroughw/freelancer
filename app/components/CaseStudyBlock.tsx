@@ -2,6 +2,10 @@ import Image from "next/image";
 import type { CaseStudyBlock as CaseStudyBlockData } from "../data/case-studies";
 
 // Steve Krug said don't make me think. This switch statement enforces that at the type level.
+// Stat tiles cycle through these. Cream/orange/periwinkle all read on both
+// the cream body and the ink "At a glance" tile in the case study hero.
+const STAT_TONES = ["orange", "periwinkle", "cream"] as const;
+
 export default function CaseStudyBlock({ block }: { block: CaseStudyBlockData }) {
   switch (block.type) {
     case "paragraph":
@@ -42,14 +46,10 @@ export default function CaseStudyBlock({ block }: { block: CaseStudyBlockData })
     case "stat":
       return (
         <div className="case-stat-row">
-          {block.items.map((s) => (
-            <div key={s.label} className="window case-stat">
-              <div className="window-titlebar">
-                <span className="window-titlebar-label">{s.label}</span>
-              </div>
-              <div className="window-body">
-                <div className="case-stat-value">{s.value}</div>
-              </div>
+          {block.items.map((s, i) => (
+            <div key={s.label} className={`bento-tile case-stat tone-${STAT_TONES[i % STAT_TONES.length]}`}>
+              <div className="case-stat-value">{s.value}</div>
+              <span className="tile-label">{s.label}</span>
             </div>
           ))}
         </div>

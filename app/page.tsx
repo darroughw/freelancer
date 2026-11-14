@@ -1,10 +1,9 @@
 "use client";
-import Link from "next/link";
 import { caseStudies } from "./data/case-studies";
 import SiteHeader from "./components/SiteHeader";
 import NavPills, { NAV_ITEMS } from "./components/NavPills";
 import WorkCard, { type WorkCardShape, type WorkCardTone } from "./components/WorkCard";
-import ContactCTA from "./components/ContactCTA";
+import SiteFooter from "./components/SiteFooter";
 import DotSpotlight from "./components/DotSpotlight";
 import { useScrollSpy } from "./hooks/useScrollSpy";
 import { useScrollReveal } from "./hooks/useScrollReveal";
@@ -200,43 +199,7 @@ export default function Page() {
           </div>
         </section>
 
-        <section id="contact" className="contact-section contact-section--with-nav" data-reveal>
-          <div className="bento bento--contact">
-            <ContactCTA variant="tile" className="span-7x2" />
-
-            <div className="bento-tile tone-orange span-5x1 contact-links-tile">
-              <span className="tile-label">Elsewhere</span>
-              <div className="contact-pill-row">
-                <a href="https://linkedin.com/in/darroughw" target="_blank" rel="noopener" className="pill">
-                  LinkedIn ↗<span className="visually-hidden"> (opens in new tab)</span>
-                </a>
-                <a href="https://github.com/darroughw" target="_blank" rel="noopener" className="pill">
-                  GitHub ↗<span className="visually-hidden"> (opens in new tab)</span>
-                </a>
-                <a href="https://open.spotify.com/user/darrough?si=0c7cd65c69b347c2" className="pill">Spotify</a>
-              </div>
-            </div>
-
-            <div className="bento-tile tone-periwinkle span-5x1 contact-links-tile">
-              <span className="tile-label">More</span>
-              <div className="contact-pill-row">
-                <a href="/resume.pdf" target="_blank" rel="noopener" className="pill">
-                  Resume ↗<span className="visually-hidden"> (opens in new tab)</span>
-                </a>
-                <a href="https://namedrop.io/darroughwest" target="_blank" rel="noopener" className="pill">
-                  Pronounce my name ↗<span className="visually-hidden"> (opens in new tab)</span>
-                </a>
-                <Link href="/feedback" className="pill">Feedback</Link>
-                <a href="/storybook" target="_blank" rel="noopener" className="pill">
-                  Design System ↗<span className="visually-hidden"> (opens in new tab)</span>
-                </a>
-              </div>
-            </div>
-          </div>
-          <div className="footer-row">
-            <span className="footer-text">© 2026 Darrough West</span>
-          </div>
-        </section>
+        <SiteFooter withBottomNav />
       </main>
 
     </div>

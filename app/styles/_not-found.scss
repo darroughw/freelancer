@@ -6,9 +6,14 @@
   font: 700 $scale-paper-base $paper-font;
   text-decoration: none;
   color: $cream;
-  background: $ink;
+  background: $red-deep;
+  border: 2px solid $ink;
   padding: 15px 24px;
   border-radius: $radius-pill;
   min-height: 44px;
   margin-top: 28px;
+
+  &:hover {
+    background: $ink;
+  }
 }

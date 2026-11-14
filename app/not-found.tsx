@@ -1,16 +1,11 @@
 import Link from "next/link";
-import KingfisherMark from "./components/KingfisherMark";
+import SiteHeader from "./components/SiteHeader";
 
 // The one page every user visits and nobody bookmarks.
 export default function NotFound() {
   return (
     <div className="page">
-      <header className="header">
-        <Link href="/" className="logo-mark" aria-label="Darrough West — home">
-          <KingfisherMark size={34} />
-        </Link>
-        <div className="header-name">Darrough West</div>
-      </header>
+      <SiteHeader />
 
       <main>
         <section className="masthead">

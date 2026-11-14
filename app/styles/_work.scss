@@ -116,7 +116,7 @@
 }
 
 .card-title {
-  font: 800 $scale-head-xs/1.25 $head-font;
+  font: 800 #{$scale-head-xs}/1.25 $head-font;
   margin: 0;
   display: -webkit-box;
   -webkit-line-clamp: 3;
@@ -129,7 +129,7 @@
 // the image.
 .card-desc {
   display: none;
-  font: 400 $scale-paper-sm/1.5 $paper-font;
+  font: 400 #{$scale-paper-sm}/1.5 $paper-font;
   margin: 0;
   -webkit-line-clamp: 3;
   -webkit-box-orient: vertical;
