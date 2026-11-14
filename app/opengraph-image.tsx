@@ -1,12 +1,14 @@
 import { ImageResponse } from "next/og";
 import { ogColors } from "./og-theme";
-import KingfisherMark from "./components/KingfisherMark";
+import { loadOgFonts, OgBadge, OgMark, OgName, OgStrip } from "./og-shared";
 
-export const alt = "Darrough West · Freelance Designer";
+export const alt = "Darrough West · UX Designer + Front-End Engineer · Open to work";
 export const size = { width: 1200, height: 630 };
 export const contentType = "image/png";
 
-export default function Image() {
+// The site header, scaled up to fill a share card: square kingfisher mark,
+// extruded red name, the "42 / Open to work" badge, and the orange role strip.
+export default async function Image() {
   return new ImageResponse(
     (
       <div
@@ -15,56 +17,53 @@ export default function Image() {
           height: "100%",
           display: "flex",
           flexDirection: "column",
-          justifyContent: "space-between",
           background: ogColors.cream,
           color: ogColors.ink,
-          padding: 72,
-          fontFamily: "sans-serif",
         }}
       >
-        <div style={{ display: "flex", alignItems: "center" }}>
-          <div style={{ display: "flex", marginRight: 20 }}>
-            <KingfisherMark size={56} background={ogColors.ink} foreground={ogColors.cream} />
+        <div
+          style={{
+            flex: 1,
+            display: "flex",
+            flexDirection: "column",
+            justifyContent: "center",
+            padding: "0 64px",
+          }}
+        >
+          <div style={{ display: "flex", alignItems: "center" }}>
+            <OgMark size={150} />
+            <div style={{ display: "flex", marginLeft: 36 }}>
+              <OgName size={118} steps={12} />
+            </div>
           </div>
-          <div style={{ display: "flex", fontSize: 28, fontWeight: 700 }}>Darrough West</div>
-        </div>
 
-        <div style={{ display: "flex", flexDirection: "column" }}>
           <div
             style={{
               display: "flex",
-              fontSize: 26,
-              fontWeight: 700,
-              letterSpacing: 2,
-              color: ogColors.redDeep,
-              marginBottom: 20,
-              fontFamily: "monospace",
+              alignItems: "center",
+              justifyContent: "space-between",
+              marginTop: 56,
             }}
           >
-            DWEST.FOO
-          </div>
-          <div
-            style={{
-              display: "flex",
-              fontSize: 76,
-              fontWeight: 900,
-              textTransform: "uppercase",
-              lineHeight: 1.0,
-              marginBottom: 20,
-              maxWidth: 980,
-            }}
-          >
-            Interfaces that ship.
+            <div
+              style={{
+                display: "flex",
+                fontFamily: "Archivo Black",
+                fontSize: 60,
+                lineHeight: 1,
+                textTransform: "uppercase",
+                letterSpacing: -1,
+              }}
+            >
+              Interfaces that ship.
+            </div>
+            <OgBadge />
           </div>
         </div>
 
-        <div style={{ display: "flex", height: 12, width: "100%" }}>
-          {[ogColors.orange, ogColors.red, ogColors.redDeep, ogColors.periwinkle, ogColors.periwinkleDeep].map((color) => (
-            <div key={color} style={{ display: "flex", flex: 1, background: color }} />
-          ))}
-        </div>
+        <OgStrip left="UX Designer + Front-End Engineer" right="dwest.foo" />
       </div>
     ),
-    { ...size }
+    { ...size, fonts: await loadOgFonts() }
   );
 }

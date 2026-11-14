@@ -115,8 +115,8 @@ export default function Page() {
             <div className="bento-tile tone-cream span-7x2 about-story">
               <span className="tile-label">The short version</span>
               <p className="about-lead">
-                <span className="drop-cap">T</span>
-                en-plus years bouncing between Figma and VS Code taught me that the best interfaces come from people who can prototype the interaction, 
+                <span className="drop-cap">F</span>
+                ifteen-plus years bouncing between Figma and VS Code taught me that the best interfaces come from people who can prototype the interaction, 
                 not just describe it. I've spent most of that time inside agencies and enterprise teams: pulled in mid-sprint to unstick a flow, 
                 brought on from kickoff to own design and build end to end, or embedded full-time on a product that needed someone who could do both.
               </p>
