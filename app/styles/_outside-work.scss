@@ -18,7 +18,7 @@
 }
 
 .outside-work-reading-note {
-  font: 400 $scale-paper-sm/1.5 $paper-font;
+  font: 400 #{$scale-paper-sm}/1.5 $paper-font;
   color: color-mix(in oklch, $ink 70%, transparent);
   margin: -4px 0 4px;
 }

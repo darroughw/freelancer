@@ -3,7 +3,7 @@
 // Top-5 tiles in the Off duty bento (layout in _outside-work.scss).
 .top-five-title {
   margin: 0 0 4px;
-  font: 900 $scale-head-base/1.1 $head-font;
+  font: 900 #{$scale-head-base}/1.1 $head-font;
   text-transform: uppercase;
 }
 
@@ -20,7 +20,7 @@
   display: flex;
   align-items: baseline;
   gap: 10px;
-  font: 500 $scale-paper-base/1.4 $paper-font;
+  font: 500 #{$scale-paper-base}/1.4 $paper-font;
 }
 
 // Inherits the tile's text color so it reads on every tone.

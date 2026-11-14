@@ -1,122 +1,134 @@
 @use "./theme" as *;
 
+// Hero: a bento grid on the periwinkle masthead background — title tile,
+// cover image, role / tools / focus tiles, and the "At a glance" stats.
+// Shares the .bento grid, span-* and tone-* classes (see _work.scss).
 .case-hero {
-  position: relative;
-  min-height: 320px;
-  display: flex;
-  align-items: flex-end;
-  background: $ink;
-  overflow: hidden;
+  background:
+    url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='8' height='8'%3E%3Ccircle cx='4' cy='4' r='1.4' fill='black' fill-opacity='0.12'/%3E%3C/svg%3E"),
+    var(--hero-gradient);
+  background-size: 8px 8px, 100% 100%;
+  border-bottom: $border-heavy solid $ink;
+  padding-bottom: clamp(16px, 4vw, 32px);
 }
 
-.case-hero-img {
-  position: absolute;
-  inset: 0;
-  width: 100%;
-  height: 100%;
-  object-fit: cover;
-  opacity: 0.55;
+.bento--case-hero {
+  grid-auto-rows: minmax(112px, auto);
 }
 
-.case-hero-content {
-  position: relative;
-  z-index: 1;
-  padding: clamp(24px, 6vw, 48px) clamp(16px, 4vw, 32px) clamp(28px, 6vw, 40px);
-  color: $cream;
-  max-width: 760px;
+.case-title-tile {
+  padding: clamp(20px, 3vw, 32px);
+  gap: 12px;
 }
 
 .case-back {
+  align-self: flex-start;
   display: inline-flex;
   align-items: center;
-  font: 700 $scale-mono-base $mono-font;
-  letter-spacing: 0.05em;
+  min-height: 32px;
+  padding: 0 14px;
+  border: 2px solid $ink;
+  border-radius: $radius-pill;
+  background: #fff;
+  color: $ink;
+  font: 600 $scale-mono-sm $mono-font;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
   text-decoration: none;
-  color: $cream;
-  opacity: 0.85;
-  margin-bottom: 20px;
 
   &:hover {
-    opacity: 1;
+    background: $ink;
+    color: $cream;
+  }
+
+  &:focus-visible {
+    outline: 3px solid $ink;
+    outline-offset: 2px;
   }
 }
 
 .case-hero-eyebrow {
-  font: 700 $scale-mono-base $mono-font;
-  letter-spacing: 0.08em;
-  color: $orange;
-  margin: 0 0 12px;
+  margin: 8px 0 0;
 }
 
 .case-hero-title {
-  font: 900 clamp(26px, 6vw, $scale-head-xl)/1.1 $head-font;
-  margin: 0 0 18px;
+  font: 900 clamp(28px, 3.4vw, $scale-head-xl)/1.08 $head-font;
+  letter-spacing: -0.01em;
+  margin: 0;
 }
 
-.case-meta {
-  display: flex;
-  flex-wrap: wrap;
-  gap: 8px 20px;
-  font: 600 $scale-mono-base $mono-font;
-  opacity: 0.8;
+.case-hero-desc {
+  font: 500 clamp($scale-paper-base, 1.3vw, $scale-paper-lg)/1.55 $paper-font;
+  margin: auto 0 0;
+  max-width: 560px;
 }
 
-.case-body {
-  padding: clamp(32px, 8vw, 56px) clamp(16px, 4vw, 32px);
-  max-width: 980px;
+.case-cover {
+  position: relative;
+  min-height: 260px;
+  background: $cream-dark;
+}
+
+.case-cover-img {
+  object-fit: cover;
+}
+
+.case-meta-value {
+  font: 800 #{$scale-head-xs}/1.3 $head-font;
+  margin: auto 0 0;
 }
 
 .case-tags {
   display: flex;
   flex-wrap: wrap;
   gap: 6px;
-  margin-bottom: 40px;
+  margin-top: auto;
 }
 
 .case-results-strip {
-  margin: 0 0 40px;
+  .case-stat-row {
+    margin: 0;
+  }
 }
 
-.case-results-label {
-  font: 700 $scale-mono-sm $mono-font;
-  letter-spacing: 0.08em;
-  text-transform: uppercase;
-  color: color-mix(in oklch, $ink 55%, transparent);
-  margin: 0 0 10px;
-}
-
-.case-content-row {
-  display: flex;
-  gap: 40px;
-  align-items: flex-start;
+// Body: lined up on the same 12-column grid as the hero — sticky section
+// list in the first 3 columns, the write-up in the next 7.
+.case-body {
+  display: grid;
+  grid-template-columns: repeat(12, minmax(0, 1fr));
+  column-gap: 14px;
+  align-items: start;
+  padding: clamp(32px, 6vw, 56px) clamp(16px, 4vw, 32px);
 }
 
 .case-nav {
-  flex: 0 0 180px;
+  grid-column: 1 / span 3;
   display: flex;
   flex-direction: column;
   gap: 2px;
   position: sticky;
-  top: 72px;
-  align-self: flex-start;
+  top: 76px; // clears the sticky orange header strip
+  padding: 12px;
+  border: $border-tile solid $ink;
+  border-radius: $radius-tile;
+  background: $cream;
 }
 
 .case-nav-link {
-  font: 600 $scale-paper-xs $paper-font;
-  color: color-mix(in oklch, $ink 55%, transparent);
+  font: 600 #{$scale-paper-sm}/1.35 $paper-font;
+  color: $ink;
   text-decoration: none;
-  padding: 7px 0 7px 14px;
-  border-left: 2px solid color-mix(in oklch, $ink 12%, transparent);
-  line-height: 1.35;
+  padding: 8px 12px;
+  border-radius: 12px;
 
   &:hover {
-    color: $ink;
+    background: $cream-dark;
   }
 
-  &.is-active {
-    color: $ink;
-    border-left-color: $red;
-    font-weight: 700;
+  &.is-active,
+  &.is-active:hover {
+    background: $ink;
+    color: $cream;
   }
 
   &:focus-visible {
@@ -126,7 +138,7 @@
 }
 
 .case-sections-col {
-  flex: 1;
+  grid-column: 4 / span 7;
   min-width: 0;
 }
 
@@ -139,7 +151,7 @@
 }
 
 .case-heading {
-  font: 800 $scale-head-base $head-font;
+  font: 900 clamp($scale-head-base, 2.2vw, $scale-head-lg)/1.15 $head-font;
   margin: 0 0 18px;
   color: $ink;
 }
@@ -151,7 +163,7 @@
 }
 
 .case-paragraph {
-  font: 400 $scale-paper-lg/1.7 $paper-font;
+  font: 400 #{$scale-paper-lg}/1.7 $paper-font;
   color: color-mix(in oklch, $ink 85%, transparent);
   margin: 0 0 16px;
 
@@ -167,7 +179,7 @@
   display: flex;
   flex-direction: column;
   gap: 10px;
-  font: 400 $scale-paper-lg/1.6 $paper-font;
+  font: 400 #{$scale-paper-lg}/1.6 $paper-font;
   color: color-mix(in oklch, $ink 85%, transparent);
 }
 
@@ -205,16 +217,14 @@
 }
 
 .case-stat {
-  min-width: 140px;
-
-  .window-body {
-    padding: 16px 20px;
-  }
+  min-width: 160px;
+  flex: 1 1 160px;
+  padding: 16px 20px;
+  gap: 6px;
 }
 
 .case-stat-value {
-  font: 900 $scale-head-lg $head-font;
-  color: $red;
+  font: 900 #{$scale-head-lg}/1 $head-font;
 }
 
 .case-images {
@@ -231,8 +241,8 @@
 .case-images-item {
   height: 360px;
   max-width: 100%;
-  border-radius: $radius-sm;
-  border: $border-hairline solid $ink;
+  border-radius: $radius-tile;
+  border: $border-tile solid $ink;
   overflow: hidden;
   background: $cream-dark;
 
@@ -257,31 +267,22 @@
 .case-pager {
   display: grid;
   grid-template-columns: 1fr 1fr;
-  gap: 16px;
-  max-width: 760px;
-  padding: 0 clamp(16px, 4vw, 32px) clamp(32px, 6vw, 48px);
+  gap: 14px;
+  padding: 0 clamp(16px, 4vw, 32px) clamp(32px, 6vw, 56px);
 }
 
 .case-pager-link {
-  display: flex;
-  flex-direction: column;
-  gap: 6px;
-  padding: 20px;
-  border-radius: $radius-sm;
-  border: $border-hairline solid $ink;
-  background: $cream;
   text-decoration: none;
-  color: $ink;
   transition: transform $motion-fast $motion-ease, box-shadow $motion-fast $motion-ease;
 
   &:hover {
     transform: translate(-3px, -3px);
-    box-shadow: $shadow-sticker;
+    box-shadow: $shadow-lift;
   }
 
   &:focus-visible {
-    outline: 2px solid $red-text;
-    outline-offset: 2px;
+    outline: 3px solid $ink;
+    outline-offset: 3px;
   }
 }
 
@@ -290,15 +291,27 @@
   align-items: flex-end;
 }
 
-.case-pager-label {
-  font: 700 $scale-mono-sm $mono-font;
-  letter-spacing: 0.05em;
-  text-transform: uppercase;
-  color: $red-text;
+.case-pager-title {
+  font: 900 clamp($scale-head-xs, 1.8vw, $scale-head-base)/1.2 $head-font;
 }
 
-.case-pager-title {
-  font: 800 $scale-head-xs $head-font;
+// Tablet: the hero drops to the shared 2-column bento; the section list
+// goes away and the write-up takes the full width.
+@media (min-width: 641px) and (max-width: 1023px) {
+  .bento--case-hero .case-focus {
+    grid-column: span 2;
+  }
+}
+
+@media (max-width: 1023px) {
+  .case-nav {
+    display: none;
+  }
+
+  .case-sections-col {
+    grid-column: 1 / -1;
+    max-width: 760px;
+  }
 }
 
 @media (max-width: 640px) {
@@ -315,11 +328,7 @@
     height: 260px;
   }
 
-  .case-nav {
-    display: none;
-  }
-
-  .case-content-row {
-    display: block;
+  .case-cover {
+    min-height: 220px;
   }
 }
