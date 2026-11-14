@@ -6,13 +6,15 @@ import "./globals.scss";
 
 export const metadata: Metadata = {
   metadataBase: new URL(SITE_URL),
-  title: "Darrough West · UX Designer & Frontend Engineer",
-  description: "UX design and frontend engineering for marketing and digital agencies.",
+  title: "Darrough West · UX Designer & Front-End Engineer",
+  description:
+    "UX designer and front-end engineer, 15+ years in enterprise products and design systems. Open to full-time roles and select project work.",
   alternates: {
     canonical: "/",
   },
   openGraph: {
     type: "website",
+    url: "/",
     siteName: SITE_NAME,
   },
   twitter: {
@@ -25,7 +27,7 @@ const personJsonLd = {
   "@type": "Person",
   name: SITE_NAME,
   url: SITE_URL,
-  jobTitle: "UX Designer & Frontend Engineer",
+  jobTitle: "UX Designer & Front-End Engineer",
   description:
     "Senior UX designer and frontend engineer with 15+ years of experience designing enterprise IT products, developer-facing experiences, and design systems.",
   sameAs: ["https://linkedin.com/in/darroughw", "https://github.com/darroughw"],

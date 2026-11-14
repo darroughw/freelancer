@@ -28,6 +28,7 @@ export function generateMetadata({ params }: { params: { slug: string } }) {
     openGraph: {
       type: "article",
       url,
+      siteName: SITE_NAME,
     },
     twitter: {
       card: "summary_large_image",
