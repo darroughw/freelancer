@@ -1,10 +1,47 @@
 @use "./theme" as *;
 
+// Printed-cardstock texture over the whole page, after the worn album-cover
+// look. Two layers —
+//   grain  — SVG feTurbulence speckle, like paper fibre / print grit.
+//            stitchTiles='stitch' tiles cleanly at this high frequency
+//            (0.85 × 240 is a whole number).
+//   mottle — soft radial-gradient blotches, like uneven ink coverage. Done
+//            with gradients rather than low-frequency turbulence because
+//            Chrome doesn't stitch low-frequency noise cleanly and a seam
+//            showed at every tile edge; gradients fade to transparent at
+//            their own edges, so they can't seam. Each blotch repeats on a
+//            different-sized tile so the pattern never visibly lines up.
+// The overlay sits on top of every section (so colored blocks get worn too,
+// not just the cream), never takes pointer events, and stays faint enough
+// not to move text contrast meaningfully.
+$grain: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='240' height='240'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.85' numOctaves='3' stitchTiles='stitch'/%3E%3CfeColorMatrix values='0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0.9 0'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
+$blot: rgb(0 0 0 / 0.5);
+
 .page {
+  position: relative;
   background: $cream;
   color: $ink;
   font-family: $paper-font;
   min-height: 100vh;
-  background-image: radial-gradient(oklch(0 0 0 / 0.02) 1px, transparent 1px);
-  background-size: 3px 3px;
+
+  &::after {
+    content: "";
+    position: absolute;
+    inset: 0;
+    z-index: 30; // above sections and the sticky strip/bottom nav (10), below the skip link (100)
+    pointer-events: none;
+    background-image:
+      $grain,
+      radial-gradient(ellipse 40% 32% at 22% 30%, $blot, transparent 70%),
+      radial-gradient(ellipse 32% 40% at 74% 62%, $blot, transparent 70%),
+      radial-gradient(ellipse 26% 22% at 52% 18%, $blot, transparent 70%);
+    background-size: 240px 240px, 1300px 1100px, 1700px 1500px, 900px 1300px;
+    opacity: 0.16;
+  }
+
+  @media (prefers-contrast: more), print {
+    &::after {
+      display: none;
+    }
+  }
 }

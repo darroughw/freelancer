@@ -27,14 +27,23 @@ const preview: Preview = {
         // Storybook's curated small device set (two mobile sizes, a tablet,
         // a desktop) — see MINIMAL_VIEWPORTS in the `storybook` package.
         ...MINIMAL_VIEWPORTS,
-        // This site has exactly one real CSS breakpoint (see Foundations →
-        // Spacing & Layout: `@media (max-width: 640px)`) — this viewport
-        // sits right at it, so switching to it previews the mobile/desktop
-        // layout collapse directly rather than an arbitrary device size.
+        // The site's three layout breakpoints (Foundations → Spacing &
+        // Layout), each set just at the edge so switching to it previews
+        // that layout directly rather than an arbitrary device size.
+        breakpointTablet: {
+          name: 'Tablet edge (1023px): 2-column bento',
+          styles: { width: '1023px', height: '900px' },
+          type: 'tablet',
+        },
+        breakpointNav: {
+          name: 'Nav edge (899px): bottom nav',
+          styles: { width: '899px', height: '900px' },
+          type: 'tablet',
+        },
         breakpoint: {
-          name: 'Breakpoint (640px)',
+          name: 'Mobile edge (640px): 1-column bento',
           styles: { width: '640px', height: '900px' },
-          type: 'other',
+          type: 'mobile',
         },
       },
     },

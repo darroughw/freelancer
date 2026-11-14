@@ -1,14 +1,13 @@
 // Hex approximations of the oklch() palette in app/styles/_theme.scss —
 // satori (which renders next/og images) doesn't reliably support oklch().
 export const ogColors = {
-  red: "#d1502e",
-  redText: "#a21a1b",
-  redDeep: "#b02b27",
-  orange: "#d9a05f",
-  mustard: "#d9c069",
-  teal: "#5a9098",
-  plum: "#6b3a5c",
-  ink: "#241c18",
-  cream: "#f5ecdc",
-  creamDark: "#e6dcd0",
+  red: "#d9261c",
+  redText: "#b31e15",
+  redDeep: "#b31e15",
+  orange: "#f39a2b",
+  periwinkle: "#9aa2d8",
+  periwinkleDeep: "#7e87c4",
+  ink: "#16161c",
+  cream: "#f4ecd6",
+  creamDark: "#e9dec2",
 };

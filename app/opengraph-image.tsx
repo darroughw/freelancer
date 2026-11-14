@@ -59,7 +59,7 @@ export default function Image() {
         </div>
 
         <div style={{ display: "flex", height: 12, width: "100%" }}>
-          {[ogColors.mustard, ogColors.orange, ogColors.red, ogColors.redDeep, ogColors.plum].map((color) => (
+          {[ogColors.orange, ogColors.red, ogColors.redDeep, ogColors.periwinkle, ogColors.periwinkleDeep].map((color) => (
             <div key={color} style={{ display: "flex", flex: 1, background: color }} />
           ))}
         </div>

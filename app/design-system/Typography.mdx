@@ -4,7 +4,7 @@ import { Meta, Typeset } from "@storybook/addon-docs/blocks";
 
 # Typography
 
-Three font families, loaded via Google Fonts in `app/layout.tsx`. Families,
+Three core font families (plus two header-only display faces, below), loaded via Google Fonts in `app/layout.tsx`. Families,
 weights, and the type scale below are generated from
 [`tokens/typography.json`](https://github.com/darroughw/freelancer/blob/main/tokens/typography.json)
 via [Style Dictionary](https://styledictionary.com) (`npm run build:tokens`)
@@ -85,6 +85,23 @@ chosen to read closer to a real terminal face.
   fontSizes={[10, 11, 12, 13]}
   sampleText="SECTION LABEL · META INFO"
 />
+
+## Header display faces (one-offs)
+
+Two more Google Fonts are loaded only for the site header, after the
+Master-View album-cover lettering. They're hardcoded in `_header.scss` rather
+than tokenized, since nothing else uses them.
+
+- **Kanit 900** — the name. Red fill, ink `-webkit-text-stroke`, and a
+  stepped ink `text-shadow` that extrudes it down and to the left.
+- **Barlow Condensed 800/900** — the status badge's big red numeral and its
+  "Open to work" label.
+
+<div style={{ display: "flex", gap: 32, alignItems: "center", flexWrap: "wrap", marginBottom: 16 }}>
+  <span style={{ font: "900 56px/1 'Kanit', sans-serif", color: "#d9261c", WebkitTextStroke: "2px #16161c", paintOrder: "stroke fill", textShadow: "-2px 2px 0 #16161c, -4px 4px 0 #16161c, -6px 6px 0 #16161c" }}>Name</span>
+  <span style={{ font: "900 40px/1 'Barlow Condensed', sans-serif", color: "#d9261c" }}>42</span>
+  <span style={{ font: "800 26px/1 'Barlow Condensed', sans-serif", textTransform: "uppercase" }}>Open to work</span>
+</div>
 
 ## Letter-spacing
 

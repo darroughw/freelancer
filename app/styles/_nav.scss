@@ -1,50 +1,70 @@
 @use "./theme" as *;
 
+// The section nav is rendered once, inside the sticky orange header strip.
+// Wide screens: inline pills on the right of the strip (cream pills, ink
+// border, ink when active). Below 900px: the same element pins itself to a
+// dark bar along the bottom of the viewport with position: fixed (fixed
+// escapes the strip's layout; the strip is only sticky, which doesn't trap
+// fixed descendants).
+
 .bottom-nav {
-  position: fixed;
-  left: 0;
-  right: 0;
-  bottom: 0;
-  z-index: 10;
-  background: $ink;
-  border-top: 2px solid color-mix(in oklch, $cream 15%, transparent);
   display: flex;
   gap: 8px;
-  overflow-x: auto;
-  padding: 12px clamp(16px, 4vw, 32px);
-  scroll-snap-type: x mandatory;
 }
 
+// Same pill look at every width: cream with an ink border, mono uppercase,
+// ink when active. Only where the nav sits changes.
 .pill {
   flex-shrink: 0;
   display: flex;
   align-items: center;
-  min-height: 36px;
+  min-height: 32px;
   padding: 0 14px;
-  border-radius: 100px;
-  background: color-mix(in oklch, $cream 12%, transparent);
-  color: $cream;
-  font: 700 $scale-paper-sm $paper-font;
+  border: 2px solid $ink;
+  border-radius: $radius-pill;
+  background: $cream;
+  color: $ink;
+  font: 600 $scale-mono-sm $mono-font;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
   text-decoration: none;
   cursor: pointer;
   transition: background-color 0.2s ease, color 0.2s ease;
 
   &:hover {
-    background: color-mix(in oklch, $cream 22%, transparent);
+    background: #fff;
   }
 
-  &.is-active {
-    background: $cream;
-    color: $ink;
-  }
-
+  &.is-active,
   &.is-active:hover {
-    background: $cream;
+    background: $ink;
+    color: $cream;
   }
 
   &:focus-visible {
-    outline: 2px solid $cream;
+    outline: 3px solid $ink;
     outline-offset: 2px;
+  }
+}
+
+// Narrow screens: pinned to the bottom as an orange bar matching the
+// header strip.
+@media (max-width: 899px) {
+  .bottom-nav {
+    position: fixed;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    z-index: 10;
+    background: $orange;
+    border-top: 6px solid $ink;
+    overflow-x: auto;
+    padding: 12px clamp(16px, 4vw, 32px);
+    scroll-snap-type: x mandatory;
+  }
+
+  .pill {
+    min-height: 36px; // bigger touch target
   }
 }
 

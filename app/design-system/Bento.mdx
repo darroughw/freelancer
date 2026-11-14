@@ -1,0 +1,115 @@
+import { Meta } from "@storybook/addon-docs/blocks";
+
+<Meta title="Patterns/Bento Grid" />
+
+# Bento Grid
+
+Every section on the home page — Selected Work, About, Skills, Off duty and
+the contact footer — is laid out on the same bento grid: chunky, ink-outlined
+tiles in the palette's flat colors, after the Master-View album cover. The
+grid, span and tone classes live in `app/styles/_work.scss`; the generic
+text tile (`.bento-tile`, `.tile-label`) lives in `app/styles/_about.scss`.
+
+## The grid
+
+<table>
+  <thead>
+    <tr><th>Width</th><th>Columns</th><th>Rows</th></tr>
+  </thead>
+  <tbody>
+    <tr><td>Desktop (1024px and up)</td><td>12</td><td>136px fixed in Selected Work; <code>minmax(112px, auto)</code> in the text sections</td></tr>
+    <tr><td>Tablet (641–1023px, <code>$breakpoint-tablet</code>)</td><td>2</td><td>Same as desktop</td></tr>
+    <tr><td>Phone (640px and below, <code>$breakpoint-mobile</code>)</td><td>1</td><td><code>auto</code>, so every tile sizes to its content</td></tr>
+  </tbody>
+</table>
+
+`.bento` sets `grid-auto-flow: dense` and a 14px gap. Section modifiers
+(`.bento--about`, `.bento--skills`, `.bento--offduty`, `.bento--contact`)
+only switch to content-sized rows and, where a 2-column tablet grid would
+strand a tile alone on its row, widen that one tile.
+
+## Span classes
+
+`span-{columns}x{rows}` on the 12-column desktop grid. Lay each row out so
+its spans add up to 12; that's what keeps the grid gap-free.
+
+<table>
+  <thead>
+    <tr><th>Class</th><th>Desktop</th><th>Tablet (2 cols)</th><th>Used for</th></tr>
+  </thead>
+  <tbody>
+    <tr><td><code>span-7x3</code></td><td>7 × 3</td><td>2 × 3</td><td>Featured case study</td></tr>
+    <tr><td><code>span-7x2</code></td><td>7 × 2</td><td>2 × 1</td><td>About story, contact CTA</td></tr>
+    <tr><td><code>span-5x2</code></td><td>5 × 2</td><td>1 × 2</td><td>Tall work cards</td></tr>
+    <tr><td><code>span-5x1</code></td><td>5 × 1</td><td>1 × 1</td><td>Row work card, pull quote, status, contact links</td></tr>
+    <tr><td><code>span-4x2</code></td><td>4 × 2</td><td>1 × 2</td><td>Tall work cards</td></tr>
+    <tr><td><code>span-4x1</code></td><td>4 × 1</td><td>1 × 1</td><td>Skills, top-5 lists</td></tr>
+    <tr><td><code>span-3x2</code></td><td>3 × 2</td><td>1 × 2</td><td>Narrow work card</td></tr>
+    <tr><td><code>span-12x1</code></td><td>12 × 1</td><td>2 × 1</td><td>Full-width row work card, reading list</td></tr>
+  </tbody>
+</table>
+
+On phones every span resets to a single full-width cell.
+
+## Tones
+
+One `tone-*` class sets a tile's background and text color together, so
+text always clears WCAG AA on its tile. Child elements that need color
+(skill pills, top-5 numbers) inherit `currentColor` instead of picking their
+own, so they follow the tone automatically.
+
+<div className="bento" style={{ padding: 0, gridAutoRows: "minmax(96px, auto)", marginBottom: 16 }}>
+  {[
+    ["cream", "Ink on cream", "15.28:1"],
+    ["red", "Cream on red-deep", "5.72:1"],
+    ["orange", "Ink on orange", "8.12:1"],
+    ["periwinkle", "Ink on periwinkle", "7.32:1"],
+    ["ink", "Cream on ink", "15.28:1"],
+  ].map(([tone, label, ratio], i) => (
+    <div key={tone} className={`bento-tile tone-${tone} ${["span-4x1", "span-4x1", "span-4x1", "span-7x2", "span-5x2"][i]}`}>
+      <span className="tile-label">tone-{tone}</span>
+      <p style={{ margin: 0, color: "inherit", font: "800 18px/1.25 'Archivo Black', sans-serif" }}>{label}</p>
+      <p style={{ margin: 0, color: "inherit", fontFamily: "'JetBrains Mono', monospace", fontSize: 12 }}>{ratio}</p>
+    </div>
+  ))}
+</div>
+
+`tone-red` deliberately uses `red-deep`, not `red`: cream text on plain red
+is only 4.20:1. On a section that's already one of these colors (Skills is
+ink, the footer is red-deep), skip that tone for the tiles so they don't
+disappear into the background.
+
+## Tile anatomy
+
+<div className="bento" style={{ padding: 0, gridAutoRows: "minmax(112px, auto)", marginBottom: 16 }}>
+  <div className="bento-tile tone-orange span-7x2">
+    <span className="tile-label">Tile label</span>
+    <p style={{ margin: 0, color: "inherit", font: "900 22px/1.1 'Archivo Black', sans-serif", textTransform: "uppercase" }}>Title</p>
+    <p style={{ margin: 0, color: "inherit" }}>Body content: a paragraph, a list, a row of pills.</p>
+  </div>
+  <div className="bento-tile tone-periwinkle span-5x1">
+    <span className="tile-label">Shape tokens</span>
+    <p style={{ margin: 0, color: "inherit", fontFamily: "'JetBrains Mono', monospace", fontSize: 12 }}>$border-tile · $radius-tile</p>
+  </div>
+  <div className="bento-tile tone-ink span-5x1">
+    <span className="tile-label">Spacing</span>
+    <p style={{ margin: 0, color: "inherit", fontFamily: "'JetBrains Mono', monospace", fontSize: 12 }}>padding 20px 24px · gap 10px</p>
+  </div>
+</div>
+
+- **`.bento-tile`** is a flex column with a `$border-tile` (3px) ink outline
+  and `$radius-tile` (20px) corners.
+- **`.tile-label`** is the small uppercase mono eyebrow every text tile opens
+  with ("The short version", "Top 5", "Elsewhere"). It can hold an inline
+  icon, like the green status dot.
+- Titles inside tiles are `$head-font` at 900, uppercase, `$scale-head-base`.
+- Work cards (`WorkCard`) use the same border, radius and tones, plus an image
+  well. On hover they lift 3px with `$shadow-lift`.
+
+## Adding a tile
+
+1. Pick a span whose row still adds up to 12 columns.
+2. Pick a tone that isn't the section's own background color and isn't the
+   same as the tile next to it.
+3. Check tablet: if the new tile ends up alone on a 2-column row, widen it to
+   `grid-column: span 2` in that section's modifier.

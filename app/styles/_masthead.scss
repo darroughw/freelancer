@@ -83,8 +83,8 @@
 // Deliberately the same ink as the rest of the headline, not a separate
 // accent hue: the word sits at different points along the hero gradient
 // depending on viewport width and text wrap, and ink is the one color
-// that stays safely readable across the whole mustard→orange→red span
-// (verified 3.74:1–8.95:1) — a second text color would only be safe over
+// that stays safely readable across the whole periwinkle gradient
+// (verified 5.28:1–7.32:1) — a second text color would only be safe over
 // part of that range.
 .masthead-accent {
   color: $ink;
@@ -93,7 +93,8 @@
 .masthead-sub {
   font: 500 clamp($scale-paper-base, 3vw, $scale-paper-lg)/1.6 $paper-font;
   max-width: 480px;
-  color: color-mix(in oklch, $ink 82%, transparent);
+  // Solid ink, not a softened mix: 82% ink fell to 4.13:1 over periwinkle-deep.
+  color: $ink;
   margin: 0;
 }
 

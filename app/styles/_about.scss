@@ -3,16 +3,44 @@
 
 .about-section {
   padding: clamp(32px, 8vw, 56px) 0 clamp(28px, 6vw, 48px);
-  max-width: 720px;
   background-image: tex.$lines-on-light;
   background-size: tex.$lines-size;
 }
 
+// Uses the shared .bento grid, span-* and tone-* classes from _work.scss.
+// Rows here grow with their text instead of the fixed row height the work
+// grid uses for image tiles.
+.bento--about {
+  grid-auto-rows: minmax(112px, auto);
+}
+
+.bento-tile {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  min-width: 0;
+  margin: 0;
+  padding: 20px 24px;
+  border: $border-tile solid $ink;
+  border-radius: $radius-tile;
+}
+
+.tile-label {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  font: 700 $scale-mono-xs $mono-font;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+}
+
+.about-story {
+  padding: 24px 28px;
+}
+
 .about-lead {
-  font: 400 clamp($scale-paper-base, 2.5vw, $scale-paper-lg)/1.65 $paper-font;
-  color: color-mix(in oklch, $ink 85%, transparent);
-  margin: 24px 0 0;
-  padding: 0 clamp(16px, 4vw, 32px);
+  font: 400 clamp($scale-paper-base, 1.45vw, 21px)/1.6 $paper-font;
+  margin: 0;
 }
 
 .drop-cap {
@@ -20,22 +48,30 @@
   float: left;
   line-height: 0.8;
   margin: 6px 8px 0 0;
-  color: $red;
-}
-
-.pull-quote {
-  border-left: 3px solid $red;
-  padding-left: 18px;
-  margin: 24px clamp(16px, 4vw, 32px) 0;
+  color: $red-text;
 }
 
 .pull-quote-text {
-  font: 700 $scale-head-sm/1.4 $head-font;
-  margin: 0 0 10px;
+  font: 900 clamp($scale-head-base, 2.2vw, $scale-head-lg)/1.15 $head-font;
+  margin: auto 0 0;
 }
 
 .pull-quote-rule {
-  width: 32px;
-  height: 3px;
-  background: $mustard;
+  width: 72px;
+  height: 8px;
+  border: 2px solid $ink;
+  background: $red;
+}
+
+.about-tile-big {
+  font: 800 $scale-head-xs/1.25 $head-font;
+  margin: auto 0 0;
+}
+
+.status-dot {
+  width: 12px;
+  height: 12px;
+  border-radius: 50%;
+  border: 2px solid $ink;
+  background: oklch(0.6 0.15 150);
 }

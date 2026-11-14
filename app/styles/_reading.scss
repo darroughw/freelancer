@@ -1,11 +1,17 @@
 @use "./theme" as *;
 
-// The outer section wrapper lives on .outside-work-section /
-// .outside-work-reading in _outside-work.scss — this list is now a column
-// nested inside .outside-work-grid, not a top-level section.
+// Link list inside the full-width reading tile in the Off duty bento.
+// Three columns on desktop, two on tablet, one on phones.
 .reading-list {
-  display: flex;
-  flex-direction: column;
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  column-gap: 32px;
+}
+
+@media (max-width: 1023px) {
+  .reading-list {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
 }
 
 .reading-item {
@@ -49,6 +55,10 @@
 }
 
 @media (max-width: 640px) {
+  .reading-list {
+    grid-template-columns: minmax(0, 1fr);
+  }
+
   .reading-item {
     grid-template-columns: 1fr;
   }

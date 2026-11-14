@@ -21,83 +21,60 @@ they're overwritten on every build.
     <tr><td><code>color.red-text</code></td><td><code>$red-text</code></td><td><code>--color-red-text</code></td><td><code>tokens.color.redText</code></td></tr>
     <tr><td><code>color.red-deep</code></td><td><code>$red-deep</code></td><td><code>--color-red-deep</code></td><td><code>tokens.color.redDeep</code></td></tr>
     <tr><td><code>color.orange</code></td><td><code>$orange</code></td><td><code>--color-orange</code></td><td><code>tokens.color.orange</code></td></tr>
-    <tr><td><code>color.mustard</code></td><td><code>$mustard</code></td><td><code>--color-mustard</code></td><td><code>tokens.color.mustard</code></td></tr>
-    <tr><td><code>color.teal</code></td><td><code>$teal</code></td><td><code>--color-teal</code></td><td><code>tokens.color.teal</code></td></tr>
-    <tr><td><code>color.plum</code></td><td><code>$plum</code></td><td><code>--color-plum</code></td><td><code>tokens.color.plum</code></td></tr>
+    <tr><td><code>color.periwinkle</code></td><td><code>$periwinkle</code></td><td><code>--color-periwinkle</code></td><td><code>tokens.color.periwinkle</code></td></tr>
+    <tr><td><code>color.periwinkle-deep</code></td><td><code>$periwinkle-deep</code></td><td><code>--color-periwinkle-deep</code></td><td><code>tokens.color.periwinkleDeep</code></td></tr>
     <tr><td><code>color.ink</code></td><td><code>$ink</code></td><td><code>--color-ink</code></td><td><code>tokens.color.ink</code></td></tr>
     <tr><td><code>color.cream</code></td><td><code>$cream</code></td><td><code>--color-cream</code></td><td><code>tokens.color.cream</code></td></tr>
     <tr><td><code>color.cream-dark</code></td><td><code>$cream-dark</code></td><td><code>--color-cream-dark</code></td><td><code>tokens.color.creamDark</code></td></tr>
-    <tr><td><code>gradient.tape</code></td><td colspan="2"><code>--tape-gradient</code> (CSS custom property only, no Sass alias)</td><td><code>tokens.gradient.tape</code></td></tr>
     <tr><td><code>gradient.hero</code></td><td colspan="2"><code>--hero-gradient</code> (CSS custom property only, no Sass alias)</td><td><code>tokens.gradient.hero</code></td></tr>
   </tbody>
 </table>
 
-This is the site's original palette — five accent hues plus ink and cream,
-unchanged in value since before the typesafe.ai-inspired visual refresh.
-What changed in that redesign was everything built *with* the palette
-(window-chrome cards, hard borders, the masthead's full-bleed hero gradient),
-not the colors themselves.
+The palette is drawn from a retro album-cover look: View-Master red, a warm
+orange, periwinkle blue, cream paper and near-black ink. Hex equivalents are
+noted in `tokens/color.json` comments.
 
 <ColorPalette>
-  <ColorItem
-    title="Ink"
-    subtitle="Primary text color"
-    colors={{ ink: "oklch(0.22 0.02 55)" }}
-  />
+  <ColorItem title="Ink" subtitle="Primary text color" colors={{ ink: "oklch(0.20 0.012 285)" }} />
   <ColorItem
     title="Cream"
     subtitle="Primary background, and a slightly darker variant for subtle fills"
-    colors={{ cream: "oklch(0.95 0.018 80)", "cream-dark": "oklch(0.90 0.02 75)" }}
+    colors={{ cream: "oklch(0.94 0.030 90)", "cream-dark": "oklch(0.90 0.039 89)" }}
   />
   <ColorItem
     title="Red"
-    subtitle="Primary accent, with two contrast-adjusted variants"
-    colors={{
-      red: "oklch(0.58 0.17 27)",
-      "red-text": "oklch(0.46 0.17 27)",
-      "red-deep": "oklch(0.50 0.17 27)",
-    }}
+    subtitle="Primary accent, with a contrast-adjusted variant for small text and cream-text backgrounds"
+    colors={{ red: "oklch(0.57 0.213 29)", "red-text": "oklch(0.49 0.185 29)", "red-deep": "oklch(0.49 0.185 29)" }}
   />
-  <ColorItem title="Orange" subtitle="Palette accent" colors={{ orange: "oklch(0.73 0.15 55)" }} />
-  <ColorItem title="Mustard" subtitle="Palette accent" colors={{ mustard: "oklch(0.79 0.13 90)" }} />
-  <ColorItem title="Teal" subtitle="Palette accent" colors={{ teal: "oklch(0.56 0.09 195)" }} />
-  <ColorItem title="Plum" subtitle="Palette accent" colors={{ plum: "oklch(0.42 0.10 325)" }} />
+  <ColorItem title="Orange" subtitle="Palette accent" colors={{ orange: "oklch(0.76 0.156 66)" }} />
+  <ColorItem
+    title="Periwinkle"
+    subtitle="Palette accent and hero background"
+    colors={{ periwinkle: "oklch(0.73 0.079 278)", "periwinkle-deep": "oklch(0.64 0.092 277)" }}
+  />
 </ColorPalette>
 
 ## Notes
 
 - **`red-text`** is a darker variant of `red` for small/normal-weight text on
   light backgrounds — `red` itself only clears WCAG AA contrast at large text
-  sizes.
+  sizes (4.20:1 on cream). `red-text` is 5.72:1 on cream.
 - **`red-deep`** is a darker variant of `red` for use as a background behind
-  cream text — `red` itself only gives cream text ~4.0:1 contrast, below the
-  4.5:1 AA threshold.
+  cream text — `red` itself only gives cream text 4.20:1 contrast, below the
+  4.5:1 AA threshold. It currently shares `red-text`'s value (5.72:1).
+- Bento tiles apply the palette through `tone-*` classes that pair each
+  background with a text color that clears AA; see
+  [Patterns → Bento Grid](?path=/docs/patterns-bento-grid--docs).
 - The palette is defined in `oklch()` rather than hex so lightness and chroma
   stay perceptually consistent across hues.
 
 ## Gradients
 
-Two gradients, both referencing the CSS custom properties directly (not
-resolved values), both ink-text-adjacent:
-
-<div style={{ display: "flex", gap: 24, marginBottom: 16 }}>
-  <div style={{ display: "flex", flexDirection: "column", gap: 8 }}>
-    <div style={{ width: 280, height: 56, borderRadius: 4, border: "1px solid #221812", background: "linear-gradient(90deg, #dbb64c 0%, #ee8b3e 25%, #cb473f 50%, #b02b27 75%, #68386b 100%)" }} />
-    <code>gradient.tape</code>
-  </div>
-  <div style={{ display: "flex", flexDirection: "column", gap: 8 }}>
-    <div style={{ width: 280, height: 56, borderRadius: 4, border: "1px solid #221812", background: "linear-gradient(160deg, #dbb64c 0%, #ee8b3e 55%, #cb473f 100%)" }} />
-    <code>gradient.hero</code>
-  </div>
+<div style={{ display: "flex", flexDirection: "column", gap: 8, marginBottom: 16 }}>
+  <div style={{ width: 280, height: 56, borderRadius: 4, border: "1px solid #16161c", background: "linear-gradient(160deg, #9aa2d8 0%, #7e87c4 100%)" }} />
+  <code>gradient.hero</code>
 </div>
 
-- **`gradient.tape`** is the full five-stop sunset (mustard → orange → red →
-  red-deep → plum), used where nothing is printed on top of it (the header's
-  bottom border-image).
-- **`gradient.hero`** is a narrower, text-safe subset (mustard → orange → red
-  only) for the masthead's full-bleed hero background, which has the ink
-  headline sitting directly on top. `red-deep` and `plum` are deliberately
-  excluded: computed contrast of ink text against each stop is mustard 8.95:1,
-  orange 6.96:1, red 3.74:1 (clears the 3:1 large-text floor, the tightest
-  margin in the gradient), red-deep 2.67:1, plum 1.96:1 — the last two fail
-  outright, which is why the hero gradient stops at red.
+- **`gradient.hero`** (periwinkle → periwinkle-deep) is the masthead's
+  full-bleed background, with the ink headline directly on top. Ink clears AA
+  at both stops: 7.32:1 on periwinkle, 5.28:1 on periwinkle-deep.

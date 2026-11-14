@@ -19,9 +19,12 @@ which replaced the previous soft-shadow/rounded-card look.
   <tbody>
     <tr><td><code>radius.sm</code></td><td><code>$radius-sm</code></td><td><code>--radius-sm</code></td></tr>
     <tr><td><code>radius.pill</code></td><td><code>$radius-pill</code></td><td><code>--radius-pill</code></td></tr>
+    <tr><td><code>radius.tile</code></td><td><code>$radius-tile</code></td><td><code>--radius-tile</code></td></tr>
     <tr><td><code>border.hairline</code></td><td><code>$border-hairline</code></td><td><code>--border-hairline</code></td></tr>
     <tr><td><code>border.heavy</code></td><td><code>$border-heavy</code></td><td><code>--border-heavy</code></td></tr>
+    <tr><td><code>border.tile</code></td><td><code>$border-tile</code></td><td><code>--border-tile</code></td></tr>
     <tr><td><code>shadow.sticker</code></td><td><code>$shadow-sticker</code></td><td><code>--shadow-sticker</code></td></tr>
+    <tr><td><code>shadow.lift</code></td><td><code>$shadow-lift</code></td><td><code>--shadow-lift</code></td></tr>
     <tr><td><code>motion.fast/base/slow</code></td><td><code>$motion-fast</code> etc.</td><td><code>--motion-fast</code> etc.</td></tr>
     <tr><td><code>motion.ease</code></td><td><code>$motion-ease</code></td><td><code>--motion-ease</code></td></tr>
   </tbody>
@@ -32,33 +35,44 @@ which replaced the previous soft-shadow/rounded-card look.
 <div style={{ display: "flex", flexWrap: "wrap", gap: 24, alignItems: "flex-end" }}>
   {[
     { r: 4, label: "4px — $radius-sm", used: "Window-chrome corners, flat cards — barely-there, mostly square" },
-    { r: 999, label: "100px — $radius-pill", used: "Pills — nav, tags, buttons, the email CTA" },
+    { r: 20, label: "20px — $radius-tile", used: "Bento tiles and work cards" },
+    { r: 999, label: "100px — $radius-pill", used: "Pills — nav, tags, buttons, the email CTA, the header badge" },
   ].map(({ r, label, used }) => (
     <div key={label} style={{ display: "flex", flexDirection: "column", alignItems: "center", gap: 8, width: 160 }}>
-      <div style={{ width: 72, height: 72, background: "#cb473f", border: "1px solid #221812", borderRadius: r }} />
+      <div style={{ width: 72, height: 72, background: "#d9261c", border: "1px solid #16161c", borderRadius: r }} />
       <div style={{ fontFamily: "'JetBrains Mono', monospace", fontSize: 12, textAlign: "center" }}>{label}</div>
       <div style={{ fontSize: 12, textAlign: "center", opacity: 0.75 }}>{used}</div>
     </div>
   ))}
 </div>
 
-Two values now, down from six — the redesign deliberately collapsed the
-previous 4–12px spread of "soft card" radii into one small, barely-rounded
-`$radius-sm`, leaving only the functional extremes: almost-square windows,
-and full pill/circle shapes for anything meant to read as a button or tag.
+Three values. `$radius-sm` keeps the remaining window chrome (case study
+pages) almost square. `$radius-tile` is the Master-View redesign's chunky
+rounded block for every bento tile. `$radius-pill` covers anything meant to
+read as a button or tag.
 
-## Elevation: hairline borders + one hard shadow
+## Elevation: hard borders + hard shadows
 
-No soft, blurred `box-shadow` appears anywhere in the stylesheets anymore.
-Depth comes from two things instead:
+No soft, blurred `box-shadow` appears anywhere in the stylesheets. Depth
+comes from borders and unblurred offset shadows instead:
 
-- **`$border-hairline`** (1px solid `$ink`) on every window-chrome element
-  and flat card — the default resting state.
+- **`$border-tile`** (3px solid `$ink`) on every bento tile and work card.
+- **`$shadow-lift`** (`6px 6px 0 var(--color-ink)`) on hovered bento work
+  cards, paired with a `translate(-3px, -3px)`.
+
+- **`$border-hairline`** (1px solid `$ink`) on window-chrome elements.
 - **`$shadow-sticker`** (`3px 3px 0 var(--color-ink)`, a hard, unblurred
   offset shadow) on hover/focus for interactive cards — a deliberate,
   original addition for this site, not a literal pattern lifted from the
   typesafe.ai reference, whose own depth comes from z-stacking overlapping
   windows rather than any shadow at all.
+
+<div style={{ display: "flex", gap: 32, alignItems: "flex-end", marginBottom: 16 }}>
+  <div style={{ width: 120, height: 72, background: "#f39a2b", border: "3px solid #16161c", borderRadius: 20 }} />
+  <div style={{ width: 120, height: 72, background: "#f39a2b", border: "3px solid #16161c", borderRadius: 20, boxShadow: "6px 6px 0 #16161c", transform: "translate(-3px, -3px)" }} />
+</div>
+
+Window chrome on case study pages keeps the lighter pair:
 
 <div style={{ display: "flex", gap: 32, alignItems: "flex-end" }}>
   <div style={{ width: 120, height: 72, background: "#fefefe", border: "1px solid #1e1e1e", borderRadius: 4 }} />
@@ -72,7 +86,7 @@ Depth comes from two things instead:
     <tr><th>Token</th><th>Declaration</th><th>Used by</th></tr>
   </thead>
   <tbody>
-    <tr><td><code>$motion-fast</code></td><td><code>0.2s</code></td><td>Hover/focus color and transform changes — card lift, button tint, header-cta</td></tr>
+    <tr><td><code>$motion-fast</code></td><td><code>0.2s</code></td><td>Hover/focus color and transform changes — work card lift, button tint</td></tr>
     <tr><td><code>$motion-base</code></td><td><code>0.3s</code></td><td>Available for future use — not yet consumed</td></tr>
     <tr><td><code>$motion-slow</code></td><td><code>0.5s</code></td><td>Available for future use — not yet consumed</td></tr>
     <tr><td><code>$motion-ease</code></td><td><code>cubic-bezier(0.12, 0.23, 0.5, 1)</code></td><td>Paired with `$motion-fast` wherever a card/button transitions — matches the easing measured off the typesafe.ai reference</td></tr>

@@ -132,18 +132,16 @@ describe("Page", () => {
     expect(resumeLink).toHaveAttribute("target", "_blank");
   });
 
-  it("features the newest case study prominently, with the rest in the grid", () => {
+  it("features the newest case study first in the bento grid, with each study shown once", () => {
     const { container } = render(<Page />);
     const featured = caseStudies[caseStudies.length - 1];
-    const rest = caseStudies.slice(0, -1);
 
-    const featuredCard = container.querySelector(".card--featured");
-    expect(featuredCard).toBeInTheDocument();
-    expect(featuredCard).toHaveTextContent(featured.title);
+    const cards = container.querySelectorAll(".bento .card");
+    expect(cards).toHaveLength(caseStudies.length);
 
-    // and it shouldn't also appear a second time in the plain grid
-    const gridCards = container.querySelectorAll(".shelf .card:not(.card--featured)");
-    expect(gridCards).toHaveLength(rest.length);
-    expect(container.querySelector(".shelf .card--featured")).not.toBeInTheDocument();
+    const featuredCards = container.querySelectorAll(".card--featured");
+    expect(featuredCards).toHaveLength(1);
+    expect(cards[0]).toBe(featuredCards[0]);
+    expect(featuredCards[0]).toHaveTextContent(featured.title);
   });
 });
